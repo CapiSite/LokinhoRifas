@@ -1,12 +1,14 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import TopHeader from "@/Components/TopHeader";
+import { BsWhatsapp, BsInstagram } from "react-icons/bs";
+import { FaFacebookF } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className='bg-use-red h-12 w-4/12'>
-      <p className='text-white'>LOKINHORIFAS@GMAIL.COM</p>
-    </div>
-  )
+    <>
+      <TopHeader/>
+      <div className="h-28 bg-white">
+        
+      </div>
+    </>
+  );
 }

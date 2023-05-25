@@ -1,5 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+
+
+const defaultTheme = require('tailwindcss/defaultTheme')
+
+
 module.exports = {
+  mode: "jit",
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,7 +21,14 @@ module.exports = {
       colors:{
         'use-red':'#BE0600',
         'use-strong-red': '#280005',
-      }
+      },
+      fontFamily: {
+        Montserrat: [
+          "Montserrat", ...defaultTheme.fontFamily.sans],
+      },
+        'sans':[
+         "Bebas Neue", ...defaultTheme.fontFamily.sans
+       ]
     },
   },
   plugins: [],
