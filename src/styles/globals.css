@@ -33,6 +33,7 @@ body {
   --white-1:#EEEEEE;
   --red:#BE0600;
   --strong-red:#280005;
+  --orange: rgb(250, 114, 3);
   position: relative;
 }
 a{
