@@ -11,13 +11,40 @@
     height: 100%;
     position: relative;
 }
-
+.carousel img{
+    width: 100%;
+    height: 100%;
+}
 .image{
     width: calc(50% - 2px);
     height: 100%;
 }
-.background h1{
+.carousel h1{
     position: absolute;
+    color: var(--white);
+}
+
+.carousel h1:first-child{
+    top: 120px;
+    left: calc(50% - 220px);
+    font-size: 100px;
+    font-family: 'Bebas Neue', sans-serif;
+
+}
+.carousel h1:nth-child(2){
+    left: calc(50% - 220px);
+    top:200px;
+    font-size: 150px;
+    width: 170px;
+    font-weight: 500;
+    font-family: 'cs';
+}
+.carousel h1:nth-child(3){
+    left: calc(50% - 220px);
+    top: 320px;
+    font-size: 90px;
+    font-family: 'Bebas Neue', sans-serif;
+
 }
 
 

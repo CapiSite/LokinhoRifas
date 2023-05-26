@@ -27,6 +27,8 @@ body {
 	line-height: 1;
   --black:black;
   --black-1: #111111;
+  --gray:rgb(48, 48, 48);
+  --light-gray: rgb(156, 156, 156);
   --white:white;
   --white-1:#EEEEEE;
   --red:#BE0600;
@@ -56,3 +58,8 @@ table {
 *{
 	box-sizing: border-box;
 }
+
+@font-face {
+	font-family: cs;
+	src: url(../../public/cs_regular.ttf);
+ }

@@ -6,9 +6,14 @@ export default function Carousel() {
   return (
     <>
     <div className={style.background}>
-      <Image src={Prancheta} className={style.carousel} alt="Prancheta"/>
+      <div className={style.carousel}>
+      
+      <h1>A MELHOR RIFA </h1>
+      <h1>CSGO</h1>
+      <h1>APOSTE E GANHE!</h1>
+      <Image src={Prancheta}  alt="Prancheta"/>
+      </div>
       <Image src={device} className={style.image} alt="device"/>
-      <h1>AOBA</h1>
     </div>
     </>
   );
