@@ -13,14 +13,14 @@ export default function TopHeader() {
         
         <div className={style.line}></div>
         <div className={style.right}>
-          <div className="w-8 h-8 bg-use-red rounded-full flex items-center justify-center mb-12 mr-3">
-            <FaFacebookF className="text-white bg-use-red text-xl " />
+          <div className={style.icon_div}>
+            <FaFacebookF className={style.icon_text} />
           </div>
-          <div className="w-8 h-8 bg-use-red rounded-full flex items-center justify-center mb-12 mr-3">
-            <BsInstagram className="text-white bg-use-red text-xl" />
+          <div className={style.icon_div}>
+            <BsInstagram className={style.icon_text} />
           </div>
-          <div className="w-8 h-8 bg-use-red rounded-full flex items-center justify-center mb-12 mr-20">
-            <BsWhatsapp className="text-white bg-use-red text-xl" />
+          <div className={style.icon_div}>
+            <BsWhatsapp className={style.icon_text} />
           </div>
         </div>
       </div>

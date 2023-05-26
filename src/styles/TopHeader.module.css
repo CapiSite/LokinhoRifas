@@ -35,3 +35,23 @@
     border-top: 48px solid var(--strong-red);
     border-left: 8px solid var(--white);
 }
+.icon_div{
+    width: 32px;
+    height: 32px;
+    background-color: var(--red);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 48px;
+    margin-right: 12px;
+}
+.right .icon_div:last-child{
+    margin-right: 80px;
+}
+
+.icon_text{
+    color: var(--white);
+    background-color: var(--red);
+    font-size: 20px;
+}
