@@ -23,6 +23,7 @@ export default function Benefits() {
 
   return (
     <>
+    
       <div className={style.background}>
         <Image className={style.img} alt="background" src={Prancheta}/>
         <div className={style.index}>
@@ -49,14 +50,14 @@ export default function Benefits() {
                 <p>Transmitimos ao vivo os sorteios das nossas rifas na nossa Twitch, utilizando a plataforma WheelOfNames para garantir a transparência e imparcialidade do processo.</p>
             </div>
         </div>
-         {group.map((o,i)=> <Card group={o} key={i}/>)}
+         {group.map((o,i)=> <Card more={more} i={i} group={o} key={i}/>)}
          {more?
-         <div className={style.seeMore}>
+         <div onClick={()=>setMore(!more)}  className={style.seeMore}>
             <h1>VER MENOS</h1>
             <MdOutlineKeyboardArrowUp/>
         </div>
         :  
-        <div className={style.seeMore}>
+        <div onClick={()=>setMore(!more)} className={style.seeMore}>
             <h1>VER MAIS</h1>
             <MdKeyboardArrowDown/>
         </div>
