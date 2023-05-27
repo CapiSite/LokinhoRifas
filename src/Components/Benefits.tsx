@@ -6,10 +6,10 @@ import { IoPeopleCircleOutline } from "react-icons/io5";
 import GroupPhoto from "@/../public/GroupImageRed.png"
 import GroupPhoto2 from "@/../public/GroupImageYellow.png"
 import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
-
 import Image from "next/image";
 import Card from "./Cards";
 import { useState } from "react";
+
 export default function Benefits() {
     const [more, setMore] = useState(false)
     const group = [{name:"GRUPO DE RIFAS", description:"Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto},
@@ -24,7 +24,7 @@ export default function Benefits() {
   return (
     <>
     
-      <div className={style.background}>
+      <div className={more?style.background:style.secondback}>
         <Image className={style.img} alt="background" src={Prancheta}/>
         <div className={style.index}>
         <div className={style.text}>

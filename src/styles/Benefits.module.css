@@ -10,7 +10,11 @@
     background-color: var(--strong-red);
     position: relative;
     height: 3250px;
-
+}
+.secondback{
+    background-color: var(--strong-red);
+    position: relative;
+    height: 1650px;
 }
 .index{
     position: absolute;

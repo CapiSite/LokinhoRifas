@@ -26,7 +26,7 @@ export default function Card({group, more, i}:any) {
   else{
     return (
         <>
-          <div className={style.card}>
+          <div id="card" className={style.card}>
                 <Image width={250} alt="GroupPhoto" src={group.photo}/>
                 <div className={style.line2}>
                     
