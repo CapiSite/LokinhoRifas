@@ -1,109 +1,114 @@
-.img{
-    width: 100%;
-    height: 550px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
+.img {
+  width: 100%;
+  height: 550px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
-.background{
-    background-color: var(--strong-red);
-    position: relative;
-    height: 3250px;
+.background {
+  background-color: var(--strong-red);
+  position: relative;
+  height: 1650px;
 }
-.secondback{
-    background-color: var(--strong-red);
-    position: relative;
-    height: 1650px;
-}
-.index{
-    position: absolute;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.text{
 
-    font-size: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-    font-family: 'Bebas Neue', sans-serif;
+.index {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+
+  font-size: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  font-family: 'Bebas Neue', sans-serif;
 
 }
 
-.text h1:first-child{
-    color: var(--white);
-}
-.text h1:last-child{
-    color: var(--orange);
-}
-.cardBenefits{
-    margin-top: 50px;
-    width: 80vw;
-    height: 350px;
-    background-color: var(--white);
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    margin-bottom: 60px;
-}
-.cardBenefits div{
-    width: 33%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: justify;
-    color: var(--strong-red);
+.text h1:first-child {
+  color: var(--white);
 }
 
-.cardBenefits div svg{
-    font-size: 50px;
-    margin-bottom: 40px;
+.text h1:last-child {
+  color: var(--orange);
 }
 
-.cardBenefits div:nth-child(3) svg{
-    font-size: 60px;
-    margin-bottom: 30px;
+.cardBenefits {
+  margin-top: 50px;
+  width: 80vw;
+  height: 350px;
+  background-color: var(--white);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 60px;
 }
 
-.cardBenefits div h1{
-    font-size: 40px;
-    font-family: 'Bebas Neue', sans-serif;
-    margin-bottom: 40px;
+.cardBenefits div {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  color: var(--strong-red);
 }
 
-.cardBenefits div p{
-    font-size: 16px;
-    width: 80%;
-    font-weight: 600;
-    color: var(--gray);
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 40px;
+.cardBenefits div svg {
+  font-size: 50px;
+  margin-bottom: 40px;
 }
 
-.line{
-    background-color: var(--gray) !important;
-    width: 2px !important;
+.cardBenefits div:nth-child(3) svg {
+  font-size: 60px;
+  margin-bottom: 30px;
+}
+
+.cardBenefits div h1 {
+  font-size: 40px;
+  font-family: 'Bebas Neue', sans-serif;
+  margin-bottom: 40px;
+}
+
+.cardBenefits div p {
+  font-size: 16px;
+  width: 80%;
+  font-weight: 600;
+  color: var(--gray);
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 40px;
+}
+
+.groups {
+  overflow-y: hidden;
+}
+
+.line {
+  background-color: var(--gray) !important;
+  width: 2px !important;
 
 }
 
-.seeMore{
-    font-size: 50px;
-    font-family: 'Bebas Neue', sans-serif;
-    margin-top: 50px;
-    color: var(--white);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.seeMore {
+  font-size: 50px;
+  font-family: 'Bebas Neue', sans-serif;
+  margin-top: 50px;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-.seeMore svg{
-    margin-top: -20px;
-    font-size: 110px;
+
+.seeMore svg {
+  margin-top: -20px;
+  font-size: 110px;
 }

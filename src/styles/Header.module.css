@@ -30,6 +30,29 @@
     font-weight: 500;
     font-size: 18px;
     margin-left: 32px;
+    cursor: pointer;
+}
+
+.button:hover{
+  color: var(--red);
+}
+
+.button:after {
+  content: '';
+  width: 0px;
+  height: 2px;
+  display: block;
+  background: black;
+  transition: 300ms;
+  background-color: var(--red);
+}
+
+.button:hover:after {
+  width: 100%;
+}
+
+.button a {
+  color: inherit;
 }
 
 .do{

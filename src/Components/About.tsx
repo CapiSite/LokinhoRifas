@@ -6,7 +6,7 @@ import Artwork from "@/../public/Artwork.png"
 export default function About() {
   return (
     <>
-      <div className={style.background}>
+      <div className={style.background} id="about">
         <div className={style.left}>
             <h1>QUEM <span>SOMOS</span></h1>
             <p>Lorem Ipsum is simply dummy text of the printing and
