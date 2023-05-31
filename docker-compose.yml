@@ -1,14 +1,6 @@
 services:
   web:
     container_name: next
-    build: ./my-app
+    build: .
     ports: 
       - 80:3000
-    depends_on:
-      - node
-    env_file:
-      - my-app/.env.local
-
-volumes:
-  postgres-deploy-volume:
-  back-deploy-volume:
