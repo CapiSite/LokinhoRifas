@@ -9,7 +9,7 @@
     background-color: var(--white);
     display: flex;
     align-items: center;
-    padding-left: 10vw;
+    padding-left: 9vw;
 }
 
 .buttons{
@@ -17,7 +17,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    padding-right: 40px;
+    padding-right: 10vw;
     width: 50%;
 }
 

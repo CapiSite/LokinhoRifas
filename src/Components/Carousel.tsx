@@ -1,19 +1,13 @@
 import style from "@/styles/Carousel.module.css"
-import Prancheta from "@/../public/Prancheta1.png"
-import device from "@/../public/dev1ce.webp"
+import banner_mob from "@/../public/banner_mob1.png"
+import banner from "@/../public/banner_1.png"
 import Image from "next/image";
 export default function Carousel() {
   return (
     <>
     <div className={style.background}>
-      <div className={style.carousel}>
-      
-      <h1>A MELHOR RIFA </h1>
-      <h1>CSGO</h1>
-      <h1>ENTRE E GANHE!</h1>
-      <Image src={Prancheta} height={600}  alt="Prancheta"/>
-      </div>
-      <Image src={device} height={1000} className={style.image} alt="device"/>
+      <Image src={banner_mob}  className={style.mob} alt="Prancheta"/>
+      <Image src={banner}  className={style.banner} alt="Prancheta"/>
     </div>
     </>
   );
