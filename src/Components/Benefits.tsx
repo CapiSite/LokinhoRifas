@@ -17,9 +17,7 @@ export default function Benefits() {
   const group = [{ name: "GRUPO DE RIFAS", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto },
   { name: "GRUPO 2", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 },
   { name: "GRUPO 3", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto },
-  { name: "GRUPO 4", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 },
-  { name: "GRUPO 5", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto },
-  { name: "GRUPO 6", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 }
+  { name: "GRUPO 4", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 }
   ]
 
   useEffect(() => {
@@ -36,7 +34,7 @@ export default function Benefits() {
   return (
     <>
       <motion.div className={style.background}
-        animate={more && screenWidth > 1012 ? { height: 3250 } : more ? { height: 3550 } : screenWidth > 1012 ? { height: 1650 } : { height: 1760 }}
+        animate={more && screenWidth > 1012 ? { height: 2450 } : more ? { height: 3000 } : screenWidth > 1012 ? { height: 1650 } : { height: 1760 }}
         initial={more && screenWidth > 1012 ? { height: 1650 } : more ? { height: 1760 } : screenWidth > 1012 ? { height: 3250 } : { height: 3550 }}
         transition={{ duration: 2 }}>
         <Image className={style.img} alt="background" src={Prancheta} />
@@ -66,7 +64,7 @@ export default function Benefits() {
           </div>
 
           <motion.div
-            animate={more && screenWidth > 1012 ? { height: 2400 } : more ? { height: 2700 } : screenWidth > 1012 ? { height: 800 } : { height: 910 }}
+            animate={more && screenWidth > 1012 ? { height: 1600 } : more ? { height: 2700 } : screenWidth > 1012 ? { height: 800 } : { height: 910 }}
             initial={more && screenWidth > 1012 ? { height: 800  } : more ? { height: 910 } : screenWidth > 1012 ? { height: 2400 } : { height: 2700 }}
 
             transition={{ duration: 2 }} className={style.groups}>

@@ -54,3 +54,26 @@
         height: 400px;
     }
 }
+
+@media (max-width:800px) {
+    .line2{
+        display: none;
+    }
+    .card{
+        flex-direction: column;
+        height: 100%;
+        max-height: 650px;
+    }
+    .group{
+        height: 40px;
+    }
+    .group h1{
+        margin: 25px 0px;
+    }
+    .group p{
+        margin-top: 25px;
+    }
+    .group button{
+        margin-top: 25px;
+    }
+}

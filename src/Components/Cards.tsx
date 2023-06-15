@@ -1,7 +1,7 @@
 import style from "@/styles/Card.module.css";
 import Image from "next/image";
 
-export default function Card({ group, more, i }: any) {
+export default function   Card({ group, more, i }: any) {
   return (
     <>
       <div id="card" className={style.card}>
