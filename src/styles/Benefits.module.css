@@ -9,7 +9,6 @@
 .background {
   background-color: var(--strong-red);
   position: relative;
-  height: 1650px;
 }
 
 .index {
@@ -22,7 +21,6 @@
 }
 
 .text {
-
   font-size: 70px;
   display: flex;
   flex-direction: column;
@@ -30,7 +28,6 @@
   justify-content: center;
   margin-top: 40px;
   font-family: 'Bebas Neue', sans-serif;
-
 }
 
 .text h1:first-child {
@@ -94,7 +91,6 @@
 .line {
   background-color: var(--gray) !important;
   width: 2px !important;
-
 }
 
 .seeMore {
@@ -129,7 +125,7 @@
   .cardBenefits{
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: fit-content;
     width: 80vw;
     padding: 40px 10px;
   }
@@ -149,8 +145,5 @@
     font-size: 40px;
     font-family: 'Bebas Neue', sans-serif;
     margin-bottom: 15px;
-  }
-    .background{
-    height: 2075px !important;
   }
 }
