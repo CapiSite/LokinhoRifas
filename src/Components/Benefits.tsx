@@ -10,12 +10,17 @@ import GroupPhoto4 from "@/../public/Logo-vermelho.jpg"
 import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Image from "next/image";
 import Card from "./Cards";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Benefits() {
   const [more, setMore] = useState(false)
-  const [screenWidth, setWidth] = useState<number>(1200)
+  const [height, setHeight] = useState<number>(0)
+  const [fatherHeight, setFatherheight] = useState<number>(0)
+  const text = useRef<any>()
+  const cardsBenefits = useRef<any>()
+  const component = useRef<any>()
+  
   const group = [{ name: "GRUPO DE RIFAS SILVER", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto },
   { name: "GRUPO DE RIFAS GOLDEN", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 },
   { name: "GRUPO DE COMPRA E VENDA", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto3 },
@@ -23,29 +28,39 @@ export default function Benefits() {
   ]
 
   useEffect(() => {
-    function handleResize() {
-      setWidth(window.innerWidth)
-    }
-    window.addEventListener("resize", handleResize)
+    const handleResize = () => {
+      setHeight(component.current.scrollHeight);
+      console.log(component.current.scrollHeight)
+      setFatherheight(text.current.scrollHeight + cardsBenefits.current.scrollHeight + component.current.scrollHeight + 340)
+    };
+    handleResize();
+
+    setTimeout( handleResize, 400)
+    setTimeout( handleResize, 1000)
+    setTimeout( handleResize, 1600)
+
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-    };
+    }
   }, []);
 
   return (
     <>
-      <motion.div className={style.background}
-        animate={more && screenWidth > 1012 ? { height: 2450 } : more ? { height: 3000 } : screenWidth > 1012 ? { height: 1650 } : { height: 1760 }}
-        initial={more && screenWidth > 1012 ? { height: 1650 } : more ? { height: 1760 } : screenWidth > 1012 ? { height: 3250 } : { height: 3550 }}
-        transition={{ duration: 2 }}>
+      <motion.div className={style.background} 
+        animate={more ? { height: fatherHeight, opacity: 1 } : { height: fatherHeight - height/2, opacity: 1} }
+        initial={more ? { height: 2000, opacity: 0} : { height: 2000, opacity:0 }} 
+        transition={{ duration: 1.5 }} 
+        >
         <Image className={style.img} alt="background" src={Prancheta} />
         <div className={style.index}>
-          <div className={style.text}>
+          <div className={style.text} ref={text}>
             <h1>NOSSAS</h1>
             <h1>VANTAGENS!</h1>
           </div>
-          <div className={style.cardBenefits}>
+          <div className={style.cardBenefits} ref={cardsBenefits}>
             <div>
               <FaRegCalendarAlt />
               <h1>SORTEIOS DIÁRIOS</h1>
@@ -65,11 +80,10 @@ export default function Benefits() {
             </div>
           </div>
 
-          <motion.div
-            animate={more && screenWidth > 1012 ? { height: 1600 } : more ? { height: 2700 } : screenWidth > 1012 ? { height: 800 } : { height: 910 }}
-            initial={more && screenWidth > 1012 ? { height: 800  } : more ? { height: 910 } : screenWidth > 1012 ? { height: 2400 } : { height: 2700 }}
-
-            transition={{ duration: 2 }} className={style.groups}>
+          <motion.div ref={component}
+            animate={more ? { height: height } :  { height: height/2 }}
+            initial={more ? { height: height /2  } : { height: height }}
+            transition={{ duration: 1.5 }} className={style.groups}>
             {group.map((o, i) => <Card more={more} i={i} group={o} key={i} />)}
           </motion.div>
 
