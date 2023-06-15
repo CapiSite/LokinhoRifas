@@ -3,8 +3,10 @@ import Prancheta from "@/../public/Prancheta2.png"
 import { BsTwitch } from "react-icons/bs";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoPeopleCircleOutline } from "react-icons/io5";
-import GroupPhoto from "@/../public/GroupImageRed.png"
-import GroupPhoto2 from "@/../public/GroupImageYellow.png"
+import GroupPhoto from "@/../public/Logo-prata.jpg"
+import GroupPhoto2 from "@/../public/Logo-dourada.jpg"
+import GroupPhoto3 from "@/../public/Logo-verde.jpg"
+import GroupPhoto4 from "@/../public/Logo-vermelho.jpg"
 import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Image from "next/image";
 import Card from "./Cards";
@@ -14,10 +16,10 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function Benefits() {
   const [more, setMore] = useState(false)
   const [screenWidth, setWidth] = useState<number>(1200)
-  const group = [{ name: "GRUPO DE RIFAS", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto },
-  { name: "GRUPO 2", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 },
-  { name: "GRUPO 3", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto },
-  { name: "GRUPO 4", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 }
+  const group = [{ name: "GRUPO DE RIFAS SILVER", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto },
+  { name: "GRUPO DE RIFAS GOLDEN", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 },
+  { name: "GRUPO DE COMPRA E VENDA", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto3 },
+  { name: "GRUPO DE COMPRA E VENDA 2", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto4 }
   ]
 
   useEffect(() => {
