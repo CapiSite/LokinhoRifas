@@ -119,6 +119,9 @@
   .cardBenefits div:nth-child(5) p {
     margin-bottom: 0px;
   }
+  .text {
+    font-size: 60px;
+  }
 }
 
 @media (max-width:1000px) {

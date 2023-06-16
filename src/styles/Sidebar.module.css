@@ -9,7 +9,7 @@
 }
 .background svg{
     font-size: 30px;
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 80px;
 }

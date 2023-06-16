@@ -37,9 +37,10 @@ export default function Header() {
   };
 
   return (
+    <div className={style.centralizer}>
     <div className={style.background}>
       <div className={style.image}>
-        <Image src={Logo} width={170} alt="Logo1" />
+        <Image src={Logo} width={155} alt="Logo1" />
       </div>
       <div className={style.buttons}>
         <button className={style.button}>HOME</button>
@@ -63,6 +64,7 @@ export default function Header() {
         </motion.aside>
         )}
       </AnimatePresence>
+    </div>
     </div>
   );
 }

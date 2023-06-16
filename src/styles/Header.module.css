@@ -1,8 +1,12 @@
+.centralizer{
+  display: flex;
+  justify-content: center;
+}
 .background{
     height: 144px;
     background-color: var(--white);
     display: flex;
-    
+    width: 80vw;
 }
 
 .image{
@@ -10,7 +14,6 @@
     background-color: var(--white);
     display: flex;
     align-items: center;
-    padding-left: 9.5vw;
 }
 
 .buttons{
@@ -18,7 +21,6 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    padding-right: 10vw;
     width: 50%;
 }
 

@@ -22,17 +22,20 @@
     width: 40vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
 }
 
 .left h1{
     color: var(--strong-red);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 200px;
+    width: 550px;
+    font-size: 150px;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .left span{
-    color: var(--orange);
+    color: var(--red);
     font-family: 'Bebas Neue', sans-serif;
 }
 
@@ -65,7 +68,7 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
-        margin-top: 120px;
+        margin-top: 70px;
     }
     .left{
         display: flex;
@@ -78,13 +81,15 @@
     }
     .left h1{
         width: 100%;
-        font-size: 120px;
+        font-size: 80px;
+        margin-bottom: 0px;
     }
     .left p{
         margin: 50px 0px;
         width: 100%;
     }
     .right, .right img{
+        margin-top: 10px;
         width: 80vw;
         height: 117vw;
     }
