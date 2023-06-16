@@ -10,8 +10,10 @@ export default function Card({ group, more, i }: any) {
 
       </div>
       <div className={style.group}>
-        <h1>{group.name}</h1>
-        <p>{group.description}</p>
+        <div>
+          <h1>{group.name}</h1>
+          <p>{group.description}</p>
+        </div>
         <button>ENTRAR</button>
       </div>
     </div>

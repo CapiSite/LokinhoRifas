@@ -22,15 +22,18 @@
 
 .group {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .group h1 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 80px;
 }
 
 .group p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .group button {
@@ -40,24 +43,25 @@
   border-radius: 20px;
   background-color: var(--red);
   color: var(--white);
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 60px;
-  margin-top: 70px;
+  margin-top: 10px;
 }
-
-
-
-@media (max-width:1012px) {
-  .group button {
-    margin-top: 10px;
-  }
-
+@media (max-width: 1096px) {
   .card {
     height: 400px;
   }
+  .card h1 {
+    font-size: 69px;
+  }
+}
+@media (max-width: 972px) {
+  .card {
+    height: 500px;
+  }
 }
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
   .line2 {
     display: none;
   }
@@ -65,7 +69,8 @@
   .card {
     flex-direction: column;
     height: 100%;
-    max-height: 650px;
+    height: 680px;
+    text-align: center;
   }
 
   .group {
@@ -84,3 +89,24 @@
     margin-top: 25px;
   }
 }
+
+@media (max-width: 546px) {
+  .card {
+    height: 750px;
+  }
+}
+@media (max-width: 424px) {
+  .card {
+    height: 780px;
+  }
+  .card h1{
+    font-size: 60px;
+  }
+}
+@media (max-width: 330px) {
+  .card {
+    height: 900px;
+  }
+
+}
+
