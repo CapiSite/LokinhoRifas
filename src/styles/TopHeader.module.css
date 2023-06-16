@@ -1,5 +1,6 @@
 .background{
     display: flex;
+
 }
 
 .left{
@@ -15,7 +16,7 @@
 
 .email{
     color: var(--white);
-    margin-top: 16px;
+    margin-top: 18px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
 }
@@ -45,6 +46,10 @@
     justify-content: center;
     margin-bottom: 48px;
     margin-right: 12px;
+    cursor: pointer;
+}
+.icon_div:hover{
+    background-color: var(--hover-red);
 }
 .right .icon_div:last-child{
     margin-right: 80px;
@@ -52,6 +57,58 @@
 
 .icon_text{
     color: var(--white);
-    background-color: var(--red);
     font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.background2{
+    display: none;
+}
+@media (max-width:950px) {
+    .background{
+        display: none;
+    }
+    .background2{
+        display: flex;
+        position: fixed;
+        z-index: 2;
+        top: 0px;
+        right: 0px;
+    }
+    .right{
+        align-items: center;
+        justify-content: center;
+        background-color: var(--strong-red);
+    }
+    .left{
+        background-color: var(--red);
+
+    }
+    .email{
+        margin:0px;
+        margin-bottom: 47px;
+    }
+    .icon_div{
+        background-color: var(--strong-red);
+        margin: 0px 5px;
+        margin-top: 9px;
+    }
+    .icon_text{
+        background-color: var(--strong-red);
+    }
+}
+@media (max-width:430px) {
+    .left .icon_div:first-child{
+        display: none;
+    }
+    .email{
+        font-size: 14px;
+    }
+}
+@media (max-width:330px) {
+
+    .email{
+        font-size: 12px;
+    }
 }

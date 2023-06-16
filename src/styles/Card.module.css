@@ -46,6 +46,11 @@
   font-family: "Bebas Neue", sans-serif;
   font-size: 60px;
   margin-top: 10px;
+  cursor: pointer;
+}
+.group button:hover {
+  background-color: var(--hover-red);
+
 }
 @media (max-width: 1096px) {
   .card {

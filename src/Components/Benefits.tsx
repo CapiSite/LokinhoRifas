@@ -21,10 +21,10 @@ export default function Benefits() {
   const cardsBenefits = useRef<any>()
   const component = useRef<any>()
   
-  const group = [{ name: "GRUPO DE RIFAS SILVER", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto },
-  { name: "GRUPO DE RIFAS GOLDEN", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2 },
-  { name: "GRUPO DE COMPRA E VENDA", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto3 },
-  { name: "GRUPO DE COMPRA E VENDA 2", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto4 }
+  const group = [{ name: "GRUPO DE RIFAS SILVER", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto, link:"https://chat.whatsapp.com/CXC6oVWoqy37bMUfiENeVx"  },
+  { name: "GRUPO DE RIFAS GOLDEN", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2, link:"https://chat.whatsapp.com/I6z9eUyNp33EpLAxLWmOId" },
+  { name: "GRUPO DE COMPRA E VENDA", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto3, link:"https://chat.whatsapp.com/EWKrihA9OUn8TjjX33oGuK" },
+  { name: "GRUPO DE COMPRA E VENDA 2", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto4, link:"https://chat.whatsapp.com/C5N0eKOmRKN9eWLMJ4gyKp" }
   ]
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function Benefits() {
         initial={more ? { height: 2000, opacity: 0} : { height: 2000, opacity:0 }} 
         transition={{ duration: 1.5 }} 
         >
-        <Image className={style.img} alt="background" src={Prancheta} />
+        <Image id="cards" className={style.img} alt="background" src={Prancheta} />
         <div className={style.index}>
           <div className={style.text} ref={text}>
             <h1>NOSSAS</h1>

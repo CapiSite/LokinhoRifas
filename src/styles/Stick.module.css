@@ -71,8 +71,14 @@
     display: flex;
     justify-content: center;
     margin-top: 40px;
+    cursor: pointer;
 }
-
+.right button a{
+    color: var(--white);
+}
+.right button:hover{
+    background-color: var(--hover-red);
+}
 
 
 @media (max-width:1100px) {

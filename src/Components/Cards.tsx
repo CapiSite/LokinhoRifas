@@ -1,5 +1,6 @@
 import style from "@/styles/Card.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Card({ group, more, i }: any) {
   return (
@@ -14,7 +15,10 @@ export default function Card({ group, more, i }: any) {
           <h1>{group.name}</h1>
           <p>{group.description}</p>
         </div>
-        <button>ENTRAR</button>
+        <Link href={group.link} target="_blank">
+          <button>ENTRAR</button>
+        </Link>
+        
       </div>
     </div>
 

@@ -2,6 +2,7 @@
     height: 144px;
     background-color: var(--white);
     display: flex;
+    
 }
 
 .image{
@@ -9,7 +10,7 @@
     background-color: var(--white);
     display: flex;
     align-items: center;
-    padding-left: 9vw;
+    padding-left: 9.5vw;
 }
 
 .buttons{
@@ -67,4 +68,36 @@
     border: 0px;
     font-size: 22px;
     font-weight: 700;
+    cursor: pointer;
+}
+.do:hover{
+  background-color: var(--hover-red);
+}
+.sidebar{
+  display: none;
+}
+.aside{
+  height: 100vh;
+  width: 80vw;
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  background-color: var(--white);
+  z-index: 1;
+}
+@media (max-width: 950px) {
+  .buttons{
+      display: none;
+  }
+  .background{
+    margin-top:50px;
+  }
+  .sidebar{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 10vw;
+    width: 50%;
+    font-size: 35px;
+  }
 }

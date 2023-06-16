@@ -1,12 +1,35 @@
 import Image from "next/image";
 import Logo from "@/../public/Logo1.png"
 import style from "@/styles/Header.module.css"
+import { FaBars } from "react-icons/fa";
+import { useState } from "react";
+import Sidebar from "./Sidebar";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Header() {
+  const [sideBar, setSideBar] = useState<boolean>(false)
+  const initial = {
+    x: 500,
+  };
 
+  const animate = {
+    x: 0,
+  };
+
+  const transition = {
+    duration: 0.5,
+  };
   const handleScroll = (e: any) => {
     e.preventDefault();
     const elem = document.getElementById("about");
+    window.scrollTo({
+      top: elem?.getBoundingClientRect().top ? elem?.getBoundingClientRect().top  - 80 : 0,
+      behavior: "smooth",
+    });
+  };
+  const handleScroll2 = (e: any) => {
+    e.preventDefault();
+    const elem = document.getElementById("cards");
     window.scrollTo({
       top: elem?.getBoundingClientRect().top,
       behavior: "smooth",
@@ -22,8 +45,24 @@ export default function Header() {
         <button className={style.button}>HOME</button>
         <button className={style.button} onClick={(e) => handleScroll(e)}> SOBRE </button>
         <button className={style.button}>CONTATO</button>
-        <button className={style.do}>FAÇA PARTE</button>
+        <button className={style.do} onClick={(e) => handleScroll2(e)}>FAÇA PARTE</button>
       </div>
+      <div className={style.sidebar}>
+        <FaBars onClick={()=>setSideBar(!sideBar)}/>
+      </div>
+      <AnimatePresence>
+        {!sideBar ? null : (
+          <motion.aside
+            initial={initial}
+            animate={animate}
+            exit={initial}
+            transition={transition}
+            className={style.aside}
+          >
+        <Sidebar sideBar={sideBar} setSideBar={setSideBar}/>
+        </motion.aside>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
