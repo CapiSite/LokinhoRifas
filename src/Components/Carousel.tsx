@@ -4,9 +4,9 @@ import banner from "@/../public/banner_1a.png";
 import banner_mob2 from "@/../public/banner_mob2.png";
 import banner2 from "@/../public/banner_2.png";
 import Image from "next/image";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 export default function Carousel() {
   return (
     <>
