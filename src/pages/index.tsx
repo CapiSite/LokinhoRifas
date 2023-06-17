@@ -12,8 +12,8 @@ export default function Home() {
       <TopHeader/>
       <Header/>
       <Carousel/>
-      <Stick/>
       <Benefits/>
+      <Stick/>
       <About/>
       <Footer/>
     </>

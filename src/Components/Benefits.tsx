@@ -1,12 +1,12 @@
 import style from "@/styles/Benefits.module.css";
-import Prancheta from "@/../public/Prancheta2.png"
+import Prancheta from "@/../public/Prancheta2.png";
 import { BsTwitch } from "react-icons/bs";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoPeopleCircleOutline } from "react-icons/io5";
-import GroupPhoto from "@/../public/Logo-prata.jpg"
-import GroupPhoto2 from "@/../public/Logo-dourada.jpg"
-import GroupPhoto3 from "@/../public/Logo-verde.jpg"
-import GroupPhoto4 from "@/../public/Logo-vermelho.jpg"
+import GroupPhoto from "@/../public/Logo-prata.jpg";
+import GroupPhoto2 from "@/../public/Logo-dourada.jpg";
+import GroupPhoto3 from "@/../public/Logo-verde.jpg";
+import GroupPhoto4 from "@/../public/Logo-vermelho.jpg";
 import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Image from "next/image";
 import Card from "./Cards";
@@ -14,90 +14,154 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Benefits() {
-  const [more, setMore] = useState(false)
-  const [height, setHeight] = useState<number>(0)
-  const [fatherHeight, setFatherheight] = useState<number>(0)
-  const text = useRef<any>()
-  const cardsBenefits = useRef<any>()
-  const component = useRef<any>()
-  
-  const group = [{ name: "GRUPO DE RIFAS SILVER", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto, link:"https://chat.whatsapp.com/CXC6oVWoqy37bMUfiENeVx"  },
-  { name: "GRUPO DE RIFAS GOLDEN", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto2, link:"https://chat.whatsapp.com/I6z9eUyNp33EpLAxLWmOId" },
-  { name: "GRUPO DE COMPRA E VENDA", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto3, link:"https://chat.whatsapp.com/EWKrihA9OUn8TjjX33oGuK" },
-  { name: "GRUPO DE COMPRA E VENDA 2", description: "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!", photo: GroupPhoto4, link:"https://chat.whatsapp.com/C5N0eKOmRKN9eWLMJ4gyKp" }
-  ]
+  const [more, setMore] = useState(false);
+  const [height, setHeight] = useState<number>(0);
+  const [fatherHeight, setFatherheight] = useState<number>(0);
+  const text = useRef<any>();
+  const cardsBenefits = useRef<any>();
+  const component = useRef<any>();
+
+  const group = [
+    {
+      name: "GRUPO DE RIFAS SILVER",
+      description:
+        "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
+      photo: GroupPhoto,
+      link: "https://chat.whatsapp.com/CXC6oVWoqy37bMUfiENeVx",
+    },
+    {
+      name: "GRUPO DE RIFAS GOLDEN",
+      description:
+        "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
+      photo: GroupPhoto2,
+      link: "https://chat.whatsapp.com/I6z9eUyNp33EpLAxLWmOId",
+    },
+    {
+      name: "GRUPO DE COMPRA E VENDA",
+      description:
+        "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
+      photo: GroupPhoto3,
+      link: "https://chat.whatsapp.com/EWKrihA9OUn8TjjX33oGuK",
+    },
+    {
+      name: "GRUPO DE COMPRA E VENDA 2",
+      description:
+        "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
+      photo: GroupPhoto4,
+      link: "https://chat.whatsapp.com/C5N0eKOmRKN9eWLMJ4gyKp",
+    },
+  ];
 
   useEffect(() => {
     const handleResize = () => {
       setHeight(component.current.scrollHeight);
-      console.log(component.current.scrollHeight)
-      setFatherheight(text.current.scrollHeight + cardsBenefits.current.scrollHeight + component.current.scrollHeight + 340)
+      console.log(component.current.scrollHeight);
+      setFatherheight(
+        text.current.scrollHeight +
+          cardsBenefits.current.scrollHeight +
+          component.current.scrollHeight +
+          340
+      );
     };
     handleResize();
 
-    setTimeout( handleResize, 400)
-    setTimeout( handleResize, 1000)
-    setTimeout( handleResize, 1600)
+    setTimeout(handleResize, 400);
+    setTimeout(handleResize, 1000);
+    setTimeout(handleResize, 1600);
 
-
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-    }
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
     <>
-      <motion.div className={style.background} 
-        animate={more ? { height: fatherHeight, opacity: 1 } : { height: fatherHeight - height/2, opacity: 1} }
-        initial={more ? { height: 2000, opacity: 0} : { height: 2000, opacity:0 }} 
-        transition={{ duration: 1.5 }} 
-        >
-        <Image id="cards" className={style.img} alt="background" src={Prancheta} />
+      <motion.div
+        className={style.background}
+        animate={
+          more
+            ? { height: fatherHeight, opacity: 1 }
+            : { height: fatherHeight - height / 2, opacity: 1 }
+        }
+        initial={
+          more ? { height: 2000, opacity: 0 } : { height: 2000, opacity: 0 }
+        }
+        transition={{ duration: 1.5 }}
+      >
+        <Image
+          id="cards"
+          className={style.img}
+          alt="background"
+          src={Prancheta}
+        />
         <div className={style.index}>
           <div className={style.text} ref={text}>
             <h1>NOSSAS</h1>
             <h1>VANTAGENS!</h1>
           </div>
+         
           <div className={style.cardBenefits} ref={cardsBenefits}>
+            
             <div>
               <FaRegCalendarAlt />
               <h1>SORTEIOS DIÁRIOS</h1>
-              <p>Realizamos sorteios diariamente, ou seja, você tem a oportunidade de ganhar uma skin nova todos os dias.</p>
+              <p>
+                Realizamos sorteios diariamente, ou seja, você tem a
+                oportunidade de ganhar uma skin nova todos os dias.
+              </p>
             </div>
             <div className={style.line}></div>
             <div>
               <IoPeopleCircleOutline />
               <h1>NOSSOS GRUPOS</h1>
-              <p>Oferecemos um sorteio gratuito exclusivo para nossos clientes no final de cada mês. Concorra e ganhe!</p>
+              <p>
+                Oferecemos um sorteio gratuito exclusivo para nossos clientes no
+                final de cada mês. Concorra e ganhe!
+              </p>
             </div>
             <div className={style.line}></div>
             <div>
               <BsTwitch />
               <h1>LIVES NA TWITCH</h1>
-              <p>Transmitimos ao vivo os sorteios das nossas rifas na nossa Twitch, utilizando a plataforma WheelOfNames para garantir a transparência e imparcialidade do processo.</p>
+              <p>
+                Transmitimos ao vivo os sorteios das nossas rifas na nossa
+                Twitch, utilizando a plataforma WheelOfNames para garantir a
+                transparência e imparcialidade do processo.
+              </p>
             </div>
           </div>
-
-          <motion.div ref={component}
-            animate={more ? { height: height } :  { height: height/2 }}
-            initial={more ? { height: height /2  } : { height: height }}
-            transition={{ duration: 1.5 }} className={style.groups}>
-            {group.map((o, i) => <Card more={more} i={i} group={o} key={i} />)}
+          
+          <motion.div
+            ref={component}
+            animate={more ? { height: height } : { height: height / 2 }}
+            initial={more ? { height: height / 2 } : { height: height }}
+            transition={{ duration: 1.5 }}
+            className={style.groups}
+          >
+            {group.map((o, i) => (
+              <Card more={more} i={i} group={o} key={i} />
+            ))}
           </motion.div>
 
-          {more ?
-            <motion.div onClick={() => setMore(!more)} className={style.seeMore}>
+          {more ? (
+            <motion.div
+              onClick={() => setMore(!more)}
+              className={style.seeMore}
+            >
               <h1>VER MENOS</h1>
               <MdOutlineKeyboardArrowUp />
             </motion.div>
-            :
-            <motion.div onClick={() => setMore(!more)} className={style.seeMore}>
+          ) : (
+            <motion.div
+              onClick={() => setMore(!more)}
+              className={style.seeMore}
+            >
               <h1>VER MAIS</h1>
               <MdKeyboardArrowDown />
             </motion.div>
-          }
+          )}
         </div>
       </motion.div>
     </>

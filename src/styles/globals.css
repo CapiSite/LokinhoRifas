@@ -36,6 +36,12 @@ body {
   --hover2-red:#8a0602;
   --hover3-red:#7a0501;
   --strong-red:#280005;
+  --blue:#1877F2;
+  --green:#00A884;
+  --rose: #E13866;
+  --blue2:#1261c9;
+  --green2:#018568;
+  --rose2: #b62d51;
   --orange: rgb(250, 114, 3);
   position: relative;
 }
