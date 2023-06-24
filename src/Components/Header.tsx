@@ -5,9 +5,11 @@ import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [sideBar, setSideBar] = useState<boolean>(false)
+  const router = useRouter()
   const initial = {
     x: 500,
   };
@@ -40,12 +42,11 @@ export default function Header() {
     <div className={style.centralizer}>
     <div className={style.background}>
       <div className={style.image}>
-        <Image src={Logo} width={155} alt="Logo1" />
+        <Image onClick={()=>router.push("/")} src={Logo} width={155} alt="Logo1" />
       </div>
       <div className={style.buttons}>
-        <button className={style.button}>HOME</button>
+        <button className={style.button} onClick={()=>router.push("/")}>HOME</button>
         <button className={style.button} onClick={(e) => handleScroll(e)}> SOBRE </button>
-        <button className={style.button}>CONTATO</button>
         <button className={style.do} onClick={(e) => handleScroll2(e)}>FAÇA PARTE</button>
       </div>
       <div className={style.sidebar}>

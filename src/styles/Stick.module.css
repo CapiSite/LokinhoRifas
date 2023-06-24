@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+    margin-bottom: 25px;
 }
 
 .left{
@@ -50,7 +51,7 @@
     color: var(--white);
     width: 75%;
     height: 85px;
-    font-size: 75px;
+    font-size: 70px;
     font-family: 'Bebas Neue', sans-serif;
     display: flex;
     justify-content: center;
@@ -64,7 +65,13 @@
     background-color: var(--hover-red);
 }
 
-
+@media (max-width:1409px) {
+    .right button{
+        width: 82%;
+        font-size: 59px;
+        align-items: center;
+    }
+}
 @media (max-width:1100px) {
     .background{
         flex-direction: column;
@@ -109,5 +116,11 @@
         padding: 0px;
         padding-top: 5px;
         height: 70px;
+    }
+}
+@media (max-width:505px) {
+    .right button{
+        font-size: 40px;
+        height: 100%;
     }
 }

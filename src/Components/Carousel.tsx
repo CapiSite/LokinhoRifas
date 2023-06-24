@@ -3,6 +3,10 @@ import banner_mob from "@/../public/banner_mob1a.png";
 import banner from "@/../public/banner_1a.png";
 import banner_mob2 from "@/../public/banner_mob2.png";
 import banner2 from "@/../public/banner_2.png";
+import banner_mob3 from "@/../public/banner_mob3.png";
+import banner3 from "@/../public/banner_3.png";
+import banner_mob4 from "@/../public/banner_mob4.png";
+import banner4 from "@/../public/banner_4.png";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -26,6 +30,12 @@ export default function Carousel() {
         <div>
         <Image src={banner2} className={style.banner} alt="Prancheta" />
         </div>
+        <div>
+        <Image src={banner3} className={style.banner} alt="Prancheta" />
+        </div>
+        <div>
+        <Image src={banner4} className={style.banner} alt="Prancheta" />
+        </div>
       </Slider>
       </div>
       <div className={style.backgroundMob}>
@@ -43,6 +53,12 @@ export default function Carousel() {
         </div>
         <div>
         <Image src={banner_mob2} className={style.mob} alt="Prancheta" />
+        </div>
+        <div>
+        <Image src={banner_mob3} className={style.mob} alt="Prancheta" />
+        </div>
+        <div>
+        <Image src={banner_mob4} className={style.mob} alt="Prancheta" />
         </div>
       </Slider>
       </div>

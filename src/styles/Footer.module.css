@@ -143,6 +143,9 @@ background-color: var(--rose2);
         width: 100vw;
         border: 0px;
     }
+    .right img:nth-child(2){
+        margin-bottom: 0px;
+    }
     .line{
         display: none;
         

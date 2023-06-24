@@ -14,6 +14,7 @@
     background-color: var(--white);
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .buttons{

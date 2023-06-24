@@ -1,5 +1,7 @@
 import style from "@/styles/Footer.module.css"
 import Logo from "@/../public/Logo.png"
+import ssl from "@/../public/ssl.png"
+
 import Image from "next/image";
 import { FaFacebookF } from "react-icons/fa";
 import { BsInstagram, BsWhatsapp } from "react-icons/bs";
@@ -48,9 +50,8 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div>
 
-          </div>
+          <Image src={ssl} width={155} alt="Logo1" />
           <Image src={Logo} width={155} alt="Logo1" />
         </div>
       </div>

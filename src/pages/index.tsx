@@ -5,6 +5,7 @@ import Stick from "@/Components/Stick";
 import Benefits from "@/Components/Benefits";
 import About from "@/Components/About";
 import Footer from "@/Components/Footer";
+import Form from "@/Components/Form";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Stick/>
       <About/>
       <Footer/>
+      <Form/>
     </>
   );
 }

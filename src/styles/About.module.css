@@ -1,11 +1,10 @@
 .background{
     display: flex;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 25px;
     margin-bottom: 80px;
     justify-content: center;
 }
-
 .right{
     width: 40vw;
     display: flex;
@@ -17,7 +16,16 @@
     width: 476px;
 }
 
-
+.forLine{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.line{
+    width: 80vw;
+    height: 2px;
+    background-color: var(--light-gray);
+}
 .left{
     width: 40vw;
     display: flex;
@@ -58,6 +66,11 @@
         font-size: 150px;
     }
 }
+@media (min-width:1302px) {
+    .background{
+        margin-top: 45px;
+    }
+}
 @media (max-width:1200px) {
     .left h1{
         font-size: 120px;
@@ -69,7 +82,6 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
-        margin-top: 70px;
     }
     .left{
         display: flex;

@@ -10,7 +10,9 @@
   background-color: var(--strong-red);
   position: relative;
 }
-
+.seeMore{
+  cursor: pointer;
+}
 .index {
   position: absolute;
   width: 100%;

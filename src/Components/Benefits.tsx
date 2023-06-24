@@ -1,5 +1,5 @@
 import style from "@/styles/Benefits.module.css";
-import Prancheta from "@/../public/Prancheta2.png";
+import Prancheta from "@/../public/banner_5.png";
 import { BsTwitch } from "react-icons/bs";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoPeopleCircleOutline } from "react-icons/io5";
@@ -25,14 +25,14 @@ export default function Benefits() {
     {
       name: "GRUPO DE RIFAS SILVER",
       description:
-        "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
+        "Entre no nosso grupo de RIFAS silver e teremos prazer em recebê-lo, aqui você vai encontrar as mais diversas skins sendo rifadas do CSGO. Rifas com skins de preços baixos a medianas.",
       photo: GroupPhoto,
       link: "https://chat.whatsapp.com/CXC6oVWoqy37bMUfiENeVx",
     },
     {
       name: "GRUPO DE RIFAS GOLDEN",
       description:
-        "Seja bem vindo ao maior grupo de Lokinho RIfas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
+        "Entre no nosso grupo de RIFAS Golden e teremos prazer em recebê-lo, aqui você vai encontrar as mais diversas skins sendo rifadas do CSGO. Rifas com skins de preços medianos a altos com floats baixíssimo e promoções diferenciadas.",
       photo: GroupPhoto2,
       link: "https://chat.whatsapp.com/I6z9eUyNp33EpLAxLWmOId",
     },
@@ -108,8 +108,7 @@ export default function Benefits() {
               <FaRegCalendarAlt />
               <h1>SORTEIOS DIÁRIOS</h1>
               <p>
-                Realizamos sorteios diariamente, ou seja, você tem a
-                oportunidade de ganhar uma skin nova todos os dias.
+              Realizamos rifas de skins - Facas, luvas, armas, agentes e adesivos. Sempre após ao terminar uma começamos outra e com facilidades para participar e com variedade de preços.
               </p>
             </div>
             <div className={style.line}></div>
@@ -117,8 +116,7 @@ export default function Benefits() {
               <IoPeopleCircleOutline />
               <h1>NOSSOS GRUPOS</h1>
               <p>
-                Oferecemos um sorteio gratuito exclusivo para nossos clientes no
-                final de cada mês. Concorra e ganhe!
+              Nossos grupos de rifas - Compra e venda possuem administradores e moderadores de alta confiança no mercado de skins. temos sorteios free de skins e muita promoção e negociações 100% seguras.
               </p>
             </div>
             <div className={style.line}></div>
@@ -126,9 +124,7 @@ export default function Benefits() {
               <BsTwitch />
               <h1>LIVES NA TWITCH</h1>
               <p>
-                Transmitimos ao vivo os sorteios das nossas rifas na nossa
-                Twitch, utilizando a plataforma WheelOfNames para garantir a
-                transparência e imparcialidade do processo.
+              Transmitimos nossos sorteios sempre ao vivo na twitch ou instagram. Utilizando a plataforma WheelOfNames.
               </p>
             </div>
           </div>
