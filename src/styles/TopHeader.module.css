@@ -48,23 +48,29 @@
     margin-right: 12px;
     cursor: pointer;
 }
-.icon_div:first-child{
+   .icon_div:first-child{
     background-color: var(--blue);
    }
-   .icon_div:last-child{
+   .icon_div:nth-child(3){
    background-color: var(--green);
    }
    .icon_div:nth-child(2){
    background-color: var(--rose);
    }
+   .icon_div:nth-child(4){
+    background-color: var(--bluedc);
+   }
    .icon_div:first-child:hover{
    background-color: var(--blue2);
    }
-   .icon_div:last-child:hover{
+   .icon_div:nth-child(3):hover{
    background-color: var(--green2);
    }
    .icon_div:nth-child(2):hover{
    background-color: var(--rose2);
+   }
+   .icon_div:nth-child(4):hover{
+    background-color: var(--bluedc2);
    }
 .right .icon_div:last-child{
     margin-right: 80px;

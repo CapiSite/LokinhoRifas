@@ -3,12 +3,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 50px;
+   
 }
 .slider div{
     width: 80vw;
     border-radius: 20px;
     border: 0px;
+    cursor: pointer;
+    margin-top: 5px;
 }
 .slider ul{
     margin-bottom: 35px;
@@ -37,7 +39,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 50px;
+
     }
     .background{
         display: none;

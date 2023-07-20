@@ -11,7 +11,9 @@ import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useRouter } from "next/router";
 export default function Carousel() {
+  const router = useRouter()
   return (
     <>
       <div className={style.background}>
@@ -23,18 +25,22 @@ export default function Carousel() {
         autoplay={true}
         autoplaySpeed={4000}
         className={style.slider}
+        
       >
-        <div>
+        <div onClick={()=>{
+          router.push("/")
+        }}>
           <Image src={banner} className={style.banner} alt="Prancheta" />
         </div>
-        <div>
+        <div onClick={()=>{
+          router.push("/")
+        }}>
         <Image src={banner2} className={style.banner} alt="Prancheta" />
         </div>
-        <div>
+        <div onClick={()=>{
+          router.push("/")
+        }}>
         <Image src={banner3} className={style.banner} alt="Prancheta" />
-        </div>
-        <div>
-        <Image src={banner4} className={style.banner} alt="Prancheta" />
         </div>
       </Slider>
       </div>
@@ -56,9 +62,6 @@ export default function Carousel() {
         </div>
         <div>
         <Image src={banner_mob3} className={style.mob} alt="Prancheta" />
-        </div>
-        <div>
-        <Image src={banner_mob4} className={style.mob} alt="Prancheta" />
         </div>
       </Slider>
       </div>

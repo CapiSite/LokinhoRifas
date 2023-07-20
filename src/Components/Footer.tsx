@@ -7,7 +7,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 import Link from "next/link";
 
-
 export default function Footer() {
   return (
     <>
@@ -27,28 +26,12 @@ export default function Footer() {
         <div>
             <h1>CONTATOS:</h1>
             <p>LOKINHOSKINS@GMAIL.COM</p>
-            <div className={style.socialMedia}>
-              <div className={style.icon_div}>
-                <FaFacebookF className={style.icon_text} />
-              </div>
-              <div className={style.icon_div}>
-                <Link
-                  href="https://www.instagram.com/lokinhoskins/"
-                  target="_blank"
-                >
-                  <BsInstagram className={style.icon_text} />
-                </Link>
-              </div>
-
-              <div className={style.icon_div}>
-                <Link
-                  href="https://api.whatsapp.com/send?phone=5586981088012&text=Ol%C3%A1%20tudo%20bem?%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20tirar%20umas%20d%C3%BAvidas!"
-                  target="_blank"
-                >
-                  <BsWhatsapp className={style.icon_text} />
-                </Link>
-              </div>
-            </div>
+            <Link href="https://api.whatsapp.com/send?phone=5586981088012" target="_blank">
+            <h2>(86) 98108-8012</h2>
+            </Link>
+            <Link href="https://api.whatsapp.com/send?phone=5581998958653" target="_blank">
+            <h2>(81) 99895-8653</h2>
+            </Link>
           </div>
 
           <Image src={ssl} width={155} alt="Logo1" />

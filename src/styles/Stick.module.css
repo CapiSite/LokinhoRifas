@@ -6,8 +6,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 25px;
 }
 
 .left{
@@ -15,7 +13,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    margin-top: 50px;
+    margin-bottom: 25px;
 }
 
 .right{
@@ -23,13 +22,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 25px;
+
 }
 
 .right h1{
     width: 82%;
     font-size: 100px;
     font-family: 'Bebas Neue', sans-serif;
-    
+    color: var(--white);
 }
 
 .right span{
@@ -37,7 +39,7 @@
 }
 .right p{
     font-family: 'Montserrat', sans-serif;
-    color: rgb(99, 99, 99);
+    color: rgb(255, 255, 255);
     width: 82%;
     font-size: 22px;
     font-weight: 600;
@@ -74,8 +76,9 @@
 }
 @media (max-width:1100px) {
     .background{
-        flex-direction: column;
+        flex-direction: column-reverse;
         width: 100%;
+        
     }
     .right{
         width: 80%;
@@ -102,6 +105,10 @@
     .right h1{
         width: 90%;
         font-size: 60px;
+        margin-top: 10px;
+    }
+    .right{
+        margin-bottom: 0px;
     }
     .right p{
         width: 90%;
@@ -122,5 +129,10 @@
     .right button{
         font-size: 40px;
         height: 100%;
+    }
+}
+@media (max-width:400px) {
+    .right h1{
+        font-size: 50px;
     }
 }

@@ -4,12 +4,14 @@
     position: fixed;
     right: 0px;
     bottom: 0px;
-    background-color: var(--white);
+    background-color: rgb(37, 9, 9);
     z-index: 1;
 }
 .background svg{
+    color: white;
     font-size: 30px;
     position: fixed;
     right: 20px;
-    top: 80px;
+    top: 100px;
+    
 }
