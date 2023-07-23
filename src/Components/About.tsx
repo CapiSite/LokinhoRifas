@@ -1,11 +1,13 @@
 import style from "@/styles/About.module.css";
 import Image from "next/image";
 import Artwork from "@/../public/Artwork.png"
+import BackgroundAbout from "@/../public/backgroundAbout.png"
 
 export default function About() {
   return (
     <div className={style.forLine}>
-      
+    <Image className={style.backAbout} src={BackgroundAbout} alt="background"/>
+
       <div className={style.background} id="about">
         <div className={style.left}>
           <h1>QUEM <span>SOMOS</span></h1>
