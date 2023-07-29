@@ -2,8 +2,19 @@ import style from "@/styles/About.module.css";
 import Image from "next/image";
 import Artwork from "@/../public/Artwork.png"
 import BackgroundAbout from "@/../public/backgroundAbout.png"
+import { useEffect, useRef } from "react";
+import VanillaTilt from "vanilla-tilt";
 
 export default function About() {
+  const options = {
+    scale: 1.10,
+    speed: 300,
+    max: 10
+  };
+  const tilt:any = useRef(null);
+  useEffect(() => {
+    VanillaTilt.init(tilt.current, options);
+  }, [options]);
   return (
     <div className={style.forLine}>
     <Image className={style.backAbout} src={BackgroundAbout} alt="background"/>
@@ -19,11 +30,10 @@ export default function About() {
             desktop publishing software like Aldus PageMaker in
           </p>
         </div>
-        <div className={style.right}>
-          <Image alt="lokinho" src={Artwork} width={550} />
+        <div data-tilt className={style.right}>
+          <Image  ref={tilt} alt="lokinho" src={Artwork} width={550} />
         </div>
       </div>
-      
     </div>
   );
 }

@@ -2,11 +2,11 @@
     z-index: -2;
     position:absolute;
     top:50px;
+    left: 0px;
     width: 100%;
     height: 100%;
     max-height: 1800px;
 }
-
 
 .backMob{
     display:none;
@@ -23,6 +23,7 @@
     }
     .backMob{
         display: flex;
+        left: 0px;
         z-index: -2;
         position:absolute;
         top:50px;
@@ -32,6 +33,7 @@
     }
     .backAboutMob{
         display: flex;
+        left: 0px;
         z-index: -3;
         position: absolute;
         height: 100%;

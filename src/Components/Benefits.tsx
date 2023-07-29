@@ -46,7 +46,7 @@ export default function Benefits() {
     {
       name: "GRUPO DE COMPRA E VENDA 2",
       description:
-        "Seja bem vindo ao maior grupo de Lokinho Rifas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
+        "Seja bem vindo ao grupo de compra e venda 2 do Lokinho Rifas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
       photo: GroupPhoto4,
       link: "https://chat.whatsapp.com/C5N0eKOmRKN9eWLMJ4gyKp",
     },

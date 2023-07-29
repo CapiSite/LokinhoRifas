@@ -14,6 +14,7 @@
 .right img{
     height: 700px;
     width: 476px;
+    margin-top: 20px;
 }
 .backAbout{
     z-index: -1;

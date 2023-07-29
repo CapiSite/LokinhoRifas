@@ -42,6 +42,7 @@ export default function Carousel() {
         }}>
         <Image src={banner3} className={style.banner} alt="Prancheta" />
         </div>
+        
       </Slider>
       </div>
       <div className={style.backgroundMob}>
