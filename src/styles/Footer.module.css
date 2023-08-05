@@ -160,6 +160,12 @@ background-color: var(--rose2);
         width: 100vw;
         border: 0px;
     }
+    .left p{
+        margin-bottom: 5px;
+    }
+    .right >div a, .right >div p, .right h1{
+        margin-bottom: 5px;
+    }
     .right img:nth-child(2){
         margin-bottom: 0px;
     }

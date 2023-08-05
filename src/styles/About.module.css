@@ -62,7 +62,7 @@
     font-family: 'Montserrat', sans-serif;
     color: rgb(99, 99, 99);
     width: 82%;
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 600;
 }
 
@@ -109,6 +109,7 @@
     .left p{
         margin: 50px 0px;
         width: 100%;
+        font-size: 22px;
     }
     .right, .right img{
         margin-top: 10px;

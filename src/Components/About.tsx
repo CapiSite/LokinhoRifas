@@ -22,12 +22,12 @@ export default function About() {
       <div className={style.background} id="about">
         <div className={style.left}>
           <h1>QUEM <span>SOMOS</span></h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an
-            unknown printer took a galley of type and scrambled it
-            to make a type specimen book. It has survived not only
-            ve centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-            desktop publishing software like Aldus PageMaker in
+          <p>
+          Thiago Cordeiro (Lokinho)
+Sou um jovem sonhador apaixonado por skins do Counter-Striker.
+Jogo desde 2017 e entrei no mercado de vendas em 2019,
+ venho construindo meu negócio em vendas e rifas de skins.
+Agradeço por estar aqui e seja muito bem vindo.
           </p>
         </div>
         <div data-tilt className={style.right}>

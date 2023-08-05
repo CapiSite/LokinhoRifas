@@ -1,6 +1,6 @@
 FROM node:16.15
 
-WORKDIR /src/usr/mc-caminhoes
+WORKDIR /src/usr/lokinhoskins
 
 COPY . .
 
