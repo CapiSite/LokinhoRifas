@@ -3,4 +3,4 @@ services:
     container_name: next
     build: .
     ports: 
-      - 80:3000
+      - 5000:3000
