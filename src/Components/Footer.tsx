@@ -16,8 +16,6 @@ export default function Footer() {
             <h1>LOKINHO SKINS LTDA</h1>
             <div>
               <p>CNPJ: 50.278.011/0001-06</p>
-              <p>Endereço Res São Domingos, quadra 02 - São Domingos </p>
-              <p> Luzilândia, PI - 64160-000</p>
             </div>
           </div>
         </div>

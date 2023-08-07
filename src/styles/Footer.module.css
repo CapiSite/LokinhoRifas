@@ -17,15 +17,17 @@
 }
 .left h1{
     font-weight: 700;
-    font-size: 25px;
+    font-size: 30px;
     margin-top: 20px;
     font-family: 'Bebas Neue', sans-serif;
-
+    margin-bottom: 20px;
+}
+.left div div p{
+    font-size: 17px;
 }
 .left > div{
  display: flex;
  flex-direction: column;
- justify-content: space-between;
  height: 110px;
  margin: 0px 25px;
  align-items: center;
