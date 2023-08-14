@@ -57,7 +57,7 @@
 
 .left p{
     align-self: flex-start;
-    text-align: justify;
+    text-align: left;
     color: var(--gray);
     font-family: 'Montserrat', sans-serif;
     color: rgb(99, 99, 99);

@@ -8,9 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Lokinho Skins</title>
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-        </Head>
+      </Head>
       <Component {...pageProps} />
     </>
   )
