@@ -25,10 +25,10 @@ export default function Footer() {
             <h1>CONTATOS:</h1>
             <p>LOKINHOSKINS@GMAIL.COM</p>
             <Link href="https://api.whatsapp.com/send?phone=5586981088012" target="_blank">
-            <h2>(86) 98108-8012</h2>
+            <h2>(86) 98108-8012 - Compra e Venda</h2>
             </Link>
             <Link href="https://api.whatsapp.com/send?phone=5581998958653" target="_blank">
-            <h2>(81) 99895-8653</h2>
+            <h2>(81) 99895-8653 - Rifas</h2>
             </Link>
           </div>
 

@@ -25,8 +25,11 @@ export default function About() {
           Thiago Cordeiro (Lokinho). Sou um jovem sonhador apaixonado por skins do Counter-Striker. Jogo desde 2017 e entrei no mercado de vendas em 2019, venho construindo meu negócio em vendas e rifas de skins. Agradeço por estar aqui e seja muito bem vindo.
           </p>
         </div>
-        <div data-tilt className={style.right}>
-          <Image  ref={tilt} alt="lokinho" src={Artwork} width={550} />
+        <div ref={tilt} className={style.right}>
+          <Image data-tilt  alt="lokinho" src={Artwork} width={550} />
+        </div>
+        <div className={style.rightMobile}>
+          <Image alt="lokinho" src={Artwork} width={550} />
         </div>
       </div>
     </div>

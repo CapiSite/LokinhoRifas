@@ -25,7 +25,7 @@ export default function Header() {
     e.preventDefault();
     const elem = document.getElementById("about");
     window.scrollTo({
-      top: elem?.getBoundingClientRect().top ? elem?.getBoundingClientRect().top  - 80 : 0,
+      top: elem?.getBoundingClientRect().top ? elem?.getBoundingClientRect().top  - 70 : 0,
       behavior: "smooth",
     });
   };

@@ -66,6 +66,10 @@
     font-weight: 600;
 }
 
+.rightMobile{
+    display: none;
+}
+
 @media (max-width:1400px) {
     .left p{
         width: 85%;
@@ -112,10 +116,19 @@
         font-size: 22px;
         text-align: center;
     }
-    .right, .right img{
+    .right{
+        display: none;
+    }
+    .rightMobile, .rightMobile img{
+        display: flex;
         margin-top: 10px;
         width: 80vw;
         height: 117vw;
         margin-bottom: 25px;
+    }
+}
+@media (max-width:970px) and (min-width:800px){
+    .backAbout{
+        max-height: 2100px;
     }
 }
