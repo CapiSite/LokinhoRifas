@@ -18,16 +18,11 @@ export default function About() {
   return (
     <div className={style.forLine}>
     <Image className={style.backAbout} src={BackgroundAbout} alt="background"/>
-
       <div className={style.background} id="about">
         <div className={style.left}>
           <h1>QUEM <span>SOMOS</span></h1>
           <p>
-          Thiago Cordeiro (Lokinho)
-Sou um jovem sonhador apaixonado por skins do Counter-Striker.
-Jogo desde 2017 e entrei no mercado de vendas em 2019,
- venho construindo meu negócio em vendas e rifas de skins.
-Agradeço por estar aqui e seja muito bem vindo.
+          Thiago Cordeiro (Lokinho). Sou um jovem sonhador apaixonado por skins do Counter-Striker. Jogo desde 2017 e entrei no mercado de vendas em 2019, venho construindo meu negócio em vendas e rifas de skins. Agradeço por estar aqui e seja muito bem vindo.
           </p>
         </div>
         <div data-tilt className={style.right}>

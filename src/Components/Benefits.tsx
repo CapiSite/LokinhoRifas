@@ -107,16 +107,15 @@ export default function Benefits() {
               <FaRegCalendarAlt />
               <h1>SORTEIOS DIÁRIOS</h1>
               <p>
-              Realizamos rifas de skins - Facas, luvas, armas, agentes e adesivos. Sempre após ao terminar uma começamos outra e com facilidades para participar e com variedade de preços.
-              </p>
+              Realizamos rifas de skins - Facas, luvas, armas, agentes e adesivos. Sempre após ao terminar uma começamos outra, com facilidades para participar e com valores diversos que cabem no seu bolso.              </p>
             </div>
             <div className={style.line}></div>
             <div>
               <IoPeopleCircleOutline />
               <h1>NOSSOS GRUPOS</h1>
               <p>
-              Nossos grupos de rifas - Compra e venda possuem administradores e moderadores de alta confiança no mercado de skins. temos sorteios free de skins e muita promoção e negociações 100% seguras.
-              </p>
+              Nossos grupos de rifas - Compra e venda possuem administradores e moderadores de alta confiança no mercado de skins.  
+              Negociações 100% seguras. Temos sorteios gratuitos de skins e muitas promoções.              </p>
             </div>
             <div className={style.line}></div>
             <div>
