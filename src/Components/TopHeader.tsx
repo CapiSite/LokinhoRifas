@@ -60,7 +60,7 @@ export default function TopHeader() {
         <div className={style.line}></div>
         <div className={style.right}>
         <p className={style.email}>
-            LOKINHORIFAS@GMAIL.COM
+        LOKINHOSKINS@GMAIL.COM
           </p>
           
         </div>
