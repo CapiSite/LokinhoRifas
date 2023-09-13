@@ -35,21 +35,7 @@ export default function Benefits() {
         "Entre no nosso grupo de RIFAS GOLDEN e teremos prazer em recebê-lo, aqui você vai encontrar as mais diversas skins sendo rifadas do CSGO. Rifas com skins de preços medianos a altos com floats baixíssimo e promoções diferenciadas.",
       photo: GroupPhoto2,
       link: "https://chat.whatsapp.com/I6z9eUyNp33EpLAxLWmOId",
-    },
-    {
-      name: "GRUPO DE COMPRA E VENDA",
-      description:
-        "Seja bem vindo ao maior grupo de Lokinho Rifas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
-      photo: GroupPhoto3,
-      link: "https://chat.whatsapp.com/EWKrihA9OUn8TjjX33oGuK",
-    },
-    {
-      name: "GRUPO DE COMPRA E VENDA 2",
-      description:
-        "Seja bem vindo ao grupo de compra e venda 2 do Lokinho Rifas! Aqui nós fazemos rifas de Skins do Counter Strike dos mais variados tipos. Tem desde o item mais barato até o mais Top!",
-      photo: GroupPhoto4,
-      link: "https://chat.whatsapp.com/C5N0eKOmRKN9eWLMJ4gyKp",
-    },
+    }
   ];
 
   useEffect(() => {
