@@ -45,7 +45,7 @@ export default function Benefits() {
         text.current.scrollHeight +
           cardsBenefits.current.scrollHeight +
           component.current.scrollHeight +
-          340
+          1060
       );
     };
     handleResize();
@@ -112,7 +112,13 @@ export default function Benefits() {
               </p>
             </div>
           </div>
-          
+          <div>
+          <video autoPlay className={style.video} controls >
+            <source src="/video.mp4" type="video/mp4" />
+            <source src="/video.webm" type="video/webm" />
+            Seu navegador não suporta a reprodução de vídeos.
+          </video>
+    </div>
           <motion.div
             ref={component}
             animate={more ? { height: height } : { height: height / 2 }}
