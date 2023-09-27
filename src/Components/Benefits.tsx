@@ -45,7 +45,7 @@ export default function Benefits() {
         text.current.scrollHeight +
           cardsBenefits.current.scrollHeight +
           component.current.scrollHeight +
-          1060
+          920
       );
     };
     handleResize();
@@ -113,11 +113,20 @@ export default function Benefits() {
             </div>
           </div>
           <div>
-          <video autoPlay className={style.video} controls >
-            <source src="/video.mp4" type="video/mp4" />
-            <source src="/video.webm" type="video/webm" />
-            Seu navegador não suporta a reprodução de vídeos.
-          </video>
+            <div className={style.video2}>
+              <video autoPlay={true} className={style.video} controls >
+                <source src="/video.mp4" type="video/mp4" />
+                <source src="/video.webm" type="video/webm" />
+                Seu navegador não suporta a reprodução de vídeos.
+              </video>
+              <div>
+                <p>Caros amigos e amantes do Counter-Striker, é uma alegria estar aqui com vocês para falar sobre nossas rifas e como elas podem ser uma incrível fonte de oportunidades para transformar sonhos em realidade. Nossas Rifas trazem a alegria de realizar sonhos de ter aquelas skins raras em gamer pagando pouco e tendo muita sorte. De março 2023 já realizamos mais de 800 entregas de skins deixando o inventário de mais de 400 ganhadores mais bonito e caro.
+                </p>
+                <p>Nossos giros são sempre ao vivo e com muita alegria e animação.
+</p>
+                </div>
+            </div>
+          
     </div>
           <motion.div
             ref={component}

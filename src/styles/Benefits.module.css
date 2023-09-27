@@ -111,7 +111,23 @@
   font-size: 110px;
 }
 .video{
-  width: 400px;
+width: 300px;
+}
+.video2 div{
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.video2{
+  font-family: 'Montserrat', sans-serif;
+  width: 80vw;
+  display: flex;
+  justify-content: space-around;
+  font-size: 31px;
+  color: white;
+  font-weight: 700;
 }
 @media (max-width:1210px) {
   .cardBenefits div:nth-child(5) svg {
@@ -125,6 +141,9 @@
   }
   .text {
     font-size: 60px;
+  }
+  .video2{
+    font-size: 27px;    
   }
 }
 
@@ -153,10 +172,16 @@
     font-family: 'Bebas Neue', sans-serif;
     margin-bottom: 15px;
   }
+  .video2 > div{
+    display: none;
+  }
 }
 
 @media (max-width:550px) {
   .video{
-    width: 100%;
+    display: flex;
+  }
+  .video2 > div{
+    display: none;
   }
 }
