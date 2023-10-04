@@ -45,7 +45,7 @@ export default function Benefits() {
         text.current.scrollHeight +
           cardsBenefits.current.scrollHeight +
           component.current.scrollHeight +
-          920
+          340
       );
     };
     handleResize();
@@ -113,7 +113,7 @@ export default function Benefits() {
             </div>
           </div>
           <div>
-            <div className={style.video2}>
+            {/* <div className={style.video2}>
               <video autoPlay={true} className={style.video} controls >
                 <source src="/video.mp4" type="video/mp4" />
                 <source src="/video.webm" type="video/webm" />
@@ -125,7 +125,7 @@ export default function Benefits() {
                 <p>Nossos giros são sempre ao vivo e com muita alegria e animação.
 </p>
                 </div>
-            </div>
+            </div> */}
           
     </div>
           <motion.div
