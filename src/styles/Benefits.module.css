@@ -40,6 +40,37 @@
   color: var(--white);
 }
 
+.box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+.box button{
+  height: 70px;
+  width: 100%;
+  border: 0px;
+  border-radius: 20px;
+  background-color: var(--red);
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 60px;
+  font-weight: 300;
+}
+.box button:hover{
+  background-color: var(--hover-red);
+  cursor: pointer;
+}
+.title {
+  color: var(--red);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 70px;
+  margin-bottom: 75px;
+}
+.box p:nth-child(2){
+  margin-bottom: 75px;
+
+}
 .cardBenefits {
   margin-top: 50px;
   width: 80vw;
