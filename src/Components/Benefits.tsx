@@ -12,6 +12,7 @@ import Image from "next/image";
 import Card from "./Cards";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Benefits() {
   const [more, setMore] = useState(false);
@@ -45,7 +46,8 @@ export default function Benefits() {
         text.current.scrollHeight +
           cardsBenefits.current.scrollHeight +
           component.current.scrollHeight +
-          340
+          920
+
       );
     };
     handleResize();
@@ -113,19 +115,22 @@ export default function Benefits() {
             </div>
           </div>
           <div>
-            {/* <div className={style.video2}>
-              <video autoPlay={true} className={style.video} controls >
+            <div className={style.video2}>
+              <video autoPlay muted className={style.video} controls >
                 <source src="/video.mp4" type="video/mp4" />
                 <source src="/video.webm" type="video/webm" />
                 Seu navegador não suporta a reprodução de vídeos.
               </video>
-              <div>
-                <p>Caros amigos e amantes do Counter-Striker, é uma alegria estar aqui com vocês para falar sobre nossas rifas e como elas podem ser uma incrível fonte de oportunidades para transformar sonhos em realidade. Nossas Rifas trazem a alegria de realizar sonhos de ter aquelas skins raras em gamer pagando pouco e tendo muita sorte. De março 2023 já realizamos mais de 800 entregas de skins deixando o inventário de mais de 400 ganhadores mais bonito e caro.
-                </p>
-                <p>Nossos giros são sempre ao vivo e com muita alegria e animação.
-</p>
+              <div className={style.box}>
+                <p className={style.title}>AS SKINS MAIS INSANAS POR PREÇOS MUITO BAIXOS</p>
+                
+                
+                <p>Venha conhecer os grupos de rifas de skins com giros que são sempre ao vivo e com muita alegria e animação.</p>
+                <Link href='https://chat.whatsapp.com/CXC6oVWoqy37bMUfiENeVx' target="_blank">
+                  <button>FAZER PARTE</button>
+                </Link>
                 </div>
-            </div> */}
+            </div>
           
     </div>
           <motion.div
