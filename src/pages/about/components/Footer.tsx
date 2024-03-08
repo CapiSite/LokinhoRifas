@@ -1,6 +1,6 @@
-import style from "@/styles/Footer.module.css"
-import Logo from "@/../public/Logo.png"
-import ssl from "@/../public/ssl.png"
+import style from "../styles/Footer.module.css"
+import Logo from "../images/Logo.png"
+import ssl from "../images/ssl.png"
 
 import Image from "next/image";
 import { FaFacebookF } from "react-icons/fa";

@@ -1,4 +1,4 @@
-import style from "@/styles/Sidebar.module.css";
+import style from "../styles/Sidebar.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { AiOutlineClose } from "react-icons/ai";
 

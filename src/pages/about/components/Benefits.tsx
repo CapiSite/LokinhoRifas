@@ -1,12 +1,12 @@
-import style from "@/styles/Benefits.module.css";
-import Prancheta from "@/../public/banner_5.png";
+import style from "../styles/Benefits.module.css";
+import Prancheta from "../images/banner_5.png";
 import { BsTwitch } from "react-icons/bs";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoPeopleCircleOutline } from "react-icons/io5";
-import GroupPhoto from "@/../public/Logo-prata.jpg";
-import GroupPhoto2 from "@/../public/Logo-dourada.jpg";
-import GroupPhoto3 from "@/../public/Logo-verde.jpg";
-import GroupPhoto4 from "@/../public/Logo-vermelho.jpg";
+import GroupPhoto from "../images/Logo-prata.jpg";
+import GroupPhoto2 from "../images/Logo-dourada.jpg";
+import GroupPhoto3 from "../images/Logo-verde.jpg";
+import GroupPhoto4 from "../images/Logo-vermelho.jpg";
 import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Image from "next/image";
 import Card from "./Cards";

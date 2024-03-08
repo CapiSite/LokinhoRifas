@@ -1,6 +1,6 @@
-import style from "@/styles/Stick.module.css";
+import style from "../styles/Stick.module.css";
 import Image from "next/image";
-import element from "@/../public/element.png";
+import element from "../images/element.png";
 import Link from "next/link";
 import VanillaTilt from "vanilla-tilt";
 import { useEffect, useRef } from "react";
