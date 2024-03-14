@@ -1,7 +1,7 @@
-import style from "@/styles/About.module.css";
+import style from "../styles/About.module.css";
 import Image from "next/image";
-import Artwork from "@/../public/Artwork.png"
-import BackgroundAbout from "@/../public/backgroundAbout.png"
+import Artwork from "../images/Artwork.png"
+import BackgroundAbout from "../images/backgroundAbout.png"
 import { useEffect, useRef } from "react";
 import VanillaTilt from "vanilla-tilt";
 

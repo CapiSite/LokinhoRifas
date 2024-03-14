@@ -1,6 +1,6 @@
 import { BsWhatsapp, BsInstagram, BsDiscord } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
-import style from "@/styles/TopHeader.module.css"
+import style from "../styles/TopHeader.module.css"
 import Link from "next/link";
 export default function TopHeader() {
   return (
