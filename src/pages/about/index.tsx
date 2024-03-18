@@ -17,13 +17,11 @@ export default function About() {
     <Image className={style.back} src={Background} alt="background"/>
     <Image className={style.backMob} src={BackgroundMobile} alt="background"/>
     <Image className={style.backAboutMob} src={BackgroundAboutMob} alt="background"/>
-      <TopHeader/>
-      <Header/>
+        <Header/>
       <Carousel/>
       <Stick/>
       <Benefits/>
       <AboutLokinho/>
-      <Footer/>
     </>
   );
 }
