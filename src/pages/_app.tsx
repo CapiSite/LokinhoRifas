@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import * as gtag from '../lib/gtag'
+import * as gtag from '../utils/gtag'
 import TopHeader from './about/components/TopHeader'
 import Footer from './about/components/Footer'
 

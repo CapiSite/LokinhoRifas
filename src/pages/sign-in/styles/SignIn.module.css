@@ -1,0 +1,167 @@
+/* background */
+.background {
+    display: flex;
+}
+
+@media (max-width: 800px) {
+    .background {
+        flex-direction: column;
+    }
+}
+
+/* left */
+.left {
+    background-color: #151515;
+    width: 60%;
+    height: 100vh;
+    color: white;
+    padding-top: 33vh;
+    padding-left: 15vh;
+    font-weight: 700;
+}
+
+.left h1 {
+    font-size: 106px;
+    font-family: 'Passion One', cursive;
+}
+
+.left p {
+    font-size: 43px;
+    font-family: 'Oswald', sans-serif;
+    width: 442px;
+}
+
+@media (max-width: 960px) {
+    .left p {
+        width: 100%;
+    }
+}
+
+@media (max-width: 800px) {
+    .left {
+        width: 100%;
+        height: 25vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 50px;
+        text-align: center;
+    }
+
+    .left h1 {
+        font-size: 76px;
+        height: 100%;
+    }
+
+    .left p {
+        font-size: 23px;
+    }
+}
+
+/* right */
+.right {
+    background-color: #333333;
+    width: 40%;
+    height: 100vh;
+    padding-top: 33vh;
+    display: flex;
+    justify-content: center;
+}
+
+.right form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 260px; /* Default height */
+    justify-content: space-between;
+}
+
+.right input,
+.right button:nth-child(3),
+.right button:nth-child(5) {
+    width: 100%;
+    height: 65px;
+    border-radius: 6px;
+    border: 0px;
+    font-size: 27px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.right input::placeholder {
+    color: #9F9F9F;
+}
+
+.right button:nth-child(3),
+.right button:nth-child(5) {
+    background-color: #1877F2;
+    justify-content: center;
+    color: white;
+}
+
+.right button:nth-child(3):disabled,
+.right button:nth-child(5):disabled {
+    background-color: #6cadfc;
+}
+
+.right button:nth-child(3):disabled:hover,
+.right button:nth-child(5):disabled:hover {
+    background-color: #6cadfc;
+}
+
+.right button:last-child {
+    background-color: #333333;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    text-decoration: underline;
+    border: 0;
+}
+
+.right button {
+    cursor: pointer;
+}
+
+.right button:nth-child(3):hover,
+.right button:nth-child(5):hover {
+    background-color: #1766F2;
+}
+
+@media (max-width: 800px) {
+    .right {
+        width: 100%;
+        height: 75vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+        text-align: center;
+    }
+
+    .right input,
+    .right button:nth-child(3),
+    .right button:nth-child(5) {
+        width: 330px;
+        height: 55px;
+    }
+}
+
+@media (max-width: 600px) {
+    .right form {
+        width: 80%;
+    }
+
+    .right input,
+    .right button:nth-child(3),
+    .right button:nth-child(5) {
+        width: 100%;
+        height: 55px;
+    }
+}
