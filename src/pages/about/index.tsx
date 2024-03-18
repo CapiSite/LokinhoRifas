@@ -6,7 +6,7 @@ import Benefits from "@/pages/about/components/Benefits";
 import AboutLokinho from "@/pages/about/components/About";
 import Footer from "@/pages/about/components/Footer";
 import Image from "next/image";
-import style from "@/styles/background.module.css";
+import style from "./styles/background.module.css";
 import Background from "./images/background.png"
 import BackgroundMobile from "./images/backgroundMobile.png"
 import BackgroundAboutMob from "./images/backgroundMobileAbout.png"
