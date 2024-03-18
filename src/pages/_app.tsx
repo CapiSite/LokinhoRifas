@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import '@/pages/about/styles/globals.css'
+import '@/styles/globals.css'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
