@@ -7,6 +7,7 @@ import { UserContext } from "../../utils/contextUser";
 import UserContextType from "@/utils/interfaces";
 import Image from "next/image";
 import Background from "@/images/background.png"
+import Post from "@/images/Post.png"
 
 export default function Login(){
     const router = useRouter()
@@ -33,12 +34,11 @@ export default function Login(){
     }, [])
 
 
-
-
     return (
         <div className={style.background}>
             <div className={style.left}>
             <Image src={Background} alt="background" />
+            <Image src={Post} alt="background" />
             </div>
             <div className={style.right}>
                 <form onSubmit={login}>

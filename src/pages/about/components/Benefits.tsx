@@ -1,5 +1,5 @@
 import style from "../styles/Benefits.module.css";
-import Prancheta from "../images/banner_5.png";
+import Prancheta from "@/images/banner_5.png";
 import { BsTwitch } from "react-icons/bs";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoPeopleCircleOutline } from "react-icons/io5";
