@@ -13,22 +13,16 @@
 .left {
     background-color: #151515;
     width: 60%;
-    height: 100vh;
+    height: 90vh;
+    min-height: 100%;
     color: white;
-    padding-top: 33vh;
-    padding-left: 15vh;
     font-weight: 700;
+    
 }
 
-.left h1 {
-    font-size: 106px;
-    font-family: 'Passion One', cursive;
-}
-
-.left p {
-    font-size: 43px;
-    font-family: 'Oswald', sans-serif;
-    width: 442px;
+.left img {
+max-height: 100%;
+max-width: 100%;
 }
 
 @media (max-width: 960px) {
@@ -63,10 +57,10 @@
 .right {
     background-color: #333333;
     width: 40%;
-    height: 100vh;
-    padding-top: 33vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .right form {
@@ -99,19 +93,19 @@
 
 .right button:nth-child(3),
 .right button:nth-child(5) {
-    background-color: #1877F2;
+    background-color: var(--red);
     justify-content: center;
     color: white;
 }
 
 .right button:nth-child(3):disabled,
 .right button:nth-child(5):disabled {
-    background-color: #6cadfc;
+    background-color: var(--hover2-red)
 }
 
 .right button:nth-child(3):disabled:hover,
 .right button:nth-child(5):disabled:hover {
-    background-color: #6cadfc;
+    background-color: var(--hover2-red)
 }
 
 .right button:last-child {
@@ -130,7 +124,7 @@
 
 .right button:nth-child(3):hover,
 .right button:nth-child(5):hover {
-    background-color: #1766F2;
+    background-color: var(--hover-red);
 }
 
 @media (max-width: 800px) {

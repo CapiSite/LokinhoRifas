@@ -1,13 +1,11 @@
-import TopHeader from "@/pages/about/components/TopHeader";
 import Header from "@/pages/about/components/Header";
 import Carousel from "@/pages/about/components/Carousel";
 import Stick from "@/pages/about/components/Stick";
 import Benefits from "@/pages/about/components/Benefits";
 import AboutLokinho from "@/pages/about/components/About";
-import Footer from "@/pages/about/components/Footer";
 import Image from "next/image";
 import style from "./styles/background.module.css";
-import Background from "./images/background.png"
+import Background from "@/images/background.png"
 import BackgroundMobile from "./images/backgroundMobile.png"
 import BackgroundAboutMob from "./images/backgroundMobileAbout.png"
 

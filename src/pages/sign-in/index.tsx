@@ -5,10 +5,12 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../utils/contextUser";
 import UserContextType from "@/utils/interfaces";
+import Image from "next/image";
+import Background from "@/images/background.png"
 
 export default function Login(){
     const router = useRouter()
-    const [user, setUser] = useState({email:"", password:""})
+    const [user, setUser] = useState({email:"", senha:""})
     const [disable, setDisable] = useState(false)
     const [token, setToken] = useState<string | null>(null); // Tipando token como string | null
     const {userInfo, setUserInfo} = useContext(UserContext) as UserContextType
@@ -36,15 +38,14 @@ export default function Login(){
     return (
         <div className={style.background}>
             <div className={style.left}>
-                <h1>linkr</h1>
-                <p>save, share and discover the best links on the web</p>
+            <Image src={Background} alt="background" />
             </div>
             <div className={style.right}>
                 <form onSubmit={login}>
-                    {loginInput.map((object) => <input disabled={disable} onChange={(e)=>{object === "e-mail"?setUser({...user, email:e.target.value}):setUser({...user, password:e.target.value})}
-                    } type={object === "e-mail"?"email":"password"} data-test={object === "e-mail"?"email":"password"} placeholder={object}/>)}
+                    {loginInput.map((object) => <input disabled={disable} onChange={(e)=>{object === "e-mail"?setUser({...user, email:e.target.value}):setUser({...user, senha:e.target.value})}
+                    } type={object === "e-mail"?"email":"password"} placeholder={object}/>)}
                     <button disabled={disable} data-test="login-btn" type="submit">Log In</button>
-                    <button disabled={disable} data-test="sign-up-link" type="button" onClick={()=>router.push("/sign-up")}>First time? Create an account!</button>
+                    <button disabled={disable} data-test="sign-up-link" type="button" onClick={()=>router.push("/sign-up")}>Primeira vez? Crie uma conta!</button>
                 </form>
             </div>
         </div>
@@ -53,7 +54,7 @@ export default function Login(){
     function login(e:FormEvent){
         e.preventDefault()
         setDisable(true)
-        if(user.email === ""|| user.password === "") {
+        if(user.email === ""|| user.senha === "") {
             alert("Preencha todos os campos!")
             setDisable(false)
             return
