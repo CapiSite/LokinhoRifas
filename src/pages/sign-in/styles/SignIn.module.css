@@ -140,9 +140,17 @@ position: relative;
     width: 50px;
 }
 
+.facebookLogin {
+    padding: 0px;
+    margin: 0;
+    border: 0;
+    height: 1px;
+}
+
 .twitch {
     height: 50px;
     width: 50px;
+    margin-left: 50px;
 }
 
 @media (max-width: 800px) {
