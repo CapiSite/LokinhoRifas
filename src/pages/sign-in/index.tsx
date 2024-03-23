@@ -6,28 +6,30 @@ import axios from "axios";
 import { UserContext } from "../../utils/contextUser";
 import UserContextType from "@/utils/interfaces";
 import Image from "next/image";
-import Background from "@/images/background.png"
-import Post from "@/images/Post.png"
-
-export default function Login(){
+import Background from "@/images/background.png";
+import Post from "@/images/Post.png";
+import twitch from "@/images/twitch.png"
+import face from "@/images/face.png"
+export default function Login() {
     const router = useRouter()
-    const [user, setUser] = useState({email:"", senha:""})
+    const [user, setUser] = useState({ email: "", senha: "" })
     const [disable, setDisable] = useState(false)
     const [token, setToken] = useState<string | null>(null); // Tipando token como string | null
-    const {userInfo, setUserInfo} = useContext(UserContext) as UserContextType
-    useEffect(()=>{
+    const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType
+    useEffect(() => {
         if (typeof window !== 'undefined') {
             const storedToken = localStorage.getItem("token");
             setToken(storedToken)
         }
-        if(token){
-            axios.post(process.env.REACT_APP_API_URL+"/token", {},{headers:{
+        if (token) {
+            axios.post(process.env.REACT_APP_API_URL + "/token", {}, {
+                headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then(res=>{
+            }).then(res => {
                 router.push("/timeline")
-                
-            }).catch(err=>{
+
+            }).catch(err => {
                 alert(err.response.data)
             })
         }
@@ -37,38 +39,48 @@ export default function Login(){
     return (
         <div className={style.background}>
             <div className={style.left}>
-            <Image src={Background} alt="background" />
-            <Image src={Post} alt="background" />
+                <Image src={Background} alt="background" />
+                <Image src={Post} alt="background" />
             </div>
             <div className={style.right}>
                 <form onSubmit={login}>
-                    {loginInput.map((object) => <input disabled={disable} onChange={(e)=>{object === "e-mail"?setUser({...user, email:e.target.value}):setUser({...user, senha:e.target.value})}
-                    } type={object === "e-mail"?"email":"password"} placeholder={object}/>)}
+
+                     {/* <div className={style.socialLogin}>
+                        <button type="button" className={style.facebookLogin}>
+                            <Image src={face} alt="Login com Facebook" />
+                        </button>
+                        <button type="button" className={style.twitchLogin}>
+                            <Image src={twitch} alt="Login com Twitch" />
+                        </button>
+                    </div>  */}
+                    
+                    {loginInput.map((object) => <input disabled={disable} onChange={(e) => { object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value }) }
+                    } type={object === "e-mail" ? "email" : "password"} placeholder={object} />)}
                     <button disabled={disable} data-test="login-btn" type="submit">Log In</button>
-                    <button disabled={disable} data-test="sign-up-link" type="button" onClick={()=>router.push("/sign-up")}>Primeira vez? Crie uma conta!</button>
+                    <button disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>Primeira vez? Crie uma conta!</button>
                 </form>
             </div>
         </div>
     )
 
-    function login(e:FormEvent){
+    function login(e: FormEvent) {
         e.preventDefault()
         setDisable(true)
-        if(user.email === ""|| user.senha === "") {
+        if (user.email === "" || user.senha === "") {
             alert("Preencha todos os campos!")
             setDisable(false)
             return
         }
-        
-        axios.post(process.env.REACT_APP_API_URL+"/signin", user).then((res)=>{
-            setUserInfo({...userInfo,id:res.data.id, name:res.data.name, email:res.data.email, picture:res.data.picture, token:res.data.token})
+
+        axios.post(process.env.REACT_APP_API_URL + "/signin", user).then((res) => {
+            setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.token })
             localStorage.setItem("token", res.data.token)
             setDisable(false)
             router.push("/timeline")
-        }).catch((err)=>{
+        }).catch((err) => {
             alert(err.response.data)
             setDisable(false)
         })
-        
+
     }
 }
