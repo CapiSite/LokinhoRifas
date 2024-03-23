@@ -44,16 +44,14 @@ export default function Login() {
             </div>
             <div className={style.right}>
                 <form onSubmit={login}>
-
-                     {/* <div className={style.socialLogin}>
+                     <div className={style.socialLogin}>
                         <button type="button" className={style.facebookLogin}>
-                            <Image src={face} alt="Login com Facebook" />
+                            <Image src={face} alt="Login com Facebook" className={style.facebook}/>
                         </button>
                         <button type="button" className={style.twitchLogin}>
-                            <Image src={twitch} alt="Login com Twitch" />
+                            <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
                         </button>
-                    </div>  */}
-                    
+                    </div>
                     {loginInput.map((object) => <input disabled={disable} onChange={(e) => { object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value }) }
                     } type={object === "e-mail" ? "email" : "password"} placeholder={object} />)}
                     <button disabled={disable} data-test="login-btn" type="submit">Log In</button>

@@ -85,8 +85,8 @@ position: relative;
   }
 
 .right input,
-.right button:nth-child(3),
-.right button:nth-child(5) {
+.right button:nth-child(6),
+.right button:nth-child(8) {
     width: 100%;
     height: 65px;
     border-radius: 6px;
@@ -103,33 +103,32 @@ position: relative;
     color: #9F9F9F;
 }
 
-.right button:nth-child(3),
-.right button:nth-child(5) {
+.right button:nth-child(6),
+.right button:nth-child(8) {
 
-    background-color: var(--reverded);
+    background-color: var(--red);
     justify-content: center;
     color: white;
 }
 
-.right button:nth-child(3):disabled,
-.right button:nth-child(5):disabled {
+.right button:nth-child(6):disabled,
+.right button:nth-child(8):disabled {
     background-color: var(--hover2-red);
 }
 
-.right button:nth-child(3):disabled:hover,
-.right button:nth-child(5):disabled:hover {
+.right button:nth-child(6):disabled:hover,
+.right button:nth-child(8):disabled:hover {
     background-color: var(--hover2-red);
 }
 
 .right button:last-child {
-    width: 92%;
+    width: 73%;
     height: 60px;
-    background-color: var(--hover2-red);
+    background-color: var(--red);
     color: white;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 25px;
+    font-weight: bold;
     font-family: 'Lato', sans-serif;
-    text-decoration: underline;
     border: 0;
     border-radius: 6px;
 }
@@ -138,8 +137,8 @@ position: relative;
     cursor: pointer;
 }
 
-.right button:nth-child(3):hover,
-.right button:nth-child(5):hover {
+.right button:nth-child(6):hover,
+.right button:nth-child(8):hover {
     background-color: var(--hover3-red);
 }
 
@@ -156,8 +155,8 @@ position: relative;
     }
 
     .right input,
-    .right button:nth-child(3),
-    .right button:nth-child(5) {
+    .right button:nth-child(6),
+    .right button:nth-child(8) {
         width: 630px;
         height: 55px;
     }
@@ -169,8 +168,8 @@ position: relative;
     }
 
     .right input,
-    .right button:nth-child(3),
-    .right button:nth-child(5) {
+    .right button:nth-child(6),
+    .right button:nth-child(8) {
         width: 100%;
         height: 55px;
     }

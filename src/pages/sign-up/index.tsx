@@ -12,11 +12,10 @@ import Login from "../sign-in";
 
 const Cadastro = () => {
   return (
-
     <div className={style.background}>
       <div className={style.left}>
         <Image src={Background} alt="background"/>
-        <Image src={Post} alt="background" />
+        <Image src={Post} alt="background"/>
       </div>
       <div className={style.right}>
       <form>
@@ -30,8 +29,6 @@ const Cadastro = () => {
       </form>
       </div>
     </div>
-    
-
   )
 }
 
