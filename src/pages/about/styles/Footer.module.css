@@ -1,8 +1,8 @@
-.background{
+.background100{
     display: flex;
 }
 
-.left{
+.left100{
     display: flex;
     background-color: var(--red);
     width: 33vw;
@@ -15,17 +15,17 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
 }
-.left h1{
+.left100 h1{
     font-weight: 700;
     font-size: 30px;
     margin-top: 20px;
     font-family: 'Bebas Neue', sans-serif;
     margin-bottom: 20px;
 }
-.left div div p{
+.left100 div div p{
     font-size: 17px;
 }
-.left > div{
+.left100 > div{
  display: flex;
  flex-direction: column;
  height: 110px;
@@ -83,7 +83,7 @@ background-color: var(--rose2);
     align-items: center;
     justify-content: center;
 }
-.right{
+.right100{
     width: 67vw;
     background-color: var(--strong-red);
     height: 150px;
@@ -94,11 +94,11 @@ background-color: var(--rose2);
     border-left: 15px solid var(--white);
 }
 
-.right img{
+.right100 img{
     margin-right: 80px;
     margin-bottom: 150px;
 }
-.right >div{
+.right100 >div{
     margin-bottom: 150px;
     margin-left: 60px;
     margin-right: 20px;
@@ -113,25 +113,25 @@ background-color: var(--rose2);
 
 }
 
-.right > div h1{
+.right100 > div h1{
     font-weight: 700;
     font-size: 25px;
 }
     
-.right > div p, .right > div h2{
+.right100 > div p, .right100 > div h2{
     font-weight: 400;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     margin-bottom: 2px;
     color: var(--white);
 }
-.right > div h2:hover{
+.right100 > div h2:hover{
     text-decoration: underline;
     cursor: pointer;
 }
 
 @media (max-width:1050px) {
-    .right img{
+    .right100 img{
         margin-right: 30px;
         width: 30%;
     }
@@ -141,37 +141,38 @@ background-color: var(--rose2);
 
 
 @media (max-width:970px) {
-    .background{
+    .background100{
         flex-direction: column;
     }
-    .right{
+    .right100{
         width: 100vw;
         border: 0px;
         flex-direction: column;
         height: 100%;
     }
-    .right > div, .right img{
+    .right100 > div, .right100 img{
         margin: 0px;
         margin-top: 40px;
         height: 100%;
+        
     }
-    .right img{
+    .right100 img{
         margin-bottom: 50px;
     }
-    .left{
+    .left100{
         width: 100vw;
         border: 0px;
     }
-    .left p{
+    .left100 p{
         margin-bottom: 5px;
     }
-    .right >div a, .right >div p, .right h1{
+    .right100 > div a, .right100 > div p, .right100 h1{
         margin-bottom: 5px;
     }
-    .right img:nth-child(2){
+    .right100 img:nth-child(2){
         margin-bottom: 0px;
     }
-    .line{
+    .line100{
         display: none;
         
     }

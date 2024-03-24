@@ -10,8 +10,8 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      <div className={style.background}>
-        <div className={style.left}>
+      <div className={style.background100}>
+        <div className={style.left100}>
         <div>
             <h1>LOKINHO SKINS LTDA</h1>
             <div>
@@ -19,8 +19,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className={style.line}></div>
-        <div className={style.right}>
+        <div className={style.line100}></div>
+        <div className={style.right100}>
         <div>
             <h1>CONTATOS:</h1>
             <p>LOKINHOSKINS@GMAIL.COM</p>

@@ -13,7 +13,7 @@ import Login from "../sign-in";
 const Cadastro = () => {
   const [fileName, setFileName] = useState("");
 
-  const handleFileChange = (event) => {
+  const handleFileChange = (event: any) => {
     const file = event.target.files[0];
     if (file) {
       setFileName(file.name);
@@ -22,12 +22,13 @@ const Cadastro = () => {
   };
 
   return (
-    <div className={style.background}>
-      <div className={style.left}>
-        <Image src={Background} alt="background"/>
-        <Image src={Post} alt="background"/>
-      </div>
-      <div className={style.right}>
+    <div className={style.background3}>
+      <div className={style.left3}>
+                <Image className={style.back2} src={Background} alt="background100" />
+                <h1>Seja bem-vindo!</h1>
+                <Image className={style.post3} src={Post} alt="background100" />
+            </div>
+      <div className={style.right3}>
         <form>
           {signUpInput.map((input, index) => (
             <div key={index}>
