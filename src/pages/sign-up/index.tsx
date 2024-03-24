@@ -9,6 +9,8 @@ import Image from "next/image";
 import Background from "@/images/background.png"
 import Post from "@/images/Post.png"
 import Login from "../sign-in";
+import twitch from "@/images/twitch.png"
+import face from "@/images/face.png"
 
 const Cadastro = () => {
   const [fileName, setFileName] = useState("");
@@ -30,13 +32,17 @@ const Cadastro = () => {
             </div>
       <div className={style.right3}>
         <form>
+          <div className={style.socialLogin}>
+              <Image src={face} alt="Login com Facebook" className={style.facebook}/>
+              <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
+            </div>
           {signUpInput.map((input, index) => (
             <div key={index}>
               <label htmlFor={input}></label>
               {input === "Imagem de Perfil" ? (
                 <div className={style.inputImageContainer}>
-                  <input type={signUpInputType[index]} id={input} name={input} placeholder={input} className={style.inputImage} onChange={handleFileChange} />
                   <label htmlFor={input} className={style.chooseImageLabel}>Escolher Imagem</label>
+                  <input type={signUpInputType[index]} id={input} name={input} placeholder={input} className={style.inputImage} onChange={handleFileChange}/>
                   {fileName && <span className={style.fileName}>{fileName}</span>}
                 </div>
               ) : (
