@@ -27,7 +27,7 @@ const Cadastro = () => {
     <div className={style.background3}>
       <div className={style.left3}>
                 <Image className={style.back2} src={Background} alt="background100" />
-                <h1>Seja bem-vindo!</h1>
+                <h1 className={style.welcome}>Seja bem-vindo!</h1>
                 <Image className={style.post3} src={Post} alt="background100" />
             </div>
       <div className={style.right3}>
@@ -37,11 +37,11 @@ const Cadastro = () => {
               <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
             </div>
           {signUpInput.map((input, index) => (
-            <div key={index}>
+            <div key={index} className={style.container}>
               <label htmlFor={input}></label>
               {input === "Imagem de Perfil" ? (
-                <div className={style.inputImageContainer}>
-                  <label htmlFor={input} className={style.chooseImageLabel}>Escolher Imagem</label>
+                <div>
+                  <label htmlFor={input} className={style.Label}>Escolher Imagem</label>
                   <input type={signUpInputType[index]} id={input} name={input} placeholder={input} className={style.inputImage} onChange={handleFileChange}/>
                   {fileName && <span className={style.fileName}>{fileName}</span>}
                 </div>
@@ -50,7 +50,7 @@ const Cadastro = () => {
               )}
             </div>
           ))}
-          <button type="submit">Enviar</button>
+          <button type="submit" className={style.enviar}>Enviar</button>
         </form>
       </div>
     </div>

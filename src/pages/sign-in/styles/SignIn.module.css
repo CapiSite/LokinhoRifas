@@ -24,9 +24,11 @@ width: 100%;
 position: relative;
 }
 
+
+
 .post3 {
     position: absolute;
-    height: 40%  !important;
+    height: 40% !important;
     width: 50% !important;
     border-radius: 10px;
 }
@@ -182,6 +184,19 @@ position: relative;
         flex-direction: column;
     }
 
+}
+
+@media (min-width: 801px) and (max-width: 970px) {
+    
+
+    .post3{
+        width: 40% !important;
+        height: 20% !important;
+    }
+
+    .welcome {
+        margin-top: 500px;
+    }
 }
 
 @media (max-width: 600px) {
