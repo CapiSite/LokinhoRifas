@@ -138,6 +138,17 @@ position: relative;
     cursor: pointer;
 }
 
+.linha {
+    background-color: white;
+    width: 50%;
+}
+
+.p {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 20px;
+}
+
 @media (max-width: 800px) {
 
     .left2 img:nth-child(3){

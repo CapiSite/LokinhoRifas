@@ -49,9 +49,11 @@ export default function Login() {
                         <Image src={face} alt="Login com Facebook" className={style.facebook}/>
                         <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
                     </div>
-                    {loginInput.map((object) => <input disabled={disable} onChange={(e) => { object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value }) }
-                    } type={object === "e-mail" ? "email" : "password"} placeholder={object} />)}
-                    <button disabled={disable} data-test="login-btn" type="submit">Log In</button>
+                    {loginInput.map((object) => <input disabled={disable} onChange={(e) => { object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value})}
+                    } type={object === "e-mail" ? "email" : "password"} placeholder={object}/>)}
+                    <button disabled={disable} data-test="login-btn" type="submit">Entrar</button>
+                    <hr className={style.linha}/>
+                    <p className={style.p}>Acesse sua conta com</p>
                     <button disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>Primeira vez? Crie uma conta!</button>
                 </form>
             </div>
