@@ -36,6 +36,20 @@ export default function Login() {
     }, [])
 
 
+    function twitchAuth(): void {
+        const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
+        const CLIENT_ID = "dcfc5qn6wwy7zdbe3dcvd0psbzmgn4"
+        const params = new URLSearchParams({
+            response_type: 'code',
+            scope: 'user:read:email',
+            client_id: CLIENT_ID,
+            redirect_uri: "http://localhost:3000/about"
+        })
+
+        const authURL = `${TWITCH_URL}?${params.toString()}`
+        window.location.href = authURL
+    }
+
     return (
         <div className={style.wallpaper}>
             <div className={style.left2}>
@@ -47,7 +61,7 @@ export default function Login() {
                 <form onSubmit={login}>
                      <div className={style.socialLogin}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook}/>
-                        <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
+                        <Image src={twitch} onClick={()=>twitchAuth()} alt="Login com Twitch" className={style.twitch}/>
                     </div>
                     {loginInput.map((object) => <input disabled={disable} onChange={(e) => { object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value }) }
                     } type={object === "e-mail" ? "email" : "password"} placeholder={object} />)}
@@ -67,7 +81,7 @@ export default function Login() {
             return
         }
 
-        axios.post(process.env.REACT_APP_API_URL + "/signin", user).then((res) => {
+        axios.post(process.env.REACT_NEXT_APP + "/signin", user).then((res) => {
             setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.token })
             localStorage.setItem("token", res.data.token)
             setDisable(false)
