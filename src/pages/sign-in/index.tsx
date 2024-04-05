@@ -22,7 +22,7 @@ export default function Login() {
             setToken(storedToken)
         }
         if (token) {
-            axios.post(process.env.REACT_APP_API_URL + "/token", {}, {
+            axios.post(process.env.NEXT_PUBLIC_REACT_APP_API_URL + "/token", {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -37,8 +37,12 @@ export default function Login() {
 
 
     function twitchAuth(): void {
-        const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
-        const CLIENT_ID = "dcfc5qn6wwy7zdbe3dcvd0psbzmgn4"
+        const CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID
+        console.log(process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID)
+        if (CLIENT_ID === undefined) {
+            console.error("TWITCH_CLIENT_ID não está definido.");
+            return;
+        }
         const params = new URLSearchParams({
             response_type: 'code',
             scope: 'user:read:email',
@@ -46,7 +50,7 @@ export default function Login() {
             redirect_uri: "http://localhost:3000/about"
         })
 
-        const authURL = `${TWITCH_URL}?${params.toString()}`
+        const authURL = `${process.env.NEXT_PUBLIC_TWITCH_URL}?${params.toString()}`
         window.location.href = authURL
     }
 
@@ -81,7 +85,7 @@ export default function Login() {
             return
         }
 
-        axios.post(process.env.REACT_NEXT_APP + "/signin", user).then((res) => {
+        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/signin", user).then((res) => {
             setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.token })
             localStorage.setItem("token", res.data.token)
             setDisable(false)
