@@ -10,6 +10,8 @@ import Background from "@/images/background.png";
 import Post from "@/images/Post.png";
 import twitch from "@/images/twitch.png"
 import face from "@/images/face.png"
+import faceb from "@/images/face-branco.jpeg"
+import logo from "@/images/logo.jpg"
 export default function Login() {
     const router = useRouter()
     const [user, setUser] = useState({ email: "", senha: "" })
@@ -53,22 +55,35 @@ export default function Login() {
     return (
         <div className={style.wallpaper}>
             <div className={style.left2}>
-                <Image className={style.back2} src={Background} alt="background100" />
+                <Image className={style.back2} src={Background} alt="background100"/>
                 <h1 className={style.welcome}>Seja bem-vindo!</h1>
-                <Image className={style.post3} src={Post} alt="background100" />
+                <Image className={style.post3} src={Post} alt="background100"/>
             </div>
             <div className={style.right2}>
                 <form onSubmit={login}>
-                     <div className={style.socialLogin}>
-                        <Image src={face} alt="Login com Facebook" className={style.facebook}/>
-                        <Image src={twitch} onClick={()=>twitchAuth()} alt="Login com Twitch" className={style.twitch}/>
+                    <Image src={logo} alt="Logo do site" className={style.logo}/>
+                    <div className={style.socialLogin}>
                     </div>
                     {loginInput.map((object) => <input disabled={disable} onChange={(e) => { object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value})}
                     } type={object === "e-mail" ? "email" : "password"} placeholder={object}/>)}
-                    <button disabled={disable} data-test="login-btn" type="submit">Entrar</button>
+                    <button disabled={disable} data-test="login-btn" type="submit">
+                        Entrar
+                    </button>
                     <hr className={style.linha}/>
-                    <p className={style.p}>Acesse sua conta com</p>
-                    <button disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>Primeira vez? Crie uma conta!</button>
+                    <p className={style.p}>
+                        Acesse sua conta com
+                    </p>
+                    <button className={style.loginFacebook}>
+                        <Image src={face} alt="Login com Facebook" className={style.facebook}/>
+                        Entrar com Facebook
+                    </button>
+                    <button className={style.loginTwitch} onClick={()=>twitchAuth()}>
+                        <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
+                        Entrar com Twitch
+                    </button>
+                    <button disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>
+                        Primeira vez? Crie uma conta!
+                    </button>
                 </form>
             </div>
         </div>

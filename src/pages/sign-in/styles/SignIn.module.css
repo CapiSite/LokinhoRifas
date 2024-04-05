@@ -65,8 +65,8 @@ position: relative;
 }
 
 .right2 input,
-.right2 button:nth-child(4),
-.right2 button:nth-child(6) {
+.right2 button:nth-child(5),
+.right2 button:nth-child(7) {
     width: 100%;
     height: 65px;
     border-radius: 6px;
@@ -83,15 +83,15 @@ position: relative;
     color: #9F9F9F;
 }
 
-.right2 button:nth-child(4),
-.right2 button:nth-child(6) {
+.right2 button:nth-child(5),
+.right2 button:nth-child(7) {
     background-color: var(--red);
     justify-content: center;
     color: white;
 }
 
-.right2 button:nth-child(4):disabled,
-.right2 button:nth-child(6):disabled {
+.right2 button:nth-child(5):disabled,
+.right2 button:nth-child(7):disabled {
     background-color: var(--hover2-red)
 }
 
@@ -109,33 +109,15 @@ position: relative;
     cursor: pointer;
 }
 
-.right2 button:nth-child(4):hover,
-.right2 button:nth-child(6):hover {
+.right2 button:nth-child(5):hover,
+.right2 button:nth-child(7):hover {
     background-color: var(--hover-red);
 }
-
-.facebook {
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
 
 .back2 {
     width: 100vw;
     height: 100%;
     
-}
-.socialLogin{
-    display: flex;
-    width: 80%;
-    justify-content: space-around;
-}
-.twitch {
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
 }
 
 .linha {
@@ -148,6 +130,43 @@ position: relative;
     color: white;
     font-size: 20px;
 }
+
+.loginFacebook, .loginTwitch {
+    border-radius: 8px;
+    width: 50%;
+    padding: 6px;
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: background-color 0.5s ease;
+}
+
+.loginFacebook:hover {
+    background-color: #4A6EA8;
+    color: white;
+}
+
+.loginTwitch:hover {
+    background-color: #842FA8;
+    color: white;
+}
+
+.facebook {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.twitch {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
+
 
 @media (max-width: 800px) {
 
@@ -185,8 +204,8 @@ position: relative;
     }
 
     .right2 input,
-    .right2 button:nth-child(4),
-    .right2 button:nth-child(6) {
+    .right2 button:nth-child(5),
+    .right2 button:nth-child(7) {
         width: 330px;
         height: 55px;
     }
@@ -194,7 +213,6 @@ position: relative;
     .wallpaper {
         flex-direction: column;
     }
-
 }
 
 @media (min-width: 801px) and (max-width: 970px) {
@@ -216,10 +234,14 @@ position: relative;
     }
 
     .right2 input,
-    .right2 button:nth-child(4),
-    .right2 button:nth-child(6) {
+    .right2 button:nth-child(5),
+    .right2 button:nth-child(7) {
         width: 100%;
         height: 55px;
+    }
+
+    .logo {
+        display: none;
     }
 }
 
