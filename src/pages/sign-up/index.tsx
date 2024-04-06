@@ -11,6 +11,7 @@ import Post from "@/images/Post.png"
 import Login from "../sign-in";
 import twitch from "@/images/twitch.png"
 import face from "@/images/face.png"
+import logo from "@/images/logo.jpg"
 
 const Cadastro = () => {
   const [fileName, setFileName] = useState("");
@@ -23,6 +24,20 @@ const Cadastro = () => {
     }
   };
 
+      function twitchAuth(): void {
+        const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
+        const CLIENT_ID = "dcfc5qn6wwy7zdbe3dcvd0psbzmgn4"
+        const params = new URLSearchParams({
+            response_type: 'code',
+            scope: 'user:read:email',
+            client_id: CLIENT_ID,
+            redirect_uri: "http://localhost:3000/about"
+        })
+
+        const authURL = `${TWITCH_URL}?${params.toString()}`
+        window.location.href = authURL
+    }
+
   return (
     <div className={style.background3}>
       <div className={style.left3}>
@@ -33,24 +48,34 @@ const Cadastro = () => {
       <div className={style.right3}>
         <form>
           <div className={style.socialLogin}>
-              <Image src={face} alt="Login com Facebook" className={style.facebook}/>
-              <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
-            </div>
+          </div>
           {signUpInput.map((input, index) => (
             <div key={index} className={style.container}>
-              <label htmlFor={input}></label>
+              <label htmlFor={input} className={style.label}>{input}</label>
               {input === "Imagem de Perfil" ? (
                 <div>
-                  <label htmlFor={input} className={style.Label}>Escolher Imagem</label>
+                  <label htmlFor={input} className={style.Label}>ㅤ</label>
                   <input type={signUpInputType[index]} id={input} name={input} placeholder={input} className={style.inputImage} onChange={handleFileChange}/>
                   {fileName && <span className={style.fileName}>{fileName}</span>}
                 </div>
               ) : (
-                <input type={input === 'senha' ? 'password' : 'text'} id={input} name={input} placeholder={input}/>
+                <input type={input === 'senha' ? 'password' : 'text'} id={input} name={input}/>
               )}
             </div>
           ))}
           <button type="submit" className={style.enviar}>Enviar</button>
+          <hr className={style.linha}/>
+          <p className={style.p}>
+                        Cadastre-se com
+                    </p>
+          <button className={style.loginFacebook}>
+            <Image src={face} alt="Login com Facebook" className={style.facebook}/>
+            Entrar com Facebook
+          </button>
+          <button className={style.loginTwitch} onClick={()=>twitchAuth()}>
+              <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
+                Entrar com Twitch
+            </button>
         </form>
       </div>
     </div>

@@ -56,16 +56,17 @@ position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 65%;
     height: 260 0px; /* Default height */
     justify-content: space-between;
-    gap: 20px;
+    gap: 28px;
 }
 
 .right3 input,
 .right3 button:nth-child(4),
 .right3 button:nth-child(6) {
     width: 100%;
+    margin-top: 2px;
     height: 65px;
     border-radius: 6px;
     border: 0px;
@@ -93,19 +94,20 @@ position: relative;
     background-color: var(--hover2-red)
 }
 
-.right3 button:last-child {
+.enviar {
     background-color: var(--red);
     color: white;
     font-size: 20px;
     font-weight: 400;
     font-family: 'Lato', sans-serif;
+    margin-top: 20px;
     border: 0;
     width: 100%;
     height: 65px;
     border-radius: 6px;
 }
 
-.right3 button:last-child:hover{
+.enviar:hover{
     background-color: var(--hover2-red);
 }
 
@@ -116,6 +118,10 @@ position: relative;
 .right3 button:nth-child(4):hover,
 .right3 button:nth-child(6):hover {
     background-color: var(--hover-red);
+}
+
+.logo {
+    width: 20vh;
 }
 
 .facebook {
@@ -130,16 +136,6 @@ position: relative;
     height: 100%;
     
 }
-.socialLogin{
-    display: flex;
-    width: 80%;
-    justify-content: space-around;
-}
-.twitch {
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-}
  
 .container {
     position: relative;
@@ -147,8 +143,14 @@ position: relative;
     height: 65px;
 }
 
+.label {
+    color: white;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}
+
 .Label {
-    position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
@@ -158,13 +160,14 @@ position: relative;
     font-size: 27px;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    padding-left: 20px;
+    padding: 20px;
     display: flex;
     justify-content: start;
     align-items: center;
     color: #9F9F9F;
     background-color: white;
     cursor: pointer;
+    margin-top: 3px;
 }
 
 .inputImage {
@@ -184,6 +187,55 @@ position: relative;
     font-size: 12px;
     color: white;
 }
+
+.linha {
+    background-color: white;
+    width: 50%;
+}
+
+.p {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 20px;
+}
+
+.loginFacebook, .loginTwitch {
+    border-radius: 8px;
+    width: 50%;
+    padding: 6px;
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: background-color 0.5s ease;
+}
+
+.facebook {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.twitch {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
+
+.loginFacebook:hover {
+    background-color: #4A6EA8;
+    color: white;
+}
+
+.loginTwitch:hover {
+    background-color: #842FA8;
+    color: white;
+}
+
+
 
 @media (max-width: 800px) {
 
@@ -261,5 +313,9 @@ position: relative;
     .Label {
         font-size: 24px;
         padding-left: 15px;
+    }
+
+    .logo {
+        display: none;
     }
 }

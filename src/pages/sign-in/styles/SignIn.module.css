@@ -161,6 +161,14 @@ position: relative;
     border-radius: 10px;
 }
 
+.facebook2 {
+    display: none;
+}
+
+.loginFacebook:hover {
+    
+}
+
 .twitch {
     height: 25px;
     width: 25px;

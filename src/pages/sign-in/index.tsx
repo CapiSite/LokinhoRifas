@@ -75,10 +75,12 @@ export default function Login() {
                     </p>
                     <button className={style.loginFacebook}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook}/>
+                        <Image src={faceb} alt="Login" className={style.facebook2}/>
                         Entrar com Facebook
                     </button>
                     <button className={style.loginTwitch} onClick={()=>twitchAuth()}>
                         <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
+                        
                         Entrar com Twitch
                     </button>
                     <button disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>
