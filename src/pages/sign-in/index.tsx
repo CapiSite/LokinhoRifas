@@ -9,6 +9,7 @@ import Image from "next/image";
 import Background from "@/images/background.png";
 import Post from "@/images/Post.png";
 import twitch from "@/images/twitch.png"
+import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png"
 import faceb from "@/images/face-branco.jpeg"
 import logo from "@/images/logo.jpg"
@@ -68,8 +69,21 @@ export default function Login() {
                     <Image src={logo} alt="Logo do site" className={style.logo}/>
                     <div className={style.socialLogin}>
                     </div>
-                    {loginInput.map((object) => <input disabled={disable} onChange={(e) => { object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value})}
-                    } type={object === "e-mail" ? "email" : "password"} placeholder={object}/>)}
+                    {loginInput.map((object, index) => (
+    <div key={index}>
+        <label htmlFor={object === "e-mail" ? "emailInput" : "passwordInput"} className={style.label}>
+            {object === "e-mail" ? "E-mail:" : "Senha:"}
+        </label>
+        <input
+            id={object === "e-mail" ? "emailInput" : "passwordInput"}
+            disabled={disable}
+            onChange={(e) => {
+                object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value});
+            }}
+            type={object === "e-mail" ? "email" : "password"}
+        />
+    </div>
+))}
                     <button disabled={disable} data-test="login-btn" type="submit">
                         Entrar
                     </button>
@@ -84,10 +98,10 @@ export default function Login() {
                     </button>
                     <button className={style.loginTwitch} onClick={()=>twitchAuth()}>
                         <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
-                        
+                        <Image src={twitch2} alt="Login com Twitch" className={style.twitch2}/>
                         Entrar com Twitch
                     </button>
-                    <button disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>
+                    <button className={style.rout}disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>
                         Primeira vez? Crie uma conta!
                     </button>
                 </form>

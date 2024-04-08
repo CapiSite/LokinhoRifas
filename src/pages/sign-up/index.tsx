@@ -10,7 +10,9 @@ import Background from "@/images/background.png"
 import Post from "@/images/Post.png"
 import Login from "../sign-in";
 import twitch from "@/images/twitch.png"
+import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png"
+import face2 from "@/images/face-branco.jpeg"
 import logo from "@/images/logo.jpg"
 
 const Cadastro = () => {
@@ -41,10 +43,10 @@ const Cadastro = () => {
   return (
     <div className={style.background3}>
       <div className={style.left3}>
-                <Image className={style.back2} src={Background} alt="background100" />
-                <h1 className={style.welcome}>Seja bem-vindo!</h1>
-                <Image className={style.post3} src={Post} alt="background100" />
-            </div>
+        <Image className={style.back2} src={Background} alt="background100" />
+        <h1 className={style.welcome}>Seja bem-vindo!</h1>
+        <Image className={style.post3} src={Post} alt="background100"/>
+      </div>
       <div className={style.right3}>
         <form>
           <div className={style.socialLogin}>
@@ -70,10 +72,12 @@ const Cadastro = () => {
                     </p>
           <button className={style.loginFacebook}>
             <Image src={face} alt="Login com Facebook" className={style.facebook}/>
+            <Image src={face2} alt="Login com Facebook" className={style.facebook2}/>
             Entrar com Facebook
           </button>
           <button className={style.loginTwitch} onClick={()=>twitchAuth()}>
               <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
+              <Image src={twitch2} alt="Login com Twitch" className={style.twitch2}/>
                 Entrar com Twitch
             </button>
         </form>

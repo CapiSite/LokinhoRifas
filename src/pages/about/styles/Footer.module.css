@@ -135,10 +135,7 @@ background-color: var(--rose2);
         margin-right: 30px;
         width: 30%;
     }
-    
-    
 }
-
 
 @media (max-width:970px) {
     .background100{

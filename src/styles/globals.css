@@ -47,7 +47,7 @@ body {
   --bluedc2:rgb(50, 61, 187);
   position: relative;
 }
-a{
+a {
 	text-decoration: none;
 }
 ol, ul {
@@ -67,7 +67,7 @@ table {
 
 }
 
-*{
+* {
 	box-sizing: border-box;
 }
 
