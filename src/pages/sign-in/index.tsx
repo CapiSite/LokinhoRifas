@@ -60,48 +60,48 @@ export default function Login() {
     return (
         <div className={style.wallpaper}>
             <div className={style.left2}>
-                <Image className={style.back2} src={Background} alt="background100"/>
+                <Image className={style.back2} src={Background} alt="background100" />
                 <h1 className={style.welcome}>Seja bem-vindo!</h1>
-                <Image className={style.post3} src={Post} alt="background100"/>
+                <Image className={style.post3} src={Post} alt="background100" />
             </div>
             <div className={style.right2}>
                 <form onSubmit={login}>
-                    <Image src={logo} alt="Logo do site" className={style.logo}/>
+                    <Image src={logo} alt="Logo do site" className={style.logo} />
                     <div className={style.socialLogin}>
                     </div>
                     {loginInput.map((object, index) => (
-    <div key={index}>
-        <label htmlFor={object === "e-mail" ? "emailInput" : "passwordInput"} className={style.label}>
-            {object === "e-mail" ? "E-mail:" : "Senha:"}
-        </label>
-        <input
-            id={object === "e-mail" ? "emailInput" : "passwordInput"}
-            disabled={disable}
-            onChange={(e) => {
-                object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value});
-            }}
-            type={object === "e-mail" ? "email" : "password"}
-        />
-    </div>
-))}
+                        <div key={index}>
+                            <label htmlFor={object === "e-mail" ? "emailInput" : "passwordInput"} className={style.label}>
+                                {object === "e-mail" ? "E-mail:" : "Senha:"}
+                            </label>
+                            <input
+                                id={object === "e-mail" ? "emailInput" : "passwordInput"}
+                                disabled={disable}
+                                onChange={(e) => {
+                                    object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value });
+                                }}
+                                type={object === "e-mail" ? "email" : "password"}
+                            />
+                        </div>
+                    ))}
                     <button disabled={disable} data-test="login-btn" type="submit">
                         Entrar
                     </button>
-                    <hr className={style.linha}/>
+                    <hr className={style.linha} />
                     <p className={style.p}>
                         Acesse sua conta com
                     </p>
                     <button className={style.loginFacebook}>
-                        <Image src={face} alt="Login com Facebook" className={style.facebook}/>
-                        <Image src={faceb} alt="Login" className={style.facebook2}/>
+                        <Image src={face} alt="Login com Facebook" className={style.facebook} />
+                        <Image src={faceb} alt="Login" className={style.facebook2} />
                         Entrar com Facebook
                     </button>
-                    <button className={style.loginTwitch} onClick={()=>twitchAuth()}>
-                        <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
-                        <Image src={twitch2} alt="Login com Twitch" className={style.twitch2}/>
+                    <button className={style.loginTwitch} onClick={() => twitchAuth()}>
+                        <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
+                        <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
                         Entrar com Twitch
                     </button>
-                    <button className={style.rout}disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>
+                    <button className={style.rout} disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>
                         Primeira vez? Crie uma conta!
                     </button>
                 </form>
