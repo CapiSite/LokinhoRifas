@@ -91,6 +91,10 @@ export default function Login() {
                     <p className={style.p}>
                         Acesse sua conta com
                     </p>
+                    <div className={style.imagens}>
+                        <Image src={face} alt="Login com Facebook" className={style.imagemFace}/>
+                        <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch}/>
+                    </div>
                     <button className={style.loginFacebook}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook} />
                         <Image src={faceb} alt="Login" className={style.facebook2} />

@@ -41,7 +41,6 @@
     font-size: 40px;
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
-
 }
 
 /* right2 */
@@ -216,31 +215,16 @@
     max-height: 90%;
 }
 
-@media (max-width: 600px) {
-    .right2 form {
-        width: 80%;
-        gap: 10px;
-    }
-
-    .right2 input,
-    .right2 button:nth-child(5),
-    .right2 button:nth-child(7) {
-        width: 100%;
-        height: 50px;
-    }
-
+@media (min-width: 250px) and (max-width: 450px) { /*CELULARES*/
     .logo {
         display: none;
     }
-}
 
-@media (max-width: 800px) {
-
-    .left2 img:nth-child(3) {
+    .left2 img:nth-child(3){
         display: none;
     }
-
-    .left2 img:first-child {
+    
+    .left2 img:first-child{
         min-height: 40vh;
     }
 
@@ -260,6 +244,10 @@
         font-size: 30px;
     }
 
+    .right2 form {
+        width: 80%;
+    }
+
     .right2 {
         width: 100%;
         height: 75vh;
@@ -274,12 +262,12 @@
     .right2 input,
     .right2 button:nth-child(5),
     .right2 button:nth-child(7) {
-        width: 330px;
-        height: 55px;
+        max-width: 250px;
+        height: 50px;
     }
 
-    .loginTwitch {
-        font-size: 12px;
+    .loginTwitch, .loginFacebook {
+        display: none;
     }
 
     .rout {
@@ -293,75 +281,29 @@
     .logo {
         display: none;
     }
-}
 
-@media (min-width: 801px) and (max-width: 970px) {
-    .post3 {
-        width: 40% !important;
-        height: 20% !important;
+    .imagemFace {
+        width: 18vw;
+        height: 10vh;
+        border-radius: 15px;
+        margin-right: 15px;
     }
 
-    .right2 form {
-        width: 80%;
-        gap: 20px;
+    .imagemTwitch {
+        width: 18vw;
+        height: 10vh;
+        margin-left: 15px;
     }
 
-    .p {
-        font-size: 20px;
-    }
-
-    .label {
-        font-size: 15px;
-    }
-
-    .loginFacebook {
-        font-size: 13px;
-        width: 80%;
-    }
-
-    .loginTwitch {
-        font-size: 13px;
-        width: 80%;
-    }
-
-    .welcome {
-        margin-top: 400px;
-    }
-
-    .logo {
-        max-width: 90%;
-        max-height: 90%;
+    .rout {
+        margin: 0;
     }
 }
 
-@media (min-width: 971px) {
-    .logo {
-        max-width: 100%;
-        max-height: 100%;
-    }
-    .right2 form {
-        width: 100%;
-        gap: 25px;
-    }
+@media (min-width: 451px) and (max-width: 1023px) { /*TABLETS*/
 
-    .label {
-        font-size: 28px;
-    }
+}
 
-    .right2 input,
-    .right2 button:nth-child(5),
-    .right2 button:nth-child(7) {
-        max-width: 300px;
-        height: 55px;
-    }
+@media (min-width: 1024px) { /*COISAS MAIORES QUE TABLETS*/
 
-    .loginFacebook {
-        width: 80%;
-        font-size: 20px;
-    }
-
-    .loginTwitch {
-        width: 80%;
-        font-size: 20px;
-    }
 }
