@@ -436,7 +436,7 @@
     .right2 input,
     .right2 button:nth-child(5),
     .right2 button:nth-child(7) {
-        width: 500px;
+        width: 430px;
         height: 50px;
     }
 
@@ -507,14 +507,15 @@
     }
 
     .logo {
-        max-height: 10vh;
+       height: 50%;
+       width: 50%;
     }
 
     .right2 input,
     .right2 button:nth-child(5),
     .right2 button:nth-child(7) {
         width: 330px;
-        height: 50px;
+        height: 45px;
     }
 
     .loginFacebook, .loginTwitch {
@@ -523,14 +524,38 @@
     }
 
     .imagemFace, .imagemTwitch {
-        display: none;
+        display: none ;
+    }
+
+    .twitch, .twitch2 {
+        margin-right: 0px;
     }
 
     .p {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     .right2 form {
-        gap: 15px;
+        gap: 12px;
+        height: 60vh;
+    }
+
+    @media (min-width: 1025px) {
+        .logo {
+            width: 200px;
+            height: 100px;
+        }
+
+        .right2 form {
+            height: 60vh;
+            width: 300px;
+        }
+
+        .right2 input,
+        .right2 button:nth-child(5),
+        .right2 button:nth-child(7) {
+            width: 25vw;
+            height: 50px;
+        }
     }
 }
