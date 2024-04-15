@@ -43,7 +43,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* right2 */
 .right2 {
     background-color: #333333;
     width: 35%;
@@ -215,16 +214,17 @@
     max-height: 90%;
 }
 
-@media (min-width: 250px) and (max-width: 450px) { /*CELULARES*/
+@media (min-width: 280px) and (max-width: 319px) {
+
     .logo {
         display: none;
     }
 
-    .left2 img:nth-child(3){
+    .left2 img:nth-child(3) {
         display: none;
     }
-    
-    .left2 img:first-child{
+
+    .left2 img:first-child {
         min-height: 40vh;
     }
 
@@ -266,7 +266,8 @@
         height: 50px;
     }
 
-    .loginTwitch, .loginFacebook {
+    .loginTwitch,
+    .loginFacebook {
         display: none;
     }
 
@@ -283,16 +284,103 @@
     }
 
     .imagemFace {
-        width: 18vw;
-        height: 10vh;
+        width: 15vw;
+        height: 50px;
         border-radius: 15px;
         margin-right: 15px;
     }
 
     .imagemTwitch {
-        width: 18vw;
-        height: 10vh;
+        width: 15vw;
+        height: 50px;
         margin-left: 15px;
+    }
+
+    .rout {
+        margin: 0;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .logo {
+        display: none;
+    }
+
+    .left2 img:nth-child(3) {
+        display: none;
+    }
+
+    .left2 img:first-child {
+        min-height: 40vh;
+    }
+
+    .left2 {
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 50px;
+        text-align: center;
+    }
+
+    .left2 h1 {
+        height: 0%;
+        font-size: 30px;
+    }
+
+    .right2 form {
+        width: 80%;
+    }
+
+    .right2 {
+        width: 100%;
+        height: 75vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+        text-align: center;
+    }
+
+    .right2 input,
+    .right2 button:nth-child(5),
+    .right2 button:nth-child(7) {
+        max-width: 350px;
+        height: 50px;
+    }
+
+    .loginTwitch,
+    .loginFacebook {
+        display: none;
+    }
+
+    .rout {
+        margin: 20px 0;
+    }
+
+    .wallpaper {
+        flex-direction: column;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .imagemFace {
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+        margin-right: 25px;
+    }
+
+    .imagemTwitch {
+        width: 50px;
+        height: 50px;
+        margin-left: 25px;
     }
 
     .rout {
@@ -300,10 +388,149 @@
     }
 }
 
-@media (min-width: 451px) and (max-width: 1023px) { /*TABLETS*/
+@media (min-width: 481px) and (max-width: 768px) {
+    .logo {
+        display: none;
+    }
 
+    .left2 img:nth-child(3) {
+        display: none;
+    }
+
+    .left2 img:first-child {
+        min-height: 40vh;
+    }
+
+    .left2 {
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 50px;
+        text-align: center;
+    }
+
+    .left2 h1 {
+        height: 0%;
+        font-size: 30px;
+    }
+
+    .right2 form {
+        width: 80%;
+        text-align: left;
+    }
+
+    .right2 {
+        width: 100%;
+        height: 75vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+        text-align: center;
+    }
+
+    .right2 input,
+    .right2 button:nth-child(5),
+    .right2 button:nth-child(7) {
+        width: 500px;
+        height: 50px;
+    }
+
+    .loginTwitch,
+    .loginFacebook {
+        display: none;
+    }
+
+    .rout {
+        margin: 20px 0;
+    }
+
+    .wallpaper {
+        flex-direction: column;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .imagemFace {
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+        margin-right: 25px;
+    }
+
+    .imagemTwitch {
+        width: 50px;
+        height: 50px;
+        margin-left: 25px;
+    }
+
+    .rout {
+        margin: 0;
+    }
 }
 
-@media (min-width: 1024px) { /*COISAS MAIORES QUE TABLETS*/
+@media (min-width: 769px) {
+    .left2 {
+        background-color: #151515;
+        width: 55%;
+        height: 90vh;
+        min-height: 100%;
+        color: white;
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: -1;
+    }
 
+    .right2 {
+        background-color: #333333;
+        width: 45%;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .post3 {
+        position: absolute;
+        min-height: 30% !important;
+        min-width: 30% !important;
+        border-radius: 10px;
+    }
+
+    .logo {
+        max-height: 10vh;
+    }
+
+    .right2 input,
+    .right2 button:nth-child(5),
+    .right2 button:nth-child(7) {
+        width: 330px;
+        height: 50px;
+    }
+
+    .loginFacebook, .loginTwitch {
+        width: 330px;
+        height: 34px;
+    }
+
+    .imagemFace, .imagemTwitch {
+        display: none;
+    }
+
+    .p {
+        font-size: 20px;
+    }
+    
+    .right2 form {
+        gap: 15px;
+    }
 }

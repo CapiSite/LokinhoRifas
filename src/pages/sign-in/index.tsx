@@ -97,7 +97,7 @@ export default function Login() {
                     </div>
                     <button className={style.loginFacebook}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook} />
-                        <Image src={faceb} alt="Login" className={style.facebook2} />
+                        <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
                         Entrar com Facebook
                     </button>
                     <button className={style.loginTwitch} onClick={() => twitchAuth()}>
