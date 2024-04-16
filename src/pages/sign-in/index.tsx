@@ -38,24 +38,32 @@ export default function Login() {
         }
     }, [])
 
-
     function twitchAuth(): void {
-        const CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID
-        console.log(process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID)
-        if (CLIENT_ID === undefined) {
-            console.error("TWITCH_CLIENT_ID não está definido.");
-            return;
-        }
+        const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
+        const CLIENT_ID = "dcfc5qn6wwy7zdbe3dcvd0psbzmgn4"
         const params = new URLSearchParams({
-            response_type: 'code',
-            scope: 'user:read:email',
-            client_id: CLIENT_ID,
-            redirect_uri: "http://localhost:3000/about"
+          response_type: 'code',
+          scope: 'user:read:email',
+          client_id: CLIENT_ID,
+          redirect_uri: "http://localhost:3000/about"
         })
-
-        const authURL = `${process.env.NEXT_PUBLIC_TWITCH_URL}?${params.toString()}`
+    
+        const authURL = `${TWITCH_URL}?${params.toString()}`
         window.location.href = authURL
-    }
+      }
+      function faceAuth(): void {
+        const face_URL = ""
+        const CLIENT_ID = ""
+        const params = new URLSearchParams({
+          response_type: 'code',
+          scope: 'user:read:email',
+          client_id: CLIENT_ID,
+          redirect_uri: "http://localhost:3000/about"
+        })
+        
+        const authURL = `${face_URL}?${params.toString()}`
+        window.location.href = authURL
+      }
 
     return (
         <div className={style.wallpaper}>
@@ -95,7 +103,7 @@ export default function Login() {
                         <Image src={face} alt="Login com Facebook" className={style.imagemFace}/>
                         <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch}/>
                     </div>
-                    <button className={style.loginFacebook}>
+                    <button className={style.loginFacebook} onClick={() => faceAuth()}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook} />
                         <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
                         Entrar com Facebook
