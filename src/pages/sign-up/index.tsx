@@ -11,7 +11,7 @@ import { signUpInput } from "../../utils/inputs";
 
 const Cadastro = () => {
   const [step, setStep] = useState(1);
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName]: any = useState(DefaultProfilePi);
 
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
@@ -91,7 +91,7 @@ const Cadastro = () => {
               <h1 className={style.title}>Crie sua conta!</h1>
               {fileName && (
                 <div className={style.imagePreviewContainer}>
-                  <img src={fileName} className={style.imagePreview} alt="" />
+                  <Image src={fileName} width={300} height={300} className={style.imagePreview} alt="" />
                 </div>
               )}
               <div className={style.container}>

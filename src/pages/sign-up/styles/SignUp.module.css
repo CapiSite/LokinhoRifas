@@ -274,16 +274,17 @@ justify-content: center; /* Centraliza horizontalmente */
 }
 
 .buttonback{
-    background-color: var(--red);
-    color: white;
+
+    color: rgb(0, 0, 0);
     font-size: 20px;
     font-weight: 400;
     font-family: 'Lato', sans-serif;
     margin-top: 20px;
     border: 0;
-    width: 100%;
+    width: 25%;
     height: 65px;
-    border-radius: 6px;
+    border-radius: 50%;
+    border: 2px black solid;
     
 }
 .buttonback:hover{
