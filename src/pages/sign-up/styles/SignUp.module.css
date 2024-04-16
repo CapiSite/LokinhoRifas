@@ -274,18 +274,15 @@ justify-content: center; /* Centraliza horizontalmente */
 }
 
 .buttonback{
-
-    color: rgb(0, 0, 0);
+    background-color:#b20600;
+    color: rgb(255, 255, 255);
     font-size: 20px;
     font-weight: 400;
     font-family: 'Lato', sans-serif;
     margin-top: 20px;
-    border: 0;
-    width: 25%;
-    height: 65px;
-    border-radius: 50%;
-    border: 2px black solid;
-    
+    border-radius: 10px;
+    width: 100%;
+    height: 65px;  
 }
 .buttonback:hover{
     background-color: var(--hover2-red);
@@ -302,7 +299,23 @@ justify-content: center; /* Centraliza horizontalmente */
     height: auto; 
     border-radius: 100%;
   }
-
+  .Policy-group{
+    width: 4000px;
+    height: 4000px;
+  }
+  .privacyPolicy{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 8px;
+  }
+.policy{
+    color: white;
+}
+.checkbox{
+    width: 15px !important;
+    height: 15px !important;
+}
 @media (max-width: 800px) {
     .left2 img:nth-child(3){
         display: none;

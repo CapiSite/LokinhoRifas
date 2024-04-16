@@ -49,7 +49,7 @@ const Cadastro = () => {
       client_id: CLIENT_ID,
       redirect_uri: "http://localhost:3000/about"
     })
-    
+
     const authURL = `${face_URL}?${params.toString()}`
     window.location.href = authURL
   }
@@ -91,7 +91,7 @@ const Cadastro = () => {
               <h1 className={style.title}>Crie sua conta!</h1>
               {fileName && (
                 <div className={style.imagePreviewContainer}>
-                  <Image src={fileName} width={300} height={300} className={style.imagePreview} alt="" />
+                  <Image src={fileName} width={100} height={100} className={style.imagePreview} alt="" />
                 </div>
               )}
               <div className={style.container}>
@@ -109,24 +109,43 @@ const Cadastro = () => {
               <button type="button" className={style.buttonback} onClick={() => setStep(1)}>
                 Voltar
               </button>
+              <button type="button" className={style.enviar} onClick={() => setStep(3)}>
+                Próximo
+              </button>
+            </div>
+          )}
+          {step === 3 && (
+            <div >
+              <div className="Policy-group">
+                <h1 className={style.privacyPolicy}>Política de privacidade</h1>
+                <p className={style.policy}>Última atualização: [data]
+                  A [Nome da Empresa] ("nós", "nosso" ou "nos") opera o website [www.exemplo.com] (doravante referido como o "Serviço").
+                  Esta página informa sobre nossas políticas relativas à coleta, uso e divulgação de informações pessoais quando você usa nosso Serviço.
+                  Coleta e Uso de Informações
+                  Não coletamos informações pessoais identificáveis, como seu nome, endereço, número de telefone ou endereço de e-mail, a menos que você as forneça voluntariamente.
+                  Dados de Log
+                  Nós seguimos uma política de log padrão. Isso significa que seus dados de log podem incluir informações como seu endereço IP, tipo de navegador, provedor de serviços de Internet, páginas que você visitou em nosso site, a hora e a data de sua visita, o tempo gasto nessas páginas e outras estatísticas.
+                  Cookies
+                  Nós não usamos cookies para rastrear a atividade do usuário. No entanto, podemos usar cookies de terceiros para melhorar a funcionalidade do nosso site.
+                  Compartilhamento de Informações
+                  Nós não compartilhamos informações pessoais identificáveis publicamente ou com terceiros, exceto quando exigido por lei.
+                  Links para Outros Sites
+                  Nosso Serviço pode conter links para outros sites que não são operados por nós. Se você clicar em um link de terceiros, você será direcionado para o site desse terceiro. Recomendamos vivamente que reveja a Política de Privacidade de todos os sites que visita.
+                  Alterações a esta Política de Privacidade
+                  Podemos atualizar nossa Política de Privacidade de tempos em tempos. Recomendamos que você revise esta página periodicamente para quaisquer alterações. Notificaremos você de quaisquer alterações, publicando a nova Política de Privacidade nesta página.
+                  Contate-Nos
+                  Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco através do email: [email@example.com].</p>
+                <input type="checkbox" className={style.checkbox}/>
+                <p className={style.policy}>Aceite os termos</p>
+              </div>
+              <button type="button" className={style.buttonback} onClick={() => setStep(2)}>
+                Voltar
+              </button>
               <button type="submit" className={style.enviar}>
                 Cadastrar
               </button>
             </div>
           )}
-          <hr className={style.linha} />
-          <p className={style.p}>
-            Cadastre-se com
-          </p>
-          <div className={style.socialLink}>
-            <button className={style.loginFacebook} onClick={() => faceAuth()}>
-              <Image src={face} alt="Login com Facebook" className={style.facebook} />
-            </button>
-
-            <button className={style.loginTwitch} onClick={() => twitchAuth()}>
-              <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
-            </button>
-          </div>
         </form>
       </div>
     </div>
