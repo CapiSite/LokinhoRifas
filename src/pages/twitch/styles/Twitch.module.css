@@ -12,7 +12,6 @@
 
 .navBar {
     position: relative;
-    background-color: #3C080E;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,6 +62,10 @@
     height: 69.4vh;
 }
 
+.LogoTwitch {
+    display: none;
+}
+
 .tituloLive {
     margin-bottom: 100px;
     color: white;
@@ -91,8 +94,11 @@
         display: none;
     }
 
-    .Logo {
-        margin: 0;
+    .LogoTwitch {
+        display: block;
+        width: 100px;
+        height: 65px;
+        margin-bottom: 45px;
     }
 
     .tituloLive {
@@ -127,6 +133,13 @@
         margin: 0;
     }
 
+    .LogoTwitch {
+        display: block;
+        width: 120px;
+        height: 70px;
+        margin-bottom: 30px;
+    }
+
     .tituloLive {
         font-size: 20px;
         margin-bottom: 60px;
@@ -150,9 +163,23 @@
         display: none;
     }
 
+    .conteudo {
+        height: 75vh;
+    }
+
+    .LogoTwitch {
+        display: block;
+        min-width: 120px;
+        max-width: 150px;
+        min-height: 70px;
+        max-height: 85px;
+        margin-bottom: 15px;
+        background: none;
+    }
+
     .tituloLive {
         font-size: 22px;
-        margin: 65px 0;
+        margin: 0 0 15px 0;
     }
 
     .Live {
@@ -167,6 +194,7 @@
     .conteudo {
         height: 60vh;
     }
+
     .navBar {
         margin-top: 50px;
         display: block;
@@ -197,14 +225,121 @@
 
     .tituloLive {
         font-size: 25px;
-        margin: 40px 0;
+        margin: auto;
     }
 
     .Live {
-        min-width: 250px;
+        min-width: 230px;
         max-width: 485px;
         min-height: 200px;
         max-height: 220px;
+        margin: auto;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 767px) {
+    .conteudo {
+        height: 60vh;
     }
 
+    .navBar {
+        margin-top: 50px;
+        padding: 12px;
+        display: block;
+        text-align: center;
+        background: none;
+    }
+
+    .Logo {
+        display: block;
+        margin: auto;
+        min-width: 120px;
+        max-width: 165px;
+        background: none;
+    }
+
+    .ItensNavBar li {
+        display: none;
+    }
+
+    .containerBotao {
+        display: flex;
+        justify-content: end;
+    }
+
+    .botaoEntrar {
+        display: none;
+    }
+
+    .tituloLive {
+        font-size: 28px;
+        margin: auto;
+    }
+
+    .Live {
+        min-width: 300px;
+        max-width: 580px;
+        min-height: 200px;
+        max-height: 250px;
+        margin: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 800px) {
+    .container {
+        width: 100%;
+    }
+    .conteudo {
+        height: 60vh;
+    }
+
+    .navBar {
+        margin-top: 50px;
+        display: flex;
+        text-align: center;
+        background: none;
+    }
+
+    .containerLogo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .Logo {
+        margin: 10px;
+    }
+
+    .ItensNavBar {
+        margin: 20px;
+        padding: 5px;
+        justify-content: space-around;
+    }
+
+    .ItensNavBar li {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .containerBotao {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+    }
+
+    .botaoEntrar {
+        margin: 0;
+    }
+
+    .tituloLive {
+        font-size: 30px;
+        margin: 5px 0;
+    }
+
+    .Live {
+        min-width: 300px;
+        max-width: 600px;
+        min-height: 250px;
+        max-height: 280px;
+        margin: auto;
+    }
 }
