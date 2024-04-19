@@ -5,20 +5,27 @@ import Background from "@/images/background.png"
 import DefaultProfilePi from "@/images/defaultProfilePic.png";
 import Lapis from "@/images/lapis.png"
 import Post from "@/images/Post.png"
-import twitch from "@/images/twitch.png"
+import { signUpInput, signUpInputPlaceholder, signUpInputType } from "../../utils/inputs";
+import twitch from "@/images/twitch.png";
+import twitch2 from "@/images/twitch.png";
 import face from "@/images/face.png";
-import { signUpInput } from "../../utils/inputs";
+import faceb from "@/images/face.png";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const Cadastro = () => {
   const [step, setStep] = useState(1);
+  const router = useRouter()
   const [fileName, setFileName]: any = useState(DefaultProfilePi);
+  const [signUp, setSignUp] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    tradeLink: "",
+    picture: DefaultProfilePi
+  })
 
-  const handleFileChange = (event: any) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(URL.createObjectURL(file));
-    }
-  };
   useEffect(() => {
     return () => {
       if (fileName) {
@@ -53,6 +60,29 @@ const Cadastro = () => {
     const authURL = `${face_URL}?${params.toString()}`
     window.location.href = authURL
   }
+  const handleChange = (e: any) => {
+    console.log(e.target.name)
+    if (e.target.name === "picture") {
+      setFileName(URL.createObjectURL(e.target.files[0]));
+    }
+    const { name, value } = e.target;
+    setSignUp(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  async function requestSignUp(e:any) {
+    try {
+      e.preventDefault()
+      const { confirmPassword, ...signUpData } = signUp
+      signUpData.tradeLink = "lçajsdf"
+      await axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users", signUpData)
+      router.push("/sign-in")
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className={style.background3}>
@@ -62,20 +92,21 @@ const Cadastro = () => {
         <Image className={style.post3} src={Post} alt="post" />
       </div>
       <div className={style.right3}>
-        <form>
+        <form onSubmit={requestSignUp}>
           {step === 1 && (
             <>
               <div className={style.socialLogin}>
                 <h1 className={style.title}>Crie sua conta!</h1>
               </div>
-              {signUpInput.slice(0, 4).map((input, index) => (
+              {signUpInput.slice(0, 5).map((input, index) => (
                 <div key={index} className={style.container}>
-                  <label htmlFor={input} className={style.label}>{input}</label>
+                  <label htmlFor={input} className={style.label}>{signUpInputPlaceholder[index]}</label>
                   <input
-                    type={input === 'senha' ? 'password' : 'text'}
+                    onChange={handleChange}
+                    type={signUpInputType[index]}
                     id={input}
                     name={input}
-                    placeholder={input}
+                    placeholder={signUpInputPlaceholder[index]}
                     className={style.input}
                   />
                 </div>
@@ -83,8 +114,17 @@ const Cadastro = () => {
               <button type="button" className={style.enviar} onClick={() => setStep(2)}>
                 Próximo
               </button>
+              <button className={style.loginFacebook} onClick={() => faceAuth()}>
+                <Image src={face} alt="Login com Facebook" className={style.facebook} />
+                <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
+                Entrar com Facebook
+              </button>
+              <button className={style.loginTwitch} onClick={() => twitchAuth()}>
+                <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
+                <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
+                Entrar com Twitch
+              </button>
             </>
-
           )}
           {step === 2 && (
             <div >
@@ -101,16 +141,16 @@ const Cadastro = () => {
                 <input
                   type="file"
                   id="imagemPerfil"
-                  name="imagemPerfil"
+                  name="picture"
                   className={style.inputImage}
-                  onChange={handleFileChange}
+                  onChange={handleChange}
                 />
               </div>
-              <button type="button" className={style.buttonback} onClick={() => setStep(1)}>
-                Voltar
-              </button>
               <button type="button" className={style.enviar} onClick={() => setStep(3)}>
                 Próximo
+              </button>
+              <button type="button" className={style.buttonback} onClick={() => setStep(1)}>
+                Voltar
               </button>
             </div>
           )}
@@ -135,14 +175,14 @@ const Cadastro = () => {
                   Podemos atualizar nossa Política de Privacidade de tempos em tempos. Recomendamos que você revise esta página periodicamente para quaisquer alterações. Notificaremos você de quaisquer alterações, publicando a nova Política de Privacidade nesta página.
                   Contate-Nos
                   Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco através do email: [email@example.com].</p>
-                <input type="checkbox" className={style.checkbox}/>
+                <input type="checkbox" className={style.checkbox} />
                 <p className={style.policy}>Aceite os termos</p>
               </div>
-              <button type="button" className={style.buttonback} onClick={() => setStep(2)}>
-                Voltar
-              </button>
               <button type="submit" className={style.enviar}>
                 Cadastrar
+              </button>
+              <button type="button" className={style.buttonback} onClick={() => setStep(2)}>
+                Voltar
               </button>
             </div>
           )}

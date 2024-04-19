@@ -1,3 +1,4 @@
 export const loginInput = ["e-mail", "senha"]
-export const signUpInput = ["Nome de usuário", "e-mail", "senha", "Confirmar Senha","Imagem de Perfil"]
-export const signUpInputType = ["text", "email", "senha", "senha", "file"]
+export const signUpInput = ['name' ,"email", "password", "confirmPassword", "tradeLink", "picture"]
+export const signUpInputPlaceholder = ['Nome de Usuário' ,"E-mail", "Senha", "Confirmar Senha", "Tradelink", "Imagem"]
+export const signUpInputType = ["text" ,"email", "password", "password", "url","file"]

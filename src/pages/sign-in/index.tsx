@@ -12,7 +12,7 @@ import twitch from "@/images/twitch.png"
 import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png"
 import faceb from "@/images/face-branco.jpeg"
-import logo from "@/images/logo.jpg"
+import logo from "@/images/logo.jpg" 
 export default function Login() {
     const router = useRouter()
     const [user, setUser] = useState({ email: "", senha: "" })
