@@ -13,6 +13,8 @@ import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png"
 import faceb from "@/images/face-branco.jpeg"
 import logo from "@/images/logo.jpg"
+
+
 export default function Login() {
     const router = useRouter()
     const [user, setUser] = useState({ email: "", senha: "" })
@@ -42,28 +44,28 @@ export default function Login() {
         const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
         const CLIENT_ID = "dcfc5qn6wwy7zdbe3dcvd0psbzmgn4"
         const params = new URLSearchParams({
-          response_type: 'code',
-          scope: 'user:read:email',
-          client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000/about"
+            response_type: 'code',
+            scope: 'user:read:email',
+            client_id: CLIENT_ID,
+            redirect_uri: "http://localhost:3000/about"
         })
-    
+
         const authURL = `${TWITCH_URL}?${params.toString()}`
         window.location.href = authURL
-      }
-      function faceAuth(): void {
+    }
+    function faceAuth(): void {
         const face_URL = ""
         const CLIENT_ID = ""
         const params = new URLSearchParams({
-          response_type: 'code',
-          scope: 'user:read:email',
-          client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000/about"
+            response_type: 'code',
+            scope: 'user:read:email',
+            client_id: CLIENT_ID,
+            redirect_uri: "http://localhost:3000/about"
         })
-        
+
         const authURL = `${face_URL}?${params.toString()}`
         window.location.href = authURL
-      }
+    }
 
     return (
         <div className={style.wallpaper}>
@@ -100,8 +102,8 @@ export default function Login() {
                         Acesse sua conta com
                     </p>
                     <div className={style.imagens}>
-                        <Image src={face} alt="Login com Facebook" className={style.imagemFace}/>
-                        <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch}/>
+                        <Image src={face} alt="Login com Facebook" className={style.imagemFace} />
+                        <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch} />
                     </div>
                     <button className={style.loginFacebook} onClick={() => faceAuth()}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook} />
@@ -139,6 +141,5 @@ export default function Login() {
             alert(err.response.data)
             setDisable(false)
         })
-
     }
 }

@@ -75,7 +75,6 @@ const Cadastro = () => {
                     type={input === 'senha' ? 'password' : 'text'}
                     id={input}
                     name={input}
-                    placeholder={input}
                     className={style.input}
                   />
                 </div>
