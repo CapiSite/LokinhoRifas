@@ -25,6 +25,7 @@ const Cadastro = () => {
     tradeLink: "",
     picture: DefaultProfilePi
   })
+  // fazer verificacoa de cada campo usar um usestate som igual o que esta acima 
 
   useEffect(() => {
     return () => {
@@ -61,7 +62,6 @@ const Cadastro = () => {
     window.location.href = authURL
   }
   const handleChange = (e: any) => {
-    console.log(e.target.name)
     if (e.target.name === "picture") {
       setFileName(URL.createObjectURL(e.target.files[0]));
     }
@@ -72,11 +72,24 @@ const Cadastro = () => {
     }));
   };
 
+  function verifyEmail(){
+      axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users/verify", {name: signUp.name, email: signUp.email}).then((res)=>{
+        console.log(res)
+        setStep(2)
+      }).catch((error)=>{
+        console.log(error)
+        //criar estado de erro e mostrar no fronte o erro
+        console.log("Dados iguais")
+      })
+      
+      
+  }
+
+
   async function requestSignUp(e:any) {
     try {
       e.preventDefault()
       const { confirmPassword, ...signUpData } = signUp
-      signUpData.tradeLink = "lçajsdf"
       await axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users", signUpData)
       router.push("/sign-in")
     } catch (error) {
@@ -111,7 +124,7 @@ const Cadastro = () => {
                   />
                 </div>
               ))}
-              <button type="button" className={style.enviar} onClick={() => setStep(2)}>
+              <button type="button" className={style.enviar} onClick={() => verifyEmail()}>
                 Próximo
               </button>
               <button className={style.loginFacebook} onClick={() => faceAuth()}>

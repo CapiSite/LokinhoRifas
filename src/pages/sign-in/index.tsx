@@ -103,17 +103,17 @@ export default function Login() {
                         <Image src={face} alt="Login com Facebook" className={style.imagemFace}/>
                         <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch}/>
                     </div>
-                    <button className={style.loginFacebook} onClick={() => faceAuth()}>
+                    <button type='button' className={style.loginFacebook} onClick={() => faceAuth()}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook} />
                         <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
                         Entrar com Facebook
                     </button>
-                    <button className={style.loginTwitch} onClick={() => twitchAuth()}>
+                    <button type='button' className={style.loginTwitch} onClick={() => twitchAuth()}>
                         <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
                         <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
                         Entrar com Twitch
                     </button>
-                    <button className={style.rout} disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>
+                    <button className={style.rout} disabled={disable}  type="button" onClick={() => router.push("/sign-up")}>
                         Primeira vez? Crie uma conta!
                     </button>
                 </form>
