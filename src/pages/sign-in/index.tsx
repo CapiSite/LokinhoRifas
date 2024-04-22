@@ -41,12 +41,12 @@ export default function Login() {
 
     function twitchAuth(): void {
         const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
-        const CLIENT_ID = "dcfc5qn6wwy7zdbe3dcvd0psbzmgn4"
+        const CLIENT_ID = "xe9yjeq3fvqrg0dxpgd2wtpgvgez6i"
         const params = new URLSearchParams({
           response_type: 'code',
           scope: 'user:read:email',
           client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000/about"
+          redirect_uri: "http://localhost:3000"
         })
     
         const authURL = `${TWITCH_URL}?${params.toString()}`
@@ -59,7 +59,7 @@ export default function Login() {
           response_type: 'code',
           scope: 'user:read:email',
           client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000/about"
+          redirect_uri: "http://localhost:3000"
         })
         
         const authURL = `${face_URL}?${params.toString()}`

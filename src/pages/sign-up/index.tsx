@@ -40,7 +40,6 @@ const Cadastro = () => {
     if (typeof window !== 'undefined') {
         const storedToken = localStorage.getItem("token");
         setToken(storedToken)
-        console.log(storedToken)
         if (storedToken) {
             axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth", {}, {
                 headers: {
@@ -58,12 +57,12 @@ const Cadastro = () => {
 
   function twitchAuth(): void {
     const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
-    const CLIENT_ID = "dcfc5qn6wwy7zdbe3dcvd0psbzmgn4"
+    const CLIENT_ID = "xe9yjeq3fvqrg0dxpgd2wtpgvgez6i"
     const params = new URLSearchParams({
       response_type: 'code',
       scope: 'user:read:email',
       client_id: CLIENT_ID,
-      redirect_uri: "http://localhost:3000/about"
+      redirect_uri: "http://localhost:3000"
     })
 
     const authURL = `${TWITCH_URL}?${params.toString()}`
@@ -76,7 +75,7 @@ const Cadastro = () => {
       response_type: 'code',
       scope: 'user:read:email',
       client_id: CLIENT_ID,
-      redirect_uri: "http://localhost:3000/about"
+      redirect_uri: "http://localhost:3000"
     })
 
     const authURL = `${face_URL}?${params.toString()}`
@@ -148,12 +147,12 @@ const Cadastro = () => {
               <button type="button" className={style.enviar} onClick={() => verifyEmail()}>
                 Próximo
               </button>
-              <button className={style.loginFacebook} onClick={() => faceAuth()}>
+              <button type="button" className={style.loginFacebook} onClick={() => faceAuth()}>
                 <Image src={face} alt="Login com Facebook" className={style.facebook} />
                 <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
                 Entrar com Facebook
               </button>
-              <button className={style.loginTwitch} onClick={() => twitchAuth()}>
+              <button type="button" className={style.loginTwitch} onClick={() => twitchAuth()}>
                 <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
                 <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
                 Entrar com Twitch
