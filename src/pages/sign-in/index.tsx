@@ -15,7 +15,7 @@ import faceb from "@/images/face-branco.jpeg"
 import logo from "@/images/logo.jpg" 
 export default function Login() {
     const router = useRouter()
-    const [user, setUser] = useState({ email: "", senha: "" })
+    const [user, setUser] = useState({ email: "", password: "" })
     const [disable, setDisable] = useState(false)
     const [token, setToken] = useState<string | null>(null); // Tipando token como string | null
     const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType
@@ -23,19 +23,20 @@ export default function Login() {
         if (typeof window !== 'undefined') {
             const storedToken = localStorage.getItem("token");
             setToken(storedToken)
+            console.log(storedToken)
+            if (storedToken) {
+                axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth", {}, {
+                    headers: {
+                        Authorization: `Bearer ${storedToken}`
+                    }
+                }).then((res:any) => {
+                    router.push("/")
+                }).catch((err:any) => {
+                    localStorage.setItem("token", "")
+                })
+            }
         }
-        if (token) {
-            axios.post(process.env.NEXT_PUBLIC_REACT_APP_API_URL + "/token", {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }).then(res => {
-                router.push("/timeline")
-
-            }).catch(err => {
-                alert(err.response.data)
-            })
-        }
+        
     }, [])
 
     function twitchAuth(): void {
@@ -86,7 +87,7 @@ export default function Login() {
                                 id={object === "e-mail" ? "emailInput" : "passwordInput"}
                                 disabled={disable}
                                 onChange={(e) => {
-                                    object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value });
+                                    object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, password: e.target.value });
                                 }}
                                 type={object === "e-mail" ? "email" : "password"}
                             />
@@ -124,19 +125,19 @@ export default function Login() {
     function login(e: FormEvent) {
         e.preventDefault()
         setDisable(true)
-        if (user.email === "" || user.senha === "") {
+        if (user.email === "" || user.password === "") {
             alert("Preencha todos os campos!")
             setDisable(false)
             return
         }
 
-        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/signin", user).then((res) => {
+        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/sign-in", user).then((res:any) => {
             setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.token })
             localStorage.setItem("token", res.data.token)
             setDisable(false)
-            router.push("/timeline")
-        }).catch((err) => {
-            alert(err.response.data)
+            router.push("/")
+        }).catch((err:any) => {
+            console.log(err.response.data)
             setDisable(false)
         })
     }

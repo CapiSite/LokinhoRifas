@@ -17,6 +17,7 @@ const Cadastro = () => {
   const [step, setStep] = useState(1);
   const router = useRouter()
   const [fileName, setFileName]: any = useState(DefaultProfilePi);
+  const [token, setToken] = useState<string | null>(null); // Tipando token como string | null
   const [signUp, setSignUp] = useState({
     name: "",
     email: "",
@@ -34,6 +35,26 @@ const Cadastro = () => {
       }
     };
   }, [fileName]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+        const storedToken = localStorage.getItem("token");
+        setToken(storedToken)
+        console.log(storedToken)
+        if (storedToken) {
+            axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth", {}, {
+                headers: {
+                    Authorization: `Bearer ${storedToken}`
+                }
+            }).then((res:any) => {
+                router.push("/")
+            }).catch((err:any) => {
+                localStorage.setItem("token", "")
+            })
+        }
+    }
+    
+}, [])
 
   function twitchAuth(): void {
     const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
@@ -77,7 +98,7 @@ const Cadastro = () => {
         console.log(res)
         setStep(2)
       }).catch((error)=>{
-        console.log(error)
+        console.log(error.response.data)
         //criar estado de erro e mostrar no fronte o erro
         console.log("Dados iguais")
       })
