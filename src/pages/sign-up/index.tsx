@@ -140,7 +140,6 @@ const Cadastro = () => {
                     type={signUpInputType[index]}
                     id={input}
                     name={input}
-                    placeholder={signUpInputPlaceholder[index]}
                     className={style.input}
                   />
                 </div>
@@ -152,12 +151,16 @@ const Cadastro = () => {
                 <Image src={face} alt="Login com Facebook" className={style.facebook} />
                 <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
                 Entrar com Facebook
-              </button>
+              </button>              
               <button className={style.loginTwitch} onClick={() => twitchAuth()}>
-                <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
-                <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
+                <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
+                <Image src={twitch2} alt="Login com Twitch" className={style.twitch2}/>
                 Entrar com Twitch
               </button>
+              <div className={style.containerLogos}>
+                <Image src={face} alt="Login com Facebook" className={style.facebook3}/>
+                <Image src={twitch} alt="Login com Twitch" className={style.twitch3}/>
+              </div>
             </>
           )}
           {step === 2 && (
@@ -165,7 +168,7 @@ const Cadastro = () => {
               <h1 className={style.title}>Crie sua conta!</h1>
               {fileName && (
                 <div className={style.imagePreviewContainer}>
-                  <Image src={fileName} width={100} height={100} className={style.imagePreview} alt="" />
+                  <Image src={fileName} width={100} height={100} className={style.imagePreview} alt=""/>
                 </div>
               )}
               <div className={style.container}>

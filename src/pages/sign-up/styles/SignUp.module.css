@@ -259,6 +259,13 @@ justify-content: center; /* Centraliza horizontalmente */
     display: none;
 }
 
+.facebook3 {
+    display: none;
+}
+.twitch3 {
+    display: none;
+}
+
 .loginFacebook:hover .facebook {
     display: none;
 }
@@ -301,6 +308,7 @@ justify-content: center; /* Centraliza horizontalmente */
 }
 
 .title{
+    font-family: 'Oswald', sans-serif;
     display: block;
     padding-bottom: 80px;
     font-size: 40px;
@@ -351,6 +359,191 @@ justify-content: center; /* Centraliza horizontalmente */
     width: 15px !important;
     height: 15px !important;
 }
+
+@media (min-width: 280px) and (max-width: 320px) {
+    .background3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: relative; 
+    }
+
+    .left3 {
+        position: relative;
+        width: 50%;
+        text-align: center;
+    }
+
+    .right3 {
+        background: none;
+        position: absolute;
+        width: 50%; 
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .welcome {
+        display: none;
+    }
+
+    .right3 form {
+        width: 100vw;
+        height: 80%;
+        gap: 9px;
+        padding: 5px;
+    }
+
+    .post3 {
+        display: none;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container .label {
+        align-self: flex-start;
+        margin-bottom: 5px;
+    }
+
+    .right3 input,
+    .right3 button:nth-child(4),
+    .right3 button:nth-child(6) {
+        border-radius: 5px;
+        min-width: 180px;
+        max-width: 290px;
+        margin: auto;
+    }
+
+    .enviar {
+        min-width: 180px;
+        max-width: 250px;
+        height: 38px;
+        margin: auto;
+        margin: 20px 0;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .loginFacebook, .loginTwitch {
+        display: none;
+    }
+
+    .containerLogos {
+        display: flex;
+    }
+
+    .facebook3, .twitch3 {
+        display: block;
+        width: 45px;
+        height: 42px;
+        margin: 10px 20px;
+    }
+
+    .facebook3 {
+        border-radius: 6px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 399px) {
+    .background3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: relative; 
+    }
+
+    .left3 {
+        position: relative;
+        width: 50%;
+        text-align: center;
+    }
+
+    .right3 {
+        background: none;
+        position: absolute;
+        width: 50%; 
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .welcome {
+        display: none;
+    }
+
+    .right3 form {
+        width: 100vw;
+        gap: 9px;
+    }
+
+    .post3 {
+        display: none;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container .label {
+        align-self: flex-start;
+        margin-bottom: 5px;
+    }
+
+    .right3 input,
+    .right3 button:nth-child(4),
+    .right3 button:nth-child(6) {
+        border-radius: 5px;
+        min-width: 180px;
+        max-width: 290px;
+        margin: auto;
+    }
+
+    .enviar {
+        min-width: 180px;
+        max-width: 250px;
+        height: 38px;
+        margin: auto;
+        margin: 20px 0;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .loginFacebook, .loginTwitch {
+        display: none;
+    }
+
+    .containerLogos {
+        display: flex;
+    }
+
+    .facebook3, .twitch3 {
+        display: block;
+        width: 45px;
+        height: 42px;
+        margin: 10px 20px;
+    }
+
+    .facebook3 {
+        border-radius: 6px;
+    }
+}
+
 @media (max-width: 800px) {
     .left2 img:nth-child(3){
         display: none;
@@ -387,12 +580,6 @@ justify-content: center; /* Centraliza horizontalmente */
         text-align: center;
     }
 
-    .right2 input,
-    .right2 button:nth-child(5),
-    .right2 button:nth-child(7) {
-        width: 330px;
-        height: 30px;
-    }
     .rout {
         margin: 20px 0;
     }
