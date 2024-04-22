@@ -10,14 +10,16 @@ export default function Home() {
     (async () => {
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get('code');
-      try {
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/auth/twitch`, { code });
-        localStorage.setItem('token', res.data.sessionToken);
-        setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.sessionToken })
-        console.log({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.sessionToken })
-      } catch (error) {
-        console.error('Error:', error);
+      if(code){
+        try {
+          const res = await axios.post(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/auth/twitch`, { code });
+          localStorage.setItem('token', res.data.sessionToken);
+          setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.sessionToken })
+        } catch (error) {
+          console.error('Error:', error);
+        }
       }
+      
     })();
   }, []);
   return (
