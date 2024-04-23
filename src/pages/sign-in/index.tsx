@@ -23,7 +23,6 @@ export default function Login() {
         if (typeof window !== 'undefined') {
             const storedToken = localStorage.getItem("token");
             setToken(storedToken)
-            console.log(storedToken)
             if (storedToken) {
                 axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth", {}, {
                     headers: {
@@ -41,16 +40,18 @@ export default function Login() {
 
     function twitchAuth(): void {
         const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
-        const CLIENT_ID = "xe9yjeq3fvqrg0dxpgd2wtpgvgez6i"
-        const params = new URLSearchParams({
-          response_type: 'code',
-          scope: 'user:read:email',
-          client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000"
-        })
-    
+        const CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID
+        if(CLIENT_ID !== undefined){
+            const params = new URLSearchParams({
+                response_type: 'code',
+                scope: 'user:read:email',
+                client_id: CLIENT_ID,
+                redirect_uri: "http://localhost:3000"
+              })   
         const authURL = `${TWITCH_URL}?${params.toString()}`
         window.location.href = authURL
+        }
+ 
       }
       function faceAuth(): void {
         const face_URL = ""

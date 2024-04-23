@@ -55,19 +55,21 @@ const Cadastro = () => {
     
 }, [])
 
-  function twitchAuth(): void {
-    const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
-    const CLIENT_ID = "xe9yjeq3fvqrg0dxpgd2wtpgvgez6i"
-    const params = new URLSearchParams({
-      response_type: 'code',
-      scope: 'user:read:email',
-      client_id: CLIENT_ID,
-      redirect_uri: "http://localhost:3000"
-    })
-
-    const authURL = `${TWITCH_URL}?${params.toString()}`
-    window.location.href = authURL
+function twitchAuth(): void {
+  const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
+  const CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID
+  if(CLIENT_ID !== undefined){
+      const params = new URLSearchParams({
+          response_type: 'code',
+          scope: 'user:read:email',
+          client_id: CLIENT_ID,
+          redirect_uri: "http://localhost:3000"
+        })   
+  const authURL = `${TWITCH_URL}?${params.toString()}`
+  window.location.href = authURL
   }
+
+}
   function faceAuth(): void {
     const face_URL = ""
     const CLIENT_ID = ""
@@ -199,7 +201,7 @@ const Cadastro = () => {
               <div className="Policy-group">
                 <h1 className={style.privacyPolicy}>Política de privacidade</h1>
                 <p className={style.policy}>Última atualização: [data]
-                  A [Nome da Empresa] ("nós", "nosso" ou "nos") opera o website [www.exemplo.com] (doravante referido como o "Serviço").
+                  A [Nome da Empresa] (nós, nosso ou nos) opera o website [www.exemplo.com] (doravante referido como o Serviço).
                   Esta página informa sobre nossas políticas relativas à coleta, uso e divulgação de informações pessoais quando você usa nosso Serviço.
                   Coleta e Uso de Informações
                   Não coletamos informações pessoais identificáveis, como seu nome, endereço, número de telefone ou endereço de e-mail, a menos que você as forneça voluntariamente.
