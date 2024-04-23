@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import style from "./styles/SignUp.module.css";
 import Background from "@/images/background.png"
@@ -26,7 +26,9 @@ const Cadastro = () => {
     tradeLink: "",
     picture: DefaultProfilePi
   })
-  // fazer verificacoa de cada campo usar um usestate som igual o que esta acima 
+    // fazer verificacoa de cada campo usar um usestate som igual o que esta acima 
+  const [erroInput, setErroInput] = useState({})
+
 
   useEffect(() => {
     return () => {
@@ -141,6 +143,7 @@ const Cadastro = () => {
                     name={input}
                     className={style.input}
                   />
+                  <p className="" id={input} >we</p>
                 </div>
               ))}
               <button type="button" className={style.enviar} onClick={() => verifyEmail()}>
