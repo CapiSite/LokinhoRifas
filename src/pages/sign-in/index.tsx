@@ -13,6 +13,8 @@ import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png"
 import faceb from "@/images/face-branco.jpeg"
 import logo from "@/images/logo.jpg" 
+
+
 export default function Login() {
     const router = useRouter()
     const [user, setUser] = useState({ email: "", password: "" })
@@ -62,10 +64,10 @@ export default function Login() {
           client_id: CLIENT_ID,
           redirect_uri: "http://localhost:3000"
         })
-        
+
         const authURL = `${face_URL}?${params.toString()}`
         window.location.href = authURL
-      }
+    }
 
     return (
         <div className={style.wallpaper}>
@@ -102,8 +104,8 @@ export default function Login() {
                         Acesse sua conta com
                     </p>
                     <div className={style.imagens}>
-                        <Image src={face} alt="Login com Facebook" className={style.imagemFace}/>
-                        <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch}/>
+                        <Image src={face} alt="Login com Facebook" className={style.imagemFace} />
+                        <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch} />
                     </div>
                     <button type='button' className={style.loginFacebook} onClick={() => faceAuth()}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook} />
