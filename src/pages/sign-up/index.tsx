@@ -150,17 +150,10 @@ const Cadastro = () => {
                 <Image src={face} alt="Login com Facebook" className={style.facebook} />
                 <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
                 Entrar com Facebook
-<<<<<<< HEAD
-              </button>              
-              <button className={style.loginTwitch} onClick={() => twitchAuth()}>
-                <Image src={twitch} alt="Login com Twitch" className={style.twitch}/>
-                <Image src={twitch2} alt="Login com Twitch" className={style.twitch2}/>
-=======
               </button>
               <button type="button" className={style.loginTwitch} onClick={() => twitchAuth()}>
                 <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
                 <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
->>>>>>> 642ef88bb725366d6351b1274d1b1afe3962ad5a
                 Entrar com Twitch
               </button>
               <div className={style.containerLogos}>

@@ -418,15 +418,15 @@ justify-content: center; /* Centraliza horizontalmente */
         border-radius: 5px;
         min-width: 180px;
         max-width: 290px;
+        height: 40px;
         margin: auto;
     }
 
     .enviar {
         min-width: 180px;
-        max-width: 250px;
-        height: 38px;
+        max-width: 290px;
         margin: auto;
-        margin: 20px 0;
+        height: 40px;
     }
 
     .title {
@@ -515,7 +515,6 @@ justify-content: center; /* Centraliza horizontalmente */
     .enviar {
         min-width: 180px;
         max-width: 250px;
-        height: 38px;
         margin: auto;
         margin: 20px 0;
     }
