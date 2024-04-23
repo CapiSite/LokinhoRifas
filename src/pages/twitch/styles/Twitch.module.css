@@ -289,6 +289,7 @@
     .container {
         width: 100%;
     }
+
     .conteudo {
         height: 60vh;
     }
@@ -311,11 +312,12 @@
 
     .ItensNavBar {
         margin: 20px;
-        padding: 5px;
         justify-content: space-around;
     }
 
     .ItensNavBar li {
+        display: flex;
+        align-items: center;
         padding: 5px;
         margin: 5px;
     }
@@ -330,6 +332,10 @@
         margin: 0;
     }
 
+    .botaoEntrar:hover {
+        background-color: #A30006;
+    }
+
     .tituloLive {
         font-size: 30px;
         margin: 5px 0;
@@ -341,5 +347,150 @@
         min-height: 250px;
         max-height: 280px;
         margin: auto;
+    }
+}
+
+@media(min-width: 801px) and (max-width: 899px) {
+    .container {
+        width: 100%;
+    }
+
+    .conteudo {
+        height: 60vh;
+    }
+
+    .navBar {
+        margin-top: 50px;
+        display: flex;
+        text-align: center;
+        background: none;
+    }
+
+    .containerLogo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .Logo {
+        margin: 10px;
+    }
+
+    .ItensNavBar {
+        padding: 5px;
+        justify-content: space-around;
+    }
+
+    .ItensNavBar li {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin: 5px;
+        font-size: 18px;
+    }
+
+    .containerBotao {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+    }
+
+    .botaoEntrar {
+        margin: 0;
+    }
+
+    .botaoEntrar:hover {
+        background-color: #A30006;
+    }
+
+    .tituloLive {
+        font-size: 32px;
+        margin: 5px 0;
+    }
+
+    .Live {
+        min-width: 350px;
+        max-width: 650px;
+        min-height: 260px;
+        max-height: 300px;
+        margin: auto;
+    }
+}
+
+@media(min-width: 900px) and (max-width: 950px) {
+    .container {
+        width: 100%;
+    }
+
+    .conteudo {
+        height: 60vh;
+    }
+
+    .navBar {
+        margin-top: 50px;
+        display: flex;
+        text-align: center;
+        background: none;
+    }
+
+    .containerLogo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .Logo {
+        margin: 10px;
+    }
+
+    .ItensNavBar {
+        padding: 5px;
+        justify-content: space-around;
+    }
+
+    .ItensNavBar li {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin: 5px;
+        font-size: 18px;
+    }
+
+    .containerBotao {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+    }
+
+    .botaoEntrar {
+        margin: 0;
+    }
+
+    .botaoEntrar:hover {
+        background-color: #A30006;
+    }
+
+    .tituloLive {
+        font-size: 34px;
+        margin: 5px 0;
+    }
+
+    .Live {
+        min-width: 400px;
+        max-width: 750px;
+        min-height: 270px;
+        max-height: 310px;
+        margin: auto;
+    }
+}
+
+@media (min-width: 951px) {
+    .Live {
+        min-width: 450px;
+        max-width: 100%;
+        min-height: 300px;
+        max-height: 90%;
+    }
+
+    .botaoEntrar:hover {
+        background-color: #6C0C0A;
     }
 }
