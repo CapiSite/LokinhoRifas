@@ -133,29 +133,33 @@ const Cadastro = () => {
               </div>
               {signUpInput.slice(0, 5).map((input, index) => (
                 <div key={index} className={style.container}>
-                  <label htmlFor={input} className={style.label}>{signUpInputPlaceholder[index]}</label>
-                  <input
-                    onChange={handleChange}
-                    type={signUpInputType[index]}
-                    id={input}
-                    name={input}
-                    className={style.input}
-                  />
+                  <div className={style.container2}>
+                    <label htmlFor={input} className={style.label}>{signUpInputPlaceholder[index]}</label>
+                    <input
+                      onChange={handleChange}
+                      type={signUpInputType[index]}
+                      id={input}
+                      name={input}
+                      className={style.input}
+                    />
+                  </div>
                 </div>
               ))}
               <button type="button" className={style.enviar} onClick={() => verifyEmail()}>
                 Próximo
               </button>
-              <button type="button" className={style.loginFacebook} onClick={() => faceAuth()}>
-                <Image src={face} alt="Login com Facebook" className={style.facebook} />
-                <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
-                Entrar com Facebook
-              </button>
-              <button type="button" className={style.loginTwitch} onClick={() => twitchAuth()}>
-                <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
-                <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
-                Entrar com Twitch
-              </button>
+              <div className={style.containerBotoes}>
+                <button type="button" className={style.loginFacebook} onClick={() => faceAuth()}>
+                  <Image src={face} alt="Login com Facebook" className={style.facebook} />
+                  <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
+                  Entrar com Facebook
+                </button>
+                <button type="button" className={style.loginTwitch} onClick={() => twitchAuth()}>
+                  <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
+                  <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
+                  Entrar com Twitch
+                </button>
+              </div>
               <div className={style.containerLogos}>
                 <Image src={face} alt="Login com Facebook" className={style.facebook3}/>
                 <Image src={twitch} alt="Login com Twitch" className={style.twitch3}/>
