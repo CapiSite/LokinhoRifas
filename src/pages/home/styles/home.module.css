@@ -3,20 +3,20 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-
+    justify-content: space-between;
     height: 100vh;
+    width: 99.2vw;
 }
 
 .Background {
     position: absolute;
-    top: 0;
-    left: 0;
+    height: 100%;
     width: 100%;
-    height: auto;
     z-index: -1
 }
 
 .Logo {
+    margin-top: 20px;
     width: 500px;
     height: 200px;
     border-radius: 10px;
@@ -25,5 +25,66 @@
 }
 
 .botaoComprarRifa {
-    width: 5%;
+    width: 10%;
+    height: 30px;
+    font-size: 17px;
+    border: 0;
+    margin: 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+    background-color: #BE0600;
+    color: white;
+}
+
+.infoRifa p {
+    color: white;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.infoRifa > p {
+    text-decoration: underline;
+}
+
+.horaRifa {
+    display: flex;
+    font-size: 30px;
+}
+
+.horaRifa p {
+    font-size: 30px;
+    margin: 0 20px;
+    padding: 20px 30px;
+}
+
+
+.horaRifa > :nth-child(1), .horaRifa > :nth-child(3), .horaRifa > :nth-child(5), 
+.horaRifa > :nth-child(7) {
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.AvisoSkins {
+    color: white;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.SkinsRifa {
+    display: flex;
+    flex-direction: column;
+}
+
+.ImagemRifa {
+    width: 80px;
+    height: 100px;
+    border: 3px solid rgba(255, 0, 0, 0.541);
+    margin: 20px;
+    padding: 10px;
 }
