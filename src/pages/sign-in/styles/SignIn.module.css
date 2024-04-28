@@ -29,7 +29,7 @@
 .post3 {
     position: absolute;
     height: 40% !important;
-    width: 50% !important;
+    width: 40% !important;
     border-radius: 10px;
 }
 
@@ -474,7 +474,16 @@
         margin: 0;
     }
 }
-
+@media (min-width: 768px) and (max-width: 971px) {
+.post3{
+    display: flex;
+    height: 70px !important;
+    right: 70px !important;
+    min-height: 20% !important;
+    min-width: 20% !important;
+    margin-right:38.5%;
+}
+}
 @media (min-width: 769px) {
     .left2 {
         background-color: #151515;
@@ -501,8 +510,6 @@
 
     .post3 {
         position: absolute;
-        min-height: 30% !important;
-        min-width: 30% !important;
         border-radius: 10px;
     }
 
