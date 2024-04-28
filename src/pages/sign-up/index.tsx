@@ -202,7 +202,7 @@ const Cadastro = () => {
               <button type="button" className={style.enviar} onClick={() => setStep(3)}>
                 Próximo
               </button>
-              <button type="button" className={style.buttonback} onClick={() => setStep(1)}>
+              <button type="button" className={style.buttonback2} onClick={() => setStep(1)}>
                 Voltar
               </button>
             </div>
