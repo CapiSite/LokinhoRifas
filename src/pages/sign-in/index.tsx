@@ -96,7 +96,7 @@ export default function Login() {
                             />
                         </div>
                     ))}
-                    <button disabled={disable} data-test="login-btn" type="submit">
+                    <button disabled={disable} type="submit" className={style.entrar}>
                         Entrar
                     </button>
                     <hr className={style.linha} />

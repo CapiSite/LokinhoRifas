@@ -6,8 +6,8 @@
 /* left3 */
 .left3 {
     background-color: #151515;
-    width: 65%;
-    height: 90vh;  
+    width: 55%;
+    height: 90vh;
     min-height: 100%;
     color: white;
     font-weight: 700;
@@ -19,19 +19,19 @@
 }
 
 .left3 img:first-child() {
-height: 100%;
-width: 100%;
-position: relative;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
 .post3 {
     position: absolute;
-    height: 40%  !important;
-    width: 50% !important;
+    height: 40% !important;
+    width: 40% !important;
     border-radius: 10px;
 }
 
-.left3 h1{
+.left3 h1 {
     position: absolute;
     height: 60%;
     color: var(--white);
@@ -45,21 +45,22 @@ position: relative;
 /* right3 */
 .right3 {
     background-color: #333333;
-    width: 35%;
+    width: 45%;
     height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.right3 form  {
+.right3 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 65%;
-    height: 260 0px; /* Default height */
+    height: 260 0px;
+    /* Default height */
     justify-content: space-between;
-    gap: 28px;
+    gap: 10px;
 }
 
 .right3 input,
@@ -67,10 +68,10 @@ position: relative;
 .right3 button:nth-child(6) {
     width: 100%;
     margin-top: 2px;
-    height: 65px;
+    height: 40px !important;
     border-radius: 6px;
     border: 0px;
-    font-size: 27px;
+    font-size: 25px;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     display: flex;
@@ -101,17 +102,26 @@ position: relative;
     font-size: 20px;
     font-weight: 400;
     font-family: 'Lato', sans-serif;
-    margin-top: 20px;
+    margin-top: 10px;
     border: 0;
-    width: 100%;
-    height: 65px;
+    width: 80%;
+    height: 40px;
     border-radius: 6px;
 }
 
-.enviar:hover{
+.enviar:hover {
     background-color: var(--hover2-red);
 }
-
+.checkboxcontainer{
+    display: flex;
+    align-items: center;
+}
+.p {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 10px;
+    padding-bottom: 5px;
+}
 .right3 button {
     cursor: pointer;
 }
@@ -129,9 +139,9 @@ position: relative;
 .back2 {
     width: 100vw;
     height: 100%;
-    
+
 }
- 
+
 .container {
     position: relative;
     width: 100%;
@@ -164,33 +174,36 @@ position: relative;
     cursor: pointer;
     margin-top: 3px;
 }
+
 .imagePreviewContainer {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
-  }
-  .pencilContainer{
+}
+
+.pencilContainer {
     width: 25px;
     height: 25px;
-    padding: 10px; 
-    background-color: white; 
-    border-radius: 50%; 
-    display: inline-flex; 
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     margin-right: 5px;
-  }
-  .pencilIcon2{
+}
+
+.pencilIcon2 {
     width: 15px;
     height: 15px;
-  }
+}
 
-  .containerinput {
+.containerinput {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-  }
+}
 
 .inputImage {
     position: absolute;
@@ -198,14 +211,16 @@ position: relative;
     height: 100%;
     opacity: 0;
 }
-.imagePreview{
-width: 100px;
-height: 100px;
-justify-content: center; /* Centraliza horizontalmente */
-  align-items: center;
-  display: flex;
+
+.imagePreview {
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    display: flex;
 }
-  
+
 .fileName {
     margin-top: 20px;
     font-size: 12px;
@@ -222,12 +237,14 @@ justify-content: center; /* Centraliza horizontalmente */
     color: white;
     font-size: 20px;
 }
-.socialLink{
+
+.socialLink {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+
 }
+
 .loginFacebook,
 .loginTwitch {
     border-radius: 8px;
@@ -262,6 +279,7 @@ justify-content: center; /* Centraliza horizontalmente */
 .facebook3 {
     display: none;
 }
+
 .twitch3 {
     display: none;
 }
@@ -285,6 +303,7 @@ justify-content: center; /* Centraliza horizontalmente */
     width: 25px;
     cursor: pointer;
     margin-right: 10px;
+    padding: 1px;
 }
 
 .twitch2 {
@@ -292,6 +311,8 @@ justify-content: center; /* Centraliza horizontalmente */
     width: 25px;
     display: none;
     margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid white;
 }
 
 .loginTwitch:hover {
@@ -307,66 +328,88 @@ justify-content: center; /* Centraliza horizontalmente */
     display: block;
 }
 
-.title{
+.title {
     font-family: 'Oswald', sans-serif;
     display: block;
-    padding-bottom: 80px;
+    padding-bottom: 10px;
     font-size: 40px;
     color: rgb(255, 255, 255);
 }
 
-.buttonback{
-    background-color:#b20600;
+.buttonback {
+    background-color: var(--red);
     color: rgb(255, 255, 255);
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 700;
     font-family: 'Lato', sans-serif;
     margin-top: 20px;
-    border-radius: 10px;
-    width: 100%;
-    height: 65px;  
+    border-radius: 6px;
+    width: 300px;
+    border: none;
+    height: 42px;
 }
-.buttonback:hover{
+
+.buttonback:hover {
     background-color: var(--hover2-red);
+}
+
+.containersubimit{
+    display: flex;
+    flex-direction: column; /* Altera a direção do flexbox para empilhar os itens verticalmente */
+    align-items: center; 
+
 }
 .imagePreviewContainer {
     margin-top: 20px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     border-radius: 50%;
-  }
-  
-  .imagePreview {
-    width: 100px; 
-    height:  100px;
-    height: auto; 
+}
+
+.imagePreview {
+    width: 100px;
+    height: 100px;
+    height: auto;
     border-radius: 100%;
-  }
-  .Policy-group{
+}
+
+.Policy-group {
     width: 4000px;
     height: 4000px;
-  }
-  .privacyPolicy{
+}
+
+.privacyPolicy {
     color: white;
     font-size: 30px;
     text-align: center;
     padding-bottom: 8px;
-  }
-.policy{
+}
+
+.policy {
     color: white;
 }
-.checkbox{
+
+.checkbox {
     width: 15px !important;
     height: 15px !important;
 }
 
-@media (min-width: 280px) and (max-width: 320px) {
+.rout {
+    background: transparent;
+    border-Bottom: 2px solid white;
+    font-Size: 20px;
+    font-family: 'Lato', sans-serif;
+    color: white;
+    border: none;
+}
+
+@media (min-width: 280px) and (max-width: 319px) {
     .background3 {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100vh;
-        position: relative; 
+        position: relative;
     }
 
     .left3 {
@@ -378,7 +421,7 @@ justify-content: center; /* Centraliza horizontalmente */
     .right3 {
         background: none;
         position: absolute;
-        width: 50%; 
+        width: 50%;
         height: 100%;
         display: flex;
         justify-content: center;
@@ -423,7 +466,7 @@ justify-content: center; /* Centraliza horizontalmente */
 
     .enviar {
         min-width: 180px;
-        max-width: 290px;
+        max-width: 390px;
         margin: auto;
         height: 55px;
         padding: 8px;
@@ -434,7 +477,8 @@ justify-content: center; /* Centraliza horizontalmente */
         display: none;
     }
 
-    .loginFacebook, .loginTwitch {
+    .loginFacebook,
+    .loginTwitch {
         display: none;
     }
 
@@ -442,7 +486,8 @@ justify-content: center; /* Centraliza horizontalmente */
         display: flex;
     }
 
-    .facebook3, .twitch3 {
+    .facebook3,
+    .twitch3 {
         display: block;
         width: 45px;
         height: 42px;
@@ -454,14 +499,14 @@ justify-content: center; /* Centraliza horizontalmente */
     }
 }
 
-@media (min-width: 321px) and (max-width: 399px) {
+@media (min-width: 320px) and (max-width: 380px) {
     .background3 {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100vh;
-        position: relative; 
+        position: relative;
     }
 
     .left3 {
@@ -473,7 +518,7 @@ justify-content: center; /* Centraliza horizontalmente */
     .right3 {
         background: none;
         position: absolute;
-        width: 50%; 
+        width: 50%;
         height: 100%;
         display: flex;
         justify-content: center;
@@ -519,14 +564,15 @@ justify-content: center; /* Centraliza horizontalmente */
         max-width: 300px;
         margin: auto;
         padding: 10px;
-        
+
     }
 
     .title {
         display: none;
     }
 
-    .loginFacebook, .loginTwitch {
+    .loginFacebook,
+    .loginTwitch {
         display: none;
     }
 
@@ -534,7 +580,8 @@ justify-content: center; /* Centraliza horizontalmente */
         display: flex;
     }
 
-    .facebook3, .twitch3 {
+    .facebook3,
+    .twitch3 {
         display: block;
         width: 45px;
         height: 42px;
@@ -546,14 +593,14 @@ justify-content: center; /* Centraliza horizontalmente */
     }
 }
 
-@media (min-width: 400px) and (max-width: 480px) {
+@media (min-width: 481px) and (max-width: 768px) {
     .background3 {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100vh;
-        position: relative; 
+        position: relative;
     }
 
     .left3 {
@@ -565,7 +612,7 @@ justify-content: center; /* Centraliza horizontalmente */
     .right3 {
         background: none;
         position: absolute;
-        width: 50%; 
+        width: 50%;
         height: 100%;
         display: flex;
         justify-content: center;
@@ -618,7 +665,8 @@ justify-content: center; /* Centraliza horizontalmente */
         display: none;
     }
 
-    .loginFacebook, .loginTwitch {
+    .loginFacebook,
+    .loginTwitch {
         display: none;
     }
 
@@ -626,7 +674,8 @@ justify-content: center; /* Centraliza horizontalmente */
         display: flex;
     }
 
-    .facebook3, .twitch3 {
+    .facebook3,
+    .twitch3 {
         display: block;
         width: 50px;
         height: 45px;
@@ -638,14 +687,14 @@ justify-content: center; /* Centraliza horizontalmente */
     }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 971px) {
     .background3 {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100vh;
-        position: relative; 
+        position: relative;
     }
 
     .left3 {
@@ -657,7 +706,7 @@ justify-content: center; /* Centraliza horizontalmente */
     .right3 {
         background: none;
         position: absolute;
-        width: 100%; 
+        width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
@@ -715,7 +764,8 @@ justify-content: center; /* Centraliza horizontalmente */
         display: none;
     }
 
-    .loginFacebook, .loginTwitch {
+    .loginFacebook,
+    .loginTwitch {
         display: none;
     }
 
@@ -723,7 +773,8 @@ justify-content: center; /* Centraliza horizontalmente */
         display: flex;
     }
 
-    .facebook3, .twitch3 {
+    .facebook3,
+    .twitch3 {
         display: block;
         width: 50px;
         height: 45px;
@@ -733,8 +784,18 @@ justify-content: center; /* Centraliza horizontalmente */
     .facebook3 {
         border-radius: 6px;
     }
-}
 
+}
+@media (min-width: 768px) and (max-width: 971px) {
+    .post3 {
+        display: flex;
+        height: 70px !important;
+        right: 70px !important;
+        min-height: 20% !important;
+        min-width: 20% !important;
+        margin-right: 38.5%;
+    }
+}
 @media (min-width: 769px) and (max-width: 1024px) {
     .post3 {
         width: 45% !important;
@@ -779,12 +840,28 @@ justify-content: center; /* Centraliza horizontalmente */
         flex-direction: column;
     }
 
-    .loginFacebook, .loginTwitch {
+    .loginFacebook,
+    .loginTwitch {
         width: 100%;
         margin-top: 10px;
     }
 }
 
 @media (min-width: 1025px) {
-    
+    .logo {
+        width: 200px;
+        height: 100px;
+    }
+
+    .right2 form {
+        height: 60vh;
+        width: 300px;
+    }
+
+    .right2 input,
+    .right2 button:nth-child(5),
+    .right2 button:nth-child(7) {
+        width: 25vw;
+        height: 50px;
+    }
 }
