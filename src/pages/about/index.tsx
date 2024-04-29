@@ -13,19 +13,6 @@ import axios from "axios";
 
 export default function About() {
 
-  useEffect(() => {
-    (async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const code = urlParams.get('code');
-      try {
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/auth/twitch`, { code });
-        localStorage.setItem('token', res.data.token);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    })();
-  }, []);
-
   return (
     <>
     <Image className={style.back} src={Background} alt="background"/>
