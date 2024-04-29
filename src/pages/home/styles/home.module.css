@@ -9,8 +9,9 @@
 
 .Background {
     position: absolute;
-    height: 100%;
+    top: -125px;
     width: 100%;
+    min-height: calc(100% + 150px);
     z-index: -1
 }
 
@@ -33,7 +34,7 @@
     margin: 40px 0;
 }
 
-.infoRifa > p {
+.infoRifa>p {
     text-decoration: underline;
 }
 
@@ -50,8 +51,10 @@
 }
 
 
-.horaRifa > :nth-child(1), .horaRifa > :nth-child(3), .horaRifa > :nth-child(5), 
-.horaRifa > :nth-child(7) {
+.horaRifa> :nth-child(1),
+.horaRifa> :nth-child(3),
+.horaRifa> :nth-child(5),
+.horaRifa> :nth-child(7) {
     border: 2px solid white;
     border-radius: 5px;
 }
@@ -100,4 +103,15 @@
     box-shadow: 1px 1px 1px black;
     background-color: #BE0600;
     color: white;
+}
+
+@media (min-width: 280px) and (max-width: 320px) {
+    .Logo {
+        width: 150px;
+    }
+
+    .horaRifa p {
+        font-size: 20px;
+        padding: 20px 30px;
+    }
 }

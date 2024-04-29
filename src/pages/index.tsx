@@ -2,6 +2,13 @@ import { UserContext } from "@/utils/contextUser";
 import UserContextType from "@/utils/interfaces";
 import axios from "axios";
 import { useContext, useEffect } from "react";
+import style from "./home/styles/home.module.css";
+import Image from "next/image";
+
+import Logo from './about/images/Logo.png'
+import Banner from './about/images/bannersite1.png'
+import Background from '@/images/background.png'
+import Exemplo from '@/images/lapis.png'
 
 export default function Home() {
   const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType
@@ -10,7 +17,7 @@ export default function Home() {
     (async () => {
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get('code');
-      if(code){
+      if (code) {
         try {
           const res = await axios.post(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/auth/twitch`, { code });
           localStorage.setItem('token', res.data.sessionToken);
@@ -19,12 +26,47 @@ export default function Home() {
           console.error('Error:', error);
         }
       }
-      
+
     })();
   }, []);
   return (
     <>
-    <div>Home</div>
+      <div className={style.Conteudo}>
+        <Image src={Background} alt="" className={style.Background}/>
+        <Image src={Logo} alt="" className={style.Logo}/>
+        <button className={style.botaoComprarRifa}>
+          Comprar Rifa
+        </button>
+        <div className={style.infoRifa}>
+          <p>Próxima Rifa</p>
+          <div className={style.horaRifa}>
+            <p>0</p>
+            <p>:</p>
+            <p>08</p>
+            <p>:</p>
+            <p>50</p>
+            <p>:</p>
+            <p>23</p>
+          </div>
+        </div>
+        <p className={style.AvisoSkins}>Últimas Skins</p>
+        <div className={style.SkinsRifa}>
+          <div>
+            <Image src={Exemplo} alt="" className={style.ImagemRifa}/>
+            <Image src={Exemplo} alt="" className={style.ImagemRifa}/>
+            <Image src={Exemplo} alt="" className={style.ImagemRifa}/>
+          </div>
+          <div>
+            <Image src={Exemplo} alt="" className={style.ImagemRifa}/>
+            <Image src={Exemplo} alt="" className={style.ImagemRifa}/>
+            <Image src={Exemplo} alt="" className={style.ImagemRifa}/>
+          </div>
+        </div>
+        <Image src={Banner} alt="" className={style.Logo2}/>
+        <button className={style.botaoComprarRifa}>
+          Comprar Rifa
+        </button>
+      </div>
     </>
   );
 }
