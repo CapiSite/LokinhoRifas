@@ -94,6 +94,10 @@ const Steps = () => {
     };
 
     function verifyEmail() {
+
+        if (signUp.name.length < 3) {
+            return
+        }
         axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users/verify", { name: signUp.name, email: signUp.email }).then((res) => {
             console.log(res)
             setStep(2)
