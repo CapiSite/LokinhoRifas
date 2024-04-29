@@ -24,12 +24,10 @@
     position: relative;
 }
 
-
-
 .post3 {
     position: absolute;
     height: 40% !important;
-    width: 50% !important;
+    width: 40% !important;
     border-radius: 10px;
 }
 
@@ -67,10 +65,10 @@
 .right2 button:nth-child(5),
 .right2 button:nth-child(7) {
     width: 100%;
-    height: 50px;
+    height: 40px !important;
     border-radius: 6px;
     border: 0px;
-    font-size: 27px;
+    font-size: 25px;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     display: flex;
@@ -475,6 +473,17 @@
     }
 }
 
+@media (min-width: 768px) and (max-width: 971px) {
+    .post3 {
+        display: flex;
+        height: 70px !important;
+        right: 70px !important;
+        min-height: 20% !important;
+        min-width: 20% !important;
+        margin-right: 38.5%;
+    }
+}
+
 @media (min-width: 769px) {
     .left2 {
         background-color: #151515;
@@ -501,14 +510,12 @@
 
     .post3 {
         position: absolute;
-        min-height: 30% !important;
-        min-width: 30% !important;
         border-radius: 10px;
     }
 
     .logo {
-       height: 50%;
-       width: 50%;
+        height: 50%;
+        width: 50%;
     }
 
     .right2 input,
@@ -518,23 +525,26 @@
         height: 45px;
     }
 
-    .loginFacebook, .loginTwitch {
+    .loginFacebook,
+    .loginTwitch {
         width: 330px;
         height: 34px;
     }
 
-    .imagemFace, .imagemTwitch {
-        display: none ;
+    .imagemFace,
+    .imagemTwitch {
+        display: none;
     }
 
-    .twitch, .twitch2 {
+    .twitch,
+    .twitch2 {
         margin-right: 0px;
     }
 
     .p {
         font-size: 18px;
     }
-    
+
     .right2 form {
         gap: 12px;
         height: 60vh;
