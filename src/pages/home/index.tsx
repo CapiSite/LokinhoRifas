@@ -11,7 +11,6 @@ import Exemplo from '@/images/lapis.png'
 
 const Home = () => {
 
-
   return (
     <div className={style.Conteudo}>
       <Image src={Background} alt="" className={style.Background} />

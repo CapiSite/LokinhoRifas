@@ -3,9 +3,12 @@ import '@/styles/globals.css'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { useState } from 'react'
 import * as gtag from '../utils/gtag'
 import TopHeader from './about/components/TopHeader'
 import Footer from './about/components/Footer'
+import NavBar from './about/components/NavBar'
+import { UserProvider } from '@/utils/contextUser'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -24,9 +27,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Lokinho Skins</title>
       </Head>
+      <UserProvider>
       <TopHeader/>
+      <NavBar/>
       <Component {...pageProps}/>
       <Footer/>
+      </UserProvider>
+
     </>
   )
 }

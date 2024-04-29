@@ -12,10 +12,12 @@ import twitch from "@/images/twitch.png"
 import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png"
 import faceb from "@/images/face-branco.jpeg"
-import logo from "@/images/logo.jpg"
+import logo from "@/images/logo.jpg" 
+
+
 export default function Login() {
     const router = useRouter()
-    const [user, setUser] = useState({ email: "", senha: "" })
+    const [user, setUser] = useState({ email: "", password: "" })
     const [disable, setDisable] = useState(false)
     const [token, setToken] = useState<string | null>(null); // Tipando token como string | null
     const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType
@@ -23,33 +25,35 @@ export default function Login() {
         if (typeof window !== 'undefined') {
             const storedToken = localStorage.getItem("token");
             setToken(storedToken)
+            if (storedToken) {
+                axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth", {}, {
+                    headers: {
+                        Authorization: `Bearer ${storedToken}`
+                    }
+                }).then((res:any) => {
+                    router.push("/")
+                }).catch((err:any) => {
+                    localStorage.setItem("token", "")
+                })
+            }
         }
-        if (token) {
-            axios.post(process.env.NEXT_PUBLIC_REACT_APP_API_URL + "/token", {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }).then(res => {
-                router.push("/timeline")
-
-            }).catch(err => {
-                alert(err.response.data)
-            })
-        }
+        
     }, [])
 
     function twitchAuth(): void {
         const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
-        const CLIENT_ID = "dcfc5qn6wwy7zdbe3dcvd0psbzmgn4"
-        const params = new URLSearchParams({
-          response_type: 'code',
-          scope: 'user:read:email',
-          client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000/about"
-        })
-    
+        const CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID
+        if(CLIENT_ID !== undefined){
+            const params = new URLSearchParams({
+                response_type: 'code',
+                scope: 'user:read:email',
+                client_id: CLIENT_ID,
+                redirect_uri: "http://localhost:3000"
+              })   
         const authURL = `${TWITCH_URL}?${params.toString()}`
         window.location.href = authURL
+        }
+ 
       }
       function faceAuth(): void {
         const face_URL = ""
@@ -58,12 +62,12 @@ export default function Login() {
           response_type: 'code',
           scope: 'user:read:email',
           client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000/about"
+          redirect_uri: "http://localhost:3000"
         })
-        
+
         const authURL = `${face_URL}?${params.toString()}`
         window.location.href = authURL
-      }
+    }
 
     return (
         <div className={style.wallpaper}>
@@ -86,13 +90,13 @@ export default function Login() {
                                 id={object === "e-mail" ? "emailInput" : "passwordInput"}
                                 disabled={disable}
                                 onChange={(e) => {
-                                    object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, senha: e.target.value });
+                                    object === "e-mail" ? setUser({ ...user, email: e.target.value }) : setUser({ ...user, password: e.target.value });
                                 }}
                                 type={object === "e-mail" ? "email" : "password"}
                             />
                         </div>
                     ))}
-                    <button disabled={disable} data-test="login-btn" type="submit">
+                    <button disabled={disable} type="submit" className={style.entrar}>
                         Entrar
                     </button>
                     <hr className={style.linha} />
@@ -100,20 +104,20 @@ export default function Login() {
                         Acesse sua conta com
                     </p>
                     <div className={style.imagens}>
-                        <Image src={face} alt="Login com Facebook" className={style.imagemFace}/>
-                        <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch}/>
+                        <Image src={face} alt="Login com Facebook" className={style.imagemFace} />
+                        <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch} />
                     </div>
-                    <button className={style.loginFacebook} onClick={() => faceAuth()}>
+                    <button type='button' className={style.loginFacebook} onClick={() => faceAuth()}>
                         <Image src={face} alt="Login com Facebook" className={style.facebook} />
                         <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
                         Entrar com Facebook
                     </button>
-                    <button className={style.loginTwitch} onClick={() => twitchAuth()}>
+                    <button type='button' className={style.loginTwitch} onClick={() => twitchAuth()}>
                         <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
                         <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
                         Entrar com Twitch
                     </button>
-                    <button className={style.rout} disabled={disable} data-test="sign-up-link" type="button" onClick={() => router.push("/sign-up")}>
+                    <button className={style.rout} disabled={disable}  type="button" onClick={() => router.push("/sign-up")}>
                         Primeira vez? Crie uma conta!
                     </button>
                 </form>
@@ -124,21 +128,20 @@ export default function Login() {
     function login(e: FormEvent) {
         e.preventDefault()
         setDisable(true)
-        if (user.email === "" || user.senha === "") {
+        if (user.email === "" || user.password === "") {
             alert("Preencha todos os campos!")
             setDisable(false)
             return
         }
 
-        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/signin", user).then((res) => {
+        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/sign-in", user).then((res:any) => {
             setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.token })
             localStorage.setItem("token", res.data.token)
             setDisable(false)
-            router.push("/timeline")
-        }).catch((err) => {
-            alert(err.response.data)
+            router.push("/")
+        }).catch((err:any) => {
+            console.log(err.response.data)
             setDisable(false)
         })
-
     }
 }
