@@ -1,5 +1,4 @@
 import { useState } from "react";
-import HomeIcon from '@mui/icons-material/Home';
 
 import style from "./styles/Twitch.module.css"
 import Image from "next/image";
@@ -12,23 +11,6 @@ const Twitch = () => {
   return (
     <div className={style.container}>
       <Image src={Background} alt="Papel de Parede do site" className={style.wallpaper}/>
-      <menu className={style.navBar}>
-        <div className={style.containerLogo}>
-          <Image src={logovermelho} alt="Logo do Site - LokinhoRifas" className={style.Logo}/>
-        </div>
-          <nav>
-            <ul className={style.ItensNavBar}>
-              <li>Home</li>
-              <li>Sorteio</li>
-              <li>Live</li>
-              <li>Últimos Ganhadores</li>
-              <li>Sobre nós</li>
-            </ul>
-          </nav>
-        <div className={style.containerBotao}>
-          <button type="button" className={style.botaoEntrar}>Entrar</button>
-        </div>
-      </menu>
       <main className={style.conteudo}>
         <Image src={logovermelho} alt="Logo do Site - LokinhoRifas" className={style.LogoTwitch}/>
         <h1 className={style.tituloLive}>RIFA IRÁ COMEÇAR AS XX:XX</h1>

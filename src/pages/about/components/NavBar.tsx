@@ -19,7 +19,7 @@ const NavBar = () => {
         <div className={style.Container}>
           <Image src={logovermelho} alt="Logo do site" className={style.Logo} />
           <div className={`${isOpen ? 'style.ContainerRoutes' : style.meuComponenteFlex}`}>
-            <Link onClick={() => router.push("/home")} className={style.Routes} href={""}>
+            <Link onClick={() => router.push("/")} className={style.Routes} href={""}>
               Home
             </Link>
             <Link onClick={() => router.push("/roulette")} className={style.Routes} href={""}>
