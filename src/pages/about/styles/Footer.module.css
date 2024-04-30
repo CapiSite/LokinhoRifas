@@ -73,7 +73,18 @@ background-color: var(--green2);
 .icon_div:nth-child(2):hover{
 background-color: var(--rose2);
 }
-
+.privacy{
+    padding-top: 10px;
+    color:  var(--white);
+    background-color: transparent;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+}
+.privacy:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 
 .icon_text{

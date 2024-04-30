@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FaFacebookF } from "react-icons/fa";
 import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 import Link from "next/link";
+import router from "next/router";
 
 export default function Footer() {
   return (
@@ -16,6 +17,7 @@ export default function Footer() {
             <h1>LOKINHO SKINS LTDA</h1>
             <div>
               <p>CNPJ: 50.278.011/0001-06</p>
+              <button onClick={() => router.push("/privacy")} className={style.privacy}>Políticas de privacidade</button>
             </div>
           </div>
         </div>
