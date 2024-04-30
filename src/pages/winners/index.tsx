@@ -1,11 +1,23 @@
 import style from "./styles/winners.module.css";
-import { FormEvent, useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import Logo from './about/images/Logo.png'
-import Banner from './about/images/bannersite1.png'
 import Background from '@/images/background.png'
 const Winer = () => {
-  const array = [{ name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }, { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }]
+  const array = [
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" },
+    { name: "hugo", skin: "dragonLore", photo: "hugo", email: "luizdacuzinho", tradeUrl: "teste" }
+  ]
   return (
     <div className={style.Conteudo}>
       <Image src={Background} alt="" className={style.Background} />

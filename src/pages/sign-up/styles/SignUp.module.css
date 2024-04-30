@@ -10,7 +10,7 @@
     height: 90vh;
     min-height: 100%;
     color: white;
-    font-weight: 700;
+    font-weight: 800;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -339,7 +339,7 @@
 .buttonback {
     background-color: var(--red);
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     font-family: 'Lato', sans-serif;
     margin-top: 20px;
@@ -348,10 +348,11 @@
     border: none;
     height: 42px;
 }
+
 .buttonback2 {
     background-color: var(--red);
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     font-family: 'Lato', sans-serif;
     margin-top: 20px;
@@ -361,7 +362,7 @@
     height: 42px;
 }
 
-.buttonback:hover {
+.buttonback:hover ,.buttonback2:hover{
     background-color: var(--hover2-red);
 }
 
@@ -413,7 +414,9 @@
     color: white;
     border: none;
 }
-
+.error{
+    color: white;
+}
 @media (min-width: 280px) and (max-width: 319px) {
     .background3 {
         display: flex;
