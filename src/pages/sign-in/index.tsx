@@ -55,19 +55,6 @@ export default function Login() {
         }
  
       }
-      function faceAuth(): void {
-        const face_URL = ""
-        const CLIENT_ID = ""
-        const params = new URLSearchParams({
-          response_type: 'code',
-          scope: 'user:read:email',
-          client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000"
-        })
-
-        const authURL = `${face_URL}?${params.toString()}`
-        window.location.href = authURL
-    }
 
     return (
         <div className={style.wallpaper}>
@@ -104,14 +91,8 @@ export default function Login() {
                         Acesse sua conta com
                     </p>
                     <div className={style.imagens}>
-                        <Image src={face} alt="Login com Facebook" className={style.imagemFace} />
                         <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch} />
                     </div>
-                    <button type='button' className={style.loginFacebook} onClick={() => faceAuth()}>
-                        <Image src={face} alt="Login com Facebook" className={style.facebook} />
-                        <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
-                        Entrar com Facebook
-                    </button>
                     <button type='button' className={style.loginTwitch} onClick={() => twitchAuth()}>
                         <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
                         <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
