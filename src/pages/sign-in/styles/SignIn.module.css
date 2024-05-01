@@ -472,7 +472,9 @@
         margin: 0;
     }
 }
-
+.error{
+    color: white;
+}
 @media (min-width: 768px) and (max-width: 971px) {
     .post3 {
         display: flex;
