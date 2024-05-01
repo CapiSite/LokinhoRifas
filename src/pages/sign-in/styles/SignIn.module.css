@@ -211,6 +211,9 @@
     max-width: 80%;
     max-height: 90%;
 }
+.error{
+    color: white;
+}
 
 @media (min-width: 280px) and (max-width: 319px) {
 
@@ -472,9 +475,7 @@
         margin: 0;
     }
 }
-.error{
-    color: white;
-}
+
 @media (min-width: 768px) and (max-width: 971px) {
     .post3 {
         display: flex;
