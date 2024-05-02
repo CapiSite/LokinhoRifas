@@ -1,0 +1,98 @@
+.Nav {
+    padding: 15px;
+    background-color:#310003;
+}
+
+.sidebar {
+    display: none;
+}
+
+.aside {
+    height: 100vh;
+    width: 80vw;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    background-color: var(--white);
+    z-index: 1;
+}
+
+.Container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Logo {
+    height: 100%;
+    width: 150px;
+    margin-left: 20px;
+}
+
+.Routes {
+    color: white;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    margin: 0 20px;
+    padding-right: 70px !important;
+}
+.Routes:hover {
+    color: gray;
+    cursor: pointer;
+}
+
+.BotaoEntrar {
+    margin-right: 35px;
+    border: 0;
+    padding: 8px 40px;
+    height: 40px;
+    width: 90px;
+    border-radius: 5px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #A30006 !important;
+    color: white;
+    cursor: pointer;
+}
+
+.BotaoEntrar:hover {
+    background-color: #6C0C0A !important;
+}
+
+.Container button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+@media (max-width: 975px) {
+
+    .Logo {
+        margin-left: 25px;
+    }
+    
+    .sidebar {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        font-size: 35px;
+        color: white;
+    }
+
+    .Routes {
+        display: none;
+    }
+
+    .BotaoEntrar {
+        display: none;
+    }
+}
+
+@media (max-width: 950px) {
+.Nav{
+    margin-top: 50px;
+}
+}

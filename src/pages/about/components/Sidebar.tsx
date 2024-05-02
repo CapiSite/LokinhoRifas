@@ -8,6 +8,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
     
         <div className={style.background}>
           <AiOutlineClose onClick={() => setSideBar(!sideBar)} />
+          
         </div>
   );
 }

@@ -1,0 +1,72 @@
+.background {
+  z-index: -2;
+  position: absolute;
+  top: 50px;
+  left:0px;
+  width: 100%;
+  height: 94%;
+}
+
+.privacyPolicy {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.imagePreviewContainer {
+  margin-top: 100px;
+}
+
+.Title {
+  color: white;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Bebas Neue', sans-serif;
+  margin-bottom: 2%;
+}
+
+.policy {
+  color: white;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  margin-bottom: 18.4%;
+}
+
+.containerpolicy {
+  padding-left: 11%;
+  padding-right: 11%;
+  align-items: center;
+}
+
+@media (max-width:950px) and (min-width:200px) {
+  .background {
+    z-index: -2;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+  .containerpolicy {
+    padding-top:1%;
+    padding-left: 8%;
+    padding-right: 8%;
+    align-items: center;
+  }
+  .Title {
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+
+  }
+
+  .policy {
+    color: white;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+  }
+
+}

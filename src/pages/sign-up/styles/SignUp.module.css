@@ -6,11 +6,11 @@
 /* left3 */
 .left3 {
     background-color: #151515;
-    width: 65%;
-    height: 90vh;  
+    width: 55%;
+    height: 90vh;
     min-height: 100%;
     color: white;
-    font-weight: 700;
+    font-weight: 800;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,19 +19,19 @@
 }
 
 .left3 img:first-child() {
-height: 100%;
-width: 100%;
-position: relative;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
 .post3 {
     position: absolute;
-    height: 40%  !important;
-    width: 50% !important;
+    height: 40% !important;
+    width: 40% !important;
     border-radius: 10px;
 }
 
-.left3 h1{
+.left3 h1 {
     position: absolute;
     height: 60%;
     color: var(--white);
@@ -45,21 +45,22 @@ position: relative;
 /* right3 */
 .right3 {
     background-color: #333333;
-    width: 35%;
+    width: 45%;
     height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.right3 form  {
+.right3 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 65%;
-    height: 260 0px; /* Default height */
+    height: 260 0px;
+    /* Default height */
     justify-content: space-between;
-    gap: 28px;
+    gap: 10px;
 }
 
 .right3 input,
@@ -67,10 +68,10 @@ position: relative;
 .right3 button:nth-child(6) {
     width: 100%;
     margin-top: 2px;
-    height: 65px;
+    height: 40px !important;
     border-radius: 6px;
     border: 0px;
-    font-size: 27px;
+    font-size: 25px;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     display: flex;
@@ -98,20 +99,29 @@ position: relative;
 .enviar {
     background-color: var(--red);
     color: white;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 30px !important;
+    font-weight: 700 !important;
     font-family: 'Lato', sans-serif;
-    margin-top: 20px;
+    margin-top: 10px;
     border: 0;
-    width: 100%;
-    height: 65px;
-    border-radius: 6px;
+    width: 80%;
+    height: 45px;
+    border-radius: 6px !important;
 }
 
-.enviar:hover{
+.enviar:hover {
     background-color: var(--hover2-red);
 }
-
+.checkboxcontainer{
+    display: flex;
+    align-items: center;
+}
+.p {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 10px;
+    padding-bottom: 5px;
+}
 .right3 button {
     cursor: pointer;
 }
@@ -125,20 +135,13 @@ position: relative;
     width: 20vh;
 }
 
-.facebook {
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    border-radius: 10px;
-
-}
 
 .back2 {
     width: 100vw;
     height: 100%;
-    
+
 }
- 
+
 .container {
     position: relative;
     width: 100%;
@@ -171,33 +174,36 @@ position: relative;
     cursor: pointer;
     margin-top: 3px;
 }
+
 .imagePreviewContainer {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
-  }
-  .pencilContainer{
+}
+
+.pencilContainer {
     width: 25px;
     height: 25px;
-    padding: 10px; 
-    background-color: white; 
-    border-radius: 50%; 
-    display: inline-flex; 
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     margin-right: 5px;
-  }
-  .pencilIcon2{
+}
+
+.pencilIcon2 {
     width: 15px;
     height: 15px;
-  }
+}
 
-  .containerinput {
+.containerinput {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-  }
+}
 
 .inputImage {
     position: absolute;
@@ -205,14 +211,16 @@ position: relative;
     height: 100%;
     opacity: 0;
 }
-.imagePreview{
-width: 100px;
-height: 100px;
-justify-content: center; /* Centraliza horizontalmente */
-  align-items: center;
-  display: flex;
+
+.imagePreview {
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    display: flex;
 }
-  
+
 .fileName {
     margin-top: 20px;
     font-size: 12px;
@@ -229,149 +237,821 @@ justify-content: center; /* Centraliza horizontalmente */
     color: white;
     font-size: 20px;
 }
-.socialLink{
+
+.socialLink {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+
 }
-.loginFacebook {
-    margin-right: 40px; 
-    padding: 0px;
-    row-gap: 20px;
-    border: 0;
-    display: flex;
-    align-items: center;
-    background: transparent;   
-}
+
+.loginFacebook,
 .loginTwitch {
-    padding: 0px;
+    border-radius: 8px;
+    width: 50%;
+    padding: 6px;
     border: 0;
+    font-size: 14px;
     font-weight: bold;
     display: flex;
+    justify-content: space-evenly;
     align-items: center;
-    background: transparent;
-
-    
+    transition: background-color 0.5s ease;
 }
-.facebook {
-    width: 50px;
 
+.loginFacebook:hover {
+    background-color: #4A6EA8;
+    color: white;
+}
+
+.facebook {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.facebook2 {
+    display: none;
+}
+
+.facebook3 {
+    display: none;
+}
+
+.twitch3 {
+    display: none;
+}
+
+.loginFacebook:hover .facebook {
+    display: none;
+}
+
+.loginFacebook:hover .facebook2 {
+    display: block;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: white;
+    padding: 1px;
 }
 
 .twitch {
-    width: 50px;
-    height: 50px;
-
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 1px;
 }
 
-.title{
+.twitch2 {
+    height: 25px;
+    width: 25px;
+    display: none;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+.loginTwitch:hover {
+    background-color: #6442A6;
+    color: white;
+}
+
+.loginTwitch:hover .twitch {
+    display: none;
+}
+
+.loginTwitch:hover .twitch2 {
     display: block;
-    padding-bottom: 80px;
+}
+
+.title {
+    font-family: 'Oswald', sans-serif;
+    display: block;
+    padding-bottom: 10px;
     font-size: 40px;
     color: rgb(255, 255, 255);
-
 }
 
-.buttonback{
-
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    font-weight: 400;
+.buttonback {
+    background-color: var(--red);
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: 700;
     font-family: 'Lato', sans-serif;
     margin-top: 20px;
-    border: 0;
-    width: 25%;
-    height: 65px;
-    border-radius: 50%;
-    border: 2px black solid;
-    
+    border-radius: 6px;
+    width: 300px !important;
+    border: none;
+    height: 42px;
 }
-.buttonback:hover{
+
+.buttonback2 {
+    background-color: var(--red);
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    margin-top: 20px;
+    border-radius: 6px;
+    width: 100%;
+    border: none;
+    height: 42px;
+}
+
+.buttonback:hover ,.buttonback2:hover{
     background-color: var(--hover2-red);
+}
+
+.containersubimit{
+    display: flex;
+    flex-direction: column; /* Altera a direção do flexbox para empilhar os itens verticalmente */
+    align-items: center; 
+
 }
 .imagePreviewContainer {
     margin-top: 20px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     border-radius: 50%;
-  }
-  
-  .imagePreview {
-    width: 100px; 
-    height:  100px;
-    height: auto; 
-    border-radius: 100%;
-  }
-
-@media (max-width: 800px) {
-    .left2 img:nth-child(3){
-        display: none;
-    }
-
-    .left2 img:first-child{
-        min-height: 40vh;
-    }
-    
-    .left2 {
-        width: 100%;
-        height: 40vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 50px;
-        text-align: center;
-    }
-
-    .left2 h1{
-        height: 0%;
-        font-size: 30px;
-    }
-
-    .right2 {
-        width: 100%;
-        height: 75vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0;
-        text-align: center;
-    }
-
-    .right2 input,
-    .right2 button:nth-child(5),
-    .right2 button:nth-child(7) {
-        width: 330px;
-        height: 30px;
-    }
-    .rout {
-        margin: 20px 0;
-    }
-
-    .wallpaper {
-        flex-direction: column;
-    }
 }
 
-@media (min-width: 801px) and (max-width: 970px) {
-    .post3 {
-        width: 40% !important;
-        height: 20% !important;
+.imagePreview {
+    width: 100px;
+    height: 100px;
+    height: auto;
+    border-radius: 100%;
+}
+
+.Policy-group {
+    width: 4000px;
+    height: 4000px;
+}
+
+.privacyPolicy {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 8px;
+}
+
+.policy {
+    color: white;
+    max-height: 300px; 
+    overflow-y: auto;
+}
+
+.checkbox {
+    max-width: 15px !important;
+    max-height: 15px !important;
+}
+
+.rout {
+    background: transparent;
+    border-Bottom: 2px solid white;
+    font-Size: 20px;
+    font-family: 'Lato', sans-serif;
+    color: white;
+    border: none;
+}
+.error{
+    color: white;
+}
+@media (min-width: 280px) and (max-width: 319px) {
+    .background3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+
+    .left3 {
+        position: relative;
+        width: 50%;
+        text-align: center;
+    }
+
+    .right3 {
+        background: none;
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
     .welcome {
-        margin-top: 500px;
+        display: none;
+    }
+
+    .right3 form {
+        width: 100vw;
+        height: 70%;
+        gap: 12px;
+        padding: 5px;
+    }
+
+    .post3 {
+        display: none;
+    }
+
+    .container2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container2 .label {
+        align-self: flex-start;
+        margin-bottom: 5px;
+    }
+
+    .right3 input,
+    .right3 button:nth-child(4),
+    .right3 button:nth-child(6) {
+        border-radius: 5px;
+        min-width: 180px;
+        max-width: 290px;
+        height: 40px;
+        margin: auto;
+    }
+
+    .enviar {
+        min-width: 180px;
+        max-width: 390px;
+        margin: auto;
+        height: 55px;
+        padding: 8px;
+        margin: 10px;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .loginFacebook,
+    .loginTwitch {
+        display: none;
+    }
+
+    .containerLogos {
+        display: flex;
+    }
+
+    .facebook3,
+    .twitch3 {
+        display: block;
+        width: 45px;
+        height: 42px;
+        margin: 10px 20px;
+    }
+
+    .facebook3 {
+        border-radius: 6px;
     }
 }
 
-@media (min-width: 971px) and (max-width: 1240px) {
-    .right2 form {
-        width: 40vh;
-        gap: 15px;
+@media (min-width: 320px) and (max-width: 480px) {
+    .background3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: relative;
     }
 
-    .logo {
+    .left3 {
+        position: relative;
+        width: 50%;
+        text-align: center;
+    }
+
+    .right3 {
+        background: none;
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .welcome {
         display: none;
     }
+
+    .right3 form {
+        width: 100vw;
+        height: 75%;
+        gap: 20px;
+    }
+
+    .post3 {
+        display: none;
+    }
+
+    .container2 {
+        width: 300px;
+        margin: auto;
+    }
+
+    .container2 .label {
+        margin-bottom: 5px;
+    }
+
+    .right3 input,
+    .right3 button:nth-child(4),
+    .right3 button:nth-child(6) {
+        border-radius: 5px;
+        min-width: 200px;
+        max-width: 300px;
+        margin: auto;
+        height: 40px;
+    }
+
+    .enviar {
+        min-width: 200px;
+        max-width: 300px;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .loginFacebook,
+    .loginTwitch {
+        display: none;
+    }
+    
+    .containerLogos {
+        display: flex;
+    }
+
+    .facebook3,
+    .twitch3 {
+        display: block;
+        width: 45px;
+        height: 42px;
+        margin: 10px 20px;
+    }
+
+    .facebook3 {
+        border-radius: 6px;
+    }
+    
+    .checkbox {
+        width: 15px !important;
+        height: 15px !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .background3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+
+    .left3 {
+        position: relative;
+        width: 50%;
+        text-align: center;
+    }
+
+    .right3 {
+        background: none;
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .welcome {
+        display: none;
+    }
+
+    .right3 form {
+        width: 100vw;
+        height: 75%;
+        gap: 20px;
+    }
+
+    .post3 {
+        display: none;
+    }
+
+    .container2 {
+        width: 300px;
+        margin: auto;
+    }
+
+    .container2 .label {
+        margin-bottom: 1px;
+    }
+
+    .right3 input,
+    .right3 button:nth-child(4),
+    .right3 button:nth-child(6) {
+        border-radius: 5px;
+        min-width: 200px;
+        max-width: 300px;
+        margin: auto;
+        height: 40px;
+        margin-top: 3px;
+    }
+
+    .enviar {
+        min-width: 200px;
+        max-width: 300px;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .loginFacebook,
+    .loginTwitch {
+        display: none;
+    }
+
+    .containerLogos {
+        display: flex;
+    }
+
+    .facebook3,
+    .twitch3 {
+        display: block;
+        width: 50px;
+        height: 45px;
+        margin: 5px 30px;
+    }
+
+    .facebook3 {
+        border-radius: 6px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 971px) {
+    .background3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+
+    .left3 {
+        position: relative;
+        width: 50%;
+        text-align: center;
+    }
+
+    .right3 {
+        background: none;
+        position: absolute;
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .Policy-group {
+        width: 4000px;
+        height: 4000px;
+    }
+    
+    .policy {
+        color: white;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+        max-height: 300px; 
+        overflow-y: auto;
+    }
+    .checkboxcontainer{
+        display: flex;
+        align-items: center;
+        position: relative;
+
+    }    
+    .post3 {
+        display: flex;
+        height: 70px !important;
+        right: 70px !important;
+        min-height: 20% !important;
+        min-width: 20% !important;
+        margin-right: 38.5%;
+    }
+
+    .buttonback {
+        background-color: var(--red);
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        margin-top: 10px;
+        border-radius: 6px;
+        margin-left: 1px;
+        width: 350px !important;
+        border: none;
+        height: 42px;
+    }
+    .buttonback:hover {
+        background-color: var(--hover2-red);
+    }
+    .welcome {
+        display: none;
+    }
+
+    .right3 form {
+        width: 100vw;
+        height: 75%;
+        gap: 20px;
+    }
+
+    .post3 {
+        display: none !important;
+    }
+
+    .container {
+        width: 100%;
+        margin: auto;
+    }
+
+    .container2 {
+        width: 400px;
+        margin: auto;
+    }
+
+    .container2 .label {
+        margin-bottom: 1px;
+    }
+
+    .right3 input,
+    .right3 button:nth-child(4),
+    .right3 button:nth-child(6) {
+        border-radius: 5px;
+        min-width: 300px;
+        max-width: 450px;
+        margin: auto;
+        height: 45px;
+        margin-top: 3px;
+
+    }
+
+    .enviar {
+        background-color: var(--red);
+        color: white;
+        font-size: 20px;
+        font-weight: 400;
+        font-family: 'Lato', sans-serif;
+        margin-top: 10px;
+        border: 0;
+        width: 350px;
+        max-height: 50px;
+        border-radius: 10px;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .loginFacebook,
+    .loginTwitch {
+        display: none;
+    }
+
+    .containerLogos {
+        display: flex;
+    }
+
+    .facebook3,
+    .twitch3 {
+        display: block;
+        width: 50px;
+        height: 45px;
+        margin: 5px 30px;
+    }
+
+    .facebook3 {
+        border-radius: 6px;
+    }
+
+}
+@media (min-width: 972px) and (max-width: 1024px) {
+    .post3 {
+        width: 45% !important;
+        height: 27% !important;
+    }
+
+    .title {
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .container2 .label {
+        margin-left: 10px;
+    }
+
+    .right3 form {
+        width: 100vw;
+        height: 75%;
+        gap: 0px;
+        display: flex;
+        margin-left: 15px;
+    }
+
+    .right3 input,
+    .right3 button:nth-child(4),
+    .right3 button:nth-child(6) {
+        border-radius: 5px;
+        margin: 10px;
+        min-width: 100px;
+        max-width: 90%;
+        height: 30px;
+        margin-top: 3px;
+    }
+
+    .enviar {
+        margin: auto;
+        margin-top: 15px;
+        min-width: 100px;
+        max-width: 350px;
+        height: 45px;
+    }
+
+    .containerBotoes {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .loginFacebook,
+    .loginTwitch {
+        width: 50%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .buttonback {
+        background-color: var(--red);
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        margin-top: 10px;
+        border-radius: 6px;
+        margin-left: 1px;
+        width: 350px !important;
+        border: none;
+        height: 42px;
+    }
+    .buttonback:hover {
+        background-color: var(--hover2-red);
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1174px){
+
+    .right3 form {
+        height: 60vh;
+        width: 400px !important;
+    }
+    .right3 form {
+        width: 70%;
+        height: 75%;
+        gap: 0px;
+        margin-left: 15px;
+    }
+    .right2 input,
+    .right2 button:nth-child(5),
+    .right2 button:nth-child(7) {
+        width: 25vw;
+        height: 50px;
+    }
+    .loginFacebook,
+    .loginTwitch {
+        width: 70%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .Policy-group {
+        width: 2000px;
+        height: 300px;
+    }
+    .privacyPolicy {
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        padding-bottom: 8px;
+    }
+    .Policygroup{
+        width: 100%;
+        max-height: 300px; 
+        overflow-y: auto;
+    }    
+    .right3 {
+        background-color: #333333;
+        width: 45%;
+        height: 100vh;
+        margin-top: -85px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+    }
+    .buttonback {
+        background-color: var(--red);
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        margin-top: 10px;
+        border-radius: 6px;
+        margin-left: 1px;
+        width: 320px !important;
+        border: none;
+        height: 42px;
+    }
+    .buttonback:hover {
+        background-color: var(--hover2-red);
+    }
+}
+
+@media (min-width: 1174px) and (max-width: 1232px){
+
+    .right2 form {
+        height: 60vh;
+        width: 400px;
+    }
+    .right3 form {
+        width: 70%;
+        height: 75%;
+        gap: 0px;
+        margin-left: 15px;
+    }
+    .right2 input,
+    .right2 button:nth-child(5),
+    .right2 button:nth-child(7) {
+        width: 25vw;
+        height: 50px;
+    }
+    .loginFacebook,
+    .loginTwitch {
+        width: 70%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .Policy-group {
+        width: 2000px;
+        height: 300px;
+    }
+    .privacyPolicy {
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        padding-bottom: 8px;
+    }
+    .Policygroup{
+        width: 100%;
+        height: 100%;
+        max-height: 300px; 
+        overflow-y: auto;
+    }
+
+    .right3 {
+        background-color: #333333;
+        width: 45%;
+        height: 100vh;
+        margin-top: -85px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+    }
+}
+@media (min-width: 1174px) {
+    .enviar {
+        min-width: 200px;
+        max-width: 300px;
+        margin: auto;
+        padding: 5px;
+    } 
 }

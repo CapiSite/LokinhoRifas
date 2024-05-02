@@ -1,0 +1,117 @@
+.Conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.Background {
+    position: absolute;
+    top: -125px;
+    width: 100%;
+    min-height: calc(100% + 150px);
+    z-index: -1
+}
+
+.Logo {
+    margin-top: 20px;
+    width: 1000px;
+    height: 300px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 0;
+}
+
+
+.infoRifa p {
+    color: white;
+    font-size: 35px;
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.infoRifa>p {
+    text-decoration: underline;
+}
+
+.horaRifa {
+    display: flex;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.horaRifa p {
+    font-size: 30px;
+    margin: 0 20px;
+    padding: 20px 30px;
+}
+
+
+.horaRifa> :nth-child(1),
+.horaRifa> :nth-child(3),
+.horaRifa> :nth-child(5),
+.horaRifa> :nth-child(7) {
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+
+.AvisoSkins {
+    color: white;
+    font-size: 35px;
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.SkinsRifa {
+    display: flex;
+    flex-direction: column;
+}
+
+.ImagemRifa {
+    width: 180px;
+    height: 120px;
+    border: 3px solid rgba(255, 0, 0, 0.541);
+    border-radius: 8px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.Logo2 {
+    margin-top: 20px;
+    width: 1000px;
+    height: 300px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 0;
+}
+
+.botaoComprarRifa {
+    cursor: pointer;
+    width: 15%;
+    height: 50px;
+    font-size: 17px;
+    border: 0;
+    margin: 50px 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+    background-color: #BE0600;
+    color: white;
+}
+
+@media (min-width: 280px) and (max-width: 320px) {
+    .Logo {
+        width: 150px;
+    }
+
+    .horaRifa p {
+        font-size: 20px;
+        padding: 20px 30px;
+    }
+}

@@ -24,9 +24,7 @@ export default function Carousel() {
         slidesToScroll={1}
         autoplay={true}
         autoplaySpeed={4000}
-        className={style.slider}
-        
-      >
+        className={style.slider}>
         <div onClick={()=>{
           router.push("/")
         }}>

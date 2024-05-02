@@ -1,4 +1,4 @@
-.background{
+.background {
     height: 100vh;
     width: 80vw;
     position: fixed;
@@ -7,11 +7,11 @@
     background-color: rgb(37, 9, 9);
     z-index: 1;
 }
-.background svg{
+
+.background svg {
     color: white;
     font-size: 30px;
     position: fixed;
     right: 20px;
     top: 100px;
-    
 }
