@@ -50,12 +50,12 @@ const NavBar = () => {
               Sobre nós
             </button>
           </div>
-          <button type="button">
+
             {/* onClick={() => router.push(isLoggedIn ? '/perfil' : '/sign-in')} colocar no bortao abaixo vara verificar se esta logado ou n */}
             <button  onClick={() => router.push("/sign-in")} className={style.BotaoEntrar}>
               Entrar
             </button>
-          </button>
+
           <div className={style.sidebar}>
             <FaBars onClick={() => setSideBar(!sideBar)} />
           </div>

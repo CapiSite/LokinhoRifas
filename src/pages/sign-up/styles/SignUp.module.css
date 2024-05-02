@@ -113,6 +113,7 @@
     background-color: var(--hover2-red);
 }
 .checkboxcontainer{
+    margin: 20px 0px 20px 0px;
     display: flex;
     align-items: center;
 }
@@ -967,6 +968,7 @@
         max-height: 300px; 
         overflow-y: auto;
     }    
+    
     .right3 {
         background-color: #333333;
         width: 45%;
