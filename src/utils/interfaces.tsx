@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export default interface UserContextType {
     userInfo: {
       name: string;

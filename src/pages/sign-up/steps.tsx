@@ -18,7 +18,7 @@ const Steps = () => {
     const [disable, setDisable] = useState(false)
     const [token, setToken] = useState<string | null>(null); // Tipando token como string | null
     const [error, setError] = useState("");
-    const [signUp, setSignUp] = useState({
+    const [signUp, setSignUp] = useState<any>({
         name: "",
         email: "",
         password: "",
@@ -88,7 +88,7 @@ const Steps = () => {
             setFileName(URL.createObjectURL(e.target.files[0]));
         }
         const { name, value } = e.target;
-        setSignUp(prevState => ({
+        setSignUp((prevState:any) => ({
             ...prevState,
             [name]: value
         }));
@@ -117,14 +117,10 @@ const Steps = () => {
             return setError("Por favor, insira um trade link da Steam válido.");
         }
         axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users/verify", { name: signUp.name, email: signUp.email }).then((res) => {
-            console.log(res)
             setStep(2)
         }).catch((error) => {
-            //setar os erros para aparecer no front (Hugo)
-            setError(error?.response?.data)
-
+            setError(error.response.data.message)
         })
-        return true;
     };
 
     async function requestSignUp(e: any) {
@@ -156,12 +152,13 @@ const Steps = () => {
                                         id={input}
                                         name={input}
                                         className={style.input}
+                                        value={signUp[input]}
                                     />
                                 </div>
                             </div>
                         ))}
                         {error ? <p className={style.error}>{error}</p> : <></>}
-                        <button type="button" className={style.enviar} onClick={() => { if (validateForm()) { setStep(2); } }}>
+                        <button type="button" className={style.enviar} onClick={() => (validateForm())}>
                             Próximo
                         </button>
                         <hr className={style.linha} />
