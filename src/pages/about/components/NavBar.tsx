@@ -36,33 +36,28 @@ const NavBar = () => {
         <div className={style.Container}>
           <Image src={Logo} alt="Logo do site" className={style.Logo} />
           <div>
-            <Link onClick={() => router.push("/")} className={style.Routes} href={""}>
+            <button onClick={() => router.push("/")} className={style.Routes}>
               Home
-            </Link>
-            <Link onClick={() => router.push("/roulette")} className={style.Routes} href={""}>
+            </button>
+            <button onClick={() => router.push("/roulette")} className={style.Routes}>
               Sorteio
-            </Link>
-            <Link onClick={() => router.push("/twitch")} className={style.Routes} href={""}>
+            </button>
+            <button onClick={() => router.push("/twitch")} className={style.Routes}>
               Live
-            </Link>
-            <Link onClick={() => router.push("/winners")} className={style.Routes} href={""}>
+            </button>
+            <button onClick={() => router.push("/winners")} className={style.Routes}>
               Últimos Ganhadores
-            </Link>
-            <Link onClick={() => router.push("/about")} className={style.Routes} href={""}>
+            </button>
+            <button onClick={() => router.push("/about")} className={style.Routes}>
               Sobre nós
-            </Link>
+            </button>
           </div>
-          <button type="button">
-            {/* onClick={() => router.push(isLoggedIn ? '/perfil' : '/sign-in')} colocar no bortao abaixo vara verificar se esta logado ou n */}
-            <Link href="/sign-up" className={style.BotaoEntrar}>
-              Entrar
-            </Link>
+
+          {/* onClick={() => router.push(isLoggedIn ? '/perfil' : '/sign-in')} colocar no bortao abaixo vara verificar se esta logado ou n */}
+          <button onClick={() => router.push("/sign-in")} className={style.BotaoEntrar}>
+            Entrar
           </button>
-          <div>
-            <Image src={Perfil} alt="Foto de exemplo" className={style.Logged} />
-            <Image src={Logout} alt="Ícone para sair da conta" className={style.Logout}/>
-          </div>
-            <div className={style.sidebar}>
+          <div className={style.sidebar}>
             <FaBars onClick={() => setSideBar(!sideBar)} />
           </div>
           <AnimatePresence>
@@ -79,8 +74,8 @@ const NavBar = () => {
             )}
           </AnimatePresence>
         </div>
-      </nav>
-    </div>
+      </nav >
+    </div >
 
   )
 

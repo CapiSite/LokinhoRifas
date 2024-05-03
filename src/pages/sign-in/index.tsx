@@ -8,11 +8,17 @@ import UserContextType from "@/utils/interfaces";
 import Image from "next/image";
 import Background from "@/images/background.png";
 import Post from "@/images/Post.png";
+<<<<<<< HEAD
 import twitch from "@/images/twitch.png"
 import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png"
 import faceb from "@/images/face-branco.jpeg"
 import logo from "@/images/logo.jpg"
+=======
+import twitch from "@/images/twitch.png";
+import twitch2 from "@/images/twitch2.png";
+import logo from "@/images/logo.jpg";
+>>>>>>> 4ffd45605e5ce3fe2e16dd73b17cfa5436b648f3
 
 
 export default function Login() {
@@ -20,7 +26,8 @@ export default function Login() {
     const [user, setUser] = useState({ email: "", password: "" })
     const [disable, setDisable] = useState(false)
     const [token, setToken] = useState<string | null>(null); // Tipando token como string | null
-    const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType
+    const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType;
+    const [error, setError] = useState("");
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const storedToken = localStorage.getItem("token");
@@ -53,6 +60,7 @@ export default function Login() {
             const authURL = `${TWITCH_URL}?${params.toString()}`
             window.location.href = authURL
         }
+<<<<<<< HEAD
 
     }
     function faceAuth(): void {
@@ -68,6 +76,10 @@ export default function Login() {
         const authURL = `${face_URL}?${params.toString()}`
         window.location.href = authURL
     }
+=======
+ 
+      }
+>>>>>>> 4ffd45605e5ce3fe2e16dd73b17cfa5436b648f3
 
     return (
         <div className={style.wallpaper}>
@@ -94,6 +106,7 @@ export default function Login() {
                                 }}
                                 type={object === "e-mail" ? "email" : "password"}
                             />
+                            {error ? <p className={style.error}>{error}</p> : <></>}
                         </div>
                     ))}
                     <button disabled={disable} type="submit" className={style.entrar}>
@@ -104,14 +117,8 @@ export default function Login() {
                         Acesse sua conta com
                     </p>
                     <div className={style.imagens}>
-                        <Image src={face} alt="Login com Facebook" className={style.imagemFace} />
                         <Image src={twitch} alt="Login com Twitch" className={style.imagemTwitch} />
                     </div>
-                    <button type='button' className={style.loginFacebook} onClick={() => faceAuth()}>
-                        <Image src={face} alt="Login com Facebook" className={style.facebook} />
-                        <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
-                        Entrar com Facebook
-                    </button>
                     <button type='button' className={style.loginTwitch} onClick={() => twitchAuth()}>
                         <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
                         <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
@@ -129,7 +136,7 @@ export default function Login() {
         e.preventDefault()
         setDisable(true)
         if (user.email === "" || user.password === "") {
-            alert("Preencha todos os campos!")
+            setError("Preencha todos os campos!")
             setDisable(false)
             return
         }

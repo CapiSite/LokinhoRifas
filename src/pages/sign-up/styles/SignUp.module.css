@@ -10,7 +10,7 @@
     height: 90vh;
     min-height: 100%;
     color: white;
-    font-weight: 700;
+    font-weight: 800;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,8 +112,13 @@
 .enviar:hover {
     background-color: var(--hover2-red);
 }
+<<<<<<< HEAD
 
 .checkboxcontainer {
+=======
+.checkboxcontainer{
+    margin: 20px 0px 20px 0px;
+>>>>>>> 4ffd45605e5ce3fe2e16dd73b17cfa5436b648f3
     display: flex;
     align-items: center;
 }
@@ -342,7 +347,7 @@
 .buttonback {
     background-color: var(--red);
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     font-family: 'Lato', sans-serif;
     margin-top: 20px;
@@ -355,7 +360,7 @@
 .buttonback2 {
     background-color: var(--red);
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     font-family: 'Lato', sans-serif;
     margin-top: 20px;
@@ -365,7 +370,7 @@
     height: 42px;
 }
 
-.buttonback:hover {
+.buttonback:hover ,.buttonback2:hover{
     background-color: var(--hover2-red);
 }
 
@@ -404,6 +409,8 @@
 
 .policy {
     color: white;
+    max-height: 300px; 
+    overflow-y: auto;
 }
 
 .checkbox {
@@ -419,7 +426,9 @@
     color: white;
     border: none;
 }
-
+.error{
+    color: white;
+}
 @media (min-width: 280px) and (max-width: 319px) {
     .background3 {
         display: flex;
@@ -746,6 +755,8 @@
         width: 100%;
         padding-left: 5%;
         padding-right: 5%;
+        max-height: 300px; 
+        overflow-y: auto;
     }
 
     .checkboxcontainer {
@@ -977,9 +988,16 @@
 
     .Policygroup {
         width: 100%;
+<<<<<<< HEAD
         height: 100;
     }
 
+=======
+        max-height: 300px; 
+        overflow-y: auto;
+    }    
+    
+>>>>>>> 4ffd45605e5ce3fe2e16dd73b17cfa5436b648f3
     .right3 {
         background-color: #333333;
         width: 45%;
@@ -1052,7 +1070,9 @@
 
     .Policygroup {
         width: 100%;
-        height: 100;
+        height: 100%;
+        max-height: 300px; 
+        overflow-y: auto;
     }
 
     .right3 {

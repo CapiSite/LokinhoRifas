@@ -1,5 +1,6 @@
 .Nav {
     padding: 15px;
+    background-color:#310003;
 }
 
 .sidebar {
@@ -34,23 +35,30 @@
     font-family: 'Oswald', sans-serif;
     font-size: 18px;
     margin: 0 20px;
+    padding-right: 70px !important;
+}
+.Routes:hover {
+    color: gray;
+    cursor: pointer;
 }
 
 .BotaoEntrar {
     margin-right: 35px;
     border: 0;
     padding: 8px 40px;
+    height: 40px;
+    width: 90px;
     border-radius: 5px;
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
     font-size: 16px;
-    background-color: #A30006;
+    background-color: #A30006 !important;
     color: white;
     cursor: pointer;
 }
 
 .BotaoEntrar:hover {
-    background-color: #6C0C0A;
+    background-color: #6C0C0A !important;
 }
 
 .Logged {

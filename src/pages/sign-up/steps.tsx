@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import style from "./styles/SignUp.module.css";
 import DefaultProfilePi from "@/images/defaultProfilePic.png";
@@ -12,12 +12,13 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import PoliticaDePrivacidade from "./politicaDePrivacidade"
 const Steps = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(3);
     const router = useRouter()
     const [fileName, setFileName]: any = useState(DefaultProfilePi);
     const [disable, setDisable] = useState(false)
     const [token, setToken] = useState<string | null>(null); // Tipando token como string | null
-    const [signUp, setSignUp] = useState({
+    const [error, setError] = useState("");
+    const [signUp, setSignUp] = useState<any>({
         name: "",
         email: "",
         password: "",
@@ -33,7 +34,7 @@ const Steps = () => {
                 URL.revokeObjectURL(fileName);
             }
         };
-    }, [fileName]);
+    }, [fileName, error]);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -52,7 +53,7 @@ const Steps = () => {
             }
         }
 
-    }, [])
+    }, [error])
 
     function twitchAuth(): void {
         const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
@@ -87,28 +88,41 @@ const Steps = () => {
             setFileName(URL.createObjectURL(e.target.files[0]));
         }
         const { name, value } = e.target;
-        setSignUp(prevState => ({
+        setSignUp((prevState:any) => ({
             ...prevState,
             [name]: value
         }));
     };
 
-    function verifyEmail() {
+    const validateForm = () => {
+        const { name, email, password, confirmPassword, tradeLink, picture } = signUp;
+        if (!name || !email || !password || !confirmPassword || !tradeLink) {
+            return setError("Todos os campos são obrigatórios!");
+        }
+        else if (name.length < 3) {
+            return setError("O nome de usuário deve ter pelo menos 3 carateries!");
+        }
 
-        if (signUp.name.length < 3) {
-            return
+        else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+            return setError("Por favor, insira um endereço de e-mail válido.");
+        }
+
+        else if (password !== confirmPassword) {
+            return setError("As senhas não coincidem!");
+        }
+        else if (password.length < 6) {
+            return setError("A senha tem que ter no minimo 6 carateries");
+        }
+        else if (!/^https:\/\/steamcommunity\.com\/tradeoffer\/new\/\?partner=\d+&token=\w+$/.test(tradeLink)) {
+            return setError("Por favor, insira um trade link da Steam válido.");
         }
         axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users/verify", { name: signUp.name, email: signUp.email }).then((res) => {
-            console.log(res)
             setStep(2)
         }).catch((error) => {
-            console.log(error.response.data)
-            //criar estado de erro e mostrar no fronte o erro
-            console.log("Dados iguais")
+            setError(error.response.data.message)
         })
+    };
 
-
-    }
     async function requestSignUp(e: any) {
         try {
             e.preventDefault()
@@ -138,11 +152,13 @@ const Steps = () => {
                                         id={input}
                                         name={input}
                                         className={style.input}
+                                        value={signUp[input]}
                                     />
                                 </div>
                             </div>
                         ))}
-                        <button type="button" className={style.enviar} onClick={() => setStep(2)}>
+                        {error ? <p className={style.error}>{error}</p> : <></>}
+                        <button type="button" className={style.enviar} onClick={() => (validateForm())}>
                             Próximo
                         </button>
                         <hr className={style.linha} />
