@@ -1,6 +1,6 @@
 .Nav {
     padding: 15px;
-    background-color:#310003;
+    
 }
 
 .sidebar {
@@ -23,6 +23,14 @@
     justify-content: space-between;
 }
 
+.Container div:nth-child(2){
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 13%;
+}
+
 .Logo {
     height: 100%;
     width: 150px;
@@ -35,8 +43,8 @@
     font-family: 'Oswald', sans-serif;
     font-size: 18px;
     margin: 0 20px;
-    padding-right: 70px !important;
 }
+
 .Routes:hover {
     color: gray;
     cursor: pointer;
@@ -82,7 +90,7 @@
     .Logo {
         margin-left: 25px;
     }
-    
+
     .sidebar {
         display: flex;
         justify-content: end;
@@ -101,7 +109,7 @@
 }
 
 @media (max-width: 950px) {
-.Nav {
-    margin-top: 50px;
-}
+    .Nav {
+        margin-top: 50px;
+    }
 }

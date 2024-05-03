@@ -26,6 +26,7 @@
 .Campos {
     width: 50%;
     margin: 10px;
+    padding: 0px 10px;
     color: white;
     font-family: 'Oswald', sans-serif;
     font-size: 30px;
@@ -99,7 +100,7 @@
         font-size: 18px;
     }
 
-    .Ganhadores :nth-child(3){
+    .Ganhadores :nth-child(4){
         display: none;
     }
 
@@ -115,13 +116,13 @@
     }
 
     .Campos {
-        width: 80vw;
+        width: 85vw;
         justify-content: space-between;
     }
 
     
     .Campos p {
-        font-size: 22px;
+        font-size: 22px;    
         margin: 0;
         align-items: center;
     }
@@ -130,7 +131,7 @@
         margin-right: 50px;
     }
     
-    .Campos :nth-child(3) {
+    .Campos :nth-child(4) {
         display: none;
     }
 
@@ -239,6 +240,7 @@
         width: 85vw;
         justify-content: space-between;
         margin: 0;
+        padding: 0;
     }
 
     

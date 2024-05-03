@@ -5,14 +5,14 @@ import DefaultProfilePi from "@/images/defaultProfilePic.png";
 import Lapis from "@/images/lapis.png"
 import { signUpInput, signUpInputPlaceholder, signUpInputType } from "../../utils/inputs";
 import twitch from "@/images/twitch.png";
-import twitch2 from "@/images/twitch.png";
+import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png";
 import faceb from "@/images/face.png";
 import axios from "axios";
 import { useRouter } from "next/router";
 import PoliticaDePrivacidade from "./politicaDePrivacidade"
 const Steps = () => {
-    const [step, setStep] = useState(3);
+    const [step, setStep] = useState(1);
     const router = useRouter()
     const [fileName, setFileName]: any = useState(DefaultProfilePi);
     const [disable, setDisable] = useState(false)
@@ -165,11 +165,11 @@ const Steps = () => {
                         <p className={style.p}>
                             Acesse sua conta com
                         </p>
-                        <button type='button' className={style.loginFacebook} onClick={() => faceAuth()}>
+                        {/* <button type='button' className={style.loginFacebook} onClick={() => faceAuth()}>
                             <Image src={face} alt="Login com Facebook" className={style.facebook} />
                             <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
                             Entrar com Facebook
-                        </button>
+                        </button> */}
                         <button type='button' className={style.loginTwitch} onClick={() => twitchAuth()}>
                             <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
                             <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />

@@ -1,3 +1,5 @@
+import Profile from './Profile';
+import HeaderSidebar from './HeaderSidebar'
 import style from "../styles/Sidebar.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { AiOutlineClose } from "react-icons/ai";
@@ -8,7 +10,8 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
     
         <div className={style.background}>
           <AiOutlineClose onClick={() => setSideBar(!sideBar)} />
-          
+          <Profile/>
+          <HeaderSidebar/>
         </div>
   );
 }

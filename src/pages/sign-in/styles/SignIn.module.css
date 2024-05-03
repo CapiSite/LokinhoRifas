@@ -63,7 +63,7 @@
 
 .right2 input,
 .right2 button:nth-child(5),
-.right2 button:nth-child(7) {
+.right2 button:nth-child(7), .entrar {
     width: 100%;
     height: 40px !important;
     border-radius: 6px;
@@ -78,14 +78,14 @@
 }
 
 .right2 button:nth-child(5),
-.right2 button:nth-child(7) {
+.right2 button:nth-child(7), .entrar {
     background-color: var(--red);
     justify-content: center;
     color: white;
 }
 
 .right2 button:nth-child(5):disabled,
-.right2 button:nth-child(7):disabled {
+.right2 button:nth-child(7):disabled, .entrar:disabled {
     background-color: var(--hover2-red)
 }
 
@@ -104,7 +104,7 @@
 }
 
 .right2 button:nth-child(5):hover,
-.right2 button:nth-child(7):hover {
+.right2 button:nth-child(7), .entrar:hover, .entrar:hover {
     background-color: var(--hover-red);
 }
 
@@ -262,7 +262,7 @@
 
     .right2 input,
     .right2 button:nth-child(5),
-    .right2 button:nth-child(7) {
+    .right2 button:nth-child(7), .entrar, .entrar {
         max-width: 250px;
         height: 50px;
     }
@@ -349,7 +349,7 @@
 
     .right2 input,
     .right2 button:nth-child(5),
-    .right2 button:nth-child(7) {
+    .right2 button:nth-child(7), .entrar {
         max-width: 350px;
         height: 50px;
     }
@@ -436,7 +436,7 @@
 
     .right2 input,
     .right2 button:nth-child(5),
-    .right2 button:nth-child(7) {
+    .right2 button:nth-child(7), .entrar {
         width: 430px;
         height: 50px;
     }
@@ -523,7 +523,7 @@
 
     .right2 input,
     .right2 button:nth-child(5),
-    .right2 button:nth-child(7) {
+    .right2 button:nth-child(7), .entrar {
         width: 330px;
         height: 45px;
     }
@@ -566,7 +566,7 @@
 
         .right2 input,
         .right2 button:nth-child(5),
-        .right2 button:nth-child(7) {
+        .right2 button:nth-child(7), .entrar {
             width: 25vw;
             height: 50px;
         }
