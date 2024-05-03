@@ -1,22 +1,25 @@
-.background{
+.background {
     display: flex;
     width: 100%;
     margin-top: 25px;
     margin-bottom: 80px;
     justify-content: center;
 }
-.right{
+
+.right {
     width: 40vw;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.right img{
+
+.right img {
     height: 700px;
     width: 476px;
     margin-top: 20px;
 }
-.backAbout{
+
+.backAbout {
     z-index: -1;
     position: absolute;
     bottom: 150px;
@@ -25,24 +28,27 @@
     height: 100%;
     max-height: 1720px;
 }
-.forLine{
+
+.forLine {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.line{
+
+.line {
     width: 80vw;
     height: 2px;
     background-color: var(--light-gray);
 }
-.left{
+
+.left {
     width: 40vw;
     display: flex;
     flex-direction: column;
-    
+
 }
 
-.left h1{
+.left h1 {
     color: var(--strong-red);
     font-family: 'Bebas Neue', sans-serif;
     width: 550px;
@@ -50,12 +56,12 @@
     margin-bottom: 20px;
 }
 
-.left span{
+.left span {
     color: var(--red);
     font-family: 'Bebas Neue', sans-serif;
 }
 
-.left p{
+.left p {
     align-self: flex-start;
     text-align: left;
     color: var(--gray);
@@ -66,60 +72,70 @@
     font-weight: 600;
 }
 
-.rightMobile{
+.rightMobile {
     display: none;
 }
 
 @media (max-width:1400px) {
-    .left p{
+    .left p {
         width: 85%;
     }
-    .left h1{
+
+    .left h1 {
         width: 85%;
         font-size: 150px;
     }
 }
+
 @media (min-width:1302px) {
-    .background{
+    .background {
         margin-top: 45px;
     }
 }
+
 @media (max-width:1200px) {
-    .left h1{
+    .left h1 {
         font-size: 120px;
     }
 }
+
 @media (max-width:1100px) {
-    .background{
+    .background {
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
     }
-    .left{
+
+    .left {
         display: flex;
         align-items: center;
         width: 80vw;
         justify-content: center;
         padding: 0px;
         text-align: center;
-        
+
     }
-    .left h1{
+
+    .left h1 {
         width: 100%;
         font-size: 80px;
         margin-bottom: 0px;
     }
-    .left p{
+
+    .left p {
         margin: 50px 0px;
         width: 100%;
         font-size: 22px;
         text-align: center;
     }
-    .right{
+
+    .right {
         display: none;
     }
-    .rightMobile, .rightMobile img{
+
+    .rightMobile,
+    .rightMobile img {
         display: flex;
         margin-top: 10px;
         width: 80vw;
@@ -127,8 +143,9 @@
         margin-bottom: 25px;
     }
 }
-@media (max-width:970px) and (min-width:800px){
-    .backAbout{
+
+@media (max-width:970px) and (min-width:800px) {
+    .backAbout {
         max-height: 2100px;
     }
 }

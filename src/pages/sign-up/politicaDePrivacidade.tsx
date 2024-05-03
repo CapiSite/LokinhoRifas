@@ -7,7 +7,7 @@ const PoliticaDePrivacidade = () => {
         setIsChecked(e.target.checked);
     };
 
-    
+
     const handleCadastroClick = () => {
         if (!isChecked) {
             alert("Por favor, aceite os termos antes de cadastrar.");

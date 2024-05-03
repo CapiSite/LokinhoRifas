@@ -18,7 +18,6 @@ const Winer = () => {
       </div>
       {array.map((o, index) => {
         const estiloIndice = index % 2 === 0 ? style.IndiceOdd : style.IndiceEven;
-
         return (
           <div key={index} className={style.Ganhadores}>
             <p className={estiloIndice}>{index}</p>

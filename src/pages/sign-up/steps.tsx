@@ -194,7 +194,7 @@ const Steps = () => {
                 )}
                 {step === 3 && (
                     <div >
-                        <PoliticaDePrivacidade/>
+                        <PoliticaDePrivacidade />
                         <div className={style.containersubimit}>
                             <button type="button" className={style.buttonback} onClick={() => setStep(2)}>
                                 Voltar

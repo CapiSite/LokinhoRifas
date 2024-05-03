@@ -22,16 +22,16 @@ export default function App({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
-    return (
+  return (
     <>
       <Head>
         <title>Lokinho Skins</title>
       </Head>
       <UserProvider>
-      <TopHeader/>
-      <NavBar/>
-      <Component {...pageProps}/>
-      <Footer/>
+        <TopHeader />
+        <NavBar />
+        <Component {...pageProps} />
+        <Footer />
       </UserProvider>
 
     </>

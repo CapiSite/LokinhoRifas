@@ -6,7 +6,9 @@ import Banner from './about/images/bannersite1.png'
 import Background from '@/images/background.png'
 const Roulette = () => {
   return (
+
     <h1>Tela da roleta</h1>
+    
   );
 };
 export default Roulette;

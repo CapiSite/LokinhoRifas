@@ -12,7 +12,7 @@ import twitch from "@/images/twitch.png"
 import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png"
 import faceb from "@/images/face-branco.jpeg"
-import logo from "@/images/logo.jpg" 
+import logo from "@/images/logo.jpg"
 
 
 export default function Login() {
@@ -30,39 +30,39 @@ export default function Login() {
                     headers: {
                         Authorization: `Bearer ${storedToken}`
                     }
-                }).then((res:any) => {
+                }).then((res: any) => {
                     router.push("/")
-                }).catch((err:any) => {
+                }).catch((err: any) => {
                     localStorage.setItem("token", "")
                 })
             }
         }
-        
+
     }, [])
 
     function twitchAuth(): void {
         const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
         const CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID
-        if(CLIENT_ID !== undefined){
+        if (CLIENT_ID !== undefined) {
             const params = new URLSearchParams({
                 response_type: 'code',
                 scope: 'user:read:email',
                 client_id: CLIENT_ID,
                 redirect_uri: "http://localhost:3000"
-              })   
-        const authURL = `${TWITCH_URL}?${params.toString()}`
-        window.location.href = authURL
+            })
+            const authURL = `${TWITCH_URL}?${params.toString()}`
+            window.location.href = authURL
         }
- 
-      }
-      function faceAuth(): void {
+
+    }
+    function faceAuth(): void {
         const face_URL = ""
         const CLIENT_ID = ""
         const params = new URLSearchParams({
-          response_type: 'code',
-          scope: 'user:read:email',
-          client_id: CLIENT_ID,
-          redirect_uri: "http://localhost:3000"
+            response_type: 'code',
+            scope: 'user:read:email',
+            client_id: CLIENT_ID,
+            redirect_uri: "http://localhost:3000"
         })
 
         const authURL = `${face_URL}?${params.toString()}`
@@ -117,7 +117,7 @@ export default function Login() {
                         <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
                         Entrar com Twitch
                     </button>
-                    <button className={style.rout} disabled={disable}  type="button" onClick={() => router.push("/sign-up")}>
+                    <button className={style.rout} disabled={disable} type="button" onClick={() => router.push("/sign-up")}>
                         Primeira vez? Crie uma conta!
                     </button>
                 </form>
@@ -134,12 +134,12 @@ export default function Login() {
             return
         }
 
-        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/sign-in", user).then((res:any) => {
+        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/sign-in", user).then((res: any) => {
             setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.token })
             localStorage.setItem("token", res.data.token)
             setDisable(false)
             router.push("/")
-        }).catch((err:any) => {
+        }).catch((err: any) => {
             console.log(err.response.data)
             setDisable(false)
         })

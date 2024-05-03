@@ -42,7 +42,6 @@
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
-    box-sizing: border-box;
     align-items: center;
 }
 
@@ -62,7 +61,6 @@
 .IndiceEven, .IndiceOdd {
     padding: 10px;
     border-radius: 10px;
-    background: transparent;
 }
 
 .IndiceOdd {
@@ -71,4 +69,198 @@
 
 .IndiceEven {
     background-color: #3c090f6a;
+}
+
+@media (max-width: 320px) {
+    .AvisoGanhadores {
+        font-size: 25px;
+        margin: 20px;
+    }
+
+    .Campos {
+        width: 80vw;
+        justify-content: end;
+    }
+
+    .Campos :nth-child(3) {
+        display: none;
+    }
+
+    .Campos p {
+        font-size: 19px;
+        margin: 0 10px;
+    }
+
+    .Ganhadores {
+        width: 80vw;
+    }
+
+    .Ganhadores p {
+        font-size: 18px;
+    }
+
+    .Ganhadores :nth-child(3){
+        display: none;
+    }
+
+    .Ganhadores:nth-child(even) {
+        background-color: #3c090ffa;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+    .AvisoGanhadores {
+        font-size: 30px;
+        margin: 30px;
+    }
+
+    .Campos {
+        width: 80vw;
+        justify-content: space-between;
+    }
+
+    
+    .Campos p {
+        font-size: 22px;
+        margin: 0;
+        align-items: center;
+    }
+
+    .Campos :first-child {
+        margin-right: 50px;
+    }
+    
+    .Campos :nth-child(3) {
+        display: none;
+    }
+
+    .Ganhadores {
+        width: 85vw;
+    }
+
+    .Ganhadores p {
+        font-size: 20px;
+    }
+
+    .Ganhadores :nth-child(3){
+        display: none;
+    }
+
+    .Ganhadores:nth-child(even) {
+        background-color: #3c090ffa;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .AvisoGanhadores {
+        font-size: 33px;
+        margin: 20px;
+    }
+
+    .Campos {
+        width: 80vw;
+        justify-content: space-between;
+    }
+
+    
+    .Campos p {
+        font-size: 23px;
+        margin: 0;
+        align-items: center;
+    }
+
+    .Campos :first-child {
+        margin-right: 50px;
+    }
+    
+    .Campos :nth-child(3) {
+        display: none;
+    }
+
+    .Ganhadores {
+        width: 85vw;
+    }
+
+    .Ganhadores p {
+        font-size: 23px;
+    }
+
+    .Ganhadores :nth-child(3){
+        display: none;
+    }
+
+    .Ganhadores:nth-child(even) {
+        background-color: #3c090ffa;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .AvisoGanhadores {
+        font-size: 35px;
+        margin: 35px 0;
+    }
+
+    .Campos {
+        width: 80vw;
+        justify-content: space-between;
+    }
+
+    
+    .Campos p {
+        font-size: 23px;
+        margin: 0;
+        align-items: center;
+    }
+    
+    .Campos :nth-child(3) {
+        display: block;
+    }
+
+    .Ganhadores {
+        width: 85vw;
+    }
+
+    .Ganhadores p {
+        font-size: 23px;
+    }
+
+    .Ganhadores :nth-child(3){
+        display: block;
+    }
+}
+
+@media (min-width: 1025px) {
+    .AvisoGanhadores {
+        font-size: 45px;
+        margin: 35px 0;
+    }
+
+    .Campos {
+        width: 85vw;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    
+    .Campos p {
+        font-size: 28px;
+        margin: 0;
+        align-items: center;
+    }
+    
+    .Campos :nth-child(3) {
+        display: block;
+    }
+
+    .Ganhadores {
+        width: 85vw;
+    }
+
+    .Ganhadores p {
+        font-size: 25px;
+    }
+
+    .Ganhadores :nth-child(3){
+        display: block;
+    }
 }

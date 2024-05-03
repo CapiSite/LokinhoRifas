@@ -9,6 +9,8 @@ import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import Sidebar from "./Sidebar";
+import Perfil from '../../../images/foto-perfil-ex.png';
+import Logout from '../../../images/logout.png'
 
 
 const NavBar = () => {
@@ -56,7 +58,11 @@ const NavBar = () => {
               Entrar
             </Link>
           </button>
-          <div className={style.sidebar}>
+          <div>
+            <Image src={Perfil} alt="Foto de exemplo" className={style.Logged} />
+            <Image src={Logout} alt="Ícone para sair da conta" className={style.Logout}/>
+          </div>
+            <div className={style.sidebar}>
             <FaBars onClick={() => setSideBar(!sideBar)} />
           </div>
           <AnimatePresence>
