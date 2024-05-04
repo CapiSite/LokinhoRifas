@@ -23,7 +23,7 @@
     justify-content: space-between;
 }
 
-.Container div:nth-child(2){
+.Container div:nth-child(2) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -87,10 +87,6 @@
 }
 
 @media (max-width: 975px) {
-    .Logo {
-        margin-left: 25px;
-    }
-
     .sidebar {
         display: flex;
         justify-content: end;
@@ -111,5 +107,6 @@
 @media (max-width: 950px) {
     .Nav {
         margin-top: 50px;
+        padding: 0;
     }
 }

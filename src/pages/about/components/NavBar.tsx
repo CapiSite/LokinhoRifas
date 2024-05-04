@@ -5,7 +5,6 @@ import Image from "next/image";
 import style from '../styles/NavBar.module.css'
 import Logo from "../images/Logo.png"
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import Sidebar from "./Sidebar";
