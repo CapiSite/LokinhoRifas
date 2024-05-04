@@ -21,8 +21,10 @@ const Twitch = () => {
           className={style.LogoTwitch}
         />
         <h1 className={style.tituloLive}>RIFA IRÁ COMEÇAR AS XX:XX</h1>
-          <TwitchEmbed channel="hardkill551"/>
-          <TwitchPlayer channel="hardkill551" />
+        <div className={style.video}>
+          <TwitchEmbed channel="Gaules"/>
+          {/* <TwitchPlayer channel="Gaules" />  */}
+          </div>
       </main>
     </div>
   );
