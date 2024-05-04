@@ -1,12 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./styles/Twitch.module.css";
 import Image from "next/image";
 import Background from "@/images/background.png";
-import Post from "@/images/Post.png";
 import logovermelho from "@/images/logovermelho.png";
-import { TwitchEmbed, TwitchPlayer } from "react-twitch-embed";
+import { TwitchEmbed } from "react-twitch-embed";
+import ReactTwitchEmbedVideo from "react-twitch-embed-video";
 
 const Twitch = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 950);
+    };
+
+    handleResize(); // Chama a função imediatamente para definir o estado inicial
+
+    window.addEventListener("resize", handleResize);
+
+    setIsLoading(false); // Marca que o carregamento foi concluído após a montagem inicial
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Renderiza a live dependendo do tamanho da tela e do estado de carregamento
+  const renderLive = () => {
+    if (isMobile) {
+      return <ReactTwitchEmbedVideo channel="talk2megooseman" />;
+    } else {
+      return <div><TwitchEmbed channel="Gaules" /></div>;
+    }
+  };
+
   return (
     <div className={style.container}>
       <Image
@@ -21,10 +49,9 @@ const Twitch = () => {
           className={style.LogoTwitch}
         />
         <h1 className={style.tituloLive}>RIFA IRÁ COMEÇAR AS XX:XX</h1>
-        <div className={style.video}>
-          <TwitchEmbed channel="Gaules"/>
-          {/* <TwitchPlayer channel="Gaules" />  */}
-          </div>
+
+        {/* Renderiza a live apenas quando o carregamento estiver concluído */}
+        {!isLoading && renderLive()}
       </main>
     </div>
   );

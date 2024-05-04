@@ -28,6 +28,7 @@
     "react-scroll": "^1.8.9",
     "react-slick": "^0.29.0",
     "react-twitch-embed": "^3.0.2",
+    "react-twitch-embed-video": "^3.1.0",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
