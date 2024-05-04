@@ -1,8 +1,6 @@
 .background100{
     display: flex;
-    position: absolute;
-    bottom: -220%;
-    left: 0px;
+
     max-width: 100%;
     
 }
