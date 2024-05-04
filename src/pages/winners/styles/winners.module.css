@@ -71,7 +71,17 @@
 .IndiceEven {
     background-color: #3c090f6a;
 }
-
+.next{
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    height: 20px;
+    border: none;
+    cursor: pointer; 
+}
+.pagination{
+    display: flex;
+    gap: 20px;
+}
 @media (max-width: 320px) {
     .AvisoGanhadores {
         font-size: 25px;
