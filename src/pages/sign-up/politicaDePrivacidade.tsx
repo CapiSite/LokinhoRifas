@@ -37,7 +37,7 @@ const PoliticaDePrivacidade = () => {
                     Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco através do email: [email@example.com].</p>
                 <div className={style.checkboxcontainer}>
                     <input type="checkbox" className={style.checkbox} onChange={handleCheckboxChange} />
-                    <p className={style.policy}>Aceite os termos</p>
+                    <label className={style.termo}>Aceite os termos</label>
                 </div>
                 <div className={style.containersubimit}>
                     <button type="submit" className={style.enviar} onClick={handleCadastroClick} disabled={isChecked}>

@@ -412,7 +412,10 @@
     max-width: 15px !important;
     max-height: 15px !important;
 }
-
+.termo{
+    color: white;
+    width: 100%;
+}
 .rout {
     background: transparent;
     border-Bottom: 2px solid white;
@@ -484,17 +487,25 @@
     .right3 button:nth-child(4),
     .right3 button:nth-child(6) {
         border-radius: 5px;
-        min-width: 180px;
-        max-width: 290px;
         height: 40px;
-        margin: auto;
-    }
 
+    }
+    .policy{
+        padding-left: 5%;
+        padding-right: 5%;
+        overflow-y: auto;    
+    }
+    .checkbox{
+        margin-left: 5%;
+    }
+    .termo{
+        color: white;
+        width: 100%;
+    }
     .enviar {
-        min-width: 180px;
-        max-width: 390px;
         margin: auto;
-        height: 55px;
+        width: 99%;
+        height: 45px;
         padding: 8px;
         margin: 10px;
     }
@@ -579,12 +590,20 @@
     .right3 button:nth-child(4),
     .right3 button:nth-child(6) {
         border-radius: 5px;
-        min-width: 200px;
-        max-width: 300px;
-        margin: auto;
         height: 40px;
     }
-
+    .policy{
+        padding-left: 5%;
+        padding-right: 5%;
+        overflow-y: auto;
+    }
+    .checkbox{
+        margin-left: 5%;
+    }
+    .termo{
+        color: white;
+        width: 100%;
+    }
     .enviar {
         min-width: 200px;
         max-width: 300px;
@@ -677,9 +696,6 @@
     .right3 button:nth-child(4),
     .right3 button:nth-child(6) {
         border-radius: 5px;
-        min-width: 200px;
-        max-width: 300px;
-        margin: auto;
         height: 40px;
         margin-top: 3px;
     }
@@ -714,6 +730,18 @@
 
     .facebook3 {
         border-radius: 6px;
+    }
+    .policy{
+        padding-left: 5%;
+        padding-right: 5%;
+        overflow-y: auto;
+    }
+    .checkbox{
+        margin-left: 5%;
+    }
+    .termo{
+        color: white;
+        width: 100%;
     }
 }
 
@@ -754,8 +782,17 @@
         width: 100%;
         padding-left: 5%;
         padding-right: 5%;
-        max-height: 300px;
         overflow-y: auto;
+    }
+
+    .checkbox {
+        margin-left: 5% !important;
+        margin-right: 5px !important;
+    }
+
+    .termo {
+        color: white;
+        width: 100%;
     }
 
     .checkboxcontainer {
@@ -777,10 +814,10 @@
     .buttonback {
         background-color: var(--red);
         color: rgb(255, 255, 255);
-        font-size: 20px;
+        font-size: 30px;
         font-weight: 700;
         font-family: 'Lato', sans-serif;
-        margin-top: 10px;
+        margin-top: 20px;
         border-radius: 6px;
         margin-left: 1px;
         width: 350px !important;
@@ -824,7 +861,6 @@
     .right3 button:nth-child(4),
     .right3 button:nth-child(6) {
         border-radius: 5px;
-        min-width: 300px;
         max-width: 450px;
         margin: auto;
         height: 45px;
@@ -900,7 +936,6 @@
     .right3 button:nth-child(6) {
         border-radius: 5px;
         margin: 10px;
-        min-width: 100px;
         max-width: 90%;
         height: 30px;
         margin-top: 3px;
@@ -929,19 +964,30 @@
     .buttonback {
         background-color: var(--red);
         color: rgb(255, 255, 255);
-        font-size: 20px;
+        font-size: 30px;
         font-weight: 700;
         font-family: 'Lato', sans-serif;
-        margin-top: 10px;
+        margin-top: 20px;
         border-radius: 6px;
         margin-left: 1px;
-        width: 350px !important;
+        width: 80% !important;
         border: none;
         height: 42px;
     }
 
     .buttonback:hover {
         background-color: var(--hover2-red);
+    }
+    .termo {
+        color: white;
+        width: 100%;
+    }
+    .policy {
+        color: white;
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+        overflow-y: auto;
     }
 }
 
@@ -987,41 +1033,45 @@
 
     .Policygroup {
         width: 100%;
-        max-height: 300px;
+        max-height: 100%;
         overflow-y: auto;
     }
 
     .right3 {
         background-color: #333333;
         width: 45%;
-        height: 100vh;
-        margin-top: -85px !important;
+        height: 90vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: -1;
     }
 
     .buttonback {
         background-color: var(--red);
         color: rgb(255, 255, 255);
-        font-size: 20px;
+        font-size: 30px;
         font-weight: 700;
         font-family: 'Lato', sans-serif;
-        margin-top: 10px;
+        margin-top: 20px;
         border-radius: 6px;
         margin-left: 1px;
         width: 320px !important;
         border: none;
         height: 42px;
+
+
     }
 
     .buttonback:hover {
         background-color: var(--hover2-red);
     }
+    .termo{
+        color: white;
+        width: 100%;
+    }
 }
 
-@media (min-width: 1174px) and (max-width: 1232px) {
+@media (min-width: 1174px) and (max-width: 1231px) {
 
     .right2 form {
         height: 60vh;
@@ -1063,20 +1113,21 @@
 
     .Policygroup {
         width: 100%;
-        height: 100%;
-        max-height: 300px;
+        max-height: 100%;
         overflow-y: auto;
     }
 
     .right3 {
         background-color: #333333;
         width: 45%;
-        height: 100vh;
-        margin-top: -85px !important;
+        height: 90vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: -1;
+    }
+    .termo{
+        color: white;
+        width: 100%;
     }
 }
 
