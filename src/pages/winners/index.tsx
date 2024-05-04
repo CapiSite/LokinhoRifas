@@ -6,7 +6,8 @@ import axios from "axios";
 
 const Winner = () => {
   const [winners, setWinners] = useState([]);
-  const [page, setPage] = useState(1); 
+  const [page, setPage] = useState(1);
+  const [isNextDisabled, setIsNextDisabled] = useState(false);
 
   useEffect(() => {
     axios
@@ -14,19 +15,40 @@ const Winner = () => {
         params: { page: page },
       })
       .then(res => {
-        setWinners(res.data);
+        if (res.data.length > 0) {
+          setWinners(res.data);
+          setIsNextDisabled(false); // Ativa o botão se houver dados
+        } else {
+          setIsNextDisabled(true); // Desativa o botão se não houver mais dados
+        }
       })
       .catch(err => {
         console.error(err.response ? err.response.data : 'Erro ao buscar dados');
+        setIsNextDisabled(true); // Desativa o botão em caso de erro
       });
-  }, [page]); 
+  }, [page]);
 
   const handlePreviousClick = () => {
     setPage(prev => Math.max(prev - 1, 1)); // Evita ir para página 0
   };
 
   const handleNextClick = () => {
-    setPage(prev => prev + 1);
+    if (!isNextDisabled) {
+      axios
+        .get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users/winners", {
+          params: { page: page + 1 },
+        })
+        .then(res => {
+          if (res.data.length > 0) {
+            setPage(prev => prev + 1); // Só avança se houver dados na próxima página
+            setWinners(res.data);
+          }
+          // Não precisa alterar o estado de 'page' ou 'winners' se não houver dados
+        })
+        .catch(err => {
+          console.error(err.response ? err.response.data : 'Erro ao buscar dados');
+        });
+    }
   };
 
   return (
@@ -39,17 +61,17 @@ const Winner = () => {
         <p>Skin</p>
         <p>Prêmio</p>
       </div>
-      {winners.map((o: any, index: any) => (
+      {winners.map((o :any, index :any) => (
         <div key={index} className={style.Ganhadores}>
           <p className={index % 2 === 0 ? style.IndiceOdd : style.IndiceEven}>{index + 1}</p>
           <p>{o.name}</p>
-            <p>{o.skin}</p>
-            <p>{o.tradeUrl}</p>
+          <p>{o.skin}</p>
+          <p>{o.tradeUrl}</p>
         </div>
       ))}
       <div className={style.pagination}>
         <button onClick={handlePreviousClick} className={style.next}>Anterior</button>
-        <button onClick={handleNextClick} className={style.next}>Próximo</button>
+        <button onClick={handleNextClick} disabled={isNextDisabled} className={style.next}>Próximo</button>
       </div>
     </div>
   );
