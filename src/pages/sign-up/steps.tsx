@@ -12,7 +12,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import PoliticaDePrivacidade from "./politicaDePrivacidade"
 const Steps = () => {
-    const [step, setStep] = useState(3);
+    const [step, setStep] = useState(1);
     const router = useRouter()
     const [fileName, setFileName]: any = useState(DefaultProfilePi);
     const [disable, setDisable] = useState(false)
