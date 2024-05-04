@@ -16,6 +16,7 @@ const Winner = () => {
       })
       .then(res => {
         if (res.data.length > 0) {
+          console.log(res.data);
           setWinners(res.data);
           setIsNextDisabled(false); // Ativa o botão se houver dados
         } else {
@@ -64,7 +65,7 @@ const Winner = () => {
       {winners.map((o :any, index :any) => (
         <div key={index} className={style.Ganhadores}>
           <p className={index % 2 === 0 ? style.IndiceOdd : style.IndiceEven}>{index + 1}</p>
-          <p>{o.name}</p>
+          <p>{o.winner.name}</p>
           <p>{o.skin}</p>
           <p>{o.tradeUrl}</p>
         </div>
