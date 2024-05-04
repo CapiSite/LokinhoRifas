@@ -29,7 +29,7 @@ const Twitch = () => {
   // Renderiza a live dependendo do tamanho da tela e do estado de carregamento
   const renderLive = () => {
     if (isMobile) {
-      return <ReactTwitchEmbedVideo channel="talk2megooseman" />;
+      return <ReactTwitchEmbedVideo channel="evandro_vidal" />;
     } else {
       return <div><TwitchEmbed channel="Gaules" /></div>;
     }

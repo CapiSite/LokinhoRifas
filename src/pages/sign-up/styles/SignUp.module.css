@@ -7,7 +7,7 @@
 .left3 {
     background-color: #151515;
     width: 55%;
-    height: 90vh;
+    height: 100vh;
     min-height: 100%;
     color: white;
     font-weight: 800;
@@ -46,7 +46,7 @@
 .right3 {
     background-color: #333333;
     width: 45%;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -998,12 +998,7 @@
         width: 400px !important;
     }
 
-    .right3 form {
-        width: 70%;
-        height: 75%;
-        gap: 0px;
-        margin-left: 15px;
-    }
+
 
     .right2 input,
     .right2 button:nth-child(5),
@@ -1040,7 +1035,7 @@
     .right3 {
         background-color: #333333;
         width: 45%;
-        height: 90vh;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1078,12 +1073,7 @@
         width: 400px;
     }
 
-    .right3 form {
-        width: 70%;
-        height: 75%;
-        gap: 0px;
-        margin-left: 15px;
-    }
+
 
     .right2 input,
     .right2 button:nth-child(5),
@@ -1120,7 +1110,7 @@
     .right3 {
         background-color: #333333;
         width: 45%;
-        height: 90vh;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;

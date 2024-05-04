@@ -480,10 +480,13 @@
     .post3 {
         display: flex;
         height: 70px !important;
-        right: 70px !important;
         min-height: 20% !important;
         min-width: 20% !important;
-        margin-right: 38.5%;
+    }
+    .left2 h1 {
+        
+        height: 40%;
+        
     }
 }
 
@@ -552,12 +555,12 @@
         gap: 12px;
         height: 60vh;
     }
-
+    .logo {
+        width: 200px;
+        height: 100px;
+    }
     @media (min-width: 1025px) {
-        .logo {
-            width: 200px;
-            height: 100px;
-        }
+        
 
         .right2 form {
             height: 60vh;
