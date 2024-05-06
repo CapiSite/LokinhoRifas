@@ -12,7 +12,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import PoliticaDePrivacidade from "./politicaDePrivacidade"
 const Steps = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(2);
     const router = useRouter()
     const [fileName, setFileName]: any = useState(DefaultProfilePi);
     const [disable, setDisable] = useState(false)
@@ -125,14 +125,28 @@ const Steps = () => {
 
     async function requestSignUp(e: any) {
         try {
-            e.preventDefault()
-            const { confirmPassword, ...signUpData } = signUp
-            await axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users", signUpData)
-            router.push("/sign-in")
+            e.preventDefault();
+    
+            const formData = new FormData();
+            formData.append('file', e.target.elements['imagemPerfil'].files[0]);
+    
+            const { confirmPassword, ...signUpData } = signUp;
+            formData.append('signUpData', JSON.stringify(signUpData)); // Envie os outros dados do formulário como JSON
+    
+            const response = await axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+    
+            console.log(response.data); // Log da resposta do servidor
+    
+            router.push("/sign-in");
         } catch (error) {
-            console.log(error)
+            console.error(error);
         }
     }
+    
 
     return (
         <>
