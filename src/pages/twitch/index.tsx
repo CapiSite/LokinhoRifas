@@ -29,7 +29,9 @@ const Twitch = () => {
   // Renderiza a live dependendo do tamanho da tela e do estado de carregamento
   const renderLive = () => {
     if (isMobile) {
-      return <ReactTwitchEmbedVideo channel="evandro_vidal" />;
+      return <div className={style.Live}>
+        <ReactTwitchEmbedVideo channel="evandro_vidal" />
+      </div>;
     } else {
       return <div><TwitchEmbed channel="Gaules" /></div>;
     }
@@ -52,6 +54,7 @@ const Twitch = () => {
 
         {/* Renderiza a live apenas quando o carregamento estiver concluído */}
         {!isLoading && renderLive()}
+        <div></div>
       </main>
     </div>
   );
