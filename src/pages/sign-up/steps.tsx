@@ -3,7 +3,7 @@ import Image from "next/image";
 import style from "./styles/SignUp.module.css";
 import DefaultProfilePi from "@/images/defaultProfilePic.png";
 import Lapis from "@/images/lapis.png"
-import { signUpInput, signUpInputPlaceholder, signUpInputType } from "../../utils/inputs";
+import { MAX_FILE_SIZE, signUpInput, signUpInputPlaceholder, signUpInputType } from "../../utils/inputs";
 import twitch from "@/images/twitch.png";
 import twitch2 from "@/images/twitch2.png"
 import face from "@/images/face.png";
@@ -12,7 +12,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import PoliticaDePrivacidade from "./politicaDePrivacidade"
 const Steps = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(3);
     const router = useRouter()
     const [fileName, setFileName]: any = useState(DefaultProfilePi);
     const [disable, setDisable] = useState(false)
@@ -26,6 +26,19 @@ const Steps = () => {
         tradeLink: "",
         picture: DefaultProfilePi
     })
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleCheckboxChange = (e: any) => {
+        setIsChecked(e.target.checked);
+    };
+
+
+    const handleCadastroClick = () => {
+        if (!isChecked) {
+            alert("Por favor, aceite os termos antes de cadastrar.");
+        }
+    };
+
     // fazer verificacoa de cada campo usar um usestate som igual o que esta acima 
 
     useEffect(() => {
@@ -85,10 +98,20 @@ const Steps = () => {
     }
     const handleChange = (e: any) => {
         if (e.target.name === "picture") {
-            setFileName(URL.createObjectURL(e.target.files[0]));
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > MAX_FILE_SIZE) {
+                    setError("O tamanho da imagem excede o limite permitido.");
+                    setDisable(true);
+                    return;
+                }
+                setFileName(URL.createObjectURL(file));
+                setError("");
+                setDisable(false);
+            }
         }
         const { name, value } = e.target;
-        setSignUp((prevState:any) => ({
+        setSignUp((prevState: any) => ({
             ...prevState,
             [name]: value
         }));
@@ -128,11 +151,11 @@ const Steps = () => {
             e.preventDefault();
     
             const formData = new FormData();
-            formData.append('file', e.target.elements['imagemPerfil'].files[0]);
-    
+            formData.append('picture', e.target.elements['picture'].files[0]);
+
             const { confirmPassword, ...signUpData } = signUp;
             formData.append('signUpData', JSON.stringify(signUpData)); // Envie os outros dados do formulário como JSON
-            console.log(formData)
+            console.log(formData.get('file'))
             const response = await axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -194,7 +217,7 @@ const Steps = () => {
                         </button>
                     </>
                 )}
-                {step === 2 && (
+                {step === 3 && (
                     <div >
                         <h1 className={style.title}>Crie sua conta!</h1>
                         {fileName && (
@@ -214,19 +237,47 @@ const Steps = () => {
                                 onChange={handleChange}
                             />
                         </div>
-                        <button type="button" className={style.enviar} onClick={() => setStep(3)}>
-                            Próximo
+                        <button className={style.enviar} onClick={handleCadastroClick}>
+                            Cadastrar
                         </button>
-                        <button type="button" className={style.buttonback2} onClick={() => setStep(1)}>
+                        <button type="button" className={style.buttonback2} onClick={() => setStep(2)}>
                             Voltar
                         </button>
                     </div>
                 )}
-                {step === 3 && (
+                {step === 2 && (
                     <div >
-                        <PoliticaDePrivacidade />
+                        <div className={style.Policygroup}>
+                <h1 className={style.privacyPolicy}>Política de privacidade</h1>
+                <p className={style.policy}>Última atualização: [data]
+                    A [Nome da Empresa] (nós, nosso ou nos) opera o website [www.exemplo.com] (doravante referido como o Serviço).
+                    Esta página informa sobre nossas políticas relativas à coleta, uso e divulgação de informações pessoais quando você usa nosso Serviço.
+                    Coleta e Uso de Informações
+                    Não coletamos informações pessoais identificáveis, como seu nome, endereço, número de telefone ou endereço de e-mail, a menos que você as forneça voluntariamente.
+                    Dados de Log
+                    Nós seguimos uma política de log padrão. Isso significa que seus dados de log podem incluir informações como seu endereço IP, tipo de navegador, provedor de serviços de Internet, páginas que você visitou em nosso site, a hora e a data de sua visita, o tempo gasto nessas páginas e outras estatísticas.
+                    Cookies
+                    Nós não usamos cookies para rastrear a atividade do usuário. No entanto, podemos usar cookies de terceiros para melhorar a funcionalidade do nosso site.
+                    Compartilhamento de Informações
+                    Nós não compartilhamos informações pessoais identificáveis publicamente ou com terceiros, exceto quando exigido por lei.
+                    Links para Outros Sites
+                    Nosso Serviço pode conter links para outros sites que não são operados por nós. Se você clicar em um link de terceiros, você será direcionado para o site desse terceiro. Recomendamos vivamente que reveja a Política de Privacidade de todos os sites que visita.
+                    Alterações a esta Política de Privacidade
+                    Podemos atualizar nossa Política de Privacidade de tempos em tempos. Recomendamos que você revise esta página periodicamente para quaisquer alterações. Notificaremos você de quaisquer alterações, publicando a nova Política de Privacidade nesta página.
+                    Contate-Nos
+                    Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco através do email: [email@example.com].</p>
+                <div className={style.checkboxcontainer}>
+                    <input type="checkbox" className={style.checkbox} onChange={handleCheckboxChange} />
+                    <label className={style.termo}>Aceite os termos</label>
+                </div>
+                <div className={style.containersubimit}>
+                    <button type="button" className={style.enviar} onClick={() => setStep(3)}>
+                        Próximo
+                    </button>
+                </div>
+            </div>
                         <div className={style.containersubimit}>
-                            <button type="button" className={style.buttonback} onClick={() => setStep(2)}>
+                            <button type="button" className={style.buttonback} onClick={() => setStep(1)}>
                                 Voltar
                             </button>
                         </div>
