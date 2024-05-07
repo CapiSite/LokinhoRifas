@@ -132,7 +132,7 @@ const Steps = () => {
     
             const { confirmPassword, ...signUpData } = signUp;
             formData.append('signUpData', JSON.stringify(signUpData)); // Envie os outros dados do formulário como JSON
-    
+            console.log(formData)
             const response = await axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/users", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'

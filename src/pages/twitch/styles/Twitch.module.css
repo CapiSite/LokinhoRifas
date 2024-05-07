@@ -505,3 +505,9 @@
         background-color: #6C0C0A;
     }
 }
+
+.Live{
+    min-width: 80vw;
+    min-height: 80vh;
+
+}

@@ -33,7 +33,7 @@ const Twitch = () => {
         <ReactTwitchEmbedVideo channel="evandro_vidal" />
       </div>;
     } else {
-      return <div><TwitchEmbed channel="Gaules" /></div>;
+      return <TwitchEmbed className={style.Live} channel="Gaules" />;
     }
   };
 

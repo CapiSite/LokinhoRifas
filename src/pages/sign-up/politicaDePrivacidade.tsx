@@ -40,7 +40,7 @@ const PoliticaDePrivacidade = () => {
                     <label className={style.termo}>Aceite os termos</label>
                 </div>
                 <div className={style.containersubimit}>
-                    <button type="submit" className={style.enviar} onClick={handleCadastroClick} disabled={isChecked}>
+                    <button type="submit" className={style.enviar} onClick={handleCadastroClick}>
                         Cadastrar
                     </button>
                 </div>
