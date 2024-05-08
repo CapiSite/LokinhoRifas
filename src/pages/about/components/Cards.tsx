@@ -23,5 +23,4 @@ export default function Card({ group, more, i }: any) {
     </div>
 
   );
-
 }
