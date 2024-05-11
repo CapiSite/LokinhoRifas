@@ -105,6 +105,9 @@
 }
 
 @media (max-width: 950px) {
+    .Logo {
+        margin: 0;
+    }
     .Nav {
         margin-top: 50px;
         padding: 0;

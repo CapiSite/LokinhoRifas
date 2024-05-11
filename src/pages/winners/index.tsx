@@ -71,7 +71,7 @@ const Winner = () => {
         </div>
       ))}
       <div className={style.pagination}>
-        <button onClick={handlePreviousClick} className={style.next}>Anterior</button>
+        <button onClick={handlePreviousClick} className={style.previous}>Anterior</button>
         <button onClick={handleNextClick} disabled={isNextDisabled} className={style.next}>Próximo</button>
       </div>
     </div>
