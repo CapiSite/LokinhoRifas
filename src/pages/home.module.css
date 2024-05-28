@@ -1,117 +1,112 @@
-.Conteudo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    justify-content: space-between;
-    height: 100%;
-}
-
 .Background {
     position: absolute;
-    top: -125px;
+    top: 125px;
     width: 100%;
-    min-height: calc(100% + 150px);
-    z-index: -1
+    height: 50%;
+    z-index: -1;
 }
 
-.Logo {
-    margin-top: 20px;
-    width: 1000px;
-    height: 300px;
-    border-radius: 10px;
-    position: relative;
-    z-index: 0;
+.teste{
+    height: 600px;
 }
 
-
-.infoRifa p {
-    color: white;
-    font-size: 35px;
-    font-family: 'Oswald', sans-serif;
-    width: 100%;
-    text-align: center;
-    margin: 40px 0;
+.conteinerTexte{
+    margin-left: 400px;
+    padding-top: 70px;
 }
 
-.infoRifa>p {
-    text-decoration: underline;
-}
-
-.horaRifa {
+.teste2 {
+    margin-top: 210px;
+    height: 600px;
     display: flex;
+    gap: 80px;
+    align-items: center;
+    justify-content: center; 
+    background-color: black;
+}
+
+.titleContainer {
     font-size: 30px;
-    font-weight: bolder;
-}
-
-.horaRifa p {
-    font-size: 30px;
-    margin: 0 20px;
-    padding: 20px 30px;
-}
-
-
-.horaRifa> :nth-child(1),
-.horaRifa> :nth-child(3),
-.horaRifa> :nth-child(5),
-.horaRifa> :nth-child(7) {
-    border: 2px solid white;
-    border-radius: 5px;
-}
-
-
-.AvisoSkins {
-    color: white;
-    font-size: 35px;
-    font-family: 'Oswald', sans-serif;
-    width: 100%;
     text-align: center;
-    margin: 40px 0;
 }
 
-.SkinsRifa {
-    display: flex;
-    flex-direction: column;
+.Title{
+    font-size: 80px;
+    color: red;
 }
 
-.ImagemRifa {
-    width: 180px;
-    height: 120px;
-    border: 3px solid rgba(255, 0, 0, 0.541);
-    border-radius: 8px;
-    margin: 20px;
-    padding: 10px;
+.white{
+    color: white;
 }
 
-.Logo2 {
-    margin-top: 20px;
-    width: 1000px;
-    height: 300px;
-    border-radius: 10px;
-    position: relative;
-    z-index: 0;
+.Subtitle{
+    font-size: 27px;
+    color: white;
+    margin-bottom: 60px;
 }
 
-.botaoComprarRifa {
+.ButtonBudget {
+    width: 313px;
+    height: 58px;
     cursor: pointer;
-    width: 15%;
-    height: 50px;
-    font-size: 17px;
-    border: 0;
-    margin: 50px 15px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 1px black;
-    background-color: #BE0600;
-    color: white;
+    background-color: #E21A1A;
+    border-radius: 8px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px red; 
+
 }
 
-@media (min-width: 280px) and (max-width: 320px) {
-    .Logo {
-        width: 150px;
-    }
+.textbutton {
+    font-size: 24px;
+    color: white;
+    position: relative;
+    animation: glow 1.5s infinite alternate;
+}
 
-    .horaRifa p {
-        font-size: 20px;
-        padding: 20px 30px;
+@keyframes glow {
+    from {
+        text-shadow: 0 0 1px white, 0 0 2px white;
     }
+    to {
+        text-shadow: 0 0 2px white, 0 0 4px white;
+    }
+}
+
+.ContainerVantagens {
+    padding-top: 80px;
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 200px;
+    width: 300px;
+    background-image: linear-gradient(to bottom, rgb(29, 28, 28), rgb(49, 49, 49));
+}
+
+
+.Title2{
+    font-size: 30px;
+    color: red;
+    text-align: center;
+}
+
+.Titledescription{
+    text-align: center;
+    color: white; 
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.description{
+    text-align: center;
+    color: white; 
+    font-size: 15px;
+}
+
+.circulo{
+    border-radius: 50%;
+    background-color: red;
+    width: 100px;
+    height: 100px;
+
 }
