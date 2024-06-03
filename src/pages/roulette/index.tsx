@@ -7,7 +7,9 @@ import Background from '@/images/background.png'
 const Roulette = () => {
   return (
 
-    <h1>Tela da roleta</h1>
+    <div>
+      
+    </div>
     
   );
 };
