@@ -56,6 +56,29 @@ export default function Home() {
           <p className={style.description}>Transmitimos nossos sorteios sempre ao vivo na twitch ou instagram. Utilizando a plataforma WheelOfNames.</p>
         </div>
       </div>
+
+      <div className={style.ContainerGrupoRifas}>
+        <Image src={BG} alt="" className={style.BackgroundGruposRifas} />
+        <div className={style.contextGrupoRifas}>
+          <div>
+            <h1 className={style.TitleGrupoRifas}>Grupo de Rifas</h1>
+            <p className={style.descriptionGrupoRifas}>As melhores rifas de CS2. Entre e ganhe!</p>
+          </div>
+          <div>
+            <h1 className={style.TitleGrupoRifas}>Compramos suas Skins</h1>
+            <p className={style.descriptionGrupoRifas}>Pagamento imediato via pix, rapido e suguro!</p>
+          </div>
+          <div>
+            <h1 className={style.TitleGrupoRifas}>Encomende suas Skins</h1>
+            <p className={style.descriptionGrupoRifas}>Fazemos encomendas para sua skin.</p>
+          </div>
+          <div>
+            <h1 className={style.TitleGrupoRifas}> Faça Upgrade de suas Skins!</h1>
+            <p className={style.descriptionGrupoRifas}>Melhoramamos suas skins.</p>
+          </div>
+        </div>
+
+      </div>
     </>
   );
 }

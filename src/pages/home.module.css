@@ -5,9 +5,18 @@
     height: 50%;
     z-index: -1;
 }
-
+.BackgroundGruposRifas{
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    z-index: -1;
+}
 .teste{
     height: 600px;
+}
+
+.ContainerGrupoRifas{
+    height: 700px;
 }
 
 .conteinerTexte{
@@ -109,4 +118,30 @@
     width: 100px;
     height: 100px;
 
+}
+.contextGrupoRifas {
+    display: flex;
+    flex-direction: column;
+    width: 495px;
+    height: 500px;
+    margin-left: 100vh;
+    padding-left: 50px;
+    padding-top: 60px;
+    gap: 60px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: rgba(53, 53, 53, 0.356);
+}
+
+
+.TitleGrupoRifas{
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    color: red;
+}
+.descriptionGrupoRifas{
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
 }
