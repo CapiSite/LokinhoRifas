@@ -1,0 +1,21 @@
+.aboutContainer{
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0.89);
+    display: flex;
+    gap: 60px;
+    align-items: end;
+}
+.contentAbout{
+    width: 450px;
+    height: 500px;
+}
+.TitleAbout{
+    font-size: 30px;
+    color: red;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.descriptionAbout{
+    color: white;
+    font-size: 25px;
+}

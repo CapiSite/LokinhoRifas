@@ -2,17 +2,17 @@
     position: absolute;
     top: 125px;
     width: 100%;
-    height: 50%;
+    height: 40%;
     z-index: -1;
 }
 .BackgroundGruposRifas{
     position: absolute;
     width: 100%;
-    height: 30%;
+    height: 25%;
     z-index: -1;
 }
 .teste{
-    height: 600px;
+    height: 500px;
 }
 
 .ContainerGrupoRifas{
@@ -28,7 +28,7 @@
     margin-top: 210px;
     height: 600px;
     display: flex;
-    gap: 80px;
+    gap: 100px;
     align-items: center;
     justify-content: center; 
     background-color: black;

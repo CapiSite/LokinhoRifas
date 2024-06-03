@@ -5,8 +5,8 @@ import { useContext, useEffect } from "react";
 import style from "./home.module.css";
 import Image from "next/image";
 import BG from '@/images/BG.jpg';
-
-
+import RaffleGroup from "../pages/componentsHome/raffle-group";
+import AboutLokinho from "../pages/componentsHome/about-lokinho";
 export default function Home() {
   const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType
 
@@ -77,8 +77,9 @@ export default function Home() {
             <p className={style.descriptionGrupoRifas}>Melhoramamos suas skins.</p>
           </div>
         </div>
-
       </div>
+      <RaffleGroup/>
+      <AboutLokinho/>
     </>
   );
 }
