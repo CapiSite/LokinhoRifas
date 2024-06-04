@@ -2,7 +2,7 @@
     position: absolute;
     top: 125px;
     width: 100%;
-    height: 40%;
+    height: 30%;
     z-index: -1;
 }
 .BackgroundGruposRifas{
@@ -17,6 +17,8 @@
 
 .ContainerGrupoRifas{
     height: 700px;
+    display: flex;
+    background-color: #ff000044;
 }
 
 .conteinerTexte{
@@ -131,6 +133,8 @@
     border: 1px solid;
     border-radius: 10px;
     background-color: rgba(53, 53, 53, 0.356);
+    margin-top: 7%;
+    
 }
 
 
