@@ -14,3 +14,64 @@
     min-height: calc(100% + 150px);
     z-index: -1
 }
+
+/* App.css */
+
+.container {
+    text-align: center;
+    margin: 70px auto;
+    overflow: hidden;
+    width: 610px; /* Largura para 3 imagens, ajuste conforme necessário */
+  }
+  
+  .wrapper {
+    display: flex;
+    will-change: transform; /* Otimiza as animações de transformação */
+  }
+  
+  .item {
+    flex: 0 0 100px; /* Largura de cada item */
+    margin: 5px 9.5px; /* Espaçamento entre itens */
+    
+  }
+    
+  .item img {
+      max-width: 100px;
+      height: auto;
+      border-radius: 20%;
+  }
+  
+  .info {
+      padding: 5px 10px;
+      border-radius: 0 0 4px 4px;
+  }
+  
+  button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      background-color: #1e93d2;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+      background-color: rgb(95, 218, 227);
+  }
+  
+  
+  .selected {
+      border: 2px solid rgb(79, 95, 241);
+  }
+  
+  .wrapper {
+      scroll-behavior: smooth;
+    }
+    
+    .item.selected {
+      transform: scale(1.1);
+      transition: transform 0.3s ease;
+    }
+    
