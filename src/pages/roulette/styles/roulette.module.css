@@ -1,77 +1,143 @@
-.Conteudo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    justify-content: space-between;
-    height: 100%;
+.body {
+  display: flex;
+  flex-direction: column;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #fff;
+  background-color: #333;
 }
 
-.Background {
-    position: absolute;
-    top: -125px;
-    width: 100%;
-    min-height: calc(100% + 150px);
-    z-index: -1
+.boxGroupWrapper {
+  display: flex;
+
+  justify-content: left;
+  align-items: center;
+
+  background-color: #111;
+
+  position: relative;
 }
 
-/* App.css */
+.boxGroup {
+  display: flex;
 
-.container {
-    text-align: center;
-    margin: 70px auto;
-    overflow: hidden;
-    width: 610px; /* Largura para 3 imagens, ajuste conforme necessário */
-  }
-  
-  .wrapper {
-    display: flex;
-    will-change: transform; /* Otimiza as animações de transformação */
-  }
-  
-  .item {
-    flex: 0 0 100px; /* Largura de cada item */
-    margin: 5px 9.5px; /* Espaçamento entre itens */
-    
-  }
-    
-  .item img {
-      max-width: 100px;
-      height: auto;
-      border-radius: 20%;
-  }
-  
-  .info {
-      padding: 5px 10px;
-      border-radius: 0 0 4px 4px;
-  }
-  
-  .button {
-      padding: 10px 20px;
-      margin: 0 10px;
-      border: none;
-      background-color: #1e93d2;
-      color: white;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-  }
-  
-  .button:hover {
-      background-color: rgb(95, 218, 227);
-  }
-  
-  
-  .selected {
-      border: 2px solid rgb(79, 95, 241);
-  }
-  
-  .wrapper {
-      scroll-behavior: smooth;
-    }
-    
-    .item.selected {
-      transform: scale(1.1);
-      transition: transform 0.3s ease;
-    }
-    
+  gap: 15px;
+
+  width: fit-content;
+
+  /* outline: 2px solid red; */
+
+  background-color: #111;
+
+  padding-block: 15px;
+}
+
+.box, .faultyBox {
+  --box-bg-color: white;
+
+  width: 32px;
+  height: 32px;
+
+  background-color: var(--box-bg-color);
+
+  /* cursor: pointer; */
+}
+
+.box{
+  --box-bg-color: blue;
+
+}
+
+.marker {
+  width: 5px;
+  height: 20px;
+
+  background-color: red;
+
+  position: absolute;
+  bottom: 0;
+  inset-inline: 50%;
+
+  transform: translateX(-50%);
+}
+
+.h1 {
+  margin-inline: auto;
+
+  margin-block: 25px;
+}
+
+.h2 {
+  margin-inline: auto;
+
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px;
+  margin-block: 15px;
+
+  gap: 15px;
+}
+
+.extras {
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgba(255, 0, 0, 0.323);
+  outline: 2px solid red;
+
+  width: fit-content;
+
+  padding: 15px;
+  gap: 15px;
+}
+
+.button {
+  margin-inline: auto;
+  padding: 5px 10px;
+
+  border: none;
+
+  background-color: #555;
+  color: white;
+
+  border-radius: 5px;
+}
+
+.randomBox {
+  margin-inline: auto;
+  padding: 5px 10px;
+
+  border: none;
+
+  background-color: #555;
+  color: white;
+
+  border-radius: 5px;
+  background-color: lightgreen;
+  color: #222;
+
+  font-size: 24px;
+  font-weight: bolder;
+
+  padding: 10px 15px;
+}
+
+.button:hover {
+  background-color: #444;
+  cursor: pointer;
+}
