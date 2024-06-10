@@ -46,6 +46,7 @@ body {
   --bluedc:#404EED;
   --bluedc2:rgb(50, 61, 187);
   position: relative;
+  overflow-x: hidden;
 }
 a {
 	text-decoration: none;
