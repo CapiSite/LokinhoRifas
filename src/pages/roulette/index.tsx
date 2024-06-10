@@ -20,7 +20,7 @@ const CrateOpening = () => {
     }
   
     let count = 0;
-    const timing = 30000;
+    const timing = 60000;
     setAlreadyActive(true);
   
     setTimeout(() => {
@@ -72,7 +72,7 @@ const CrateOpening = () => {
   
 
   const handleResetClick = () => {
-    const carrousel = document.querySelector('.box-group');
+    const carrousel = carrouselRef.current.querySelector(`.${style.boxGroup}`);
 
     const spinTheCarrousel = new KeyframeEffect(
       carrousel,
@@ -91,8 +91,8 @@ const CrateOpening = () => {
   };
 
   const handleDebuggingClick = () => {
-    const boxes = document.querySelectorAll('.box');
-    boxes.forEach((box, index) => {
+    const boxes = boxRef.current.querySelectorAll(`.${style.box}`);
+    boxes.forEach((box:any, index:any) => {
       console.log(`The position of the ${index + 1}º box:`, (Math.round(box.getBoundingClientRect().right) - Math.round(box.getBoundingClientRect().left)) / 2 + Math.round(box.getBoundingClientRect().left));
     });
     console.log('\nCenter of screen: ', window.innerWidth / 2);
