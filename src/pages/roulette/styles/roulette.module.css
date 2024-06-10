@@ -46,7 +46,7 @@
       border-radius: 0 0 4px 4px;
   }
   
-  button {
+  .button {
       padding: 10px 20px;
       margin: 0 10px;
       border: none;
@@ -57,7 +57,7 @@
       transition: background-color 0.3s ease;
   }
   
-  button:hover {
+  .button:hover {
       background-color: rgb(95, 218, 227);
   }
   

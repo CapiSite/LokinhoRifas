@@ -1,6 +1,7 @@
 import style from "./styles/roulette.module.css";
 import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { items } from './const';
+import Image from "next/image";
 
 
 const duplicatedItems = [...items, ...items];
@@ -39,13 +40,13 @@ const Roulette = () => {
       <div ref={rouletteRef} className={style.wrapper}>
         {duplicatedItems.map((item, index) => (
           <div key={index} className={style.item && selectedItem && selectedItem.id === item.id ? style.selected : ''}>
-            <img src={item.img} alt={item.name} />
+            <Image width={120} height={120} src={item.img} alt={item.name} />
             <div className={style.info}>{item.name}</div>
           </div>
         ))}
       </div>
       <br />
-      <button onClick={sortearPessoa} disabled={isSpinning}>Sortear</button>
+      <button className={style.button} onClick={sortearPessoa} disabled={isSpinning}>Sortear</button>
     </div>
     
   );
