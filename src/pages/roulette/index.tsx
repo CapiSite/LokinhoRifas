@@ -2,7 +2,9 @@ import { useRef, useState } from 'react';
 import style from "./styles/roulette.module.css";
 import Bg from "@/images/background.png";
 import Image from 'next/image';
-const CrateOpening = () => {
+import Winner from "./winner/index";
+
+const Roullete = () => {
   const [currentBox, setCurrentBox] = useState(0);
   const [alreadyActive, setAlreadyActive] = useState(false);
   const [activeBox, setActiveBox] = useState(99);
@@ -102,8 +104,7 @@ const CrateOpening = () => {
   return (
     <>
  
-      <Image src={Bg} alt="oi" className={style.body}/>
-      <h1 className={style.h1}>Roleta</h1>
+      <Image src={Bg} alt="Fundo" className={style.body}/>
       <div ref={carrouselRef} className={style.boxGroupWrapper}>
         <div ref={boxRef} className={style.boxGroup}>
         <div className={style.faultyBox}></div>
@@ -543,16 +544,19 @@ const CrateOpening = () => {
       </div>
       <div className={style.buttonGroup}>
         <div className={style.main}>
-          <button className={style.randomBox} onClick={handleRandomClick}>Rodar</button>
+          <button className={style.randomBox} onClick={handleRandomClick}>Sortear</button>
           <button className={style.button} id="resetBoxes" onClick={handleResetClick}>Reset crates</button>
         </div>
-        <div className={style.extras}>
-          <h2 className={style.h2}>Extra (for debugging)</h2>
+        {/* <div className={style.extras}>
+          <h2 >Extra (for debugging)</h2>
           <button className={style.button} id="getBoxes" onClick={handleDebuggingClick}>Find crates</button>
+        </div> */}
+        <div>
+          <Winner/>
         </div>
       </div>
     </>
   );
 };
 
-export default CrateOpening;
+export default Roullete;
