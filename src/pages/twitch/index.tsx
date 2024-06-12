@@ -54,7 +54,6 @@ const Twitch = () => {
 
         {/* Renderiza a live apenas quando o carregamento estiver concluído */}
         {!isLoading && renderLive()}
-        <div></div>
       </main>
     </div>
   );

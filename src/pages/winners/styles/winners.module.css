@@ -72,6 +72,10 @@
     background-color: #3c090f6a;
 }
 
+.user{
+padding-left: 60px;
+}
+
 .pagination {
     display: flex;
     gap: 20px;

@@ -33,7 +33,7 @@ export default function Home() {
         <div className={style.conteinerTexte}>
           <h1 className={style.Title}>Trasforme <p className={style.white}>seu Inventário com o</p>Lokinho</h1>
           <h3 className={style.Subtitle}>Fazemos upgrade, copra e venda. Precisa de uma<br /> skin especifica? Também fazemos encomendas</h3>
-          <button className={style.ButtonBudget}><p className={style.textbutton}>faça seu Orçamento</p></button>
+          <button className={style.ButtonBudget}><p className={style.textbutton}>Compre a sua Rifa</p></button>
         </div>
       </div >
       {/* <div className={style.titleContainer}>

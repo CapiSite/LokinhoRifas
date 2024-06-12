@@ -58,7 +58,7 @@ const Winner = () => {
       <p className={style.AvisoGanhadores}>Últimos Ganhadores</p>
       <div className={style.Ganhadores}>
         <p className={style.IndiceEven}>Id</p>
-        <p>Usuário</p>
+        <p className={style.user}>Usuário</p>
         <p>Skin</p>
         <p>Prêmio</p>
       </div>
