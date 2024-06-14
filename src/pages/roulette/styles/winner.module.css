@@ -88,7 +88,7 @@
 
   .Campos {
       width: 80vw;
-      justify-content: end;
+      justify-content: flex-end;
   }
 
   .Campos :nth-child(3) {

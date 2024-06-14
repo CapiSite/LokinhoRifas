@@ -219,7 +219,7 @@
 
     .containerBotao {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
     }
 
     .botaoEntrar {
@@ -267,7 +267,7 @@
 
     .containerBotao {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
     }
 
     .botaoEntrar {

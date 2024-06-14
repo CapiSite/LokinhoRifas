@@ -216,3 +216,120 @@ width: 300px;
     display: none;
   }
 }
+
+.card {
+  margin-top: 50px;
+  width: 80vw;
+  height: 350px;
+  background-color: var(--white);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+}
+
+.card img {
+  border-radius: 20px;
+}
+
+.line2 {
+  width: 2px;
+  margin: 0px 50px;
+  background-color: var(--gray);
+  height: 100%;
+}
+
+.group {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.group h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 75px;
+}
+
+.group p {
+  font-family: "Montserrat", sans-serif;
+}
+
+.group button {
+  width: 100%;
+  height: 70px;
+  border: 0px;
+  border-radius: 20px;
+  background-color: var(--red);
+  color: var(--white);
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 60px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.group button:hover {
+  background-color: var(--hover-red);
+
+}
+@media (max-width: 1096px) {
+  .card {
+    height: 400px;
+  }
+  .card h1 {
+    font-size: 69px;
+  }
+}
+@media (max-width: 972px) {
+  .card {
+    height: 500px;
+  }
+}
+
+@media (max-width: 800px) {
+  .line2 {
+    display: none;
+  }
+
+  .card {
+    flex-direction: column;
+    height: 100%;
+    height: 680px;
+    text-align: center;
+  }
+
+  .group {
+    height: 40px;
+  }
+
+  .group h1 {
+    margin: 25px 0px;
+  }
+
+  .group p {
+    margin-top: 25px;
+  }
+
+  .group button {
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 546px) {
+  .card {
+    height: 750px;
+  }
+}
+@media (max-width: 460px) {
+  .card {
+    height: 780px;
+  }
+  .card h1{
+    font-size: 60px;
+  }
+}
+@media (max-width: 330px) {
+  .card {
+    height: 900px;
+  }
+
+}

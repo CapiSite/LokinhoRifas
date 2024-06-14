@@ -5,11 +5,8 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoPeopleCircleOutline } from "react-icons/io5";
 import GroupPhoto from "../images/Logo-prata.jpg";
 import GroupPhoto2 from "../images/Logo-dourada.jpg";
-import GroupPhoto3 from "../images/Logo-verde.jpg";
-import GroupPhoto4 from "../images/Logo-vermelho.jpg";
 import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Image from "next/image";
-import Card from "./Cards";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -140,8 +137,23 @@ export default function Benefits() {
             transition={{ duration: 1.5 }}
             className={style.groups}
           >
-            {group.map((o, i) => (
-              <Card more={more} i={i} group={o} key={i} />
+            {group.map((o) => (
+              <div id="card" className={style.card}>
+              <Image width={250} alt="GroupPhoto" src={o.photo} />
+              <div className={style.line2}>
+        
+              </div>
+              <div className={style.group}>
+                <div>
+                  <h1>{o.name}</h1>
+                  <p>{o.description}</p>
+                </div>
+                <Link href={o.link} target="_blank">
+                  <button>ENTRAR</button>
+                </Link>
+                
+              </div>
+            </div>
             ))}
           </motion.div>
 

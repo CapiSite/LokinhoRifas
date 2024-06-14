@@ -1,7 +1,7 @@
 .aboutContainer {
     height: 600px;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     background-image: linear-gradient(to right, 
                                       #520404 0%,  /* Vermelho intermediário */
                                       #3d0303 10%,   /* Vermelho muito escuro */

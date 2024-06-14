@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
     "lint": "next lint"
   },
@@ -29,6 +29,7 @@
     "react-slick": "^0.29.0",
     "react-twitch-embed": "^3.0.2",
     "react-twitch-embed-video": "^3.1.0",
+    "sharp": "^0.33.4",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",

@@ -89,7 +89,7 @@
 @media (max-width: 975px) {
     .sidebar {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         align-items: center;
         font-size: 35px;
         color: white;
