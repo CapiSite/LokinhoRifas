@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Winner from "./winner/index";
 import axios from 'axios';
 import React from 'react';
+import defaultImage from "../../images/foto-perfil-ex.png";
+import colors from '@/utils/contants';
 
 const Roullete = () => {
   const [currentBox, setCurrentBox] = useState(0);
@@ -104,7 +106,6 @@ const Roullete = () => {
     const spinAnimation = new Animation(spinTheCarrousel, document.timeline);
     spinAnimation.play();
   };
-
   const handleDebuggingClick = () => {
     const boxes = boxRef.current.querySelectorAll(`.${style.box}`);
     boxes.forEach((box:any, index:any) => {
@@ -123,26 +124,46 @@ const Roullete = () => {
     const nearestMultiple = getNearestMultiple(number, participants.length);
     let boxes:any = [];
     const forQuantity = nearestMultiple / participants.length;
+    let colorIndex = 0; // Inicializando o índice de cores
+  
     for (let i = 0; i < forQuantity; i++) {
-      participants.map((participant:any, index) => {
-        boxes.push(<div key={`false-${index}`} className={style.faultyBox}>{participant.name}
-</div>);
+      participants.forEach((participant: any, index: number) => {
+        const bgColor = colors[colorIndex % colors.length]; // Calcula a cor atual
+        boxes.push(
+          <div key={`participant-${index}-${i}`} className={style.faultyBox} style={{ backgroundColor: bgColor }}>
+            <Image 
+              src={participant.picture === "default" ? defaultImage :
+                  (participant.picture).startsWith('https://static-cdn.jtvnw.net') ?
+                  participant.picture : `http://localhost:5000/uploads/${participant.picture}`} 
+              width={100} 
+              height={100} 
+              alt={participant.name}
+            />
+            <p className={style.TitleParticipant}>Número: {participant.number}</p>
+            <p className={style.TitleParticipant}>{participant.name}</p>
+          </div>
+        );
+        colorIndex++; // Incrementa o índice para a próxima cor
       });
     }
     return boxes;
   }
-
+  
   return (
     <>
       <Image src={Bg} alt="Fundo" className={style.body}/>
       <div ref={carrouselRef} className={style.boxGroupWrapper}>
+        <div className={style.shadow}></div>
         <div ref={boxRef} className={style.boxGroup}>
           {falseBoxes(160)}
           {participants.map((participant:any, index) => (
-              <div className={`${style.box} ${style[`box${index + 1}`]}`}>
-                {participant.name}
-              </div>
-          ))}
+  <div key={index} className={style.box} style={{ backgroundColor: colors[index % colors.length] }}>
+    <Image src={participant.picture === "default" ? defaultImage : participant.picture}
+      width={100} height={100} alt={participant.name} style={{ borderRadius: '50%' }}/>
+    <p className={style.TitleParticipant}>Número: {participant.number}</p>
+    <p className={style.TitleParticipant}>{participant.name}</p>
+  </div>
+))}
           {falseBoxes(40)}
         </div>
         <div className={style.marker}></div>

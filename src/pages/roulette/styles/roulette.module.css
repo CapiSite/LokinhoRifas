@@ -9,42 +9,86 @@
 
 .boxGroupWrapper {
   display: flex;
-
   justify-content: left;
   align-items: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  z-index: 1;
   height: 160px;
   background-color: #111;
   margin-top: 110px;
   position: relative;
+  border: 1px solid #A5A4A4;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .boxGroup {
   display: flex;
-
-  gap: 15px;
-
+  height: 100%;
   width: fit-content;
-
-  background-color: red;
-
-  padding-block: 15px;
+  position: relative; /* Adicione o posicionamento relativo */
+  z-index: -2; /* Define o z-index para manter este elemento atrás do .body */
 }
+
+
 
 .box, .faultyBox {
-  --box-bg-color: blue;
-
-  width: 110px;
-  height: 110px;
-
-  background-color: var(--box-bg-color);
-
-  /* cursor: pointer; */
-}
-
-.box{
-  --box-bg-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  width: 140px;
+  height: 100%;
+  position: relative;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.5); /* Sombra para adicionar profundidade */
+  overflow: hidden; /* Para garantir que nada ultrapasse os limites da caixa */
 
 }
+.shadow{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  background-image: 
+    linear-gradient(
+      to bottom, 
+      rgba(77, 76, 76, 0.9) 0%,   /* Muito escuro no topo */
+      rgba(77, 76, 76, 0.8) 25%,  /* Menos escuro um pouco abaixo do topo */
+      rgba(77, 76, 76, 0.4) 50%,  /* Transição para mais claro no centro */
+      rgba(77, 76, 76, 0.1) 75%, /* Mais claro abaixo do centro */
+      rgba(0, 0, 0, 0) 100%       /* Transparente na base */
+    ),
+    linear-gradient(
+      to bottom left, 
+      rgba(0, 0, 0, 0.8) 8%, 
+      rgba(0, 0, 0, 0) 50%
+    ),
+    linear-gradient(
+      to bottom right, 
+      rgba(0, 0, 0, 0.8) 8%, 
+      rgba(0, 0, 0, 0) 50%
+    );
+  background-blend-mode: multiply;
+}
+.box img, .faultyBox img{
+  border-radius: 100%;
+}
+
+.box p, .faultyBox p{
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+}
+
+.box p:nth-child(3),.faultyBox p:nth-child(3){
+  position: absolute;
+  bottom:20px;
+}
+
 
 .marker {
   width: 5px;
@@ -77,6 +121,12 @@
 
   gap: 15px;
 }
+.TitleParticipant{
+  color: white;
+  font-size: 18px;
+  font-weight: 600px;
+  margin-left:10px;
+}
 
 .extras {
   display: flex;
@@ -88,35 +138,32 @@
   gap: 15px;
 }
 
-.button {
+.button, .randomBox {
   margin-inline: auto;
   padding: 8px;
   border: none;
-  background-color: red;
+  background-color: #A30006;
   color: white;
   border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s; /* Suaviza a transição de cores e transformação */
 }
+
+
 
 .randomBox {
   margin-inline: auto;
-  padding: 5px 10px;
-
   border: none;
-
-  background-color: #555;
   color: white;
-
   border-radius: 5px;
   background-color: #A30006;
-  color: white;
-
   font-size: 24px;
   font-weight: bolder;
-
   padding: 10px 15px;
 }
 
-.button:hover {
-  background-color: #444;
+.button:hover, .randomBox:hover {
+  background-color: rgb(219, 9, 16);
+  transform: scale(1.05); /* Aumenta ligeiramente o botão */
   cursor: pointer;
+  box-shadow: 0 0 20px #fff; /* Adiciona um brilho ao botão */
 }
