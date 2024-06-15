@@ -37,7 +37,7 @@ const Roullete = () => {
     }
   
     let count = 0;
-    const timing = 5000;
+    const timing = 50000;
     setAlreadyActive(true);
   
     setTimeout(() => {
@@ -134,7 +134,7 @@ const Roullete = () => {
             <Image 
               src={participant.picture === "default" ? defaultImage :
                   (participant.picture).startsWith('https://static-cdn.jtvnw.net') ?
-                  participant.picture : `http://localhost:5000/uploads/${participant.picture}`} 
+                  participant.picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${participant.picture}`} 
               width={100} 
               height={100} 
               alt={participant.name}

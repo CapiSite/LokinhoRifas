@@ -75,7 +75,7 @@ const NavBar = () => {
             <Image
               src={userInfo.picture === "default" ? defaultImage :
                    (userInfo.picture).startsWith('https://static-cdn.jtvnw.net') ?
-                   userInfo.picture : `http://localhost:5000/uploads/${userInfo.picture}`}
+                   userInfo.picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${userInfo.picture}`}
               width={50}
               height={50}
               alt="User Profile"
