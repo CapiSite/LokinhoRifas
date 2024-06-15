@@ -1,8 +1,10 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import style from "./styles/roulette.module.css";
 import Bg from "@/images/background.png";
 import Image from 'next/image';
 import Winner from "./winner/index";
+import axios from 'axios';
+import React from 'react';
 
 const Roullete = () => {
   const [currentBox, setCurrentBox] = useState(0);
@@ -10,7 +12,17 @@ const Roullete = () => {
   const [activeBox, setActiveBox] = useState(99);
   const boxRef:any = useRef(null);
   const carrouselRef:any = useRef(null);
-  
+  const [participants, setParticipants] = useState([]);
+  useEffect(() => {
+     
+        axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/roulette/participants", {}).then((res: any) => {
+            setParticipants(res.data)
+        }).catch((err: any) => {
+          console.log(err.response)
+        })
+        
+
+}, [])
   const handleRandomClick = () => {
     if (alreadyActive) return;
   
@@ -23,7 +35,7 @@ const Roullete = () => {
     }
   
     let count = 0;
-    const timing = 40000;
+    const timing = 5000;
     setAlreadyActive(true);
   
     setTimeout(() => {
@@ -100,445 +112,38 @@ const Roullete = () => {
     });
     console.log('\nCenter of screen: ', window.innerWidth / 2);
   };
+  function getNearestMultiple(total: number, multipleOf: number): number {
+    const remainder = total % multipleOf;
+    if (remainder === 0) return total; // Já é múltiplo
+    const adjustment = remainder < multipleOf / 2 ? -remainder : (multipleOf - remainder);
+    return total + adjustment;
+  }
+  
+  function falseBoxes(number: number) {
+    const nearestMultiple = getNearestMultiple(number, participants.length);
+    let boxes:any = [];
+    const forQuantity = nearestMultiple / participants.length;
+    for (let i = 0; i < forQuantity; i++) {
+      participants.map((participant:any, index) => {
+        boxes.push(<div key={`false-${index}`} className={style.faultyBox}>{participant.name}
+</div>);
+      });
+    }
+    return boxes;
+  }
 
   return (
     <>
- 
       <Image src={Bg} alt="Fundo" className={style.body}/>
       <div ref={carrouselRef} className={style.boxGroupWrapper}>
         <div ref={boxRef} className={style.boxGroup}>
-        <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.box}></div>
-      <div className={style.box}></div>
-      <div className={style.box}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.box}></div>
-      <div className={style.box}></div>
-      <div className={style.box}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
-      <div className={style.faultyBox}></div>
+          {falseBoxes(160)}
+          {participants.map((participant:any, index) => (
+              <div className={`${style.box} ${style[`box${index + 1}`]}`}>
+                {participant.name}
+              </div>
+          ))}
+          {falseBoxes(40)}
         </div>
         <div className={style.marker}></div>
       </div>
@@ -547,10 +152,6 @@ const Roullete = () => {
           <button className={style.randomBox} onClick={handleRandomClick}>Sortear</button>
           <button className={style.button} id="resetBoxes" onClick={handleResetClick}>Reset crates</button>
         </div>
-        {/* <div className={style.extras}>
-          <h2 >Extra (for debugging)</h2>
-          <button className={style.button} id="getBoxes" onClick={handleDebuggingClick}>Find crates</button>
-        </div> */}
         <div>
           <Winner/>
         </div>

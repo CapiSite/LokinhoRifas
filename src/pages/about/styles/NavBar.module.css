@@ -1,6 +1,8 @@
 .Nav {
     padding: 15px;
     background-color: #39060c;
+    z-index: 10;
+    position: relative;
 }
 
 .sidebar {
@@ -20,12 +22,13 @@
 .Container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .Container div:nth-child(2) {
     display: flex;
     align-items: center;
-    gap: 100px;
+    justify-content: space-between;
     width: 100%;
     padding: 0px 13%;
 }
@@ -34,6 +37,8 @@
     height: 100%;
     width: 150px;
     margin-left: 20px;
+    cursor: pointer;
+
 }
 
 .Routes {
@@ -45,9 +50,25 @@
 }
 
 .Routes:hover {
-    color: gray;
+    color: var(--red);
     cursor: pointer;
 }
+
+.Routes:after {
+    content: '';
+    width: 0px;
+    height: 2px;
+    display: block;
+    background: black;
+    transition: 300ms;
+    background-color: var(--red);
+  }
+  
+  .Routes:hover:after {
+    width: 100%;
+  }
+
+
 
 .BotaoEntrar {
     margin-right: 35px;
@@ -88,6 +109,33 @@
     border-radius: 50%;
     margin-right: 40px;
 }
+
+.dropdownMenu{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 70px;
+    position: absolute;
+    right: 0px;
+    border-bottom-left-radius: 10px;
+    background-color: #8d0e1d;
+}
+
+
+.dropdownItem{
+    font-weight: 700;
+    background-color: transparent;
+    color: white;
+    height: 50px;
+    border: 0px;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+.dropdownItem:hover{
+    color: #919191;
+}
+
 @media (max-width: 975px) {
     .sidebar {
         display: flex;
