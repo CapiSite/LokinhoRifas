@@ -71,12 +71,13 @@ const Steps = () => {
     function twitchAuth(): void {
         const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
         const CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID
-        if (CLIENT_ID !== undefined) {
+        const REDIRECT_URI = process.env.NEXT_PUBLIC_REDIRECT_URI
+        if (CLIENT_ID !== undefined && REDIRECT_URI !== undefined) {
             const params = new URLSearchParams({
                 response_type: 'code',
                 scope: 'user:read:email',
                 client_id: CLIENT_ID,
-                redirect_uri: "http://localhost:3000"
+                redirect_uri: REDIRECT_URI
             })
             const authURL = `${TWITCH_URL}?${params.toString()}`
             window.location.href = authURL
@@ -86,15 +87,19 @@ const Steps = () => {
     function faceAuth(): void {
         const face_URL = ""
         const CLIENT_ID = ""
+        const REDIRECT_URI = process.env.NEXT_PUBLIC_REDIRECT_URI
+        if (CLIENT_ID !== undefined && REDIRECT_URI !== undefined) {
         const params = new URLSearchParams({
             response_type: 'code',
             scope: 'user:read:email',
             client_id: CLIENT_ID,
-            redirect_uri: "http://localhost:3000"
+            redirect_uri: REDIRECT_URI
         })
-
         const authURL = `${face_URL}?${params.toString()}`
         window.location.href = authURL
+    }
+
+       
     }
     const handleChange = (e: any) => {
         if (e.target.name === "picture") {

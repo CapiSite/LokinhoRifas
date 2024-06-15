@@ -9,6 +9,7 @@ import TopHeader from './about/components/TopHeader'
 import Footer from './about/components/Footer'
 import NavBar from './about/components/NavBar'
 import { UserProvider } from '@/utils/contextUser'
+import Header from './about/components/Header'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()

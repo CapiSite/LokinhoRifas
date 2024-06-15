@@ -45,12 +45,14 @@ export default function Login() {
     function twitchAuth(): void {
         const TWITCH_URL = "https://id.twitch.tv/oauth2/authorize"
         const CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID
-        if (CLIENT_ID !== undefined) {
+        const REDIRECT_URI = process.env.NEXT_PUBLIC_REDIRECT_URI
+
+        if (CLIENT_ID !== undefined && REDIRECT_URI !== undefined) {
             const params = new URLSearchParams({
                 response_type: 'code',
                 scope: 'user:read:email',
                 client_id: CLIENT_ID,
-                redirect_uri: "http://localhost:3000"
+                redirect_uri: REDIRECT_URI
             })
             const authURL = `${TWITCH_URL}?${params.toString()}`
             window.location.href = authURL
@@ -60,17 +62,19 @@ export default function Login() {
     function faceAuth(): void {
         const face_URL = ""
         const CLIENT_ID = ""
+        const REDIRECT_URI = process.env.NEXT_PUBLIC_REDIRECT_URI
+        if (CLIENT_ID !== undefined && REDIRECT_URI !== undefined) {
         const params = new URLSearchParams({
             response_type: 'code',
             scope: 'user:read:email',
             client_id: CLIENT_ID,
-            redirect_uri: "http://localhost:3000"
+            redirect_uri: REDIRECT_URI
         })
 
         const authURL = `${face_URL}?${params.toString()}`
         window.location.href = authURL
     }
-
+    }
     return (
         <div className={style.wallpaper}>
             <div className={style.left2}>
@@ -133,7 +137,7 @@ export default function Login() {
         }
 
         axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/sign-in", user).then((res: any) => {
-            setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.token })
+            setUserInfo({ ...userInfo, id: res.data.id, name: res.data.name, email: res.data.email, picture: res.data.picture, token: res.data.token, isAdmin: res.data.isAdmin })
             localStorage.setItem("token", res.data.token)
             setDisable(false)
             router.push("/")

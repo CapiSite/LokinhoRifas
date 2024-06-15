@@ -2,10 +2,12 @@ import Image from "next/image";
 import Logo from "../images/Logo.png"
 import style from "../styles/Header.module.css"
 import { FaBars } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Sidebar from "./Sidebar";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { UserContext } from "@/utils/contextUser";
+import UserContextType from "@/utils/interfaces";
 
 export default function Header() {
   const [sideBar, setSideBar] = useState<boolean>(false)

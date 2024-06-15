@@ -1,21 +1,51 @@
 "use client";
-import { useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import style from '../styles/NavBar.module.css'
-import Logo from "../images/Logo.png"
+import style from '../styles/NavBar.module.css';
+import Logo from "../images/Logo.png";
 import { useRouter } from "next/router";
 import { FaBars } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import Sidebar from "./Sidebar";
-import Perfil from '../../../images/foto-perfil-ex.png';
-import Logout from '../../../images/logout.png'
-
-
+import { UserContext } from "@/utils/contextUser";
+import UserContextType from "@/utils/interfaces";
+import axios from "axios";
+import defaultImage from "../../../images/foto-perfil-ex.png";
 const NavBar = () => {
+  const [token, setToken] = useState<string | null>(null);
+  const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType;
+  const [loaded, setLoaded] = useState(false);  // Novo estado para controle de carregamento
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+    if (storedToken) {
+      axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth", {}, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`
+        }
+      }).then((res: any) => {
+        setUserInfo({
+          id: res.data.user.id,
+          name: res.data.user.name,
+          email: res.data.user.email,
+          picture: res.data.user.picture,
+          token: res.data.user.token,
+          isAdmin: res.data.user.isAdmin
+        });
+        setLoaded(true)
+      }).catch((err: any) => {
+        localStorage.setItem("token", "");
+        setUserInfo({ id: "", name: "", email: "", picture: "", token: "", isAdmin: false });
+      });
+    }
+  }
+  }, [setUserInfo, token, setToken]);
+
   const router = useRouter();
-  //const { isLoggedIn } = useAuth();
-  const [sideBar, setSideBar] = useState<boolean>(false)
+  const [sideBar, setSideBar] = useState<boolean>(false);
+
   const initial = {
     x: 500,
   };
@@ -29,7 +59,6 @@ const NavBar = () => {
   };
 
   return (
-
     <div>
       <nav className={style.Nav}>
         <div className={style.Container}>
@@ -52,10 +81,22 @@ const NavBar = () => {
             </button>
           </div>
 
-          {/* onClick={() => router.push(isLoggedIn ? '/perfil' : '/sign-in')} colocar no bortao abaixo vara verificar se esta logado ou n */}
-          <button onClick={() => router.push("/sign-in")} className={style.BotaoEntrar}>
-            Entrar
-          </button>
+          {token && loaded ? (
+  <Image
+    key={userInfo.picture}  // Usando userInfo.picture como chave para forçar re-renderização
+    src={userInfo.picture === "default" ? defaultImage :
+         userInfo.picture.startsWith('https://static-cdn.jtvnw.net') ?
+         userInfo.picture : `http://localhost:5000/uploads/${userInfo.picture}`}
+    width={50}
+    height={50}
+    alt="User Profile"
+    className={style.FotoPerfil}
+    onLoadingComplete={() => setLoaded(false)}  // Reinicia o estado após a imagem ser carregada
+  />
+) : (
+  <button onClick={() => router.push("/sign-in")} className={style.BotaoEntrar}>Entrar</button>
+)}
+          
           <div className={style.sidebar}>
             <FaBars onClick={() => setSideBar(!sideBar)} />
           </div>
@@ -73,11 +114,9 @@ const NavBar = () => {
             )}
           </AnimatePresence>
         </div>
-      </nav >
-    </div >
+      </nav>
+    </div>
+  );
+};
 
-  )
-
-}
-
-export default NavBar 
+export default NavBar;
