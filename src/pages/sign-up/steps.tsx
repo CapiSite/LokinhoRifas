@@ -10,7 +10,8 @@ import face from "@/images/face.png";
 import faceb from "@/images/face.png";
 import axios from "axios";
 import { useRouter } from "next/router";
-import PoliticaDePrivacidade from "./politicaDePrivacidade"
+import PoliticaDePrivacidade from "./politicaDePrivacidade";
+import MaskedInput from "react-text-mask";
 const Steps = () => {
     const [step, setStep] = useState(1);
     const router = useRouter()
@@ -123,7 +124,7 @@ const Steps = () => {
     };
 
     const validateForm = () => {
-        const { name, email, password, confirmPassword, tradeLink, picture } = signUp;
+        const { name, email, password, confirmPassword, tradeLink,phoneNumber, picture } = signUp;
         if (!name || !email || !password || !confirmPassword || !tradeLink) {
             return setError("Todos os campos são obrigatórios!");
         }
@@ -191,10 +192,20 @@ const Steps = () => {
                         <div className={style.socialLogin}>
                             <h1 className={style.title}>Crie sua conta!</h1>
                         </div>
-                        {signUpInput.slice(0, 5).map((input, index) => (
+                        {signUpInput.slice(0, 6).map((input, index) => (
                             <div key={index} className={style.container}>
                                 <div className={style.container2}>
                                     <label htmlFor={input} className={style.label}>{signUpInputPlaceholder[index]}</label>
+
+                                  {input === "phoneNumber" ? <MaskedInput defaultValue={""}
+                                    onChange={handleChange}
+                                    type={signUpInputType[index]}
+                                    id={input}
+                                    name={input}
+                                    className={style.input}
+                                    value={signUp[input]} 
+                                    mask={['(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                                    /> :
                                     <input
                                         onChange={handleChange}
                                         type={signUpInputType[index]}
@@ -203,6 +214,7 @@ const Steps = () => {
                                         className={style.input}
                                         value={signUp[input]}
                                     />
+                                  }
                                 </div>
                             </div>
                         ))}
@@ -214,11 +226,6 @@ const Steps = () => {
                         <p className={style.p}>
                             Acesse sua conta com
                         </p>
-                        {/* <button type='button' className={style.loginFacebook} onClick={() => faceAuth()}>
-                            <Image src={face} alt="Login com Facebook" className={style.facebook} />
-                            <Image src={faceb} alt="Login com Facebook" className={style.facebook2} />
-                            Entrar com Facebook
-                        </button> */}
                         <button type='button' className={style.loginTwitch} onClick={() => twitchAuth()}>
                             <Image src={twitch} alt="Login com Twitch" className={style.twitch} />
                             <Image src={twitch2} alt="Login com Twitch" className={style.twitch2} />
