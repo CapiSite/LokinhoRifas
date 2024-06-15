@@ -14,7 +14,6 @@ import defaultImage from "../../../images/foto-perfil-ex.png";
 const NavBar = () => {
   const [token, setToken] = useState<string | null>(null);
   const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType;
-  const [loaded, setLoaded] = useState(false);  // Novo estado para controle de carregamento
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -34,14 +33,13 @@ const NavBar = () => {
           token: res.data.user.token,
           isAdmin: res.data.user.isAdmin
         });
-        setLoaded(true)
       }).catch((err: any) => {
         localStorage.setItem("token", "");
         setUserInfo({ id: "", name: "", email: "", picture: "", token: "", isAdmin: false });
       });
     }
   }
-  }, [setUserInfo, token, setToken]);
+  }, [setUserInfo, userInfo.picture]);
 
   const router = useRouter();
   const [sideBar, setSideBar] = useState<boolean>(false);
@@ -81,21 +79,19 @@ const NavBar = () => {
             </button>
           </div>
 
-          {token && loaded ? (
-  <Image
-    key={userInfo.picture}  // Usando userInfo.picture como chave para forçar re-renderização
-    src={userInfo.picture === "default" ? defaultImage :
-         userInfo.picture.startsWith('https://static-cdn.jtvnw.net') ?
-         userInfo.picture : `http://localhost:5000/uploads/${userInfo.picture}`}
-    width={50}
-    height={50}
-    alt="User Profile"
-    className={style.FotoPerfil}
-    onLoadingComplete={() => setLoaded(false)}  // Reinicia o estado após a imagem ser carregada
-  />
-) : (
-  <button onClick={() => router.push("/sign-in")} className={style.BotaoEntrar}>Entrar</button>
-)}
+          {userInfo.picture ? (
+            <Image
+            src={userInfo.picture === "default" ? defaultImage :
+                 (userInfo.picture).startsWith('https://static-cdn.jtvnw.net') ?
+                 userInfo.picture : `http://localhost:5000/uploads/${userInfo.picture}`}
+            width={50}
+            height={50}
+            alt="User Profile"
+            className={style.FotoPerfil}
+          />
+          ) : (
+            <button onClick={() => router.push("/sign-in")} className={style.BotaoEntrar}>Entrar</button>
+          )}
           
           <div className={style.sidebar}>
             <FaBars onClick={() => setSideBar(!sideBar)} />
