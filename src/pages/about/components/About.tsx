@@ -10,7 +10,7 @@ export default function About() {
     scale: 1.10,
     speed: 300,
     max: 10
-  };
+  }; 
   const tilt:any = useRef(null);
   useEffect(() => {
     VanillaTilt.init(tilt.current, options);
