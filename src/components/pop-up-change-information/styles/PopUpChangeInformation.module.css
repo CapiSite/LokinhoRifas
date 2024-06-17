@@ -27,16 +27,46 @@
     margin-left: 10px;
     cursor: pointer;
 }
-.TitlePopUpBuy{
-    font-size: 30px;
-    color: white;
-    font-family: 'work sans';
-}
-.containerInputs{
+.containerInputsPopUpInfo{
     display: flex;
     flex-direction: column;
     height: 350px;
     gap: 13px;
     align-items: center;
     margin-top: 60PX;
+}
+.TitlePopUp{
+    font-size: 30px;
+    color: white;
+    font-family: 'work sans';
+}
+.InputsPopUpInfo{
+    display: flex;
+    flex-direction: column;
+    
+}
+.labelInputsPopUp{
+    font-size: 25px;
+    color: white;
+    font-family: 'work sans';
+}
+.inputsPopUp{
+    width: 400px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 20px;
+    outline: none;
+    font-family: 'work sans';
+}
+.buttonSavePopUp{
+    height: 40px;
+    width: 190px;
+    border-radius: 8px;
+    background-color: #0F4601;
+    border: 1px solid rgba(255, 255, 255, 0.322);
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'work sans';
 }

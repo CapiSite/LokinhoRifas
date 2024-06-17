@@ -11,7 +11,7 @@ import UserContextType from "@/utils/interfaces";
 import axios from "axios";
 import defaultImage from "../../../images/foto-perfil-ex.png";
 
-const NavBar = ({ setPopUp }:any) => {
+const NavBar = ({ setPopUpInfo }:any) => {
   const [token, setToken] = useState<string | null>(null);
   const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType;
   const [sideBar, setSideBar] = useState<boolean>(false);
@@ -90,6 +90,7 @@ const NavBar = ({ setPopUp }:any) => {
           <div className={style.sidebar}>
             <FaBars onClick={() => setSideBar(!sideBar)} />
           </div>
+
           <AnimatePresence>
             {!sideBar ? null : (
               <motion.aside
@@ -105,6 +106,7 @@ const NavBar = ({ setPopUp }:any) => {
           </AnimatePresence>
         </div>
       </nav>
+      
       <AnimatePresence>
             {isDropdownOpen && (
               <motion.div
@@ -115,7 +117,7 @@ const NavBar = ({ setPopUp }:any) => {
                 className={style.dropdownMenu}
               >
                 <button onClick={()=>handleLogout()} className={style.dropdownItem}>Sair</button>
-                <button className={style.dropdownItem} onClick={()=>setPopUp(true)}>Configuração</button>
+                <button className={style.dropdownItem} onClick={()=>setPopUpInfo(true)}>Configuração</button>
               </motion.div>
             )}
           </AnimatePresence>

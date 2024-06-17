@@ -32,10 +32,10 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <UserProvider>
         <TopHeader />
-        <NavBar setPopUp={setPopUpInfo}/>
+        <NavBar setPopUpInfo={setPopUpInfo}/>
         <Component {...pageProps} />
         <Footer />
-        {setPopUpInfo ? <PopUpChangeInformation setPopUpInfo={setPopUpInfo}/> : <></>}
+         {popUpInfo && <PopUpChangeInformation setPopUpInfo={setPopUpInfo} />}  
       </UserProvider>
     
     </>
