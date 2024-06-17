@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import style from "./styles/Admin.module.css";
 
@@ -11,7 +12,11 @@ export default function Admin() {
     const [visibleDropdown, setVisibleDropdown] = useState<DropdownType>(null);
 
     const handleDropdown = (dropdown: DropdownType) => {
-        setVisibleDropdown(visibleDropdown === dropdown ? null : dropdown);
+        if (visibleDropdown === dropdown) {
+            setVisibleDropdown(null); // Fecha o dropdown se já estiver aberto
+        } else {
+            setVisibleDropdown(dropdown); // Abre o dropdown selecionado
+        }
     };
 
     return (
@@ -25,29 +30,68 @@ export default function Admin() {
                     <button onClick={() => handleDropdown('deletar')}>Deletar Skin</button>
                 </div>
                 {visibleDropdown && (
-                    <div className={style.Dropdown}>
+                    <motion.div
+                        key={visibleDropdown} // Importante para que o framer-motion saiba que houve uma mudança de dropdown
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className={style.Dropdown}
+                    >
                         {visibleDropdown === 'inserir' && (
                             <div>
-                                <h2>Inserir Skin</h2>
-                                {/* Conteúdo do formulário para inserir skin */}
-                                <p>Formulário para inserir skin</p>
+                                <h2 className={style.TituloConfig}>INSERIR SKIN</h2>
+                                <form action="" method="get" className={style.Form}>
+                                    <div>
+                                        <label htmlFor="inome">Insira o nome da skin: </label>
+                                        <input type="text" name="nome" id="inome" />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="ivalor">Insira o valor da skin: </label>
+                                        <input type="text" name="valor" id="ivalor" />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="ifoto">Insira a foto da skin: </label>
+                                        <input type="file" name="foto" id="ifoto" />
+                                    </div>
+                                </form>
+                                <button type="submit" className={style.Confirmar}>CONFIRMAR</button>
                             </div>
                         )}
                         {visibleDropdown === 'atualizar' && (
                             <div>
-                                <h2>Atualizar Skin</h2>
-                                {/* Conteúdo do formulário para atualizar skin */}
-                                <p>Formulário para atualizar skin</p>
+                                <h2 className={style.TituloConfig}>ATUALIZAR SKIN</h2>
+                                <h3>Selecione a Skin a ser atualizada: </h3>
+                                <p>*LISTA DAS SKINS*</p>
+                                <form action="" method="get" className={style.Form}>
+                                    <div>
+                                        <label htmlFor="inome">Insira o novo nome da skin: </label>
+                                        <input type="text" name="nome" id="inome" />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="ivalor">Insira o novo valor da skin: </label>
+                                        <input type="text" name="valor" id="ivalor" />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="ifoto">Insira a nova foto da skin: </label>
+                                        <input type="file" name="foto" id="ifoto" />
+                                    </div>
+                                </form>
+                                <button type="submit" className={style.Confirmar}>CONFIRMAR</button>
                             </div>
                         )}
                         {visibleDropdown === 'deletar' && (
                             <div>
-                                <h2>Deletar Skin</h2>
-                                {/* Conteúdo do formulário para deletar skin */}
-                                <p>Formulário para deletar skin</p>
+                                <h2 className={style.TituloConfig}>DELETAR SKIN</h2>
+                                <p>Selecione a Skin a ser excluída: </p>
+                                <p>*LISTA DAS SKINS*</p>
                             </div>
                         )}
-                    </div>
+                    </motion.div>
                 )}
 
                 <div className={style.Configs}>
