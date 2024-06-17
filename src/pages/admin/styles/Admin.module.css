@@ -30,8 +30,12 @@
     font-family: 'Lato', sans-serif;
     font-weight: bolder;
     cursor: pointer;
-    background-color: #be06009c;
+    background-color: #b40519;
     color: white;
+}
+
+.Configs button:hover {
+    background-color: #870804;
 }
 
 .Titles {
