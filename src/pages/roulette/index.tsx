@@ -18,7 +18,8 @@ const Roullete = () => {
   useEffect(() => {
      
         axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/roulette/participants", {}).then((res: any) => {
-            setParticipants(res.data)
+          console.log(res.data)  
+          setParticipants(res.data)
         }).catch((err: any) => {
           console.log(err.response)
         })
@@ -158,7 +159,9 @@ const Roullete = () => {
           {falseBoxes(160)}
           {participants.map((participant:any, index) => (
   <div key={index} className={style.box} style={{ backgroundColor: colors[index % colors.length] }}>
-    <Image src={participant.picture === "default" ? defaultImage : participant.picture}
+    <Image src={participant.picture === "default" ? defaultImage :
+                  (participant.picture).startsWith('https://static-cdn.jtvnw.net') ?
+                  participant.picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${participant.picture}`} 
       width={100} height={100} alt={participant.name} style={{ borderRadius: '50%' }}/>
     <p className={style.TitleParticipant}>Número: {participant.number}</p>
     <p className={style.TitleParticipant}>{participant.name}</p>
