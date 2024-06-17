@@ -1,14 +1,17 @@
 import { UserContext } from "@/utils/contextUser";
 import UserContextType from "@/utils/interfaces";
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import style from "./home.module.css";
 import Image from "next/image";
 import BG from '@/images/BG.jpg';
 import RaffleGroup from "../pages/componentsHome/raffle-group";
 import AboutLokinho from "../pages/componentsHome/about-lokinho";
+import PopUpBuy from "@/components/pop-up-buy";
+
 export default function Home() {
   const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType
+  const  [PopUp, setPopUp] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -26,6 +29,8 @@ export default function Home() {
 
     })();
   }, []);
+
+
   return (
     <>
       <div className={style.teste}>
@@ -33,9 +38,10 @@ export default function Home() {
         <div className={style.conteinerTexte}>
           <h1 className={style.Title}>Trasforme <p className={style.white}>seu Inventário com o</p>Lokinho</h1>
           <h3 className={style.Subtitle}>Fazemos upgrade, compra e venda. Precisa de uma<br /> skin especifica? Também fazemos encomendas</h3>
-          <button className={style.ButtonBudget}><p className={style.textbutton}>Compre a sua Rifa</p></button>
+          <button className={style.ButtonBudget} onClick={()=>setPopUp(true) }> <p className={style.textbutton}>Compre a sua Rifa</p></button>
         </div>
       </div >
+      {PopUp ? <PopUpBuy setPopUp={setPopUp}/> : <></>}
       {/* <div className={style.titleContainer}>
         <h1 className={style.white}>Nossas Vantagens:</h1>
       </div> */}
@@ -83,3 +89,4 @@ export default function Home() {
     </>
   );
 }
+

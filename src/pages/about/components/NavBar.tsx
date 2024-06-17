@@ -11,7 +11,7 @@ import UserContextType from "@/utils/interfaces";
 import axios from "axios";
 import defaultImage from "../../../images/foto-perfil-ex.png";
 
-const NavBar = () => {
+const NavBar = ({ setPopUp }:any) => {
   const [token, setToken] = useState<string | null>(null);
   const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType;
   const [sideBar, setSideBar] = useState<boolean>(false);
@@ -115,12 +115,11 @@ const NavBar = () => {
                 className={style.dropdownMenu}
               >
                 <button onClick={()=>handleLogout()} className={style.dropdownItem}>Sair</button>
-                <button onClick={() => {
-                  //router.push("/settings")
-                  }} className={style.dropdownItem}>Configuração</button>
+                <button className={style.dropdownItem} onClick={()=>setPopUp(true)}>Configuração</button>
               </motion.div>
             )}
           </AnimatePresence>
+          
     </div>
   );
 };
