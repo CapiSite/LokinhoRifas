@@ -41,9 +41,9 @@ export default function Benefits() {
       setHeight(component.current.scrollHeight);
       setFatherheight(
         text.current.scrollHeight +
-          cardsBenefits.current.scrollHeight +
-          component.current.scrollHeight +
-          920
+        cardsBenefits.current.scrollHeight +
+        component.current.scrollHeight +
+        920
 
       );
     };
@@ -85,29 +85,30 @@ export default function Benefits() {
             <h1>NOSSAS</h1>
             <h1>VANTAGENS!</h1>
           </div>
-         
+
           <div className={style.cardBenefits} ref={cardsBenefits}>
-            
+
             <div>
               <FaRegCalendarAlt />
               <h1>SORTEIOS DIÁRIOS</h1>
               <p>
-              Realizamos rifas de skins - Facas, luvas, armas, agentes e adesivos. Sempre após ao terminar uma começamos outra, com facilidades para participar e com valores diversos que cabem no seu bolso.              </p>
+                Realizamos rifas de skins - Facas, luvas, armas, agentes e adesivos. Sempre após ao terminar uma começamos outra, com facilidades para participar e com valores diversos que cabem no seu bolso.
+              </p>
             </div>
             <div className={style.line}></div>
             <div>
               <IoPeopleCircleOutline />
               <h1>NOSSOS GRUPOS</h1>
               <p>
-              Nossos grupos de rifas - Compra e venda possuem administradores e moderadores de alta confiança no mercado de skins.  
-              Negociações 100% seguras. Temos sorteios gratuitos de skins e muitas promoções.              </p>
+                Nossos grupos de rifas - Compra e venda possuem administradores e moderadores de alta confiança no mercado de skins.
+                Negociações 100% seguras. Temos sorteios gratuitos de skins e muitas promoções.              </p>
             </div>
             <div className={style.line}></div>
             <div>
               <BsTwitch />
               <h1>LIVES NA TWITCH</h1>
               <p>
-              Transmitimos nossos sorteios sempre ao vivo na twitch ou instagram. Utilizando a plataforma WheelOfNames.
+                Transmitimos nossos sorteios sempre ao vivo na twitch ou instagram. Utilizando a plataforma WheelOfNames.
               </p>
             </div>
           </div>
@@ -120,16 +121,16 @@ export default function Benefits() {
               </video>
               <div className={style.box}>
                 <p className={style.title}>AS SKINS MAIS INSANAS POR PREÇOS MUITO BAIXOS</p>
-                
-                
+
+
                 <p>Venha conhecer os grupos de rifas de skins com giros que são sempre ao vivo e com muita alegria e animação.</p>
                 <Link href='https://chat.whatsapp.com/CXC6oVWoqy37bMUfiENeVx' target="_blank">
                   <button>FAZER PARTE</button>
                 </Link>
-                </div>
+              </div>
             </div>
-          
-    </div>
+
+          </div>
           <motion.div
             ref={component}
             animate={more ? { height: height } : { height: height / 2 }}
@@ -139,21 +140,21 @@ export default function Benefits() {
           >
             {group.map((o) => (
               <div id="card" className={style.card}>
-              <Image width={250} alt="GroupPhoto" src={o.photo} />
-              <div className={style.line2}>
-        
-              </div>
-              <div className={style.group}>
-                <div>
-                  <h1>{o.name}</h1>
-                  <p>{o.description}</p>
+                <Image width={250} alt="GroupPhoto" src={o.photo} />
+                <div className={style.line2}>
+
                 </div>
-                <Link href={o.link} target="_blank">
-                  <button>ENTRAR</button>
-                </Link>
-                
+                <div className={style.group}>
+                  <div>
+                    <h1>{o.name}</h1>
+                    <p>{o.description}</p>
+                  </div>
+                  <Link href={o.link} target="_blank">
+                    <button>ENTRAR</button>
+                  </Link>
+
+                </div>
               </div>
-            </div>
             ))}
           </motion.div>
 

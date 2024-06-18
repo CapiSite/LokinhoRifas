@@ -2,8 +2,7 @@
     position: absolute;
     left: 0px;
     width: 100%;
-    height: 140vh;
-    max-height: 100vh;
+    height: 120vh;
     z-index: -1;
 }
 
@@ -30,12 +29,61 @@
     font-family: 'Lato', sans-serif;
     font-weight: bolder;
     cursor: pointer;
-    background-color: #be06009c;
+    background-color: #b40519;
     color: white;
+}
+
+.Configs button:hover {
+    background-color: #870804;
 }
 
 .Titles {
     color: white;
     font-family: 'Lato', sans-serif;
     font-size: 50px;
+}
+
+.Dropdown {
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #310409;
+    color: white;
+}
+
+.TituloConfig {
+    margin-bottom: 5px;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Form {
+    padding: 25px;
+    font-family: 'Lato', sans-serif;
+}
+
+.Form label {
+    font-size: 20px;
+}
+
+.Form input {
+    height: 23px;
+    margin: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.Confirmar {
+    margin: 8px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bolder;
+    cursor: pointer;
+    background-color: #b40519;
+    color: white;
 }
