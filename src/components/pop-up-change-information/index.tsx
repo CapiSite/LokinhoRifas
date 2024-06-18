@@ -14,7 +14,7 @@ export default function PopUpChangeInformation({ setPopUpInfo }: any) {
                     <p className={style.TitlePopUp}>Seus Dados</p>
                         <div className={style.InputsPopUpInfo}>
                             <label className={style.labelInputsPopUp}>Atualizar TradLink:</label>
-                            <input type="text" className={style.inputsPopUp}></input>
+                            <input type="text" className={style.inputsPopUp} value="tradlinh"></input>
                         </div>
                         <div className={style.InputsPopUpInfo}>
                             <label className={style.labelInputsPopUp}>Atualizar celular:</label>
@@ -24,6 +24,7 @@ export default function PopUpChangeInformation({ setPopUpInfo }: any) {
                                 guide={false}
                                 type="text"
                                 keepCharPositions={true}
+                                value="celucar"
                             />
                         </div>
                         <div className={style.InputsPopUpInfo}>

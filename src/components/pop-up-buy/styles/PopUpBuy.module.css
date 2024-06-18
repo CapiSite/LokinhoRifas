@@ -15,7 +15,7 @@
     height: 600px;
     color: black;
     font-size: 30px;
-    font-family: 'roboto';
+    font-family: 'work sans';
     background-color: #3c090f;
     border-radius: 10px;
 }
@@ -28,9 +28,10 @@
     cursor: pointer;
 }
 .TitlePopUpBuy{
-    font-size: 30px;
+    font-size: 32px;
     color: white;
     font-family: 'work sans';
+    margin-bottom: 20px;
 }
 .containerInputs{
     display: flex;
@@ -38,5 +39,42 @@
     height: 350px;
     gap: 13px;
     align-items: center;
-    margin-top: 60PX;
+    margin-top: 0PX;
+}
+.inputselectnumber{
+    height: 70px;
+    width: 245px;
+    border: none;
+    outline: none;
+}
+.labelPopUp{
+    font-size: 18px;
+    color: white;
+    font-family: 'work sans';
+}
+.titlePopUp{
+    color: white;
+    font-size: 24px;
+    font-family: 'work sans';
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.divButton{
+    display: flex;
+    gap: 45px;
+}
+.buttonPopUpBuy{
+    background-color: #9F9F9F;
+    color: #ffffff;
+    font-family: 'work sans';
+    font-size: 24px;
+    border-radius:6px;
+    border: none;
+    width: 190px;
+    height: 40px;
+    cursor: pointer;
+
+}
+.buttonPopUpBuy:nth-child(2) {
+    background-color: #0F4601; 
 }
