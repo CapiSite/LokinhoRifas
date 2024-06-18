@@ -7,7 +7,9 @@ export default interface UserContextType {
       email: string;
       picture: string;
       token: string;
-      isAdmin: boolean
+      isAdmin: boolean;
+      phoneNumber: string;
+      tradeLink: string;
     };
     setUserInfo: React.Dispatch<React.SetStateAction<{
       name: string;
@@ -16,6 +18,17 @@ export default interface UserContextType {
       picture: string;
       token: string;
       isAdmin: boolean;
-
+      phoneNumber: string;
+      tradeLink: string;
     }>>;
   }
+
+export interface UserData {
+    tradeLink: string;
+    phoneNumber: string;
+    oldPassword: string;
+    newPassword: string;
+    picture: File | null;
+}
+
+

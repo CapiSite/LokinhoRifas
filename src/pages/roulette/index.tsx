@@ -38,7 +38,7 @@ const Roullete = () => {
     }
   
     let count = 0;
-    const timing = 50000;
+    const timing = 5000;
     setAlreadyActive(true);
   
     setTimeout(() => {

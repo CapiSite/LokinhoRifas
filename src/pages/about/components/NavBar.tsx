@@ -33,11 +33,13 @@ const NavBar = ({ setPopUpInfo }:any) => {
             email: res.data.user.email,
             picture: res.data.user.picture,
             token: res.data.user.token,
-            isAdmin: res.data.user.isAdmin
+            isAdmin: res.data.user.isAdmin,
+            phoneNumber: res.data.user.phoneNumber,
+            tradeLink: res.data.user.tradeLink
           });
         }).catch((err) => {
           localStorage.setItem("token", "");
-          setUserInfo({ id: "", name: "", email: "", picture: "", token: "", isAdmin: false });
+          setUserInfo({ id: "", name: "", email: "", picture: "", token: "", isAdmin: false, phoneNumber: "", tradeLink: "" });
         });
       }
     }
@@ -51,7 +53,7 @@ const NavBar = ({ setPopUpInfo }:any) => {
 
   function handleLogout() {
     localStorage.setItem("token", "");
-    setUserInfo({ id: "", name: "", email: "", picture: "", token: "", isAdmin: false });
+    setUserInfo({ id: "", name: "", email: "", picture: "", token: "", isAdmin: false, phoneNumber: "", tradeLink: "" });
     setIsDropdownOpen(false)
     router.push('/sign-in');
   };
