@@ -1,0 +1,28 @@
+.containerCreditCard{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+    margin-top: 15px;
+}
+.conteinerInputs{
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.divDataCvv{
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+.inputCreditCard{
+    height: 40px;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    font-family: 'work sans';
+}
+.labelCreditCard{
+    font-size: 22px;
+    color: white;
+    font-family: 'work sans';}
