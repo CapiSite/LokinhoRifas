@@ -70,6 +70,7 @@ export default function PopUpChangeInformation({ setPopUpInfo }:any) {
                 setSuccess(true);
                 setUserInfo({ ...userInfo, ...signUpData });
                 setPopUpInfo(false);
+                
             } else {
                 throw new Error('Erro ao atualizar os dados');
             }
