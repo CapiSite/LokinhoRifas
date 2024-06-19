@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import style from "./styles/PopUpChangeInformation.module.css";
@@ -6,6 +6,7 @@ import MaskedInput from "react-text-mask";
 import { UserContext } from "@/utils/contextUser";
 import UserContextType, { UserData } from "@/utils/interfaces";
 import axios from "axios";
+import { Phone } from "@mui/icons-material";
 
 export default function PopUpChangeInformation({ setPopUpInfo }:any) {
     const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType;
@@ -18,7 +19,6 @@ export default function PopUpChangeInformation({ setPopUpInfo }:any) {
     });
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
-
     const handleChange = (e:any) => {
         const { name, value } = e.target;
         if (name === "picture") {
@@ -37,14 +37,17 @@ export default function PopUpChangeInformation({ setPopUpInfo }:any) {
     const updateUser = async () => {
         const token = localStorage.getItem("token");
         const formData = new FormData();
-    
-        // Criar signUpData sem os campos de senha
-        const signUpData = {
+        let signUpData:any = {
             tradeLink: userData.tradeLink,
-            phoneNumber: userData.phoneNumber,
-            oldPassword: userData.oldPassword,
-            newPassword: userData.newPassword
-        };
+            phoneNumber: userData.phoneNumber
+        }
+        
+        // Criar signUpData sem os campos de senha
+        if(userData.newPassword && userData.oldPassword){
+            signUpData.newPassword = userData.newPassword;
+            signUpData.oldPassword = userData.oldPassword
+        }
+
     
         // Adicionar signUpData ao formData
         formData.append('signUpData', JSON.stringify(signUpData));
