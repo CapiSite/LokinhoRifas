@@ -11,6 +11,7 @@ import NavBar from './about/components/NavBar'
 import { UserProvider } from '@/utils/contextUser'
 import Header from './about/components/Header'
 import PopUpChangeInformation from '@/components/pop-up-change-information'
+import { TextProvider } from '@/utils/contextText'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -31,11 +32,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Lokinho Skins</title>
       </Head>
       <UserProvider>
+        <TextProvider>
         <TopHeader />
         <NavBar setPopUpInfo={setPopUpInfo}/>
         <Component {...pageProps} />
         <Footer />
          {popUpInfo && <PopUpChangeInformation setPopUpInfo={setPopUpInfo} />}  
+         </TextProvider>
       </UserProvider>
     
     </>

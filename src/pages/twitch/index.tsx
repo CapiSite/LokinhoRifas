@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "./styles/Twitch.module.css";
 import Image from "next/image";
 import Background from "@/images/background.png";
 import logovermelho from "@/images/logovermelho.png";
 import { TwitchEmbed } from "react-twitch-embed";
 import ReactTwitchEmbedVideo from "react-twitch-embed-video";
+import { TextContext } from "@/utils/contextText";
+import TextContextType from "@/utils/interfaces";
+import axios from "axios";
 
 const Twitch = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const {textInfo, setTextInfo} = useContext(TextContext) as TextContextType;
   useEffect(() => {
+    axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text").then((res:any) => {
+      setTextInfo(res.data);
+    }).catch((err:any) => {
+      console.error(err.response ? err.response.data : 'Erro ao buscar dados');
+    });
     const handleResize = () => {
       setIsMobile(window.innerWidth < 950);
     };
@@ -37,6 +45,21 @@ const Twitch = () => {
     }
   };
 
+  const trocarText = (text: string) => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+    axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text", {text}, {
+      headers: {
+        Authorization: `Bearer ${storedToken}`
+      }
+    }).then((res:any) => {
+      setTextInfo(res.data.text);
+    }).catch((err:any) => {
+      console.error(err.response ? err.response.data : 'Erro ao buscar dados');
+    });
+  }
+  }
+
   return (
     <div className={style.container}>
       <Image
@@ -50,8 +73,9 @@ const Twitch = () => {
           alt="Logo do Site - LokinhoRifas"
           className={style.LogoTwitch}
         />
-        <h1 className={style.tituloLive}>RIFA IRÁ COMEÇAR AS XX:XX</h1>
-
+        
+        <h1 className={style.tituloLive}>{textInfo}</h1>
+        <button onClick={()=>trocarText("Testando")}>Teste</button>
         {/* Renderiza a live apenas quando o carregamento estiver concluído */}
         {!isLoading && renderLive()}
       </main>

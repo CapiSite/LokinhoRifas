@@ -27,6 +27,7 @@ const Steps = () => {
         tradeLink: "",
         picture: DefaultProfilePi
     })
+    
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = (e: any) => {
@@ -125,9 +126,10 @@ const Steps = () => {
 
     const validateForm = () => {
         const { name, email, password, confirmPassword, tradeLink,phoneNumber, picture } = signUp;
-        if (!name || !email || !password || !confirmPassword || !tradeLink) {
+        if (!name || !email || !password || !confirmPassword || !tradeLink || !phoneNumber) {
             return setError("Todos os campos são obrigatórios!");
         }
+
         else if (name.length < 3) {
             return setError("O nome de usuário deve ter pelo menos 3 carateries!");
         }
@@ -140,7 +142,7 @@ const Steps = () => {
             return setError("As senhas não coincidem!");
         }
         else if (password.length < 6) {
-            return setError("A senha tem que ter no minimo 6 carateries");
+            return setError("A senha tem que ter no minimo 6 caracteres");
         }
         else if (!/^https:\/\/steamcommunity\.com\/tradeoffer\/new\/\?partner=\d+&token=\w+$/.test(tradeLink)) {
             return setError("Por favor, insira um trade link da Steam válido.");

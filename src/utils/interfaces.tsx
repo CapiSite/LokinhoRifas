@@ -1,5 +1,10 @@
 import { StaticImageData } from "next/image";
 
+export default interface TextContextType{
+  textInfo: string;
+  setTextInfo: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export default interface UserContextType {
     userInfo: {
       name: string;
