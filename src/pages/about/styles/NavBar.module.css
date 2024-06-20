@@ -119,6 +119,7 @@
     right: 0px;
     border-bottom-left-radius: 10px;
     background-color: #8d0e1d;
+    z-index: 1;
 }
 
 
