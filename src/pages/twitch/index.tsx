@@ -15,6 +15,7 @@ const Twitch = () => {
   const {textInfo, setTextInfo} = useContext(TextContext) as TextContextType;
   useEffect(() => {
     axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text").then((res:any) => {
+      console.log(res.data);
       setTextInfo(res.data);
     }).catch((err:any) => {
       console.error(err.response ? err.response.data : 'Erro ao buscar dados');
@@ -74,8 +75,8 @@ const Twitch = () => {
           className={style.LogoTwitch}
         />
         
-        <h1 className={style.tituloLive}>{textInfo}</h1>
-        <button onClick={()=>trocarText("Testando")}>Teste</button>
+        <h1 className={style.tituloLive}>{textInfo.text}</h1>
+        <button onClick={()=>trocarText("Live as 20:00")}>Teste</button>
         {/* Renderiza a live apenas quando o carregamento estiver concluído */}
         {!isLoading && renderLive()}
       </main>

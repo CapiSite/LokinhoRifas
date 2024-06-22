@@ -1,7 +1,10 @@
 import { StaticImageData } from "next/image";
 
 export default interface TextContextType{
-  textInfo: string;
+  textInfo: {
+    text:string,
+    id:number
+  };
   setTextInfo: React.Dispatch<React.SetStateAction<string>>;
 }
 
