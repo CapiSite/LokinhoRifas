@@ -46,20 +46,7 @@ const Twitch = () => {
     }
   };
 
-  const trocarText = (text: string) => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-    axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text", {text}, {
-      headers: {
-        Authorization: `Bearer ${storedToken}`
-      }
-    }).then((res:any) => {
-      setTextInfo(res.data.text);
-    }).catch((err:any) => {
-      console.error(err.response ? err.response.data : 'Erro ao buscar dados');
-    });
-  }
-  }
+
 
   return (
     <div className={style.container}>
@@ -76,7 +63,7 @@ const Twitch = () => {
         />
         
         <h1 className={style.tituloLive}>{textInfo.text}</h1>
-        <button onClick={()=>trocarText("Live as 20:00")}>Teste</button>
+        
         {/* Renderiza a live apenas quando o carregamento estiver concluído */}
         {!isLoading && renderLive()}
       </main>

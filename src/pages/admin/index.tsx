@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import style from "./styles/Admin.module.css";
 
 import Background from "@/images/background.png";
 import Post from "@/images/Post.png";
+import axios from "axios";
+import { TextContext } from "@/utils/contextText";
+import TextContextType from "@/utils/interfaces";
 
 type DropdownType = 'inserir' | 'atualizar' | 'deletar' | null;
 
 export default function Admin() {
     const [visibleDropdown, setVisibleDropdown] = useState<DropdownType>(null);
-
+    const [text, setText] = useState("")
+    const {textInfo, setTextInfo} = useContext(TextContext) as TextContextType;
     const handleDropdown = (dropdown: DropdownType) => {
         if (visibleDropdown === dropdown) {
             setVisibleDropdown(null); // Fecha o dropdown se já estiver aberto
@@ -18,11 +22,27 @@ export default function Admin() {
             setVisibleDropdown(dropdown); // Abre o dropdown selecionado
         }
     };
-
+    const trocarText = (text: string) => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text", {text}, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`
+          }
+        }).then((res:any) => {
+          setTextInfo(res.data.text);
+          setText("")
+        }).catch((err:any) => {
+          console.error(err.response ? err.response.data : 'Erro ao buscar dados');
+        });
+      }
+      }
     return (
         <>
             <Image src={Background} alt="Background do site" className={style.wallpaper} />
             <div className={style.Content}>
+            <input onChange={(e)=>setText(e.target.value)} value={text}/>
+            <button onClick={() => trocarText(text)}>Trocar Texto</button>
                 <div className={style.Configs}>
                     <h1 className={style.Titles}>Configurar Skins</h1>
                     <button onClick={() => handleDropdown('inserir')}>Inserir Skin</button>
