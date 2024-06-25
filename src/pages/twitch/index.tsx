@@ -62,7 +62,7 @@ const Twitch = () => {
           className={style.LogoTwitch}
         />
         
-        <h1 className={style.tituloLive}>{textInfo.text}</h1>
+        {/*<h1 className={style.tituloLive}>{textInfo.text}</h1>*/}
         
         {/* Renderiza a live apenas quando o carregamento estiver concluído */}
         {!isLoading && renderLive()}

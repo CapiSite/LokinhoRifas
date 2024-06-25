@@ -1,151 +1,35 @@
-.Background {
-    position: absolute;
-    top: 125px;
-    width: 100%;
-    height: 30%;
-    z-index: -1;
-}
-.BackgroundGruposRifas{
-    position: absolute;
-    width: 100%;
-    height: 25%;
-    z-index: -1;
-}
-.teste{
-    height: 500px;
-}
+/* home.module.css */
 
-.ContainerGrupoRifas{
-    height: 700px;
-    display: flex;
-    background-color: #ff000044;
-}
-
-.conteinerTexte{
-    margin-left: 400px;
-    padding-top: 70px;
-}
-
-.teste2 {
-    margin-top: 210px;
-    height: 600px;
-    display: flex;
-    gap: 100px;
-    align-items: center;
-    justify-content: center; 
-    background-color: black;
-}
-
-.titleContainer {
-    font-size: 30px;
-    text-align: center;
-}
-
-.Title{
-    font-size: 80px;
-    color: red;
-}
-
-.white{
-    color: white;
-}
-
-.Subtitle{
-    font-size: 27px;
-    color: white;
-    margin-bottom: 60px;
-}
-
-.ButtonBudget {
-    width: 313px;
-    height: 58px;
-    cursor: pointer;
-    background-color: #E21A1A;
-    border-radius: 8px;
-    border: none;
+.Container {
     position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 30px red; 
-
-}
-
-.textbutton {
-    font-size: 24px;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .Background {
+    width: 100%;    
+    z-index: 1;
+  }
+  
+  .Titulo {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    z-index: 2;
     color: white;
-    position: relative;
-    animation: glow 1.5s infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 1px white, 0 0 2px white;
-    }
-    to {
-        text-shadow: 0 0 2px white, 0 0 4px white;
-    }
-}
-
-.ContainerVantagens {
-    padding-top: 80px;
-    border-radius: 5px;
-    border: 1px solid black;
-    height: 200px;
-    width: 300px;
-    background-image: linear-gradient(to bottom, rgb(29, 28, 28), rgb(49, 49, 49));
-}
-
-
-.Title2{
-    font-size: 30px;
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Work Sans';
+    text-align: left;
+  }
+  
+  .Titulo span {
+    font-weight: bold;
     color: red;
-    text-align: center;
-}
-
-.Titledescription{
-    text-align: center;
-    color: white; 
+  }
+  
+  .subTitulo {
+    color: gray;
     font-size: 20px;
-    margin-bottom: 15px;
-}
-
-.description{
-    text-align: center;
-    color: white; 
-    font-size: 15px;
-}
-
-.circulo{
-    border-radius: 50%;
-    background-color: red;
-    width: 100px;
-    height: 100px;
-
-}
-.contextGrupoRifas {
-    display: flex;
-    flex-direction: column;
-    width: 495px;
-    height: 500px;
-    margin-left: 100vh;
-    padding-left: 50px;
-    padding-top: 60px;
-    gap: 60px;
-    border: 1px solid;
-    border-radius: 10px;
-    background-color: rgba(53, 53, 53, 0.356);
-    margin-top: 7%;
-    
-}
-
-
-.TitleGrupoRifas{
-    font-size: 30px;
-    font-weight: 700;
-    font-family: 'Lato', sans-serif;
-    color: red;
-}
-.descriptionGrupoRifas{
-    font-size: 18px;
-    font-weight: 700;
-    color: white;
-}
+    font-family: 'Work Sans';
+  }
