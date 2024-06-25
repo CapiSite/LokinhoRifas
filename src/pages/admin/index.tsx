@@ -41,8 +41,6 @@ export default function Admin() {
         <>
             <Image src={Background} alt="Background do site" className={style.wallpaper} />
             <div className={style.Content}>
-            <input onChange={(e)=>setText(e.target.value)} value={text}/>
-            <button onClick={() => trocarText(text)}>Trocar Texto</button>
                 <div className={style.Configs}>
                     <h1 className={style.Titles}>Configurar Skins</h1>
                     <button onClick={() => handleDropdown('inserir')}>Inserir Skin</button>
@@ -122,6 +120,8 @@ export default function Admin() {
 
                 <div className={style.Configs}>
                     <h1 className={style.Titles}>Alterar texto da Live</h1>
+                    <input onChange={(e)=>setText(e.target.value)} value={text} className={style.changeText}/>
+                    <button onClick={() => trocarText(text)}>Trocar Texto</button>
                     {/* Adicione aqui os botões e dropdowns para alterar texto da live */}
                 </div>
                 {/* Adicione aqui o conteúdo condicional dos dropdowns para alterar texto da live, se necessário */}

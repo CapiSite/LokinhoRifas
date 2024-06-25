@@ -87,3 +87,9 @@
     background-color: #b40519;
     color: white;
 }
+
+.changeText {
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+}
