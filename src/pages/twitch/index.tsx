@@ -12,12 +12,12 @@ import axios from "axios";
 const Twitch = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const {textInfo, setTextInfo} = useContext(TextContext) as TextContextType;
+  const { textInfo, setTextInfo } = useContext(TextContext) as TextContextType;
   useEffect(() => {
-    axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text").then((res:any) => {
+    axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text").then((res: any) => {
       console.log(res.data);
       setTextInfo(res.data);
-    }).catch((err:any) => {
+    }).catch((err: any) => {
       console.error(err.response ? err.response.data : 'Erro ao buscar dados');
     });
     const handleResize = () => {
@@ -61,9 +61,9 @@ const Twitch = () => {
           alt="Logo do Site - LokinhoRifas"
           className={style.LogoTwitch}
         />
-        
+
         {/*<h1 className={style.tituloLive}>{textInfo.text}</h1>*/}
-        
+
         {/* Renderiza a live apenas quando o carregamento estiver concluído */}
         {!isLoading && renderLive()}
       </main>
