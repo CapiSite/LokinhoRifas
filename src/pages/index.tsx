@@ -42,7 +42,11 @@ export default function Home() {
       <p className={style.subTitulo}>
       Fazemos upgrade, compra e venda. <br /> Precisa de uma skin especifica? Também fazemos encomendas!
       </p>
-    </div>
+      <button onClick={() => setPopUp(true)}></button>
+      
+        </div>
+        {PopUp?<PopUpBuy setPopUp={setPopUp}></PopUpBuy>:<></>
+        }
   </div>
   );
 }
