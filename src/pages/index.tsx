@@ -34,20 +34,19 @@ export default function Home() {
 
   return (
     <div className={style.Container}>
-      <Image src={home} alt="Papel de parede do site" className={style.Background} />
-      <div className={style.content}>
-        <header className={style.Titulo}>
-          <h1>
-            <span>Transforme</span> seu <br /> inventário com o <br /><span>Lokinho</span>
-          </h1>
-          <p className={style.subTitulo}>
-            Fazemos upgrade, compra e venda. <br /> Precisa de uma skin especifica? Também fazemos encomendas!
-          </p>
-        </header>
-        <nav>
-          <p>ol</p>
-        </nav>
-      </div>
-    </div>
+    <Image src={home} alt="Papel de parede do site" className={style.Background} />
+    <div className={style.Titulo}>
+      <p>
+        <span>Transforme</span> seu <br /> inventário com o <br /><span>Lokinho</span>
+      </p>
+      <p className={style.subTitulo}>
+      Fazemos upgrade, compra e venda. <br /> Precisa de uma skin especifica? Também fazemos encomendas!
+      </p>
+      <button onClick={() => setPopUp(true)}></button>
+      
+        </div>
+        {PopUp?<PopUpBuy setPopUp={setPopUp}></PopUpBuy>:<></>
+        }
+  </div>
   );
 }
