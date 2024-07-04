@@ -1,0 +1,78 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+  --black:black;
+  --black-1: #111111;
+  --gray:rgb(48, 48, 48);
+  --light-gray: rgb(24, 24, 24);
+  --white:white;
+  --white-1:#EEEEEE;
+  --red:#BE0600;
+  --hover-red:#a10601;
+  --hover2-red:#8a0602;
+  --hover3-red:#7a0501;
+  --strong-red:#280005;
+  --blue:#1877F2;
+  --green:#00A884;
+  --rose: #E13866;
+  --blue2:#1261c9;
+  --green2:#018568;
+  --rose2: #b62d51;
+  --orange: rgb(250, 114, 3);
+  --bluedc:#404EED;
+  --bluedc2:rgb(50, 61, 187);
+  position: relative;
+  overflow-x: hidden;
+}
+a {
+	text-decoration: none;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+
+}
+
+* {
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: cs;
+	src: url(/cs_regular.ttf);
+ }

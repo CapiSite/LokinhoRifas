@@ -1,18 +1,15 @@
-import { UserContext } from "@/utils/contextUser";
-import UserContextType from "@/utils/interfaces";
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import style from "./home.module.css";
-import Image from "next/image";
-import BG from '@/images/BG.jpg';
-import RaffleGroup from "../pages/componentsHome/raffle-group";
-import AboutLokinho from "../pages/componentsHome/about-lokinho";
-import PopUpBuy from "@/components/pop-up-buy";
-import home from "@/images/home.png"
+import Hero from '../components/homeComponents/Hero'
+import Services from '../components/homeComponents/Services'
+import ServicesDisplay from '../components/homeComponents/ServicesDisplay'
+import ServiceRaffle from '../components/homeComponents/ServiceRaffle'
+import History from '../components/homeComponents/History'
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../contexts/UserContext'
+import axios from 'axios'	
+import UserContextType  from '../utils/interfaces'
 
-export default function Home() {
+const Homepage = () => {
   const { userInfo, setUserInfo } = useContext(UserContext) as UserContextType
-  const [PopUp, setPopUp] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -30,23 +27,15 @@ export default function Home() {
 
     })();
   }, []);
-
-
   return (
-    <div className={style.Container}>
-    <Image src={home} alt="Papel de parede do site" className={style.Background} />
-    <div className={style.Titulo}>
-      <p>
-        <span>Transforme</span> seu <br /> inventário com o <br /><span>Lokinho</span>
-      </p>
-      <p className={style.subTitulo}>
-      Fazemos upgrade, compra e venda. <br /> Precisa de uma skin especifica? Também fazemos encomendas!
-      </p>
-      <button onClick={() => setPopUp(true)}></button>
-      
-        </div>
-        {PopUp?<PopUpBuy setPopUp={setPopUp}></PopUpBuy>:<></>
-        }
-  </div>
+    <>
+      <Hero />
+      <Services />
+      <ServicesDisplay />
+      <ServiceRaffle />
+      <History />
+    </>
   );
 }
+ 
+export default Homepage;
