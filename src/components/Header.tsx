@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { useSidebarState } from '../contexts/SidebarContext';
-import logo from '../images/Logo.png'
+import logo from '../images/Logo.png';
 
 const Header = () => {
-  const { sidebarView, toggleSidebar } = useSidebarState()
+  const { sidebarView, toggleSidebar }:any = useSidebarState()
 
   return (
     <header className={sidebarView ? 'no-background' : ''}>

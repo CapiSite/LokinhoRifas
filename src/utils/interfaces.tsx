@@ -31,7 +31,7 @@ export default interface UserContextType {
     }>>;
   }
 
-export interface UserData {
+export type UserData = {
     tradeLink: string;
     phoneNumber: string;
     oldPassword: string;
@@ -39,4 +39,9 @@ export interface UserData {
     picture: File | null;
 }
 
-
+export type ServicesCardType = {
+  ImageSVG:string;
+  ImageAlt:string;
+  CardTitle:string;
+  CardContent:string;
+}

@@ -33,12 +33,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <SidebarStateProvider >
       <UserProvider>
         <TextProvider>
-        {/* <Header sidebar={{sidebarView, toggleSidebar}} /> */}
         <Header />
         <Component {...pageProps} />
         <Footer />
         <Credits />
-        {/* <Sidebar sidebarState={sidebarView} /> */}
         <Sidebar />
          </TextProvider>
       </UserProvider>

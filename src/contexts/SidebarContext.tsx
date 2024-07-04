@@ -1,12 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react"
+import { ReactNode, createContext, useContext, useEffect, useState } from "react"
 
-const SidebarStateContext = createContext()
+const SidebarStateContext = createContext({})
 
 export const useSidebarState = () => {
   return useContext(SidebarStateContext)
 }
 
-export const SidebarStateProvider = ({children}) => {
+export const SidebarStateProvider = ({children}:{children: ReactNode} ) => {
   const [ sidebarView, setSidebarView ] = useState(false)
 
 

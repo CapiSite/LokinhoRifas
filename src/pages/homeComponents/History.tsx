@@ -14,7 +14,7 @@ const History = () => {
         </div>
 
         <div className={style.background}>
-          <Image className={style.background-0} src={Retrato} alt="Imagem do Thiago" />
+          <Image className={style?.['background-0']} src={Retrato} alt="Imagem do Thiago" />
         </div>
         <div className={style.GlowGroup}>
         <div className={style?.['glow-0']}></div>

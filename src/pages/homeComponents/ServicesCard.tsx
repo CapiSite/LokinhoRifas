@@ -1,7 +1,8 @@
 import Image from "next/image";
 import style from '../../pages/homepage.module.css'
+import { ServicesCardType } from "utils/interfaces";
 
-const ServicesCard = ({props}) => {
+const ServicesCard = ({props}:{props:ServicesCardType}) => {
   const { ImageSVG, ImageAlt, CardTitle, CardContent } = props
   
   return (
