@@ -184,8 +184,6 @@ footer {
   padding: var(--content-padding);
 
   color: white;
-
-  /* outline: 2px solid green; */
 }
 
 footer .CompanyInfo {
@@ -261,51 +259,6 @@ footer nav div {
   gap: 7px;
 }
 
-@media only screen and (max-width: 430px) {
-  footer {
-    width: 100%;
-    height: fit-content;
-  }
-
-  .FooterWrapper {
-    display: flex;
-
-    flex-direction: column-reverse;
-
-    text-align: center;
-
-    gap: 50px;
-
-    width: 100%;
-    height: 100%;
-
-    padding: 40px;
-  }
-
-  .FooterWrapper .CompanyInfo {
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-  }
-
-  .FooterWrapper nav {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 50px;
-  }
-
-  .FooterWrapper li, .FooterWrapper a {
-    display: flex;
-
-    justify-content: center;
-  }
-}
-
 .Credits {
   display: flex;
 
@@ -329,20 +282,13 @@ footer nav div {
   color: aqua;
 }
 
-@media only screen and (max-width: 430px) {
-  .CreditsWrapper {
-    text-align: center;
-  }
-}
-
-
 /*! NÃO ALTERAR DADOS ABAIXO / DO NOT ALTER VALUES BELLOW */
 .mobile, .tablet {
   display: none;
 }
 
 /** Tablets */
-/* @media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
   .HeaderWrapper {
     width: 964px;
     
@@ -523,16 +469,16 @@ footer nav div {
   .desktop {
     display: none;
   }
-} */
+}
 /** Tablets */
 
 /*! NÃO ALTERAR DADOS ABAIXO / DO NOT ALTER VALUES BELLOW */
 
 
-
+/** Mobile */
 @media only screen and (max-width: 430px) {
   .HeaderWrapper {
-    width: 430px;
+    width: min(430px, 100%);
     
     padding: 20px;
   }
@@ -654,6 +600,59 @@ footer nav div {
     box-shadow: 0 0 20px red;
   }
 
+  footer {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .FooterWrapper {
+    display: flex;
+
+    flex-direction: column-reverse;
+
+    text-align: center;
+
+    gap: 50px;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 40px;
+  }
+
+  .FooterWrapper .CompanyInfo {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+  }
+
+  .FooterWrapper nav {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 50px;
+  }
+
+  .FooterWrapper li, .FooterWrapper a {
+    display: flex;
+
+    justify-content: center;
+  }
+
+  .CreditsWrapper {
+    text-align: center;
+
+    padding: 0 20px;
+  }
+
+  .Credits p {
+    white-space: nowrap;
+  }
+
   @keyframes growUp {
     0% {
       translate: 0 0;
@@ -677,6 +676,7 @@ footer nav div {
     display: none;
   }
 }
+/** Mobile */
 
 .no-background {
   background-color: transparent;
