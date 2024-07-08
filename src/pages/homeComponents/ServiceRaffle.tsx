@@ -10,6 +10,7 @@ import style from '../../pages/homepage.module.css'
 
 import BGRIFAS from '../../assets/bgRIFAS.svg'
 import BGRIFASTABLET from '../../assets/bgRIFASTablet.svg'
+import BGRIFASMOBILE from '../../assets/bgRIFASMobile.svg'
 import BGFiller from '../../images/Homepage/ServicesRaffles/FundoDeVidro.png'
 import BackgroundImage from '../../images/Homepage/ServicesRaffles/ServicesRaffles.png'
 
@@ -49,6 +50,7 @@ const ServiceRaffle = () => {
       <div className={style.background}>
         <Image className={cn(style?.['background-0'], style?.['desktop'])} src={BGRIFAS} alt="Fundo da seção de Rifas" />
         <Image className={cn(style?.['background-0'], style?.['tablet'])} src={BGRIFASTABLET} alt="Fundo da seção de Rifas" />
+        <Image className={cn(style?.['background-0'], style?.['mobile'])} src={BGRIFASMOBILE} alt="Fundo da seção de Rifas" />
         <Image className={cn(style?.['background-1'], style?.['desktop'])} src={BGFiller} alt="Fundo da seção de Rifas" />
         <Image className={cn(style?.['background-2'], style?.['desktop'])} src={BGFiller} alt="Fundo da seção de Rifas" />
         <Image src={BackgroundImage} alt="Fundo da seção de Rifas" className={cn(style?.['background-3'], style?.['desktop'])} />

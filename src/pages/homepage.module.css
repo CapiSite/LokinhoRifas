@@ -359,6 +359,25 @@
   margin-top: 96px;
 }
 
+@media only screen and (max-width: 430px) {
+  .Services {
+    height: fit-content;
+    width: 430px;
+
+    padding: 20px;
+  }
+
+  .Services .CardGroup {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+  }
+}
+
 .Services .Card {
   display: flex;
   flex-direction: column;
@@ -507,23 +526,6 @@
   z-index: 1;
 }
 
-/* ! DEBUGGING */
-
-/* .ServicesDisplay .background-ruler {
-  position: absolute;
-  top: 0;
-  left: 50%;
-
-  translate: -50%;
-
-  width: var(--content-width);
-  height: 100%;
-
-  outline: 2px solid red;
-} */
-
-/* ! DEBUGGING */
-
 .ServicesDisplay .background-0 {
   --background-offset: 0;
 
@@ -667,6 +669,106 @@
 .ServicesDisplay li p {
   font-size: 16px;
   font-weight: 600;
+}
+
+@media only screen and (max-width: 430px) {
+  .ServicesDisplay {
+    display: flex;
+
+    align-items: end;
+
+    width: 430px;
+    height: 900px;
+
+    padding: 0;
+    margin-top: 80px;
+  }
+
+  .ServicesDisplay .background-0 {
+    width: 130px;
+    min-width: 930px;
+    height: auto;
+
+    top: 0;
+    left: -30px;
+  }
+
+  .ServicesDisplay .background-1 {
+    --image-width: 1100px;
+    width: var(--image-width);
+    min-width: var(--image-width);
+    height: auto;
+
+    top: 0;
+    left: -70px;
+  }
+
+  .ServicesDisplayWrapper {
+    display: flex;
+    
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .ServicesDisplayWrapper .col1 {
+    padding: 20px;
+    display: none;
+  }
+
+  .ServicesDisplayWrapper .col2 {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+    padding: 40px 20px;
+  }
+
+  .ServicesDisplayWrapper li h3 {
+    font-size: 18px;
+  }
+
+  .ServicesDisplayWrapper li p {
+    font-size: 10px;
+  }
+
+  .ServicesDisplay .col2 img {
+    height: 48px;
+  
+    padding-top: 2px;
+    padding-bottom: 30px;
+  
+    margin-right: 13px;
+  }
+
+  .ServicesDisplay .GlowGroup {
+    display: flex;
+  
+    position: absolute;
+  
+    width: 100%;
+    height: 100%;
+  }
+
+  .ServicesDisplay .glow-0 {
+    width: 670px;
+    height: 670px;
+  
+    right: 0;
+  
+    background-color: #A30006;
+    background: radial-gradient(#E21A1A, #A30006);
+    filter: blur(440px);
+  }
+  
+  .ServicesDisplay .glow-1 {
+    display: none;
+  }
+  
+  .ServicesDisplay .glow-2 {
+    display: none;
+  }
 }
 
 /* #####################################################################################
@@ -862,6 +964,74 @@
   gap: 10px;
 }
 
+@media only screen and (max-width:430px) {
+  .ServicesRaffles {
+    width: 430px;
+    height: 1050px;
+
+    padding: 20px;
+
+    overflow: hidden;
+  }
+
+  .ServicesRafflesWrapper {
+    height: 100%;
+
+    padding: 0;
+
+    gap: 50px;
+  }
+
+  .ServicesRafflesWrapper h2 {
+    margin-top: 100px;
+  }
+
+  .ServicesRaffles .CardGroup {
+    display: flex;
+
+    padding: 0 52px;
+
+    margin-top: 0;
+
+    flex-direction: column;
+  }
+
+  .ServicesRaffles .BackgroundRaffle {
+    width: 330px;
+    height: auto;
+  }
+
+  .ServicesRaffles .Card .RaffleLogo {
+    width: 280px;
+    height: auto;
+
+    margin-bottom: 5px;
+  }
+
+  .ServicesRaffles .Card {
+    width: 330px;
+    height: 390px;
+  }
+
+  .ServicesRaffles .Card .RaffleContent {
+    gap: 5px;
+  }
+
+  .ServicesRaffles .Card h3 {
+    font-size: 20px;
+  }
+
+  .ServicesRaffles .Card p {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  .ServicesRaffles .background {
+    top: 0px;
+    height: 100%;
+  }
+}
+
 /* #####################################################################################
   SEÇÃO HISTÓRIA
 #####################################################################################*/
@@ -988,13 +1158,91 @@
   filter: blur(800px);
 }
 
+@media only screen and (max-width: 430px) {
+  .History {
+    height: 1150px;
+  }
+
+  .HistoryWrapper {
+    height: 100%;
+
+    margin-bottom: 0;
+
+    padding: 0;
+
+    align-items: end;
+  }
+
+  .History .col1 {
+    display: none;
+  }
+
+  .History .col2 {
+    width: 100%;
+    height: fit-content;
+
+    padding: 40px;
+
+    translate: 0 -40px;
+
+    z-index: 3;
+
+    position: relative;
+  }
+
+  .History .col2::after {
+    content: '';
+
+    width: 120%;
+    height: 100%;
+
+    position: absolute;
+    top: -160px;
+    left: -10px;
+
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.7));
+
+    filter: blur(30px);
+
+    /* outline: 2px solid orange; */
+
+    z-index: -1;
+  }
+
+  .History .col2 h2 {
+    font-size: 30px;
+    white-space: nowrap;
+  }
+
+  .History .background {
+    left: 0;
+    right: 0;
+    top: 0;
+  
+    width: 430px;
+    height: 100%;
+  
+    overflow: visible;
+  }
+  
+  .History .background-0 {
+    left: -30px;
+    top: 0;
+
+    width: 200%;
+    height: auto;
+  
+    z-index: 2;
+  }
+}
+
 .mobile, .tablet {
   /*! Do NOT alter the value bellow / NÃO altere o valor abaixo*/
   display: none;
 }
 
 /** TABLET */
-@media only screen and (max-width: 1024px) {
+/* @media only screen and (max-width: 1024px) {
   .Hero .background-0 {
     --background-offset: 0;
 
@@ -1011,8 +1259,6 @@
     width: min(964px, 100%);
 
     padding: 60px;
-
-    /* outline: 2px solid orange; */
   }
   
   .Faixas {
@@ -1072,8 +1318,6 @@
     width: min(964px, 100%);
 
     padding: 60px;
-
-    /* outline: 2px solid orange; */
   }
   
   .ServicesRaffles .CardGroup {
@@ -1116,8 +1360,6 @@
   
   
   
-  /*! Permanent do not add anything bellow / Permanente, não adicone nada abaixo */
-
   .tablet {
     display: block;
   }
@@ -1125,8 +1367,78 @@
   .desktop {
     display: none;
   }
-}
+} */
 /** TABLET */
+
+/** MOBILE */
+@media only screen  and (max-width: 430px) {
+  .Hero .col1 {
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    gap: 20px;
+
+    text-align: center;
+  }
+
+  .Hero .col1 h1 {
+    font-size: 48px;
+    width: 100%;
+
+    white-space: nowrap;
+  }
+
+  .Hero .col1 p {
+    width: 100%;
+    line-height: 120%;
+
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .Hero .col1 button {
+    width: fit-content;
+    height: fit-content;
+
+    padding: 10px 22px;
+
+    font-size: 18px;
+  }
+
+  .Hero .col1 button img {
+    width: 11px;
+    height: auto;
+  }
+
+  .Hero .col2 {
+    display: none;
+  }
+
+  .Hero .background-0 {
+    min-width: 1920px;
+
+    position: absolute;
+    right: -630px;
+
+    opacity: .6;
+  }
+
+
+
+
+
+
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
+}
+/** MOBILE */
 
 .no-background {
   background-color: transparent;
