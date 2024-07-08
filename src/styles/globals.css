@@ -5,15 +5,6 @@
   --content-padding: 30px;
 }
 
-/* Tablets */
-@media only screen and (max-width: 1024px) {
-  :root {
-    --content-width: 994px;
-    --content-padding: 30px;
-  }
-}
-/* Tablets */
-
 * {
   padding: 0;
   margin: 0;
@@ -47,7 +38,7 @@ body {
   background-color: #0C0C0C;
 }
 
-#root {
+html {
   display: flex;
 
   width: 100vw;
@@ -71,8 +62,6 @@ header {
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-
-  /* overflow: hidden; */
 }
 
 .HeaderWrapper {
@@ -86,6 +75,14 @@ header {
   padding: 0 var(--content-padding);
 
   color: white;
+}
+
+@media only screen and (max-width: 1024px) {
+  .HeaderWrapper {
+    width: 964px;
+    
+    padding: 60px;
+  }
 }
 
 .MainHeader {
@@ -177,6 +174,10 @@ header {
     z-index: 2;
   }
 
+  header .Logo.SidebarOn {
+    animation: 400ms ease-out 400ms 1 normal forwards growUp;
+  }
+
   button.mobile {
     width: fit-content;
     padding: 5px;
@@ -191,15 +192,16 @@ header {
 
   button.mobile:hover {
     translate: 0;
-    rotate: 180deg;
   }
 
   .Sidebar {
     width: 100%;
     height: 100%;
 
-    background-color: #0C0C0C;
+    background-color: #0C0C0C70;
     color: white;
+
+    backdrop-filter: blur(10px);
 
     position: fixed;
     top: 0;
@@ -218,11 +220,10 @@ header {
     flex-direction: column;
 
     justify-content: center;
-    align-items: center;
 
     gap: 60px;
 
-    width: var(--content-width);
+    width: 100%;
     height: 100%;
     padding: var(--content-padding);
   }
@@ -233,7 +234,6 @@ header {
     flex-direction: column;
 
     justify-content: center;
-    align-items: center;
 
     gap: 30px;
 
@@ -247,7 +247,6 @@ header {
   .Sidebar .Socials {
     display: flex;
 
-    justify-content: center;
     align-items: center;
 
     gap: 30px;
@@ -257,6 +256,46 @@ header {
     width: 100%;
 
     list-style: none;
+  }
+
+  .Sidebar button {
+    padding: 14px 62px;
+  
+    width: fit-content;
+  
+    font-size: 20px;
+  
+    border-radius: 8px;
+  
+    border: none;
+  
+    outline: 1px solid #E21A1A;
+  
+    background: linear-gradient(90deg, #E21A1A, #A30006);
+    color: white;
+  
+    cursor: pointer;
+  
+    transition: 200ms ease-out;
+  
+    white-space: nowrap;
+  }
+  
+  .Sidebar button:hover {
+    translate: 2px 2px;
+  
+    box-shadow: 0 0 20px red;
+  }
+
+  @keyframes growUp {
+    0% {
+      translate: 0 0;
+      scale: 1;
+    }
+    100% {  
+      translate: 90px 130px;
+      scale: 3;
+    }
   }
 }
 /* Tablet */
@@ -268,7 +307,7 @@ footer {
   align-items: center;
 
   width: 100%;
-  height: 265px;
+  height: 235px;
 
   background-color: #000;
 }
@@ -277,12 +316,26 @@ footer {
   display: flex;
 
   justify-content: space-between;
+  align-items: center;
 
   width: var(--content-width);
+  height: 100%;
   
   padding: var(--content-padding);
 
   color: white;
+
+  /* outline: 2px solid green; */
+}
+
+@media only screen and (max-width: 1024px) {
+  .FooterWrapper {
+    width: 964px;
+
+    padding: 30px 60px;
+
+    /* outline: 2px solid green; */
+  }
 }
 
 footer .CompanyInfo {
@@ -335,6 +388,12 @@ footer li {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 1024px) {
+  footer li, footer p {
+    font-size: 14px;
+  }
+}
+
 footer .ExternalLinks li {
   flex-direction: row-reverse;
   
@@ -377,6 +436,14 @@ footer nav div {
   padding: 0 var(--content-padding);
 }
 
+@media only screen and (max-width: 1024px) {
+  .CreditsWrapper {
+    width: 964px;
+
+    padding: 0 60px;
+  }
+}
+
 .Credits a {
   color: aqua;
 }
@@ -388,11 +455,6 @@ footer nav div {
 
 /* Tablets */
 @media only screen and (max-width: 1024px) {
-  :root {
-    --content-width: 994px;
-    --content-padding: 30px;
-  }
-
   .tablet {
     display: block;
   }

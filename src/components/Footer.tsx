@@ -1,6 +1,7 @@
 import Logo from '../images/Logo.png'
 import ExternalLink from '../assets/ExternalLink.svg'
 import Image from 'next/image';
+
 const Footer = () => {
   return (
     <footer>
