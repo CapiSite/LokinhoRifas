@@ -4,6 +4,8 @@ import Background from '../../images/Homepage/Hero/HERO.png'
 import Faixas from './Faixa'
 import style from '../../pages/homepage.module.css'
 
+import cn from 'classnames'
+
 const Hero = () => {
   return (
     <section className={style.Hero}>
@@ -11,7 +13,7 @@ const Hero = () => {
         <div className={style.ColGroup}>
           <div className={style.col1}>
           <h1>
-            <span className={style.highlight}>Transforme</span> seu <br /> inventário com o <span className={style.highlight}>Lokinho</span>
+            <span className={style.highlight}>Transforme</span> seu <br /> inventário com <br className={style.mobile} />o <span className={style.highlight}>Lokinho</span>
           </h1>
           <p>Fazemos upgrade, compra e venda. Precisa de uma skin especifica? Também fazemos encomendas</p>
           <button>Compre sua Rifa <Image src={ExternalSVG} alt="Link externo" /></button>
@@ -24,8 +26,8 @@ const Hero = () => {
 
       <div className={style.background}>
         <Image className={style?.['background-0']} src={Background} alt="Plano de fundo" />
-        <div className={style?.['background-1']}></div>
-        <div className={style?.['background-2']}></div>
+        <div className={cn(style?.['background-1'], style.desktop)}></div>
+        <div className={cn(style?.['background-2'], style.desktop)}></div>
 
       </div>
       <div className={style.GlowGroup}>
