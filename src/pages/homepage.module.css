@@ -123,37 +123,12 @@
   z-index: 1;
 }
 
-@media only screen and (max-width: 1024px) {
-  .Hero .background-0 {
-    --background-offset: 0;
-
-    width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset)));
-    min-width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset)));
-
-    translate: 0 -60px;
-
-    padding: 60px;
-
-    /* outline: 2px solid orange; */
-  }
-}
-
 .HeroWrapper {
   width: var(--content-width);
   
   padding: 0 var(--content-padding);
 
   z-index: 3;
-}
-
-@media only screen and (max-width: 1024px) {
-  .HeroWrapper {
-    width: 964px;
-
-    padding: 60px;
-
-    /* outline: 2px solid orange; */
-  }
 }
 
 .Hero .ColGroup {
@@ -253,12 +228,6 @@
   overflow: hidden;
 
   z-index: -1;
-}
-
-@media only screen and (max-width: 1024px) {
-  .Faixas {
-    top: 70%;
-  }
 }
 
 .Faixa-1, .Faixa-2 {
@@ -362,12 +331,6 @@
   z-index: 3;
 }
 
-@media only screen and (max-width: 1024px) {
-  .Services {
-    height: 800px;
-  }
-}
-
 .ServicesWrapper {
   display: flex;
   flex-direction: column;
@@ -378,14 +341,6 @@
   width: var(--content-width);
   
   padding: var(--content-padding);
-}
-
-@media only screen and (max-width: 1024px) {
-  .ServicesWrapper {
-    width: 964px;
-
-    /* outline: 2px solid orange; */
-  }
 }
 
 .Services h2 {
@@ -402,20 +357,6 @@
   gap: 116px;
 
   margin-top: 96px;
-}
-
-@media only screen and (max-width: 1024px) {
-  .Services .CardGroup {
-    display: grid;
-
-    justify-items: center;
-    
-    grid-template-columns: 2fr 2fr;
-  }
-
-  .Services .CardGroup .Card:last-of-type {
-    grid-column-end: span 2;
-  }
 }
 
 .Services .Card {
@@ -640,14 +581,6 @@
   /* outline: 2px solid orange; */
 }
 
-@media only screen and (max-width: 1024px) {
-  .ServicesDisplayWrapper {
-    width: 964px;
-
-    padding: 30px 60px;
-  }
-}
-
 .ServicesDisplay .col1, .ServicesDisplay .col2 {
   width: 537px;
 
@@ -731,12 +664,6 @@
   color: #E21A1A;
 }
 
-@media only screen and (max-width: 1024px) {
-  .ServicesDisplay li h3 {
-    font-size: 23px;
-  }
-}
-
 .ServicesDisplay li p {
   font-size: 16px;
   font-weight: 600;
@@ -762,12 +689,6 @@
   z-index: 0;
 }
 
-@media only screen and (max-width: 1024px) {
-  .ServicesRaffles {
-    height: 1220px;
-  }
-}
-
 .ServicesRaffles .background {
   display: flex;
 
@@ -777,12 +698,6 @@
   height: 750px;
 
   z-index: 2;
-}
-
-@media only screen and (max-width: 1024px) {
-  .ServicesRaffles .background {
-    height: 120%;
-  }
 }
 
 .ServicesRaffles .background-1, .ServicesRaffles .background-2 {
@@ -797,12 +712,6 @@
 
 .ServicesRaffles .background-0 {
   z-index: 2;
-}
-
-@media only screen and (max-width: 1024px) {
-  .ServicesRaffles .background-0 {
-    height: 1320px;
-  }
 }
 
 .ServicesRaffles .background-1 {
@@ -843,16 +752,6 @@
   z-index: 3;
 }
 
-@media only screen and (max-width: 1024px) {
-  .ServicesRafflesWrapper {
-    width: 964px;
-
-    padding: 60px;
-
-    /* outline: 2px solid orange; */
-  }
-}
-
 .ServicesRaffles .CardGroup {
   display: flex;
 
@@ -861,14 +760,6 @@
   gap: 90px;
 
   margin-block: 73px 103px;
-}
-
-@media only screen and (max-width: 1024px) {
-  .ServicesRaffles .CardGroup {
-    display: flex;
-
-    flex-direction: column;
-  }
 }
 
 .ServicesRaffles .Card {
@@ -1002,22 +893,10 @@
   overflow: hidden;
 }
 
-@media only screen and (max-width: 1024px) {
-  .History .background {
-    width: 964px;
-  }
-}
-
 .History .background-0 {
   position: absolute;
 
   z-index: 2;
-}
-
-@media only screen and (max-width: 1024px) {
-  .History .background-0 {
-    left: -50px;
-  }
 }
 
 .HistoryWrapper {
@@ -1032,14 +911,6 @@
   padding: var(--content-padding);
 
   color: white;
-}
-
-@media only screen and (max-width: 1024px) {
-  .HistoryWrapper {
-    width: 964px;
-
-    padding: 60px;
-  }
 }
 
 .History .col1, .History .col2 {
@@ -1117,7 +988,123 @@
   filter: blur(800px);
 }
 
+.mobile, .tablet {
+  /*! Do NOT alter the value bellow / NÃO altere o valor abaixo*/
+  display: none;
+}
+
+/** TABLET */
 @media only screen and (max-width: 1024px) {
+  .Hero .background-0 {
+    --background-offset: 0;
+
+    width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset)));
+    min-width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset)));
+
+    translate: 0 -60px;
+
+    padding: 60px;
+  }
+
+
+  .HeroWrapper {
+    width: min(964px, 100%);
+
+    padding: 60px;
+
+    /* outline: 2px solid orange; */
+  }
+  
+  .Faixas {
+    top: 70%;
+  }
+  
+  .Services {
+    height: 800px;
+  }
+  
+  .ServicesWrapper {
+    justify-content: center;
+
+    width: min(964px, 100%);
+    height: 100%;
+  }
+  
+  .Services .CardGroup {
+    display: grid;
+
+    justify-items: center;
+    
+    grid-template-columns: 2fr 2fr;
+  }
+
+  .Services .CardGroup .Card:last-of-type {
+    grid-column-end: span 2;
+  }
+
+  .ServicesDisplayWrapper {
+    width: min(964px, 100%);
+
+    padding: 30px 60px;
+  }
+
+  .ServicesDisplay li h3 {
+    font-size: 18px;
+  }
+
+  .ServicesDisplay li p {
+    font-size: 15px;
+  }
+
+  .ServicesRaffles {
+    height: 1220px;
+  }
+
+  .ServicesRaffles .background {
+    height: 120%;
+  }
+
+  .ServicesRaffles .background-0 {
+    height: 1320px;
+  }
+
+  .ServicesRafflesWrapper {
+    width: min(964px, 100%);
+
+    padding: 60px;
+
+    /* outline: 2px solid orange; */
+  }
+  
+  .ServicesRaffles .CardGroup {
+    display: flex;
+
+    flex-direction: column;
+  }
+  
+  .History .background {
+    width: 964px;
+  }
+  
+  .History .background-0 {
+    left: -50px;
+  }
+  
+  .HistoryWrapper {
+    width: min(964px, 100%);
+
+    padding: 60px;
+  }
+
+
+  .HistoryWrapper h2 {
+    font-size: 26px;
+  }
+
+  .HistoryWrapper p {
+    font-size: 16px;
+  }
+  
   .History .glow-0 {
     left: -10%;
   }
@@ -1125,15 +1112,12 @@
   .History .glow-1 {
     left: 15%;
   }
-}
+  
+  
+  
+  
+  /*! Permanent do not add anything bellow / Permanente, não adicone nada abaixo */
 
-
-
-.mobile, .tablet {
-  display: none;
-}
-
-@media only screen and (max-width: 1024px) {
   .tablet {
     display: block;
   }
@@ -1142,6 +1126,7 @@
     display: none;
   }
 }
+/** TABLET */
 
 .no-background {
   background-color: transparent;

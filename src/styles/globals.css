@@ -77,14 +77,6 @@ header {
   color: white;
 }
 
-@media only screen and (max-width: 1024px) {
-  .HeaderWrapper {
-    width: 964px;
-    
-    padding: 60px;
-  }
-}
-
 .MainHeader {
   display: flex;
 
@@ -168,8 +160,144 @@ header {
   box-shadow: 0 0 20px red;
 }
 
-/* Tablet */
+footer {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 235px;
+
+  background-color: #000;
+}
+
+.FooterWrapper {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: var(--content-width);
+  height: 100%;
+  
+  padding: var(--content-padding);
+
+  color: white;
+
+  /* outline: 2px solid green; */
+}
+
+footer .CompanyInfo {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 30px;
+}
+
+footer .Logo {
+  width: 94px;
+  height: 60px;
+}
+
+footer .ExternalArrow {
+  width: 8px;
+  height: 8px;
+}
+
+footer nav {
+  display: flex;
+
+  gap: 90px;
+}
+
+footer h2 {
+  font-size: 18px;
+
+  white-space: nowrap;
+}
+
+footer p {
+  font-size: 16px;
+
+  white-space: nowrap;
+}
+
+footer li {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 16px;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+footer .ExternalLinks li {
+  flex-direction: row-reverse;
+  
+  justify-content: left;
+}
+
+footer ul {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+  list-style: none;
+}
+
+footer nav div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.Credits {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 40px;
+
+  background: linear-gradient(90deg, #A30006, #E21A1A);
+
+  color: white;
+}
+
+.CreditsWrapper {
+  width: var(--content-width);
+  padding: 0 var(--content-padding);
+}
+
+.Credits a {
+  color: aqua;
+}
+
+
+/*! NÃO ALTERAR DADOS ABAIXO / DO NOT ALTER VALUES BELLOW */
+.mobile, .tablet {
+  display: none;
+}
+
+/** Tablets */
 @media only screen and (max-width: 1024px) {
+  .HeaderWrapper {
+    width: 964px;
+    
+    padding: 60px;
+  }
+
   header .Logo, header button.mobile {
     z-index: 2;
   }
@@ -297,164 +425,48 @@ header {
       scale: 3;
     }
   }
-}
-/* Tablet */
 
-footer {
-  display: flex;
+  footer {
+    height: fit-content;
+  }
 
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  height: 235px;
-
-  background-color: #000;
-}
-
-.FooterWrapper {
-  display: flex;
-
-  justify-content: space-between;
-  align-items: center;
-
-  width: var(--content-width);
-  height: 100%;
-  
-  padding: var(--content-padding);
-
-  color: white;
-
-  /* outline: 2px solid green; */
-}
-
-@media only screen and (max-width: 1024px) {
   .FooterWrapper {
-    width: 964px;
+    display: flex;
+
+    flex-direction: column-reverse;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    width: min(964px, 100%);
 
     padding: 30px 60px;
 
     /* outline: 2px solid green; */
   }
-}
 
-footer .CompanyInfo {
-  display: flex;
+  footer .CompanyInfo {
+    flex-direction: row;
 
-  flex-direction: column;
-
-  gap: 30px;
-}
-
-footer .Logo {
-  width: 94px;
-  height: 60px;
-}
-
-footer .ExternalArrow {
-  width: 8px;
-  height: 8px;
-}
-
-footer nav {
-  display: flex;
-
-  gap: 90px;
-}
-
-footer h2 {
-  font-size: 18px;
-
-  white-space: nowrap;
-}
-
-footer p {
-  font-size: 16px;
-
-  white-space: nowrap;
-}
-
-footer li {
-  display: flex;
-
-  align-items: center;
-
-  gap: 5px;
-
-  font-size: 16px;
-
-  white-space: nowrap;
-
-  cursor: pointer;
-}
-
-@media only screen and (max-width: 1024px) {
-  footer li, footer p {
-    font-size: 14px;
+    justify-content: center;
+    align-items: center;
   }
-}
 
-footer .ExternalLinks li {
-  flex-direction: row-reverse;
-  
-  justify-content: left;
-}
+  footer .CompanyInfo p {
+    opacity: .7;
+  }
 
-footer ul {
-  display: flex;
+  footer li, footer p {
+    font-size: 12px;
+  }
 
-  flex-direction: column;
-
-  gap: 7px;
-
-  list-style: none;
-}
-
-footer nav div {
-  display: flex;
-  flex-direction: column;
-
-  gap: 7px;
-}
-
-.Credits {
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  height: 40px;
-
-  background: linear-gradient(90deg, #A30006, #E21A1A);
-
-  color: white;
-}
-
-.CreditsWrapper {
-  width: var(--content-width);
-  padding: 0 var(--content-padding);
-}
-
-@media only screen and (max-width: 1024px) {
   .CreditsWrapper {
-    width: 964px;
+    width: min(964px, 100%);
 
     padding: 0 60px;
   }
-}
 
-.Credits a {
-  color: aqua;
-}
-
-
-.mobile, .tablet {
-  display: none;
-}
-
-/* Tablets */
-@media only screen and (max-width: 1024px) {
   .tablet {
     display: block;
   }
@@ -463,7 +475,9 @@ footer nav div {
     display: none;
   }
 }
-/* Tablets */
+/** Tablets */
+
+/*! NÃO ALTERAR DADOS ABAIXO / DO NOT ALTER VALUES BELLOW */
 
 .no-background {
   background-color: transparent;
