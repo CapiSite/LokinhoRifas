@@ -162,11 +162,6 @@
   line-height: 120%;
 }
 
-.highlight {
-  color: #E21A1A;
-}
-
-
 .Hero .col1 button {
   display: flex;
 
@@ -1447,4 +1442,8 @@
 
 .visible {
   translate: 0vw;
+}
+
+.highlight {
+  color: #E21A1A;
 }

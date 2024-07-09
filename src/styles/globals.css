@@ -33,7 +33,8 @@ img {
 body {
   width: 100vw;
 
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+  /*! Caso scroll lateral volte, alterar valor acima e o do Header */
 
   background-color: #0C0C0C;
 }
@@ -51,7 +52,9 @@ html {
 header {
   display: flex;
 
-  position: fixed;
+  position: sticky;
+  top: 0;
+  /*! Cuidado com o valor acima caso scroll lateral volte */
 
   align-items: center;
   justify-content: center;
@@ -664,10 +667,6 @@ footer nav div {
     }
   }
 
-
-
-
-
   .mobile {
     display: block;
   }
@@ -684,4 +683,8 @@ footer nav div {
 
 .visible {
   translate: 0vw;
+}
+
+.highlight {
+  color: #E21A1A;
 }
