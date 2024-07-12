@@ -45,3 +45,28 @@ export type ServicesCardType = {
   CardTitle:string;
   CardContent:string;
 }
+
+export type CardItemType = {
+  color: string;
+  profilePicture: string;
+  personName: string;
+  nickName: string;
+}
+
+export type RewardItemType = {
+  type: string;
+  itemImageUrl: string;
+  itemImageAlt: string;
+  itemName: string;
+  itemType: string;
+  itemValue: string;
+}
+
+export type LastEarnedPrizeType = {
+  TimeOfEarning: string;
+  ChanceOfEarning: string;
+  PoolType: string;
+  ItemName: string;
+  ItemType: string;
+  ItemValue: string;
+}

@@ -28,7 +28,6 @@
 
   z-index: 2;
 
-  /* outline: 2px solid orange; */
 }
 
 .Hero .glow-0, .Hero .glow-1 {
@@ -117,8 +116,8 @@
   --background-offset: -20px;
 
 
-  width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset)));
-  min-width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset)));
+  /* width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset)));
+  min-width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset))); */
 
   z-index: 1;
 }
@@ -515,7 +514,6 @@
 
   z-index: 2;
 
-  /* outline: 2px solid orange; */
 }
 
 .ServicesDisplay .background-1 {
@@ -524,10 +522,12 @@
   height: 765px;
 
   position: absolute;
-  top: -24px;
+  /* top: -24px; */
 
-  width: 1920px;
-  min-width: 1920px;
+  /* width: 1920px;
+  min-width: 1920px; */
+  width: auto;
+  height: 120%;
 
   box-shadow: 5px 0 5px rgba(0, 0, 0, 0.2), -5px 0 5px rgba(0, 0, 0, 0.2);
 }
@@ -556,7 +556,6 @@
 
   z-index: 3;
 
-  /* outline: 2px solid orange; */
 }
 
 .ServicesDisplay .col1, .ServicesDisplay .col2 {
@@ -601,7 +600,6 @@
   width: 100%;
   height: 2px;
 
-  /* outline: 2px solid orange; */
   
   position: absolute;
 
@@ -933,7 +931,6 @@
 
   opacity: .3;
 
-  /* outline: 2px solid orange; */
 
   box-shadow: 0 0 5px black;
 }
@@ -970,8 +967,9 @@
   /*! Do NOT alter the value bellow / NÃO altere o valor abaixo*/
   display: none;
 }
-
-/** TABLET */
+/* 
+/* * TABLET */
+/*
 @media only screen and (max-width: 1024px) {
   .Hero .background-0 {
     --background-offset: 0;
@@ -1097,11 +1095,11 @@
   .desktop {
     display: none;
   }
-}
-/** TABLET */
+} */
+/* * TABLET */
 
 /** MOBILE */
-@media only screen  and (max-width: 430px) {
+@media only screen  and (max-width: 700px) {
   .Hero .col1 {
     justify-content: center;
     align-items: center;
@@ -1145,18 +1143,24 @@
     display: none;
   }
 
+  .Hero .background {
+
+    position: absolute;
+    right: 0;
+  }
+
   .Hero .background-0 {
     min-width: 1920px;
 
     position: absolute;
-    right: -630px;
+    right: -550px;
 
     opacity: .6;
   }
 
   .Services {
     height: fit-content;
-    width: min(430px, 100%);
+    width: min(700px, 100%);
 
     margin-top: 80px;
 
@@ -1180,32 +1184,37 @@
   .ServicesDisplay {
     display: flex;
 
-    align-items: end;
+    align-items: flex-end;
 
-    width: min(430px, 100%);
-    height: 900px;
+    width: min(700px, 100%);
+    height: 850px;
+
 
     padding: 0;
-    margin-top: 80px;
+    margin-block: 80px;
   }
 
   .ServicesDisplay .background-0 {
-    width: 130px;
-    min-width: 930px;
-    height: auto;
+    --image-width: auto;
+    width: var(--image-width);
+    min-width: var(--image-width);
+    height: 100%;
 
     top: 0;
-    left: -30px;
+    left: -360px;
+    /* left: -30px; */
   }
 
   .ServicesDisplay .background-1 {
-    --image-width: 1100px;
-    width: var(--image-width);
-    min-width: var(--image-width);
-    height: auto;
+    --image-width: 220%;
+    /* width: var(--image-width);
+    min-width: var(--image-width); */
+    width: auto;
+    height: 100%;
 
     top: 0;
-    left: -70px;
+    left: 0;
+    /* left: -70px; */
   }
 
   .ServicesDisplayWrapper {
@@ -1213,6 +1222,9 @@
     
     justify-content: center;
     width: 100%;
+    height: fit-content;
+
+    padding: 0;
   }
   
   .ServicesDisplayWrapper .col1 {
@@ -1227,22 +1239,39 @@
     align-items: center;
 
     width: fit-content;
-    padding: 40px 20px;
+    height: fit-content;
+
+    padding: 40px;
+
+    /* backdrop-filter: blur(3px); */
+  }
+
+  .ServicesDisplayWrapper ul {
+    gap: 30px;
+  }
+
+  .ServicesDisplayWrapper li {
+    display: flex;
+
+    justify-content: flex-start;
   }
 
   .ServicesDisplayWrapper li h3 {
-    font-size: 18px;
+    font-size: 25px;
+
+    width: fit-content;
   }
 
   .ServicesDisplayWrapper li p {
-    font-size: 10px;
+    font-size: 12px;
+
+    width: fit-content;
   }
 
-  .ServicesDisplay .col2 img {
-    height: 48px;
-  
-    padding-top: 2px;
-    padding-bottom: 30px;
+  .ServicesDisplay .col2 .ImageBox {
+
+    width: 25px;
+    height: 25px;
   
     margin-right: 13px;
   }
@@ -1276,7 +1305,7 @@
   }
 
   .ServicesRaffles {
-    width: min(430px, 100%);
+    width: min(700px, 100%);
     height: 1050px;
 
     padding: 20px;
@@ -1352,7 +1381,7 @@
 
     padding: 0;
 
-    align-items: end;
+    align-items: flex-end;
   }
 
   .History .col1 {
@@ -1386,7 +1415,6 @@
 
     filter: blur(30px);
 
-    /* outline: 2px solid orange; */
 
     z-index: -1;
   }
@@ -1401,7 +1429,7 @@
     right: 0;
     top: 0;
   
-    width: min(430px, 100%);
+    width: min(700px, 100%);
     height: 100%;
   
     overflow: visible;

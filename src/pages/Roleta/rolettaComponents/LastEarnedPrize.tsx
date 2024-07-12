@@ -1,14 +1,25 @@
-import style from '../roletta.module.css'
-import cn from 'classnames'
+import style from '../roletta.module.css';
+import cn from 'classnames';
 
-import GOLDIcon from '../../../assets/GOLD.svg'
-import SILVERIcon from '../../../assets/SILVER.svg'
+import GOLDIcon from '../../../assets/GOLD.svg';
+import SILVERIcon from '../../../assets/SILVER.svg';
 
 import Image from 'next/image';
+import { LastEarnedPrizeType } from 'utils/interfaces';
 
-const LastEarnedPrizes = ({props}: any) => {
+const LastEarnedPrizes = ({ props }: { props: LastEarnedPrizeType }) => {
+  if (!props) {
+    return <div>Error: No props provided</div>;
+  }
 
-  const { TimeOfEarning, ChanceOfEarning, PoolType, ItemName, ItemType, ItemValue } = props
+  const {
+    TimeOfEarning = 'há pouco', // Default value for TimeOfEarning
+    ChanceOfEarning = '0%', // Default value for ChanceOfEarning
+    PoolType = 'Silver', // Default to 'Silver' if PoolType is not provided
+    ItemName = 'Item Desconhecido', // Default item name
+    ItemType = 'Tipo Desconhecido', // Default item type
+    ItemValue = '0.00' // Default item value
+  } = props;
 
   return (
     <div className={cn(style.EarnedPrizeItem, style?.[PoolType])}>
@@ -17,11 +28,14 @@ const LastEarnedPrizes = ({props}: any) => {
         <p>Chance<br />{ChanceOfEarning}</p>
       </div>
 
-      <Image src={''} alt={`Imagem de ${ItemName}`}/>
+      <Image src={''} alt={`Imagem de ${ItemName}`} />
 
       <div className={style.ItemDescription}>
         <div className={style.PrizePoolType}>
-          <Image src={PoolType == 'Gold' ? GOLDIcon : SILVERIcon} alt={`Ícone da Rifa ${PoolType == 'Gold' ? 'Gold' : 'Silver'}`}/>
+          <Image
+            src={PoolType === 'Gold' ? GOLDIcon : SILVERIcon}
+            alt={`Ícone da Rifa ${PoolType === 'Gold' ? 'Gold' : 'Silver'}`}
+          />
           <h3>RIFA {PoolType}</h3>
         </div>
 
@@ -31,11 +45,11 @@ const LastEarnedPrizes = ({props}: any) => {
         </div>
 
         <div className={style.ItemValue}>
-          <h3>R$ {ItemValue},00</h3>
+          <h3>R$ {ItemValue}</h3>
         </div>
       </div>
     </div>
   );
-}
- 
+};
+
 export default LastEarnedPrizes;
