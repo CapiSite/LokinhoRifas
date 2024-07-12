@@ -34,6 +34,7 @@ body {
   width: 100vw;
 
   overflow-x: hidden;
+  /*! Caso scroll lateral volte, alterar valor acima e o do Header */
 
   background-color: #0C0C0C;
 }
@@ -52,6 +53,8 @@ header {
   display: flex;
 
   position: fixed;
+  top: 0;
+  /*! Cuidado com o valor acima caso scroll lateral volte */
 
   align-items: center;
   justify-content: center;
@@ -194,6 +197,10 @@ footer .CompanyInfo {
   gap: 30px;
 }
 
+footer .CompanyInfo p {
+  opacity: .5;
+}
+
 footer .Logo {
   width: 94px;
   height: 60px;
@@ -280,6 +287,8 @@ footer nav div {
 
 .Credits a {
   color: aqua;
+
+  text-decoration: underline;
 }
 
 /*! NÃO ALTERAR DADOS ABAIXO / DO NOT ALTER VALUES BELLOW */
@@ -288,6 +297,7 @@ footer nav div {
 }
 
 /** Tablets */
+/*
 @media only screen and (max-width: 1024px) {
   .HeaderWrapper {
     width: 964px;
@@ -299,11 +309,8 @@ footer nav div {
     z-index: 2;
   }
 
-  header .Logo.SidebarOn {
-    animation: 400ms ease-out 400ms 1 normal forwards growUp;
-  }
-
   button.mobile {
+
     width: fit-content;
     padding: 5px;
 
@@ -470,25 +477,34 @@ footer nav div {
     display: none;
   }
 }
+*/
 /** Tablets */
 
 /*! NÃO ALTERAR DADOS ABAIXO / DO NOT ALTER VALUES BELLOW */
 
 
 /** Mobile */
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 700px) {
   .HeaderWrapper {
-    width: min(430px, 100%);
+    width: 90%;
     
     padding: 20px;
   }
 
   header .Logo, header button.mobile {
+    translate: 0 0;
+    scale: 1;
+
     z-index: 2;
+
+    transition: all 400ms ease-out;
   }
 
   header .Logo.SidebarOn {
-    animation: 400ms ease-out 400ms 1 normal forwards growUp;
+    translate: calc(50% + 20px) calc(50% + 100px);
+    scale: 3;
+
+    transition: all 400ms ease-out 400ms;
   }
 
   button.mobile {
@@ -522,9 +538,13 @@ footer nav div {
 
     translate: 100vw;
 
-    transition: 400ms ease-in-out;
+    transition: 400ms ease-out 400ms;
 
     z-index: 9;
+  }
+
+  .Sidebar.visible {
+    transition: 400ms ease-out;
   }
 
   .SidebarWrapper {
@@ -620,27 +640,44 @@ footer nav div {
     padding: 40px;
   }
 
-  .FooterWrapper .CompanyInfo {
+  footer .CompanyInfo {
     display: flex;
 
-    flex-direction: column;
+    flex-wrap: wrap;
+
+    flex-direction: row;
 
     justify-content: center;
     align-items: center;
   }
 
-  .FooterWrapper nav {
+  footer nav {
     display: flex;
 
-    flex-direction: column;
+    width: fit-content;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    flex-direction: row;
 
     gap: 50px;
   }
 
-  .FooterWrapper li, .FooterWrapper a {
+  footer h2 {
+    text-align: left;
+    font-size: 3vw;
+  }
+  
+  footer li {
+    font-size: 2.5vw;
+  }
+
+  footer li, footer a {
     display: flex;
 
-    justify-content: center;
+    width: fit-content;
   }
 
   .CreditsWrapper {
@@ -652,21 +689,6 @@ footer nav div {
   .Credits p {
     white-space: nowrap;
   }
-
-  @keyframes growUp {
-    0% {
-      translate: 0 0;
-      scale: 1;
-    }
-    100% {  
-      translate: 55px 90px;
-      scale: 2;
-    }
-  }
-
-
-
-
 
   .mobile {
     display: block;
@@ -684,4 +706,8 @@ footer nav div {
 
 .visible {
   translate: 0vw;
+}
+
+.highlight {
+  color: #E21A1A;
 }

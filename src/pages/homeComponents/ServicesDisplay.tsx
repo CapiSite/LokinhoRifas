@@ -18,28 +18,36 @@ const ServicesDisplay = () => {
       <div className={style.col2}>
         <ul>
           <li>
-            <Image src={Colaboração} alt="Grupo de Rifas" />
+            <div className={style.ImageBox}>
+              <Image src={Colaboração} alt="Grupo de Rifas" />
+            </div>
             <div className={style.lineContent}>
               <h3>Grupo de Rifas</h3>
               <p>As melhores Rifas de CSGO, Entre e ganhe!</p>
             </div>
           </li>
           <li>
-            <Image src={Moeda} alt="Compramos suas Skins" />
+            <div className={style.ImageBox}>
+              <Image src={Moeda} alt="Compramos suas Skins" />
+            </div>
             <div className={style.lineContent}>
               <h3>Compramos suas Skins</h3>
               <p>Pagamento imediato via pix, rápido e seguro!</p>
             </div>
           </li>
           <li>
-            <Image src={Relogio} alt="Encomende suas Skins" />
+            <div className={style.ImageBox}>
+              <Image src={Relogio} alt="Encomende suas Skins" />
+            </div>
             <div className={style.lineContent}>
               <h3>Encomende suas Skins</h3>
               <p>Fazemos encomendas para sua skin.</p>
             </div>
           </li>
           <li>
-            <Image src={Estrela} alt="Grupo de Rifas" />
+            <div className={style.ImageBox}>
+              <Image src={Estrela} alt="Grupo de Rifas" />
+            </div>
             <div className={style.lineContent}>
               <h3>Faça Upgrade de suas Skins</h3>
               <p>Melhoramos suas skins.</p>
