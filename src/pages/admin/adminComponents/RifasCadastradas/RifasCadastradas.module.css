@@ -1,0 +1,300 @@
+.ContainerRifasCadastradas{
+    display: flex;
+    height: 500px;
+    width: 1050px;
+    overflow-y:auto;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+
+/* 
+#########################################################################################
+card da rifa                                                                            #
+#########################################################################################
+*/
+
+.ContainerCardRifa{
+    width: 180px;
+    height: 200px;
+    background-color:gray;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.NomeRifa {
+    height: 65px;
+    font-size: 18px;
+    margin-top: 3px;
+    word-break: break-word; 
+    white-space: normal;   
+}
+
+.TitleRaffle{
+    color: #fff;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.DivType{
+    display: flex;
+    justify-content: flex-end;
+    color: #fff;
+    margin-right: 8px;
+    font-size: 18px;
+    height: 10px;
+    align-items: center;
+}
+/* 
+#########################################################################################
+PopUp da rifa                                                                           #
+#########################################################################################
+*/
+.ContainerPopUpRifa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+.ContentPopUpRifa {
+    width: 90%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.ButtonExitUpdate {
+    margin-right: 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ButtonExitUpdateStyle {
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.HeaderPopUpRifa {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.NomeRifa {
+    font-size: 22px;
+    color: #333;
+    font-weight: bold;
+    word-break: break-word; 
+}
+
+.BodyPopUpRifa {
+    margin-bottom: 20px;
+}
+
+.TitleDescriptionPopUpRifa{
+    color: #333;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.FooterPopUpRifa {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ButtonPopUpRifa {
+    width: 32%; 
+    height: 40px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ButtonPopUpRifa:nth-child(1) {
+    background-color: green;
+}
+
+.ButtonPopUpRifa:nth-child(2) {
+    background-color: red;
+}
+
+.ButtonPopUpRifa:nth-child(3) {
+    background-color: #000;
+}
+
+.ButtonPopUpRifa:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.EstateRaffle{
+    color: rgb(189, 192, 5);
+    font-weight: bold;
+}
+
+
+/*
+#########################################################################################
+PopUp update rifa                                                                       #
+#########################################################################################
+*/
+
+.ContentUsersPopUp {
+    height: 100%; /* Ajuste a altura para ocupar todo o espaço disponível */
+    max-height: 600px; /* Limita a altura do contêiner */
+    overflow-y: auto; /* Habilita o comportamento de scroll vertical */
+    overflow-x: hidden;
+    width: 1040px;
+    margin-left: 20px;
+    color: #000; 
+}
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ContainerPopUpUpdateRifa {
+    position: relative;
+    z-index: 30;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 1100px;
+    height: 82%;
+    overflow-x: hidden;
+    overflow-y: auto; /* Adiciona o overflow-y para permitir o scroll do contêiner */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.ContainerSearchMember {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.ButtonExitPopUpUpdate {
+    width: 100%;
+    margin-right: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+.inputNavBarContainer {
+    position: relative;
+    width: 1000px;
+    display: flex;
+    gap: 15px;
+}
+
+.inputNavBarMember {
+    width: 100%;
+    height: 40px;
+    background-color: #d3d0d0;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    padding-right: 40px; 
+}
+
+.ButtonAddMember{
+    background-color: #32CCFF;
+    width: 45px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.ButtonAddMember:hover{
+    background-color: #00bfff;
+}
+.ButtonAddMember2{
+    background-color: #32CCFF;
+    width: 250px;
+    height: 50px;
+    font-size: 25px;
+    font-weight: 700;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ButtonAddMember2:hover{
+    background-color: #00bfff;
+}
+.searchIconMember {
+    position: absolute;
+    right: 60px; 
+    top: 50%;
+    transform: translateY(-50%); 
+    color: #000;
+    width: 25px;
+    height: 25px;
+}
+
+
+.LineMember{
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    margin-top: 10px;
+}
+.Data{
+    display: flex;
+    flex-direction: column;
+    width: 1100px;
+    justify-content: center;
+    align-items: center;
+}
+
+

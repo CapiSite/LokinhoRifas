@@ -1,102 +1,37 @@
 import LastEarnedPrizes from './LastEarnedPrize';
-import style from '../roletta.module.css'
-
+import style from '../roletta.module.css';
 import Image from 'next/image';
-
-import GIFTIcon from '../../../assets/gift.svg'
+import GIFTIcon from '../../../assets/gift.svg';
+import PRIZESBACKGROUND from '../../../images/Roleta/Prizes/PRIZESBACKGROUND.png';
+import { useLastEarnedState } from 'contexts/LastEarnedContext';
+import { LastEarnFrontEndType } from 'utils/interfaces';
 
 const LastEarnedPrizeGrid = () => {
-
-  const items = [
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Gold',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Silver',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Gold',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Gold',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Silver',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Gold',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Gold',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Silver',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-    {
-      TimeOfEarning: '21 horas',
-      ChanceOfEarning: '25%',
-      PoolType: 'Gold',
-      ItemName: 'Nome da Skin',
-      ItemType: 'Tipo da Skin',
-      ItemValue: '1,000'
-    },
-  ]
+  const { lastEarnedList } = useLastEarnedState() as { lastEarnedList: LastEarnFrontEndType[]};
 
   return (
     <section className={style.LastPrizes}>
       <div className={style.LastPrizesWrapper}>
         <div className={style.title}>
-          <Image src={GIFTIcon} alt='Icone de prêmios'/>
+          <Image priority={false} src={GIFTIcon} alt='Icone de prêmios'/>
           <h2>Últimos Prêmios</h2>
         </div>
         <div className={style.EarnedPrizesGrid}>
-            {items.map((item, index) => {
-              if(index < 10) return <LastEarnedPrizes props={item}/>
-            })}
+          {lastEarnedList && lastEarnedList.map((item, index) => {
+            if (index < 8) return <LastEarnedPrizes key={index} props={{item, index}} />;
+          })}
+        </div>
+      </div>
+      <div className={style.background}>
+        <Image priority={false} src={PRIZESBACKGROUND} alt="Fundo de tela"/>
+      </div>
+      <div className={style.glowGroup}>
+        <div className={style.growGroupWrapper}>
+          <div className={style?.["glow-0"]}></div>
         </div>
       </div>
     </section>
   );
 }
- 
+
 export default LastEarnedPrizeGrid;

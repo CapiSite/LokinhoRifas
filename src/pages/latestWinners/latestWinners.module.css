@@ -1,0 +1,549 @@
+.latestWinners {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  min-height: 70vh;
+
+  text-align: center;
+
+  margin-top: 90px;
+
+  color: white;
+}
+
+.latestWinnersWrapper {
+  display: grid;
+
+  position: relative;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 400px 400px;
+  
+  grid-template-areas:
+    "lastwinners podium"
+    "lastwinners rank";
+
+  gap: 50px;
+
+  padding-block: 30px;
+
+  width: var(--content-width);
+  min-height: 800px;
+}
+
+/* .latestWinnersWrapper > * {
+  outline: 2px solid red;
+} */
+
+.latestWinnersWrapper h2 {
+  font-weight: 500;
+
+  font-size: 34px;
+
+  margin-bottom: 50px;
+}
+
+.latestWinnersWrapper table {
+  color: black;
+
+  width: 100%;
+
+  height: fit-content;
+
+  opacity: .8;
+}
+
+.latestWinnersWrapper .tableWrapper {
+  max-height: 100%;
+
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.latestWinnersWrapper table th {
+  outline: 2px solid black;
+
+  padding: 5px;
+}
+
+.latestWinnersWrapper thead th {
+  font-size: 20px;
+  font-weight: 500;
+
+  background-color: white;
+
+  text-align: center;
+
+  position: sticky;
+  top: 0;
+}
+
+.latestWinnersWrapper tbody th {
+  font-size: 16px;
+  font-weight: 400;
+
+  max-width: 100px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.latestWinnersWrapper .col1 tbody tr th:nth-of-type(4) {
+  white-space: nowrap;
+}
+
+.latestWinnersWrapper .col2 tbody tr th:nth-of-type(5) {
+  white-space: nowrap;
+}
+
+.latestWinners .col2.top {
+  display: grid;
+
+  grid-template-rows: 100px 1fr;
+
+  height: 100%;
+
+  grid-area: podium;
+}
+
+.latestWinners .podium {
+  display: flex;
+
+  justify-content: center;
+  align-items: flex-end;
+
+  width: 100%;
+  height: 100%;
+}
+
+.latestWinners .podium h3 {
+  font-weight: 500;
+
+  max-width: 175px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  padding-inline: 10px;
+}
+
+.latestWinners .podium p {
+  font-weight: 500;
+  font-size: 24px;
+
+  max-width: 175px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  padding-inline: 10px;
+}
+
+.latestWinners .podium > * {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 10px;
+
+  width: calc(100% / 3);
+  height: 100%;
+}
+
+.latestWinners .podium > div > img {
+  border-radius: 50%;
+}
+
+.latestWinners .podium .bronzeMedal .podiumBlock {
+  width: 100%;
+  height: calc(100% / 3);
+
+  background: linear-gradient(180deg, rgb(121, 30, 30), transparent);
+  border-top: 4px solid brown;
+
+  color: white;
+
+  font-weight: 600;
+}
+
+.latestWinners .podium .silverMedal .podiumBlock {
+  width: 100%;
+  height: calc(100% / 2);
+
+  background: linear-gradient(180deg, rgb(151, 151, 151), transparent);
+  border-top: 4px solid silver;
+  color: white;
+
+  font-weight: 600;
+}
+
+.latestWinners .podium .goldMedal .podiumBlock {
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(180deg, rgb(211, 179, 1), transparent);
+  border-top: 4px solid gold;
+  color: white;
+
+  font-weight: 600;
+}
+
+.latestWinners .col2.bottom {
+  display: grid;
+
+  grid-template-rows: 100px 1fr;
+
+  grid-area: rank;
+}
+
+.latestWinners .col2 tbody tr {
+  background-color: rgb(52, 51, 51);
+  color: white;
+}
+
+.latestWinners .col2 tbody tr:nth-of-type(1) {
+  background-color: gold;
+  color: black;
+}
+
+.latestWinners .col2 tbody tr:nth-of-type(2) {
+  background-color: silver;
+  color: black;
+}
+
+.latestWinners .col2 tbody tr:nth-of-type(3) {
+  background-color: brown;
+  color: white;
+}
+
+.Gold {
+  background-color: rgb(209, 177, 0);
+}
+
+.Gold th:nth-of-type(1) {
+  border-left: 4px solid gold;
+}
+
+.Silver {
+  background-color: rgb(151, 151, 151);
+}
+
+.Silver th:nth-of-type(1) {
+  border-left: 4px solid silver;
+}
+
+.latestWinners .col1 {
+  display: grid;
+
+  width: 100%;
+  height: 100%;
+
+  grid-area: lastwinners;
+
+  grid-template-rows: 100px 1fr;
+}
+
+.background {
+  display: flex;
+
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  /* overflow: hidden; */
+
+  z-index: -2;
+
+  opacity: .5;
+}
+
+.glowGroup {
+  display: flex;
+
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+}
+
+.background img {
+  object-fit: cover; 
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.background img:nth-of-type(1) {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  filter: brightness(200%);
+
+  width: auto;
+  height: 80%;
+
+  z-index: -1;
+}
+
+.background img:nth-of-type(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 80%;
+  height: auto;
+}
+
+.glowGroup .glow-1 {
+  width: 452px;
+  height: 452px;
+
+  position: absolute;
+  top: 0;
+  left: -30%;
+
+  background-color: #A30006;
+  filter: blur(300px);
+}
+
+.glowGroup .glow-2 {
+  width: 452px;
+  height: 452px;
+
+  position: absolute;
+  bottom: 0;
+  right: -30%;
+
+  background-color: #E21A1A;
+  filter: blur(300px);
+}
+
+.mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  .latestWinners.winners .latestWinnersWrapper {
+    display: grid;
+  
+    position: relative;
+  
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 600px 1fr;
+    grid-template-areas:
+    "podium podium"
+    "lastwinners lastwinners";
+  
+    gap: 50px;
+  
+    width: var(--content-width);
+    height: 100%;
+  }
+
+  .latestWinners.rank .latestWinnersWrapper {
+    display: grid;
+  
+    position: relative;
+  
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 600px 1fr;
+    grid-template-areas:
+    "podium podium"
+    "rank rank";
+  
+    gap: 50px;
+  
+    width: var(--content-width);
+    height: 100%;
+  }
+
+  .latestWinners.rank .col1 {
+    display: none;
+  }
+
+  .latestWinners.winners .col2.bottom {
+    display: none;
+  }
+
+  .latestWinners .col1 {
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    height: 100%;
+
+    padding-inline: min(50px, 6vmin);
+  }
+
+  .latestWinners .col2.top {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+  .latestWinners .col2.top > * {
+    padding-inline: min(50px, 6vmin);
+  }
+
+  .latestWinners .col2.top h2 {
+    font-size: min(48px, 5.5vmin);
+  }
+
+  .latestWinners .podium h3 {
+    font-weight: 500;
+
+    font-size: min(34px, 6vmin);
+  }
+  
+  .latestWinners .podium p {
+    font-weight: 500;
+    font-size: min(68px, 6vmin);
+  }
+
+  .latestWinners .podium > div > img {
+    width: min(100px, 100%);
+    height: auto;
+
+    padding-inline: 10px;
+  }
+
+  .latestWinners .col2.bottom h2,
+  .latestWinners .col1 h2 {
+    display: none;
+  }
+
+  .latestWinners .col1 th,
+  .latestWinners .col2.bottom th {
+    font-size: min(16px, 2.5vmin);
+  }
+
+  .latestWinners .col2.bottom {
+    display: flex;
+    flex-direction: column;
+
+    padding-inline: min(50px, 6vmin);
+  }
+
+  .buttonGroup {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    background-color: #00000080;
+
+    padding-block: 20px;
+
+    border-top: 4px solid #E21A1A;
+    border-bottom: 4px solid #E21A1A;
+
+    width: 100%;
+
+    margin-top: 50px;
+  }
+
+  .buttonGroup button {
+    display: flex;
+  
+    justify-content: center;
+    align-items: center;
+  
+    gap: 10px;
+  
+    padding: 19px 30px;
+    
+    font-size: min(24px, 6vmin);
+    font-weight: 500;
+  
+    border-radius: 8px;
+  
+    border: none;
+  
+    outline: 1px solid #E21A1A;
+  
+    background: linear-gradient(90deg, #E21A1A, #A30006);
+
+    filter: grayscale(100%);
+
+    color: white;
+  
+    cursor: pointer;
+  
+    transition: 200ms ease-out;
+  }
+
+  .latestWinnersWrapper tbody th {
+    font-size: 16px;
+    font-weight: 400;
+  
+    max-width: 94px;
+  
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  .latestWinners .podium h3 {
+    font-weight: 500;
+
+    max-width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    padding-inline: 10px;
+  }
+
+  .latestWinners .podium p {
+    font-weight: 500;
+    font-size: 24px;
+
+    max-width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    padding-inline: 10px;
+  }
+
+  .buttonGroup button.active {
+    filter: grayscale(0%);
+  }
+
+  .latestWinnersWrapper .tableWrapper {
+    max-height: 800px;
+  }
+
+  .mobile {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .background img:nth-of-type(2) {
+    width: 190%;
+    height: auto;
+  }
+
+  .latestWinnersWrapper tbody th {
+    font-size: 16px;
+    font-weight: 400;
+  
+    max-width: 40px;
+  
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+}

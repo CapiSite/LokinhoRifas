@@ -1,74 +1,18 @@
-import style from '../roletta.module.css'
+import { RouletteContext } from 'utils/interfaces';
+import style from '../roletta.module.css';
 import RewardItem from './RewardItem';
+import { useRouletteContext } from 'contexts/RouletteContext';
 
 const RewardsArray = () => {
-
-  const items = [
-    {
-      type: 'Gold',
-      itemImageUrl: '',
-      itemImageAlt: '',
-      itemName: 'Nome da Skin',
-      itemType: 'Tipo de Skin',
-      itemValue: '1000'
-    },
-    {
-      type: 'Silver',
-      itemImageUrl: '',
-      itemImageAlt: '',
-      itemName: 'Nome da Skin',
-      itemType: 'Tipo de Skin',
-      itemValue: '4000'
-    },
-    {
-      type: 'Gold',
-      itemImageUrl: '',
-      itemImageAlt: '',
-      itemName: 'Nome da Skin',
-      itemType: 'Tipo de Skin',
-      itemValue: '3000'
-    },
-    {
-      type: 'Silver',
-      itemImageUrl: '',
-      itemImageAlt: '',
-      itemName: 'Nome da Skin',
-      itemType: 'Tipo de Skin',
-      itemValue: '2000'
-    },
-    {
-      type: 'Silver',
-      itemImageUrl: '',
-      itemImageAlt: '',
-      itemName: 'Nome da Skin',
-      itemType: 'Tipo de Skin',
-      itemValue: '2000'
-    },
-    {
-      type: 'Silver',
-      itemImageUrl: '',
-      itemImageAlt: '',
-      itemName: 'Nome da Skin',
-      itemType: 'Tipo de Skin',
-      itemValue: '2000'
-    },
-    {
-      type: 'Silver',
-      itemImageUrl: '',
-      itemImageAlt: '',
-      itemName: 'Nome da Skin',
-      itemType: 'Tipo de Skin',
-      itemValue: '2000'
-    },
-  ]
+  const { rewards = [] } = useRouletteContext() as RouletteContext
 
   return (
     <div className={style.RewardsArray}>
-      {items.map((item, index) => {
-        if(index < 4) return <RewardItem key={index} props={item} />
+      {rewards && rewards.map((item, index) => {
+        if (index < 4) return <RewardItem key={index} props={{item, index}} />;
       })}
     </div>
   );
 }
- 
+
 export default RewardsArray;

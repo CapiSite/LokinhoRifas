@@ -1,6 +1,0 @@
-services:
-  web:
-    container_name: next
-    build: .
-    ports: 
-      - 5000:3000

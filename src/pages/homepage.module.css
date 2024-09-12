@@ -27,36 +27,34 @@
   height: 100%;
 
   z-index: 2;
-
 }
 
 .Hero .glow-0, .Hero .glow-1 {
   border-radius: 50%;
 
   position: absolute;
-
-  opacity: .2;
 }
 
 .Hero .glow-0 {
-  width: 1091px;
-  height: 1091px;
+  width: 591px;
+  height: 591px;
 
-  right: 0;
+  top: 10px;
+  right: 30px;
 
   background-color: #A30006;
-  filter: blur(1600px);
+
+  filter: blur(315px);
 }
 
 .Hero .glow-1 {
-  width: 433px;
-  height: 433px;
+  width: 233px;
+  height: 233px;
   
   top: 25%;
   right: 15%;
 
   background-color: #E21A1A;
-  filter: blur(600px);
 }
 
 .Hero .background {
@@ -113,12 +111,6 @@
 }
 
 .Hero .background-0 {
-  --background-offset: -20px;
-
-
-  /* width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset)));
-  min-width: min(calc(1920px - var(--background-offset)), calc(100vw - var(--background-offset))); */
-
   z-index: 1;
 }
 
@@ -364,6 +356,21 @@
 
   width: 301px;
   height: 190px;
+
+  position: relative;
+}
+
+.Services .Card::after {
+  content: '';
+
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+
+  background: linear-gradient(135deg, transparent 0% 5%, #77777730 15% 85%, transparent 95% 100%);
+
+  border-radius: 11px;
 }
 
 .Services .CardWrapper {
@@ -380,11 +387,9 @@
 
   gap: 10px;
 
-  background: linear-gradient(135deg, transparent 0% 5%, rgba(255, 255, 255, 10%) 15% 85%, transparent 95% 100%);
-
-  border-radius: 11px;
-
   color: white;
+
+  z-index: 1;
 }
 
 .Services .Card .ImageWrapper {
@@ -459,17 +464,16 @@
 
   position: absolute;
 
-  opacity: .2;
+  opacity: .5;
 }
 
 .ServicesDisplay .glow-0 {
   width: 1152px;
   height: 1152px;
-
-  left: 70%;
+  left: 51%;
 
   background-color: #A30006;
-  filter: blur(1600px);
+  filter: blur(300px);
 }
 
 .ServicesDisplay .glow-1 {
@@ -480,7 +484,6 @@
   right: 15%;
 
   background-color: #E21A1A;
-  filter: blur(600px);
 }
 
 .ServicesDisplay .glow-2 {
@@ -489,47 +492,34 @@
 
   background: radial-gradient(#E21A1A, #A30006);
 
-  opacity: .35;
+  opacity: .3;
 
   position: absolute;
-  left: 13%;
+  top: -10%;
+  left: 15%;
 
   border-radius: 50%;
 
-  filter: blur(444px);
+  filter: blur(144px);
 
   z-index: 1;
 }
 
 .ServicesDisplay .background-0 {
-  --background-offset: 0;
+  height: 130%;
 
-  height: 765px;
+  translate: -40px;
 
-  position: absolute;
-  top: -24px;
-
-  width: 1920px;
-  min-width: 1920px;
-
-  z-index: 2;
-
+  z-index: 1;
 }
 
 .ServicesDisplay .background-1 {
-  --background-offset: 0;
-
-  height: 765px;
+  height: 100%;
 
   position: absolute;
-  /* top: -24px; */
+  right: 0;
 
-  /* width: 1920px;
-  min-width: 1920px; */
-  width: auto;
-  height: 120%;
-
-  box-shadow: 5px 0 5px rgba(0, 0, 0, 0.2), -5px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: -1;
 }
 
 .ServicesDisplay .background-2 {
@@ -564,6 +554,16 @@
   height: fit-content;
 }
 
+.ServicesDisplay .col1 {
+  display: flex;
+
+  position: relative;
+
+  translate: -35px -30px;
+
+  height: 100%;
+}
+
 .ServicesDisplay .col2 {
   padding: 50px 35px;
 
@@ -576,13 +576,10 @@
   color: white;
 
   border-radius: 10px;
-  /* outline: 1px solid grey; */
 
   overflow: hidden;
 
   outline: .1px solid rgba(128, 128, 128, 0.295);
-
-  /* z-index: 9999; */
 }
 
 .ServicesDisplay ul {
@@ -619,21 +616,22 @@
 .ServicesDisplay li {
   display: flex;
 
+  flex-direction: column;
+
   justify-content: left;
   align-items: top;
 }
 
 .ServicesDisplay .col2 img {
-  height: 48px;
-
-  padding-top: 2px;
-  padding-bottom: 25px;
+  height: 25px;
+  width: 25px;
 
   margin-right: 13px;
+  padding-top: 5px;
 }
 
 .ServicesDisplay li h3 {
-  font-size: 30px;
+  font-size: 27px;
 
   white-space: nowrap;
 
@@ -643,6 +641,8 @@
 .ServicesDisplay li p {
   font-size: 16px;
   font-weight: 600;
+
+  padding-left: 38px;
 }
 
 /* #####################################################################################
@@ -662,7 +662,7 @@
 
   position: relative;
 
-  z-index: 0;
+  z-index: 2;
 }
 
 .ServicesRaffles .background {
@@ -698,14 +698,6 @@
 .ServicesRaffles .background-2 {
   position: absolute;
   left: 101%;
-}
-
-.ServicesRaffles .background-3 {
-  position: absolute;
-  top: -25%;
-  left: 0;
-
-  z-index: -1;
 }
 
 .ServicesRaffles h2 {
@@ -849,7 +841,7 @@
   align-items: center;
 
   width: 100%;
-  height: 630px;
+  height: 580px;
 
   position: relative;
 
@@ -857,22 +849,7 @@
 
   z-index: 1;
 
-  overflow: hidden;
-}
-
-.History .background {
-  position: absolute;
-
-  width: var(--content-width);
-  height: 630px;
-
-  overflow: hidden;
-}
-
-.History .background-0 {
-  position: absolute;
-
-  z-index: 2;
+  /* overflow: hidden; */
 }
 
 .HistoryWrapper {
@@ -880,23 +857,45 @@
 
   justify-content: center;
 
-  margin-bottom: 124px;
+  /* margin-bottom: 124px; */
 
   width: var(--content-width);
+  height: 100%;
   
-  padding: var(--content-padding);
+  padding: 0 var(--content-padding);
+
+  gap: 117px;
 
   color: white;
+
+  z-index: 2;
+
+  overflow: hidden;
 }
 
 .History .col1, .History .col2 {
   width: 450px;
+  height: 570px;
+}
+
+.History .col1 {
+  position: relative;
+}
+
+.History .background-0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  translate: 0 -20px;
 }
 
 .History .col2 {
   display: flex;
 
   flex-direction: column;
+
+  padding-top: 75px;
 
   gap: 30px;
 
@@ -922,17 +921,28 @@
 .History .GlowGroup {
   display: flex;
 
-  position: absolute;
+  justify-content: center;
 
-  width: 1920px;
-  height: 100%;
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 200%;
 
   z-index: 1;
 
-  opacity: .3;
+  opacity: .5;
 
+  /* box-shadow: 0 0 5px black; */
 
-  box-shadow: 0 0 5px black;
+  overflow: hidden;
+}
+
+.History .GlowGroupWrapper {
+  width: 1920px;
+  height: 100%;
+
+  position: absolute;
 }
 
 .History .glow-0, .History .glow-1 {
@@ -945,22 +955,22 @@
   width: 1152px;
   height: 1152px;
 
-  left: -30%;
-  top: 20%;
+  left: -28%;
+  bottom: -50%;
 
   background-color: #A30006;
-  filter: blur(1600px);
+  filter: blur(355px);
 }
 
 .History .glow-1 {
   width: 454px;
   height: 454px;
   
-  bottom: -30%;
-  left: -5%;
+  bottom: -20%;
+  left: 0;
 
   background-color: #E21A1A;
-  filter: blur(800px);
+  filter: blur(355px);
 }
 
 .mobile, .tablet {
@@ -1099,12 +1109,17 @@
 /* * TABLET */
 
 /** MOBILE */
-@media only screen  and (max-width: 700px) {
+@media only screen  and (max-width: 1200px) {
+  .Hero {
+    height: 1000px;
+  }
+
   .Hero .col1 {
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 
     width: 100%;
+    height: 750px;
 
     gap: 20px;
 
@@ -1112,7 +1127,8 @@
   }
 
   .Hero .col1 h1 {
-    font-size: 48px;
+    /* !PADRÃO PARA HEADER */
+    font-size: min(12vmin, 48px);
 
     white-space: nowrap;
   }
@@ -1121,7 +1137,8 @@
     width: 100%;
     line-height: 120%;
 
-    font-size: 20px;
+    /* !PADRÃO PARA TEXTO */
+    font-size: min(6vmin, 20px);
     font-weight: 400;
   }
 
@@ -1143,10 +1160,16 @@
     display: none;
   }
 
+  .Hero .Faixas {
+    top: none;
+    
+    translate: -30% 20%;
+  }
+
   .Hero .background {
 
     position: absolute;
-    right: 0;
+    right: 30%;
   }
 
   .Hero .background-0 {
@@ -1155,16 +1178,44 @@
     position: absolute;
     right: -550px;
 
-    opacity: .6;
+    opacity: 1;
+
+    filter: brightness(130%);
+  }
+
+  .Hero .GlowGroup {
+    width: 100%;
+    height: 100%;
+  }
+
+  .Hero .glow-0 {
+    top: 0;
+    left: 45%;
+
+    width: 891px;
+    height: 891px;
+
+    filter: blur(255px);
+
+    opacity: .7;
+  }
+
+  .Hero .glow-1 {
+    display: none;
+
   }
 
   .Services {
     height: fit-content;
-    width: min(700px, 100%);
+    width: min(1200px, 100%);
 
     margin-top: 80px;
 
     padding: 20px;
+  }
+
+  .Services h2 {
+    font-size: min(9vmin, 48px);
   }
 
   .ServicesWrapper {
@@ -1173,7 +1224,8 @@
 
   .Services .CardGroup {
     display: flex;
-    flex-direction: column;
+
+    flex-wrap: wrap;
 
     justify-content: center;
     align-items: center;
@@ -1181,55 +1233,61 @@
     width: 100%;
   }
 
+  .Services .Card {
+    width: min(100%, 301px);
+  }
+
+  .Services .Card h3 {
+    font-size: min(8vmin, 20px);
+  }
+
+  .Services .Card p {
+    font-size: min(4vmin, 14px);
+  }
+
   .ServicesDisplay {
     display: flex;
 
     align-items: flex-end;
 
-    width: min(700px, 100%);
-    height: 850px;
-
+    width: min(1200px, 100%);
+    height: fit-content;
 
     padding: 0;
     margin-block: 80px;
-  }
-
-  .ServicesDisplay .background-0 {
-    --image-width: auto;
-    width: var(--image-width);
-    min-width: var(--image-width);
-    height: 100%;
-
-    top: 0;
-    left: -360px;
-    /* left: -30px; */
-  }
-
-  .ServicesDisplay .background-1 {
-    --image-width: 220%;
-    /* width: var(--image-width);
-    min-width: var(--image-width); */
-    width: auto;
-    height: 100%;
-
-    top: 0;
-    left: 0;
-    /* left: -70px; */
   }
 
   .ServicesDisplayWrapper {
     display: flex;
     
     justify-content: center;
+
+    flex-wrap: wrap;
+
     width: 100%;
-    height: fit-content;
+    height: 100%;
 
     padding: 0;
   }
-  
-  .ServicesDisplayWrapper .col1 {
-    padding: 20px;
-    display: none;
+
+  .ServicesDisplay .col1 {
+    translate: 0 0;
+
+    height: 355px;
+
+    margin-bottom: 140px;
+  }
+
+  .ServicesDisplay .background-1 {
+    height: 135%;
+
+    left: -30%;
+  }
+
+  .ServicesDisplay .background-0 {
+    height: 165%;
+
+    translate: 60px;
   }
 
   .ServicesDisplayWrapper .col2 {
@@ -1243,7 +1301,7 @@
 
     padding: 40px;
 
-    /* backdrop-filter: blur(3px); */
+    width: min(90%, 537px);
   }
 
   .ServicesDisplayWrapper ul {
@@ -1257,13 +1315,22 @@
   }
 
   .ServicesDisplayWrapper li h3 {
-    font-size: 25px;
+    font-size: min(5vmin, 25px);
 
     width: fit-content;
   }
 
+  .ServicesDisplay .col2 img {
+    height: min(5vmin, 25px);
+
+    margin-right: 5px;
+  }
+
   .ServicesDisplayWrapper li p {
-    font-size: 12px;
+    font-size: min(4vmin, 12px);
+    font-weight: 400;
+
+    padding-left: 30px;
 
     width: fit-content;
   }
@@ -1305,8 +1372,8 @@
   }
 
   .ServicesRaffles {
-    width: min(700px, 100%);
-    height: 1050px;
+    width: min(1200px, 100%);
+    height: fit-content;
 
     padding: 20px;
 
@@ -1323,61 +1390,96 @@
 
   .ServicesRafflesWrapper h2 {
     margin-top: 100px;
+    font-size: min(12vmin, 30px);
   }
 
   .ServicesRaffles .CardGroup {
     display: flex;
 
-    padding: 0 52px;
+    justify-content: center;
+
+    padding: 0;
+
+    width: 100%;
 
     margin-top: 0;
-
-    flex-direction: column;
+    
+    flex-wrap: wrap;
   }
 
   .ServicesRaffles .BackgroundRaffle {
-    width: 330px;
-    height: auto;
+    width: min(330px, 100%);
+    height: min(390px, 100%);
   }
 
   .ServicesRaffles .Card .RaffleLogo {
-    width: 280px;
+    width: min(280px, 100%);
     height: auto;
 
     margin-bottom: 5px;
   }
 
   .ServicesRaffles .Card {
-    width: 330px;
-    height: 390px;
+    width: min(330px, 100%);
+    height: min(390px, 100%);
   }
 
   .ServicesRaffles .Card .RaffleContent {
-    gap: 5px;
+    gap: 10px;
   }
 
   .ServicesRaffles .Card h3 {
-    font-size: 20px;
+    font-size: min(6vmin, 20px);
   }
 
   .ServicesRaffles .Card p {
     font-size: 10px;
-    line-height: 12px;
+    font-size: min(3vmin, 12px);
+
+    height: fit-content;
+    margin-bottom: 3px;
+
+    text-align: justify;
+
+    line-height: min(3.3vmin, 12px);
+  }
+
+  .ServicesRaffles .Card button {
+    width: fit-content;
+    height: fit-content;
+
+    font-size: min(5vmin, 20px);
   }
 
   .ServicesRaffles .background {
     top: 0px;
     height: 100%;
+    width: 100%;
+  }
+
+  .ServicesRaffles .background-0 {
+    width: auto;
+    height: 610%;
   }
 
   .History {
-    height: 1050px;
+    height: fit-content;
   }
 
   .HistoryWrapper {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
     height: 100%;
 
     margin-bottom: 0;
+
+    flex-wrap: wrap;
 
     padding: 0;
 
@@ -1385,16 +1487,34 @@
   }
 
   .History .col1 {
-    display: none;
+    width: 100%;
+
+    overflow: hidden;
+
+    translate: 0 60px;
+  }
+
+  .History .background-0 {
+    top: 10px;
+
+    translate: 20% -30px;
+
+    width: 100%;
+    height: auto;
+  
+    z-index: 2;
   }
 
   .History .col2 {
     width: 100%;
+    
     height: fit-content;
 
     padding: 40px 20px;
 
     translate: 0 -60px;
+
+    background-color: #0c0c0c;
 
     z-index: 3;
 
@@ -1404,12 +1524,12 @@
   .History .col2::after {
     content: '';
 
-    width: 120%;
+    width: 160%;
     height: 100%;
 
     position: absolute;
     top: -160px;
-    left: -10px;
+    left: -30px;
 
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.7));
 
@@ -1420,8 +1540,13 @@
   }
 
   .History .col2 h2 {
-    font-size: 30px;
-    white-space: nowrap;
+    font-size: min(6.5vmin, 30px);
+  }
+
+  .History .col2 p {
+    font-size: min(4vmin, 18px);
+
+    text-align: justify;
   }
 
   .History .background {
@@ -1429,7 +1554,7 @@
     right: 0;
     top: 0;
   
-    width: min(700px, 100%);
+    width: min(1200px, 100%);
     height: 100%;
   
     overflow: visible;
@@ -1437,16 +1562,6 @@
 
   .History .GlowGroup {
     display: none;
-  }
-  
-  .History .background-0 {
-    left: -30px;
-    top: 0;
-
-    width: 200%;
-    height: auto;
-  
-    z-index: 2;
   }
 
 
@@ -1462,6 +1577,41 @@
     display: none;
   }
 }
+
+@media only screen and (max-width: 530px) {
+  .ServicesRaffles .Card .RaffleLogo {
+    width: min(280px, 100%);
+    height: auto;
+
+    margin-top: 24px;
+    margin-bottom: 5px;
+  }
+
+  .ServicesRaffles .Card {
+    width: min(330px, 100%);
+    height: min(390px, 100%);
+
+    padding: 0 min(24px, 5%);
+  }
+
+
+  .ServicesRaffles .Card button {
+    width: fit-content;
+    height: fit-content;
+
+    padding: 5px;
+    margin-bottom: 24px;
+
+    font-size: min(5vmin, 20px);
+  }
+
+  .History .background-0 {
+    top: 20px;
+    width: 200%;
+
+    translate: -5% -30px;
+  }
+}
 /** MOBILE */
 
 .no-background {
@@ -1474,4 +1624,12 @@
 
 .highlight {
   color: #E21A1A;
+}
+
+.Hero button:disabled {
+  filter: grayscale(100%);
+}
+
+.ServicesRaffles button:disabled {
+  filter: grayscale(100%);
 }

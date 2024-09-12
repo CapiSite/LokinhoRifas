@@ -1,20 +1,21 @@
-import style from './roletta.module.css'
 import LastEarnedPrizeGrid from './rolettaComponents/LastEarnedPrizeGrid';
-import RewardList from './rolettaComponents/RewardList';
-import Roulette from './rolettaComponents/Roulette';
+import Hero from './rolettaComponents/Roleta';
+
+import { LastEarnedContextProvider } from 'contexts/LastEarnedContext';
+import RoletaWinner from './rolettaComponents/WinnerPopup';
+import { RouletteProvider } from 'contexts/RouletteContext';
 
 const TempRoleta = () => {
   return (
-    <section className={style.Roleta}>
-      <div className={style.RoletaWrapper}>
-        <RewardList />
-        <Roulette />
-
-        <button>Girar Roleta</button>
-
-        <LastEarnedPrizeGrid />
-      </div>
-    </section>
+    <>
+      <LastEarnedContextProvider>
+        <RouletteProvider>
+          <Hero />
+          <LastEarnedPrizeGrid />
+          <RoletaWinner />
+        </RouletteProvider>
+      </LastEarnedContextProvider>
+    </>
   );
 }
  
