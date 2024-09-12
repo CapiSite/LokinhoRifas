@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "outDir": "./dist",            // Diretório de saída para os arquivos compilados
+    "rootDir": "./src",            // Diretório raiz dos arquivos de origem
+    "noEmit": false,               // Garante que os arquivos serão emitidos durante o build
+    "declaration": true,           // Gera arquivos .d.ts para ajudar outros desenvolvedores que usarão seu pacote
+    "emitDecoratorMetadata": true, // Se você estiver usando decorators, essa opção é importante
+    "experimentalDecorators": true // Suporte a decorators
+  },
+  "exclude": [
+    "tests",                       // Exclui a pasta 'tests'
+    "**/*.spec.ts",                // Exclui arquivos de teste unitário
+    "**/*.test.ts",                // Exclui arquivos de teste unitário
+    "node_modules",                // Exclui a pasta 'node_modules'
+    "dist"                         // Exclui a pasta 'dist' para evitar loops de compilação
+  ]
+}

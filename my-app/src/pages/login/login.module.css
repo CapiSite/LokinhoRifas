@@ -1,0 +1,301 @@
+.LogIn {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 1331px;
+
+  color: white;
+
+  position: relative;
+}
+
+.LogInWrapper {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  
+  margin-bottom: 480px;
+  margin-top: 0px;
+
+  width: 1920px;
+  height: 100%;
+}
+
+.LogInWrapper .col1, .LogInWrapper .col2 {
+  width: 50%;
+}
+
+.LogIn form {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 30px;
+
+  width: 560px;
+  height: fit-content;
+
+  padding: 50px 20px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, transparent 0% 5%, #77777730 15% 85%, transparent 95% 100%);
+}
+
+.LogIn hr {
+  width: 50%;
+
+  align-self: center;
+}
+
+.LogIn h2 {
+  font-size: 40px;
+
+  text-align: center;
+}
+
+.box {
+  height: 308px;
+  width: calc(100% + 5px);
+
+  overflow: hidden;
+  transition: height 400ms ease-in;
+}
+
+.box.step-1 {
+  height: 117px;
+}
+
+.boxWrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 30px;
+
+  height: 308px;
+  width: 100%;
+
+  padding: 0 5px;
+}
+
+.LogIn form label {
+  width: 100%;
+
+  font-size: 27px;
+}
+
+.LogIn form input {
+  margin-top: 16px;
+}
+
+.LogIn button {
+  display: flex;
+
+  flex-direction: row-reverse;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 24px;
+
+  width: 100%;
+  height: 48px;
+
+  padding: 7px 35px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  outline: 1px solid #E21A1A;
+
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  cursor: pointer;
+
+  transition: 200ms ease-out;
+
+  white-space: nowrap;
+}
+
+.LogIn button:hover {
+  translate: 2px 2px;
+
+  box-shadow: 0 0 20px red;
+}
+
+.LogIn a {
+  text-decoration: underline;
+
+  margin-left: auto;
+
+  font-size: 20px;
+}
+
+.LogIn form > a:last-of-type {
+  margin-right: auto;
+}
+
+.LogIn input[type="email"], .LogIn input[type="password"], .LogIn input[type="text"], .LogIn input[type="tel"] {
+  display: block;
+
+  font-size: 18px;
+
+  width: 100%;
+  height: 65px;
+  
+  outline: none;
+  border: none;
+  border-radius: 10px;
+
+  padding: 5px 10px;
+}
+
+.LogIn .inputWrapper {
+  position: relative;
+}
+
+.LogIn .inputWrapper button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+
+  translate: 0 -50%;
+
+  width: fit-content;
+  height: fit-content;
+
+  background: none;
+  outline: none;
+
+  padding: 0 10px 0 0;
+}
+
+.LogIn .inputWrapper button:hover {
+  translate: 0 -50%;
+  box-shadow: none;
+}
+
+.LogIn input:focus-within {
+  outline: 4px solid red;
+}
+
+.LogIn .background {
+  display: flex;
+
+  flex-direction: column;
+
+  position: absolute;
+  top: 0;
+
+  z-index: -1;
+
+  width: 1920px;
+  height: 100%;
+}
+
+.LogIn .background-0, .LogIn .background-1 {
+  position: absolute;
+}
+
+.LogIn .background-0 {
+  width: 120%;
+  height: auto;
+
+  left: -10%;
+
+  z-index: -1;
+}
+
+.LogIn .background-0Wrapper {
+  display: flex;
+
+  width: 1920px;
+  height: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.LogIn .background-0Wrapper::after {
+  content: '';
+
+  background: radial-gradient(transparent, #0C0C0C 75%);
+
+  width: 100%;
+  height: 100%;
+}
+
+.LogIn .background-1 {
+  bottom: 0;
+  left: -50vw;
+
+  width: 300vw;
+
+  z-index: 1;
+}
+
+.LogIn .errorBox {
+  width: 100%;
+  height: fit-content;
+
+  background-color: rgba(255, 0, 0, 0.5);
+  outline: 2px solid red;
+
+  border-radius: 4px;
+
+  padding: 15px;
+
+  font-size: 20px;
+}
+
+.LogIn .TwitchButton {
+  background: linear-gradient(90deg, #8d5ce8, #442c71);
+
+  outline: 1px solid #8d5ce8;
+}
+
+.LogIn .TwitchButton:hover {
+  box-shadow: 0 0 20px #8d5ce8;
+}
+
+@media only screen and (max-width: 1200px) {
+  .LogIn {
+    height: fit-content;
+  }
+
+  .LogInWrapper {
+    margin-top: 90px;
+    margin-bottom: 0;
+
+    height: fit-content;
+  }
+
+  .LogInWrapper .col1 {
+    display: none;
+  }
+
+  .LogInWrapper .col2 {
+    width: 100%;
+  }
+
+  .LogIn form {
+    align-items: center;
+    width: 100vw;
+  }
+
+  .LogIn button {
+    width: 99%;
+  }
+}

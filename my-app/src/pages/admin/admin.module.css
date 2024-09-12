@@ -1,0 +1,521 @@
+.ContainerAdmin {
+  display: flex;
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ContentAdmin {
+  justify-content: center;
+  align-items: center;
+  background-color: #980106;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.ContainerInformation {
+  width: 1000px;
+  height: 450px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.FormPhoto {
+  display: flex;
+}
+
+.Data {
+  display: flex;
+  justify-content: center;
+  width: 950px;
+  height: 400px;
+}
+
+.ContentPhoto {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #fff;
+  margin-right: 40px;
+}
+
+.ContentInputs {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fileInput {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.imagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.DivInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.InputData {
+  width: 450px;
+  height: 50px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 26px;
+}
+
+.labelInformation {
+  font-size: 26px;
+  color: #fff;
+  font-family: "Work Sans", sans-serif;
+}
+
+.ButtonSave {
+  width: 220px;
+  height: 46px;
+  font-size: 25px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background-color: #e21a1a;
+  transition: translate 400ms ease-out, box-shadow 400ms ease-in;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.ButtonSave:hover {
+  translate: 2px 2px;
+  box-shadow: 0 0 15px #e21a1a;
+}
+
+.TitleAdmin {
+  font-weight: 600;
+  font-size: 32px;
+  color: #fff;
+  font-family: "Work Sans", sans-serif;
+}
+
+/* Card de skins cadastrada do admin */
+
+.ContainerCards {
+  width: 1100px;
+  height: 520px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.ContentCard {
+  background-color: #646462;
+  width: 200px;
+  height: 240px;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 2px solid #646462;
+  cursor: pointer;
+}
+
+.ImageCard {
+  width: 100%;
+  height: 55%;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.DivDataCard {
+  font-size: 16px;
+  color: #fff;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.DivSettings {
+  margin-top: 15px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropdownMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  border: solid 1px;
+  width: 180px;
+  height: 90px;
+  position: relative;
+  z-index: 10;
+  margin-top: 20px;
+  margin-bottom: -100px;
+  background-color: gray;
+  cursor: pointer;
+}
+
+.buttonSelect {
+  background-color: #646462;
+  color: #fff;
+  width: 100%;
+  height: 30px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  cursor: pointer;
+}
+
+.buttonSelect:nth-child(2) {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.buttonSelect:nth-child(3) {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+/* PopUpUpdateSkins */
+.ContainerPopUpUpdate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.ContentPopUpUpdate {
+  background-color: #980106;
+  width: 800px;
+  height: 450px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ButtonExitUpdate {
+  font-size: 24px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ButtonExitUpdateStyle {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.DataPopUpUpdate {
+  display: flex;
+  gap: 10px;
+  margin: 20px;
+}
+
+.DivPhoto {
+  position: relative;
+  width: 45%;
+  height: 340px;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #fff;
+  margin-right: 40px;
+}
+
+.InputDataPopUp {
+  width: 350px;
+  height: 50px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+
+.TitlePopUpUpdate {
+  font-size: 30px;
+  color: #fff;
+}
+
+.LabelPopUpUpdate {
+  font-size: 24px;
+  color: #fff;
+}
+
+.ButtonSavePopUp {
+  width: 200px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background-color: #e21a1a;
+  transition: translate 400ms ease-out, box-shadow 400ms ease-in;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.ButtonSavePopUp:hover {
+  translate: 2px 2px;
+  box-shadow: 0 0 15px #e21a1a;
+}
+
+/* barra de pesquisar as skins */
+.inputNavBarContainer {
+  position: relative;
+  width: 1050px;
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.inputNavBarMember {
+  width: 100%;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  padding-left: 30px;
+  padding-right: 50px;
+}
+
+.searchIconMember {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000;
+  width: 35px;
+  height: 35px;
+}
+
+/* 
+####################################################################################################
+Cadastro de Rifas                                                                                  #
+####################################################################################################
+*/
+
+.CadastrarRifa {
+  display: flex;
+  width: 1050px;
+  height: 500px;
+  justify-content: space-around;
+  background-color: #980106;
+  border-radius: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.RegisterRifa {
+  width: 46%;
+  height: 90%;
+  color: #fff;
+}
+
+.TitleRegisterRifa {
+  color: #fff;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.DivInputRegisterRifa {
+  display: flex;
+  flex-direction: column;
+}
+
+.DivInputRegisterRifa label {
+  font-size: 26px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.DivInputRegisterRifa input {
+  height: 50px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-size: 26px;
+  outline: none;
+  padding-left: 5px;
+}
+
+.RegisterSkins {
+  width: 46%;
+  height: 90%;
+}
+
+.ContainerCardSkinsCart {
+  display: flex;
+  height: 320px;
+  justify-content: space-around;
+  overflow-y: auto;
+  flex-wrap: wrap;
+}
+
+.DivImage img {
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.DivImage {
+  height: 55%;
+}
+
+.ButtonPrice {
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Price {
+  font-size: 30px;
+  color: #fff;
+}
+
+.ButtonRigisterRifa {
+  width: 200px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background-color: #e21a1a;
+  transition: translate 400ms ease-out, box-shadow 400ms ease-in;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.ButtonRigisterRifa:hover {
+  translate: 2px 2px;
+  box-shadow: 0 0 15px #e21a1a;
+}
+
+/* 
+####################################################################################################
+Card das Skins do cadastro                                                                                            #
+####################################################################################################
+*/
+
+.ContainerCardCart {
+  width: 140px;
+  height: 140px;
+  background-color: #8d8d8a;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.NameSkin {
+  font-size: 18px;
+  color: #fff;
+  margin-left: 5px;
+}
+
+.DivDelite {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+
+.ButtonDeleteSkin {
+  color: #fff;
+  background-color: #d51c22;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.DivDeliteCard{
+  height: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.RemoveButton{
+  background-color: #980106;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* 
+####################################################################################################
+Texto da Live                                                                                      #
+####################################################################################################
+*/
+
+.Configs {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+.TitlesRifa {
+  color: #fff;
+}
+
+.changeText {
+  width: 950px;
+  height: 30px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  outline: none;
+  border: none;
+}
+.ButtonTextLive {
+  border: none;
+  height: 31px;
+  width: 100px;
+  background-color: green;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}

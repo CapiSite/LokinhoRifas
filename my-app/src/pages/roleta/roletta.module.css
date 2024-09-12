@@ -1,0 +1,1581 @@
+.Roleta {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+
+  color: white;
+
+  position: relative;
+
+  margin-bottom: 83px;
+  margin-top: 90px;
+
+  z-index: 2;
+
+  /* outline: 2px solid rgba(255, 166, 0, 0.2); */
+}
+
+.Roleta > .background {
+  display: flex;
+
+  position: absolute;
+  top: 0;
+
+  width: 1920px;
+  height: 100%;
+
+  /* outline: 2px solid red; */
+}
+
+
+.Roleta .glowGroup {
+  display: flex;
+
+  justify-content: center;
+
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 140%;
+
+  /* outline: 5px solid purple;
+  background-color: rgba(255, 166, 0, 0.287); */
+
+  overflow: hidden;
+}
+
+.Roleta .growGroupWrapper {
+  position: absolute;
+  bottom: 0;
+
+  /* outline: 5px solid purple;
+  background-color: rgba(255, 166, 0, 0.287); */
+
+  width: 1920px;
+  height: 100%;
+}
+
+.Roleta .glowGroup .glow-0 {
+  width: 791px;
+  height: 791px;
+
+  background-color: #E21A1A;
+
+  border-radius: 50%;
+
+  position: absolute;
+  top: 25%;
+  right: -20%;
+
+  z-index: 1;
+
+  filter: blur(315px);
+}
+
+/* .Roleta > .background img:first-child {
+  outline: 2px solid yellow;
+} */
+
+.Roleta > img:last-child {
+  
+  /* z-index: 2; */
+  
+  width: 100%;
+  height: 50%;
+  
+  /* outline: 2px solid green; */
+  /* background-color: red; */
+
+  position: absolute;
+  bottom: 5%;
+}
+
+.Roleta > .background::after {
+  content: '';
+
+  width: 1000%;
+
+  position: absolute;
+  bottom: 160px;
+  right: -50vw;
+
+  width: 200vw;
+  height: 90%;
+
+  background: linear-gradient(0deg, black 10%, transparent);
+
+  filter: blur(10px);
+
+  /* outline: 2px solid orange; */
+}
+
+.RoletaWrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 1335px;
+  height: 1253px;
+
+  gap: 83px;
+
+  z-index: 3;
+  
+  padding: 0 var(--content-padding);
+
+  /* outline: 2px solid rgba(0, 128, 0, 0.2); */
+}
+
+.Roleta .HeroFrontImage {
+  width: 1268px;
+  height: 476px;
+}
+
+.RewardsList {
+  display: grid;
+
+  grid-template-columns: 110px 1fr;
+
+  max-width: 1140px;
+  height: 150px;
+}
+
+.RewardsAd {
+  display: flex;
+
+  position: relative;
+
+  border-radius: 20px 0 0 20px;
+
+  width: 110px;
+  height: 117px;
+
+  overflow: hidden;
+}
+
+.RewardsAd.desktop {
+  display: flex;
+}
+
+.RewardsAdContent {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 25px 11px;
+
+  gap: 10px;
+
+  font-weight: bold;
+
+  text-align: center;
+  z-index: 1;
+}
+
+.RewardsAd::after {
+  content: '';
+  width: 120%;
+  height: 120%;
+
+  position: absolute;
+  top: -10px;
+  left: -10px;
+
+  /* outline: 2px solid orange; */
+
+  background: linear-gradient(135deg, black, #555, transparent);
+
+  opacity: .35;
+
+  filter: blur(1px);
+}
+
+.RewardsAd button {
+  padding: 5px 13px;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  white-space: nowrap;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+
+  border: none;
+
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  cursor: pointer;
+
+  transition: 200ms ease-out;
+
+  white-space: nowrap;
+}
+
+.RewardsAd button:hover {
+  translate: 2px 2px;
+}
+
+.RewardsArray {
+  display: flex;
+}
+
+.Reward {
+  display: flex;
+
+  width: 257px;
+  height: 150px;
+
+  position: relative;
+}
+
+.Reward.desktop {
+  display: flex;
+}
+
+.Reward::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
+  top: 0;
+
+  opacity: .8;
+}
+
+.RewardItemWrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  width: 100%;
+
+  gap: 10px;
+
+  z-index: 2;
+}
+
+.Reward.Gold {
+  border-bottom: 2px solid #EFBC84;
+}
+
+.Reward.Gold::after {
+  background: linear-gradient(180deg, #17110b, #6b5333);
+}
+
+.Reward.Silver::after {
+  background: linear-gradient(180deg, #17110b, #6A6A69);
+}
+
+.Reward.Silver {
+  border-bottom: 2px solid #EBEBEB; 
+}
+
+.Reward .RewardType {
+  display: flex;
+
+  align-items: center;
+
+  height: fit-content;
+
+  gap: 6px;
+
+  padding: 11px 0 0 16px;
+}
+
+.Reward .RewardType img {
+  width: 15px;
+  height: 15px;
+
+  overflow: hidden;
+
+  font-size: 5px;
+}
+
+.Reward .RewardType h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.Gold .RewardType h3 {
+  color: #EFBC84;
+}
+
+.Silver .RewardType h3 {
+  color: #EBEBEB;
+}
+
+.Reward .RewardContent {
+  display: grid;
+
+  grid-template-columns: 103px 122px;
+
+  width: 100%;
+
+  gap: 14px;
+
+  padding-inline: 18px;
+}
+
+.Reward .RewardDescription {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.Reward .RewardContent img {
+  font-size: 12px;
+
+  width: 103px;
+  height: 73px;
+}
+
+.Reward .RewardContent h2 {
+  font-size: 16px;
+
+  max-width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.Reward .RewardContent p {
+  font-size: 12px;
+
+  max-width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  opacity: .5;
+}
+
+.Reward .RewardValue {
+  padding: 0 0 11px 9px;
+}
+
+.Reward .RewardValue h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+
+
+.Roulette {
+  display: flex;
+
+  width: 1335px;
+  height: 300px;
+
+  outline: 2px solid grey;
+
+  border-radius: 10px;
+
+  position: relative;
+}
+
+.Roulette::after, .Roulette::before {
+  content: '';
+  width: 2px;
+  height: 100%;
+  
+  position: absolute;
+
+  background: linear-gradient(180deg, #ffffff00 10%, #E21A1A, #A30006 , #ffffff00 90%);
+
+  z-index: 3;
+}
+
+.Roulette::after {
+  left: 0;
+  bottom: 0;
+}
+
+.Roulette::before {
+  right: 0;
+  top: 0;
+}
+
+/* ? ANIMAÇÃO DE ROLAMENTO AQUI */
+.Roulette .RouletteArray {
+  display: flex;
+
+  width: fit-content;
+  height: 100%;
+
+  translate: -140px;
+
+  gap: 2px;
+}
+
+.Roulette .RouletteBox {
+  width: 100%;
+  
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.Roulette .emptyRoulette {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.emptyRoulette h1 {
+  font-size: 88px;
+  font-weight: 500;
+}
+
+.Roulette .PersonCard {
+  display: flex;
+
+  position: relative;
+}
+
+.PersonCardWrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 50px;
+
+  z-index: 1;
+
+  width: 230px;
+  height: 300px;
+
+}
+
+.Roulette .PersonCard:nth-child(5n + 1) {
+  border-bottom: 5px solid #15A7D5;
+}
+
+.Roulette .PersonCard:nth-child(5n + 2) {
+  border-bottom: 5px solid #75D515;
+}
+
+.Roulette .PersonCard:nth-child(5n + 3) {
+  border-bottom: 5px solid #E21A1A;
+}
+
+.Roulette .PersonCard:nth-child(5n + 4) {
+  border-bottom: 5px solid #AF15D5;
+}
+
+.Roulette .PersonCard:nth-child(5n) {
+  border-bottom: 5px solid #D1D515;
+}
+
+.Roulette .PersonCard::after {
+  content: '';
+
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+
+  opacity: .5;
+}
+
+.Roulette .PersonCard:nth-child(5n + 1)::after {
+  background: linear-gradient(180deg, transparent, #15A7D5);
+}
+
+.Roulette .PersonCard:nth-child(5n + 2)::after {
+  background: linear-gradient(180deg, transparent, #75D515);
+}
+
+.Roulette .PersonCard:nth-child(5n + 3)::after {
+  background: linear-gradient(180deg, transparent, #E21A1A);
+}
+
+.Roulette .PersonCard:nth-child(5n + 4)::after {
+  background: linear-gradient(180deg, transparent, #AF15D5);
+}
+
+.Roulette .PersonCard:nth-child(5n)::after {
+  background: linear-gradient(180deg, transparent, #D1D515);
+}
+
+.Roulette .ProfilePicture {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 136px;
+  height: 136px;
+
+  border-radius: 50%;
+  
+  background-color: #fff;
+  color: black;
+
+  overflow: hidden;
+}
+
+.Roulette .ProfilePicture img {
+  width: 100%;
+  height: 100%;
+}
+
+.Roulette .ProfileInfo {
+  width: 100%;
+
+  padding: 0 11px 5px;
+}
+
+.Roulette .ProfileInfo h3 {
+  font-size: 16px;
+  font-weight: 700;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  text-transform: uppercase;
+}
+
+.Roulette .ProfileInfo p {
+  font-size: 12px;
+  font-weight: 300;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  color: #A5A4A4;
+}
+
+.RoletaWrapper .ButtonGroup {
+  display: flex;
+
+  gap: 53px;
+}
+
+.RoletaWrapper .ButtonGroup button {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 19px 86px;
+  
+  width: 313px;
+  height: 58px;
+  
+  font-size: 24px;
+  font-weight: bold;
+
+  border-radius: 8px;
+
+  border: none;
+
+  outline: 1px solid #E21A1A;
+
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  cursor: pointer;
+
+  transition: 200ms ease-out;
+
+  position: relative;
+
+  white-space: nowrap;
+}
+
+.NumberSorter {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 300px;
+}
+
+.NumberSorterWrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 230px;
+  height: 100%;
+
+  outline: 2px solid white;
+  background-color: black;
+
+  border-radius: 4px;
+}
+
+.NumberSorterWrapper h2 {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  width: 100%;
+  max-height: 242px;
+
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.NumberSorterWrapper h2 span {
+  display: block;
+  color: black; /* Makes the text color transparent */
+
+  text-shadow:
+    1px 1px 0 white,   /* Shadow to the right and down */
+   -1px -1px 0 white,  /* Shadow to the left and up */
+    1px -1px 0 white,  /* Shadow to the right and up */
+   -1px 1px 0 white,   /* Shadow to the left and down */
+    2px 2px 0 white,   /* Thicker shadow for a more pronounced stroke */
+   -2px -2px 0 white,  /* Thicker shadow for a more pronounced stroke */
+    2px -2px 0 white,  /* Thicker shadow for a more pronounced stroke */
+   -2px 2px 0 white;   /* Thicker shadow for a more pronounced stroke */
+
+  font-size: 104px;
+  font-family: monospace;
+  font-style: italic;
+  font-weight: 500;
+
+  text-align: center;
+}
+
+.NumberSorterWrapper h2.scroll span {
+  animation: 16s linear infinite scroll;
+}
+
+@keyframes scroll {
+  0% {
+    translate: 0 0;
+  }
+  25% {
+    translate: 0 -25px;
+  }
+  50% {
+    translate: 0 0;
+  }
+  75% {
+    translate: 0 25px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+.NumberSorterWrapper p {
+  max-width: 100%;
+
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.NumberSorterWrapper p .mainName {
+  display: block;
+
+  max-width: 150px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.NumberSorterWrapper p .number {
+  opacity: .5;
+
+  font-family: monospace;
+}
+
+.WinnerPopup {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 11;
+
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+
+  opacity: 0;
+
+  animation: 800ms ease-out 5s
+  1 forwards fadeIn;
+}
+
+.WinnerPopupWrapper {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  position: relative;
+
+  color: white;
+}
+
+.UserSkinImageBox {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+  height: fit-content;
+
+  background-color: white;
+  outline: 2px solid black;
+
+  padding: 2px;
+  border-radius: 50%;
+
+  margin-block: 20px;
+}
+
+.WinnerPopup .SkinImageBox {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 776px;
+  height: fit-content;
+
+  position: relative;
+
+  /* outline: 2px solid orange; */
+}
+
+.WinnerPopup .SkinImageBox img:first-child {
+  width: 100%;
+  height: auto;
+
+  translate: 0 -1100px;
+  rotate: -45deg;
+
+  animation: 800ms ease-out 800ms 1 forwards spinIntoView;
+
+  z-index: 2;
+}
+
+.WinnerPopup .SkinImageBox img:last-of-type {
+  position: absolute;
+
+  opacity: 0;
+  
+  animation: 800ms ease-out 1400ms 1 forwards fadeInWoBlur, 8s linear 1400ms infinite forwards slowPersistentRotation;
+
+  z-index: 1;
+}
+
+@keyframes spinIntoView {
+  0% {
+    translate: 0 -1100px;
+    rotate: -45deg;
+  }
+  100% {
+    translate: 0 0;
+    rotate: 10deg;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    translate: 0 30px;
+    opacity: 0;
+
+    backdrop-filter: blur(0);
+  }
+  100% {
+    translate: 0 0;
+    opacity: 1;
+
+
+    backdrop-filter: blur(5px);
+  }
+}
+
+@keyframes fadeInWoBlur {
+  0% {
+    scale: .2;
+  }
+  100% {
+    scale: 1.5;
+  }
+}
+
+@keyframes slowPersistentRotation {
+  0% {
+    opacity: .7;
+    rotate: 0deg;
+  }
+  50% {
+    opacity: 1;
+    scale: .7;
+  }
+  100% {
+    opacity: .7;
+    rotate: 359deg;
+  }
+}
+
+.WinnerPopup h2 {
+  font-size: 48px;
+  font-weight: 600;
+
+  z-index: 2;
+}
+
+.WinnerPopup h3 {
+  font-size: 30px;
+  font-weight: normal;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  max-width: 500px;
+
+  opacity: .5;
+
+  text-transform: lowercase;
+  
+  z-index: 2;
+}
+
+.WinnerPopup p {
+  font-size: 20px;
+  font-weight: normal;
+
+  opacity: .5;
+
+  z-index: 2;
+}
+
+.WinnerPopup button {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 19px 86px;
+  
+  width: 313px;
+  height: 58px;
+  
+  font-size: 24px;
+  font-weight: bold;
+
+  border-radius: 8px;
+
+  border: none;
+
+  outline: 1px solid #E21A1A;
+
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  margin-top: 60px;
+
+  cursor: pointer;
+
+  transition: 200ms ease-out;
+
+  position: relative;
+
+  white-space: nowrap;
+}
+
+.WinnerPopup button:hover {
+  translate: 5px 5px;
+
+  box-shadow: 0 0 50px red;
+}
+
+.WinnerPopup .glowGroup {
+  position: absolute;
+
+  width: 591px;
+  height: 591px;
+
+  z-index: -1;
+}
+
+.WinnerPopup .glow-0 {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 140%;
+  height: 140%;
+
+  background-color: #A30006;
+
+  filter: blur(235px);
+
+  position: relative;
+  bottom: 40%;
+  right: 40%;
+
+  border-radius: 50%;
+}
+
+.WinnerPopup .glow-1 {
+  width: 233px;
+  height: 233px;
+
+  background-color: #E21A1A;
+
+  position: absolute;
+  right: 90px;
+
+  border-radius: 50%;
+}
+
+.Roulette .background {
+  display: flex;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Roulette .shadeLeft, .Roulette .shadeRight {
+  position: absolute;
+
+  width: 430px;
+  height: 300px;
+
+  z-index: 2;
+}
+
+.Roulette .shadeLeft {
+  background: linear-gradient(90deg, #00000075, #00000000);
+
+  border-radius: 10px 0 0 10px;
+
+  left: 0;
+  top: 0;
+}
+
+.Roulette .shadeRight {
+  background: linear-gradient(-90deg, #00000075, #00000000);
+
+  border-radius: 0 10px 10px 0;
+
+  right: 0;
+  top: 0;
+}
+
+.Roulette .pin {
+  position: absolute;
+  inset-inline: 50%;
+
+  border-radius: 100px;
+
+  width: 6px;
+  height: 100%;
+
+  background-color: #FFA800;
+
+  /* outline: 10px solid purple; */
+
+  z-index: 3;
+}
+
+.Roulette .pin img {
+
+  width: 21px;
+  height: 18px;
+
+  position: absolute;
+  top: -21px;
+
+  translate: -8px;
+}
+
+
+.Roleta button:hover {
+  translate: 5px 5px;
+
+  box-shadow: 0 0 50px red;
+}
+
+.Roulette .raffleSelector {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  margin: 30px 30px 0 0;
+  padding: 15px 30px;
+
+  border: none;
+  border-radius: 10px;
+
+  z-index: 10;
+
+  opacity: 0;
+
+  cursor: pointer;
+
+  transition: opacity 200ms ease-in-out;
+}
+
+.Roulette:hover .raffleSelector {
+  opacity: .1;
+}
+
+.Roulette .raffleSelector:hover {
+  opacity: 1;
+}
+
+
+.Roleta .buttonGroup .raffleSelector {
+  padding: 15px 30px;
+
+  border: none;
+  border-radius: 10px;
+
+  width: 145px;
+
+  z-index: 10;
+
+  opacity: .5;
+
+  cursor: pointer;
+
+  transition: opacity 200ms ease-in-out;
+}
+
+.Roleta .buttonGroup .raffleSelector:hover {
+  opacity: 1;
+}
+
+.LastPrizes {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  padding-bottom: 50px;
+
+  position: relative;
+
+  color: white;
+
+  background-color: #000;
+
+  z-index: 1;
+}
+
+.LastPrizes .background {
+  position: absolute;
+  bottom: 0;
+}
+
+.LastPrizes .glowGroup {
+  display: flex;
+
+  justify-content: center;
+
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 140%;
+
+  /* outline: 5px solid purple;
+  background-color: rgba(255, 166, 0, 0.287); */
+
+  overflow: hidden;
+}
+
+.LastPrizes .growGroupWrapper {
+  position: absolute;
+  bottom: 0;
+
+  /* outline: 5px solid purple;
+  background-color: rgba(255, 166, 0, 0.287); */
+
+  width: 1920px;
+  height: 100%;
+}
+
+.LastPrizes .glowGroup .glow-0 {
+  width: 650px;
+  height: 650px;
+
+  background-color: #E21A1A;
+
+  border-radius: 50%;
+
+  position: absolute;
+  right: -10%;
+  bottom: -20%;
+
+  z-index: 1;
+
+  filter: blur(315px);
+}
+
+.LastPrizes .background::after {
+  content: '';
+
+  position: absolute;
+  left: -30%;
+
+  width: 200vw;
+  height: 1122px;
+
+  background-color: black;
+
+  z-index: -1;
+}
+
+.LastPrizes .background img {
+  height: 1222px;
+  width: auto;
+
+  /* translate: 0 -180px; */
+  
+  filter: brightness(130%);
+
+  /* border: 5px solid purple; */
+}
+
+.LastPrizesWrapper {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  gap: 60px;
+
+  width: var(--content-width);
+  height: 100%;
+
+  z-index: 3;
+}
+
+.LastPrizes .title {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 4px;
+}
+
+.LastPrizes h2 {
+  font-size: 30px;
+}
+
+.LastPrizes .EarnedPrizesGrid {
+  display: grid;
+
+  width: fit-content;
+
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  
+  gap: 28px;
+}
+
+.EarnedPrizeItem {
+  display: flex;
+
+  width: 255px;
+  height: 300px;
+
+  border-radius: 20px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.EarnedPrizeItem.desktop {
+  display: flex;
+}
+
+.EarnedPrizeItemWrapper {
+  display: flex;
+
+  width: 100%;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  z-index: 1;
+}
+
+.EarnedPrizeItemWrapper .ImageWrapperBox {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.EarnedPrizeItemWrapper .ImageWrapperBox img {
+  width: 165px;
+  height: 135px;
+}
+
+.EarnedPrizeItem::after {
+  content: '';
+
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  /* z-index: -1; */
+}
+
+.EarnedPrizeItem.Gold::after {
+  background: linear-gradient(0deg, #6B5333, #17110B);
+}
+
+.EarnedPrizeItem.Silver::after {
+  background: linear-gradient(0deg, #6A6A69, #17110B);
+}
+
+.EarnedPrizeItem .ItemMetaInfo {
+  display: flex;
+
+  padding: 25px 20px 0;
+
+  font-size: 8px;
+
+  width: 100%;
+
+  opacity: .5;
+
+  justify-content: space-between;
+}
+
+.EarnedPrizeItem .ItemMetaInfo p:last-of-type {
+  text-align: right;
+}
+
+.EarnedPrizeItem > img {
+  padding-inline: 20px;
+}
+
+.EarnedPrizeItem .ItemDescription {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 0 20px 15px;
+}
+
+.EarnedPrizeItem .PrizePoolType {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+.EarnedPrizeItem .PrizePoolType img {
+  width: 15px;
+  height: 15px;
+
+  font-size: 8px;
+
+  overflow: hidden;
+}
+
+.EarnedPrizeItem .PrizePoolType h3 {
+  font-size: 14px;
+
+  text-transform: uppercase;
+}
+
+.EarnedPrizeItem.Gold .PrizePoolType h3 {
+  color: #EFBC84;
+}
+
+.EarnedPrizeItem.Silver .PrizePoolType h3 {
+  color: #EBEBEB;
+}
+
+.EarnedPrizeItem .ItemContent {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.EarnedPrizeItem .ItemContent h2 {
+  font-size: 16px;
+
+  max-width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.EarnedPrizeItem .ItemContent p {
+  font-size: 12px;
+
+  max-width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  opacity: .5;
+}
+
+.EarnedPrizeItem .itemValue {
+  font-size: 14px;
+  font-weight: 500;
+
+  padding-bottom: 10px;
+}
+
+
+.no-background {
+  background-color: transparent;
+}
+
+.visible {
+  translate: 0vw;
+}
+
+.highlight {
+  color: #E21A1A;
+}
+
+.Roleta button:disabled {
+  filter: grayscale(100%);
+}
+
+
+.mobile {
+  display: none;
+}
+
+.desktop {
+  display: block;
+}
+
+@media only screen and (max-width: 1200px) {
+  .RewardsList {
+    display: flex;
+    
+    flex-wrap: wrap;
+
+    width: 100vw;
+
+    justify-content: center;
+    align-items: center;
+
+    height: fit-content;
+
+    justify-content: center;
+  }
+
+  .RewardsAd.mobile {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 257px;
+    height: fit-content;
+
+    border-radius: 0 0 20px 20px;
+  }
+
+  .RewardsAd.desktop {
+    display: none;
+  }
+
+  .RewardsAdContent {
+    font-size: 24px;
+
+    gap: 18px;
+
+    height: 100%;
+  }
+
+  .RewardsAdContent button {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .RewardsArray {
+    display: flex;
+
+    flex-direction: column;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+  }
+
+  .Reward.desktop {
+    display: none;
+  }
+
+  .RewardsArray .Reward.Silver {
+    border-bottom: 0;
+    border-left: 2px solid #ebebeb;
+  }
+
+  .RewardsArray .Reward.Silver::after {
+    background: linear-gradient(-90deg, #17110b, #6A6A69);
+  }
+
+  .RewardsArray .Reward.Gold {
+    border-bottom: 0;
+    border-left: 2px solid #EFBC84;
+  }
+
+  .RewardsArray .Reward.Gold::after {
+    background: linear-gradient(-90deg, #17110b, #6b5333);
+  }
+
+  .Roleta .ButtonGroup {
+    display: flex;
+
+    justify-content: center;
+    
+    width: 100vw;
+
+    flex-wrap: wrap;
+  }
+
+  .Roulette {
+    width: 90vw;
+  }
+
+  .LastPrizes .EarnedPrizesGrid {
+    display: flex;
+
+    justify-content: center;
+
+    width: 100vw;
+
+    flex-wrap: wrap;
+  }
+
+  .LastPrizes .EarnedPrizeItem.desktop {
+    display: none;
+  }
+
+  .LastPrizes .background img {
+    height: 1730px;
+    width: auto;
+  }
+
+  .WinnerPopup .SkinImageBox {
+    width: 100%;
+  }
+
+  .WinnerPopup .SkinImageBox img:first-of-type {
+    width: calc(100% - 100px);
+  }
+
+  .WinnerPopup .SkinImageBox img:last-of-type {
+    width: calc(300% - 100px);
+    height: auto;
+  }
+
+  .WinnerPopup button {
+    width: calc(100% - 100px);
+  }
+
+
+
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .Roleta .ButtonGroup {
+    width: 90vw;
+  }
+
+  .Roleta .ButtonGroup button {
+    width: 100%;
+  }
+
+  .LastPrizes .title {
+    width: 90vw;
+  }
+
+  .LastPrizes .title h2 {
+    font-size: min(30px, 8vmin);
+  }
+
+  .LastPrizes .title img {
+    height: min(30px, 8vmin);
+  }
+}

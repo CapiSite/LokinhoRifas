@@ -1,6 +1,38 @@
 services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    env_file:
+      - back-app/.env
+    volumes:
+      - postgres-deploy-volume:/var/lib/postgresql/data
+
+  node:
+    container_name: back-app
+    build: ./back-app
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
+    env_file:
+      - back-app/.env
+    volumes:
+      - back-deploy-volume:/src/usr/LokinhoRifas/dist/src/public
+
   web:
     container_name: next
-    build: .
+    build: ./my-app
     ports: 
-      - 5000:3000
+      - 80:3000
+    depends_on:
+      - node
+    env_file:
+      - my-app/.env.local
+
+volumes:
+  postgres-deploy-volume:
+  back-deploy-volume:
