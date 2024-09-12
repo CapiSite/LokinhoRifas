@@ -2,7 +2,7 @@ import Estrela from '../../assets/Estrela.svg'
 import LogoTwitch from '../../assets/TwitchLogo.svg'
 import IconeColaboração from '../../assets/ColaboraçãoIcone.svg'
 import ServicesCard from './ServicesCard';
-import style from '../../pages/homepage.module.css'
+import style from '../homepage.module.css'
 
 const ServicesCardGroup = () => {
 

@@ -3,62 +3,59 @@ import Moeda from '../../assets/moeda.svg'
 import Relogio from '../../assets/relogio.svg'
 import Estrela from '../../assets/estrela2.svg'
 
-import Background from '../../images/Homepage/ServicesDisplay/Services.png'
-import Background2 from '../../images/Homepage/ServicesDisplay/ServicesBackground.png'
+// import Background from '../../images/Homepage/ServicesDisplay/Services.png'
+// import Background2 from '../../images/Homepage/ServicesDisplay/ServicesBackground.png'
+
+import NewBackground from '../../images/Homepage/ServicesDisplay/backgroundScene.png'
+import NewBackground2 from '../../images/Homepage/ServicesDisplay/MockupCelular.png'
+
 import BackgroundLines from '../../images/Homepage/ServicesDisplay/Services-1.png'
 import Image from 'next/image'
-import style from '../../pages/homepage.module.css'
+import style from '../homepage.module.css'
 
 const ServicesDisplay = () => {
   return (
     
     <section className={style.ServicesDisplay}>
     <div className={style.ServicesDisplayWrapper}>
-      <div className={style.col1}></div>
+      <div className={style.col1}>
+        <Image className={style?.['background-1']} src={NewBackground} alt="Plano de fundo" />
+        <Image className={style?.['background-0']} src={NewBackground2} alt="Mockup de celular" />
+      </div>
       <div className={style.col2}>
         <ul>
           <li>
-            <div className={style.ImageBox}>
+            <h3>
               <Image src={Colaboração} alt="Grupo de Rifas" />
-            </div>
-            <div className={style.lineContent}>
-              <h3>Grupo de Rifas</h3>
-              <p>As melhores Rifas de CSGO, Entre e ganhe!</p>
-            </div>
+              Compramos suas Skins
+            </h3>
+            <p>As melhores Rifas de CSGO, entre e ganhe!</p>
           </li>
           <li>
-            <div className={style.ImageBox}>
+            <h3>
               <Image src={Moeda} alt="Compramos suas Skins" />
-            </div>
-            <div className={style.lineContent}>
-              <h3>Compramos suas Skins</h3>
-              <p>Pagamento imediato via pix, rápido e seguro!</p>
-            </div>
+              Compramos suas Skins
+            </h3>
+            <p>Pagamento imediato via pix, rápido e seguro!</p>
           </li>
           <li>
-            <div className={style.ImageBox}>
+            <h3>
               <Image src={Relogio} alt="Encomende suas Skins" />
-            </div>
-            <div className={style.lineContent}>
-              <h3>Encomende suas Skins</h3>
-              <p>Fazemos encomendas para sua skin.</p>
-            </div>
+              Encomende suas Skins
+            </h3>
+            <p>Fazemos encomendas para sua skin.</p>
           </li>
           <li>
-            <div className={style.ImageBox}>
+            <h3>
               <Image src={Estrela} alt="Grupo de Rifas" />
-            </div>
-            <div className={style.lineContent}>
-              <h3>Faça Upgrade de suas Skins</h3>
-              <p>Melhoramos suas skins.</p>
-            </div>
+              Faça Upgrade de suas Skins
+            </h3>
+            <p>Melhoramos suas skins.</p>
           </li>
         </ul>
       </div>
     </div>
-    <Image className={style?.['background-0']} src={Background} alt="Plano de fundo" />
-    <Image className={style?.['background-1']} src={Background2} alt="Plano de fundo" />
-    <Image className={style?.['background-2']} src={BackgroundLines} alt="Plano de fundo" />
+    <Image className={style?.['background-2']} src={BackgroundLines} alt="Linhas de fundo" />
 
     <div className={style.GlowGroup}>
       <div className={style?.['glow-0']}>

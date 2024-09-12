@@ -1,0 +1,46 @@
+.privacy {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  margin-top: 90px;
+
+  background-color: #222;
+}
+
+.privacyWrapper {
+  width: 1110px;
+
+  padding: 30px;
+}
+
+.privacyWrapper * {
+  color: white;
+}
+
+.privacy h1 {
+  font-size: 32px;
+}
+
+.privacy h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.privacy p,
+.privacy li {
+  line-height: 140%;
+}
+
+.privacy p {
+  text-indent: 40px;
+}
+
+.privacy ul {
+  margin-top: 12px;
+
+  padding-left: 48px;
+}

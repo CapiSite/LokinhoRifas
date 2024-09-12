@@ -1,0 +1,46 @@
+.tos {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  margin-top: 90px;
+
+  background-color: #222;
+}
+
+.tosWrapper {
+  width: 1110px;
+
+  padding: 30px;
+}
+
+.tosWrapper * {
+  color: white;
+}
+
+.tos h1 {
+  font-size: 32px;
+}
+
+.tos h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.tos p,
+.tos li {
+  line-height: 140%;
+}
+
+.tos p {
+  text-indent: 40px;
+}
+
+.tos ul {
+  margin-top: 12px;
+
+  padding-left: 48px;
+}

@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 const Credits = () => {
   return (
     <section className="Credits">
       <div className="CreditsWrapper">
-        <p>Site feito por <a href="https://github.com/NotJotunnn/LokinhoRifasFront/blob/main/CREDITS.md">Desenvolvedores talentosos</a></p>
+        <p>Site feito por <Link target="_blank" href="https://github.com/NotJotunnn/creditos/blob/main/lokinhoRifas/creditos.md">Desenvolvedores talentosos</Link></p>
       </div>
     </section>
   );

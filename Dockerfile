@@ -1,6 +1,6 @@
-FROM node:16.15
+FROM node:20.11
 
-WORKDIR /src/usr/lokinhoskins
+WORKDIR /src/usr/LokinhoRifas
 
 COPY . .
 

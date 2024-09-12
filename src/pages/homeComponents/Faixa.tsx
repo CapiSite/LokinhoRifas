@@ -1,4 +1,4 @@
-import style from '../../pages/homepage.module.css'
+import style from '../homepage.module.css'
 
 const Faixas = () => {
   return (
