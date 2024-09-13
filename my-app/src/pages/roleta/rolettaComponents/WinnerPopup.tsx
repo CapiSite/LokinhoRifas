@@ -56,10 +56,8 @@ const RoletaWinner = () => {
     const checkImageExists = async (url: string) => {
       try {
         const response = await fetch(url, { method: "HEAD" });
-        if (response.ok) {
+        if (response.ok && winnerProperties.user.picture && !winnerProperties.user.picture.includes('default')) {
           setUserImgSrc(winnerProperties.user.picture);
-        } else {
-          setUserImgSrc(defaultUserPic);
         }
       } catch (error) {
         setUserImgSrc(defaultUserPic);
