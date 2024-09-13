@@ -31,8 +31,8 @@ const HeaderProfile = () => {
     email: email != '' ? email : 'notloggedinuser@gmail.com',
     tradeLink: tradeLink != '' ? tradeLink : 'Sem Trade Link',
     phoneNumber: phoneNumber != '' ? phoneNumber : 'Sem número cadastrado',
-    picture: picture === "default" ? defaultProfilePicture :
-    (picture).startsWith('https://static-cdn.jtvnw.net') ?
+    picture: picture.includes("default") || picture === '' ? defaultProfilePicture :
+    (picture)?.includes('https://static-cdn.jtvnw.net') ?
     picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`,
     budget: saldoString.includes('.') ? `${saldoString.split('.')[0]},${saldoString.split('.')[1][0]}${saldoString.split('.')[1][1] ? saldoString.split('.')[1][1] : '0'}` : `${saldoString},00`
   }
