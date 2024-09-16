@@ -221,8 +221,8 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
                             <Users
                                 key={person.id}  // Adicionar key para melhorar a performance do React
                                 image={person.picture === "default" ? defaultProfilePicture :
-                                    (person.picture).startsWith('https://static-cdn.jtvnw.net') ?
-                                        person.picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${person.picture}`}
+            (person.picture && person.picture.startsWith('https://static-cdn.jtvnw.net')) ? 
+                person.picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${person.picture}`}
                                 name={person.name}
                                 email={person.email}
                                 tradeLink={person.tradeLink}
