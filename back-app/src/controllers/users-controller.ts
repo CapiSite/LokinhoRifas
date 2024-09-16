@@ -72,11 +72,13 @@ export async function verifyEmail(req: Request, res: Response) {
   const { email, name } = req.body;
   try {
     await userService.verifyEmail({ email, name });
+    console.log(email)
     return res.sendStatus(httpStatus.OK);
   } catch (error) {
     if (error.name === 'DuplicatedEmailError') {
       return res.status(httpStatus.CONFLICT).send(error);
     }
+    console.log(error)
     return res.status(httpStatus.BAD_REQUEST).send(error);
   }
 }
