@@ -5,8 +5,7 @@ import { handlePaymentNotification } from '../services/payment-service';
 export async function paymentNotificationController(req: Request, res: Response) {
   try {
     console.log("Iniciando processamento da notificação de pagamento");
-    const { id } = req.body;
-
+    const { id } = req.body.data;
     console.log("ID do pagamento recebido:", id);
 
     const updatedTransaction = await handlePaymentNotification(id);
