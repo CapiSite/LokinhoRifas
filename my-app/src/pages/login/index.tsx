@@ -198,7 +198,7 @@ const Login = () => {
                       />
                       <button onClick={toggleStatePassword}>
                         {passwordVisible ?
-                         <Image src={EyeSlashed} alt="Hide password"/> : <Image src={Eye} alt="Show password"/>}
+                        <Image src={EyeSlashed} alt="Hide password"/> : <Image src={Eye} alt="Show password"/>}
                       </button>
                     </div>
                   </label>

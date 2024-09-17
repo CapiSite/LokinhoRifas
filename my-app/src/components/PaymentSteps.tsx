@@ -97,7 +97,7 @@ const PaymentBrick = ({
       console.log("Rendering Payment Brick...");
 
       const mp = new window.MercadoPago(
-        process.env.NEXT_PUBLIC_ACCESS_KEY,
+        process.env.NEXT_PUBLIC_PUBLIC_KEY,
         {
           locale: "pt-BR",
         }
@@ -111,8 +111,6 @@ const PaymentBrick = ({
         },
         customization: {
           paymentMethods: {
-            creditCard: "all",
-            debitCard: "all",
             bankTransfer: "pix",
             maxInstallments: 1,
           },
@@ -235,7 +233,8 @@ const PaymentBrick = ({
               onChange={handleInputChange}
               />
             <p>Min: R$ 10,00</p>
-            <button disabled={priceValue < 10 || priceValue > 10000} onClick={addStep}>
+            {/*<button disabled={priceValue < 10 || priceValue > 10000} onClick={addStep}> */}
+            <button disabled={priceValue > 10000} onClick={addStep}>
               Continuar
             </button>
             <p>Poderá voltar para alterar esse valor depois</p>

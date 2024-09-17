@@ -23,12 +23,6 @@ const RafflePayment = ({props}: {props: {
     }
   }, [step])
 
-  useEffect(() => {
-    console.log(value)
-  }, [value])
-
-
-
   function formatDate() {
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');

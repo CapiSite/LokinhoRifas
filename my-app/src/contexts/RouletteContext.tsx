@@ -103,7 +103,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     const roulette = document.getElementById("Roulette");
 
-    const timing = 30000;
+    const timing = 5000;
 
     const randomSide = Math.floor(Math.random() * 2) == 1 ? -1 : 1;
 
@@ -185,7 +185,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if(!participants) return
     if(participants.length == 0) return
     
-    const timer = 30000
+    const timer = 5000
 
     toggleIsButtonActive();
     
@@ -555,7 +555,10 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       setIsButtonActive(false)
     }
 
-    setNewWinners(raffle.participants)
+    if (raffle.raffleSkins.filter(skin => skin.winner_id !== null).length == 0) {
+      setNewWinners(raffle.participants)
+    }
+
     setNewRewards(raffle.raffleSkins);
     filterPurchasableRaffles();
   }, [raffle ? raffle.id : raffle]);

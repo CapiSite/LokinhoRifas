@@ -3,6 +3,7 @@ dist
 !.env.example
 yarn.lock
 .vscode
-/uploads/*
+src/uploads/*
+src/uploads
 !/uploads/.gitkeep
 .env
