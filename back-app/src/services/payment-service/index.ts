@@ -10,10 +10,15 @@ const payment = new Payment(client);
 
 export async function createPayment(body: any, userId: number) {
   try {
+    console.log("Iniciando criação de pagamento para o usuário:", userId);
+
     const user = await userRepository.findById(userId);
     if (!user) {
+      console.error('Usuário não encontrado para o ID:', userId);
       throw new Error('Usuário não encontrado');
     }
+
+    console.log("Usuário encontrado:", user);
 
     const paymentData = {
       transaction_amount: body.transaction_amount,
@@ -27,9 +32,11 @@ export async function createPayment(body: any, userId: number) {
       },
     };
 
+    console.log("Dados de pagamento a serem enviados:", paymentData);
+
     const paymentResponse = await payment.create({ body: paymentData });
-    console.log(paymentResponse);
-    
+    console.log("Resposta do pagamento:", paymentResponse);
+
     const transactionData = {
       userId,
       paymentId: paymentResponse.id.toString(),
@@ -42,13 +49,18 @@ export async function createPayment(body: any, userId: number) {
       qrCodeBase64: paymentResponse.payment_method_id === 'pix' ? paymentResponse.point_of_interaction.transaction_data.qr_code_base64 : null,
     };
 
+    console.log("Dados da transação para salvar:", transactionData);
+
     const transaction = await transactionRepository.createTransactionMeli(transactionData);
+    console.log("Transação criada:", transaction);
 
     if (paymentResponse.status === 'approved') {
+      console.log("Pagamento aprovado. Incrementando saldo do usuário:", userId);
       await userRepository.incrementUserBalance(userId, paymentResponse.transaction_amount);
     }
 
     delete transaction.paymentId;
+    console.log("Transação final após remoção do paymentId:", transaction);
 
     return transaction;
   } catch (error) {
@@ -61,11 +73,16 @@ export async function createPayment(body: any, userId: number) {
 
 export async function handlePaymentNotification(paymentId: string) {
   try {
+    console.log("Iniciando processamento da notificação de pagamento para o ID:", paymentId);
+
     const paymentResponse = await payment.get({ id: paymentId });
 
     if (!paymentResponse) {
+      console.error('Pagamento não encontrado para o ID:', paymentId);
       throw new Error('Pagamento não encontrado');
     }
+
+    console.log("Resposta do pagamento obtida:", paymentResponse);
 
     const updatedTransaction = await transactionRepository.updateTransactionStatus({
       paymentId: paymentResponse.id.toString(),
@@ -74,10 +91,15 @@ export async function handlePaymentNotification(paymentId: string) {
       dateApproved: paymentResponse.status === 'approved' ? new Date(paymentResponse.date_approved) : null,
     });
 
+    console.log("Transação atualizada:", updatedTransaction);
+
     if (paymentResponse.status === 'approved') {
+      console.log("Pagamento aprovado. Incrementando saldo do usuário:", updatedTransaction.user_id);
       await userRepository.incrementUserBalance(updatedTransaction.user_id, paymentResponse.transaction_amount);
     }
-    delete updatedTransaction.paymentId
+
+    delete updatedTransaction.paymentId;
+    console.log("Transação final após remoção do paymentId:", updatedTransaction);
 
     return updatedTransaction;
   } catch (error) {
