@@ -12,11 +12,17 @@ const Twitch = () => {
   const { textInfo, setTextInfo } = useContext(TextContext) as TextContextType;
 
   useEffect(() => {
-    axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text").then((res: any) => {
+    axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text")
+  .then((res: any) => {
+    if (res.data) {
       setTextInfo(res.data);
-    }).catch((err: any) => {
-      console.error(err.response ? err.response.data : 'Erro ao buscar dados');
-    });
+    } else {
+      console.error("Nenhum dado retornado da API");
+    }
+  })
+  .catch((err: any) => {
+    console.error(err.response ? err.response.data : 'Erro ao buscar dados');
+  });
 
     
     const handleResize = () => {
@@ -39,7 +45,7 @@ const Twitch = () => {
   return (
     <div className={style.live}>
       <div className={style.liveWrapper}>
-        <h1>{isLoading && textInfo.text}</h1>
+      <h1>{isLoading && textInfo?.text ? textInfo.text : 'Carregando...'}</h1>
         <div className={style.liveFeed}>
           <TwitchEmbed channel="evandro_vidal" width={videoWidth} height={videoHeight} />
         </div>
