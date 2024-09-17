@@ -263,6 +263,7 @@ export async function update(id: number, data: Prisma.UserUpdateInput): Promise<
 }
 
 export async function incrementUserBalance(id: number, saldo: number): Promise<User> {
+  console.log(`Adicionando saldo de ${saldo} ao usuário com ID: ${id}`);
   return prisma.user.update({
     where: { id },
     data: {
@@ -272,6 +273,7 @@ export async function incrementUserBalance(id: number, saldo: number): Promise<U
     },
   });
 }
+
 
 export async function deleteUser(id: number): Promise<void> {
   const activeRaffles = await prisma.participant.findMany({
