@@ -9,8 +9,8 @@ interface TransactionData {
   paymentMethod: string;
   transactionAmount: number;
   dateApproved?: Date | null;
-  qrCode?: string | null; // Novo campo para QR code
-  qrCodeBase64?: string | null; // Novo campo para QR code em base64
+  qrCode?: string | null;
+  qrCodeBase64?: string | null;
 }
 
 interface TransactionUpdateData {
@@ -31,8 +31,8 @@ async function createTransactionMeli(data: TransactionData) {
       transactionAmount: data.transactionAmount,
       dateApproved: data.dateApproved,
       type: 'credit',
-      qrCode: data.qrCode, // Salva o QR code
-      qrCodeBase64: data.qrCodeBase64, // Salva o QR code em base64
+      qrCode: data.qrCode,
+      qrCodeBase64: data.qrCodeBase64,
     },
   });
 }
