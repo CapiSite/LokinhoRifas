@@ -17,6 +17,7 @@ import { loadEnv, connectDb, disconnectDB } from './config';
 import path from 'path';
 
 loadEnv();
+
 const uploadsDir = path.resolve(__dirname, '.', 'uploads');
 
 const app = express();
