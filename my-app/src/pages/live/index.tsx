@@ -45,7 +45,7 @@ const Twitch = () => {
   return (
     <div className={style.live}>
       <div className={style.liveWrapper}>
-      <h1>{isLoading && textInfo?.text ? textInfo.text : 'Carregando...'}</h1>
+      <h1>{isLoading && textInfo.text}</h1>
         <div className={style.liveFeed}>
           <TwitchEmbed channel="evandro_vidal" width={videoWidth} height={videoHeight} />
         </div>
