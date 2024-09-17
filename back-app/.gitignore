@@ -1,0 +1,8 @@
+dist
+node_modules
+!.env.example
+yarn.lock
+.vscode
+/uploads/*
+!/uploads/.gitkeep
+.env
