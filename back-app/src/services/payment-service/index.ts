@@ -1,34 +1,12 @@
-import crypto from 'crypto';
-import { Payment } from 'mercadopago';
-import userRepository from '../../repositories/user-repository';
-import transactionRepository from '../../repositories/transaction-repository';
-import { MercadoPagoConfig } from 'mercadopago';
+import { MercadoPagoConfig, Payment } from 'mercadopago';
+import userRepository from "../../repositories/user-repository";
+import transactionRepository from "../../repositories/transaction-repository";
 
-// Configurando o cliente MercadoPago
 const client = new MercadoPagoConfig({
   accessToken: process.env.ACCESS_KEY,
 });
 
 const payment = new Payment(client);
-
-/**
- * Função para validar o webhook usando o x-signature e o secret do Mercado Pago.
- * @param signatureHeader - Header x-signature da requisição.
- * @param secret - Chave secreta armazenada no .env.
- * @param payload - O payload da requisição (corpo da notificação).
- * @returns {boolean} - Retorna true se a assinatura for válida.
- */
-export function validateMercadoPagoSignature(signatureHeader: string, secret: string, payload: string): boolean {
-  const [timestampPart, signaturePart] = signatureHeader.split(',');
-  const timestamp = timestampPart.split('=')[1];
-  const signature = signaturePart.split('=')[1];
-
-  const hmac = crypto.createHmac('sha256', secret);
-  const dataToSign = `id:${payload};ts:${timestamp}`;
-  const expectedSignature = hmac.update(dataToSign).digest('hex');
-
-  return crypto.timingSafeEqual(Buffer.from(expectedSignature), Buffer.from(signature));
-}
 
 export async function createPayment(body: any, userId: number) {
   try {
@@ -50,7 +28,8 @@ export async function createPayment(body: any, userId: number) {
     };
 
     const paymentResponse = await payment.create({ body: paymentData });
-
+    console.log(paymentResponse);
+    
     const transactionData = {
       userId,
       paymentId: paymentResponse.id.toString(),
@@ -69,12 +48,16 @@ export async function createPayment(body: any, userId: number) {
       await userRepository.incrementUserBalance(userId, paymentResponse.transaction_amount);
     }
 
+    delete transaction.paymentId;
+
     return transaction;
   } catch (error) {
     console.error('Erro ao criar a preferência de pagamento:', error);
     throw new Error(`Erro ao criar a preferência de pagamento: ${error.message}`);
   }
 }
+
+
 
 export async function handlePaymentNotification(paymentId: string) {
   try {
@@ -94,6 +77,7 @@ export async function handlePaymentNotification(paymentId: string) {
     if (paymentResponse.status === 'approved') {
       await userRepository.incrementUserBalance(updatedTransaction.user_id, paymentResponse.transaction_amount);
     }
+    delete updatedTransaction.paymentId
 
     return updatedTransaction;
   } catch (error) {
