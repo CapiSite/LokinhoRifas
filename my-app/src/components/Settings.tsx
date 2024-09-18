@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import xmark from '../assets/xmark.svg';
 import editPencil from '../assets/editPencil.svg';
 import { UserContextType, UserSettingsType } from 'utils/interfaces';
 import { useEffect, useRef, useState } from 'react';

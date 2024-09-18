@@ -527,6 +527,8 @@
 
   .SignUp form {
     align-items: center;
+
+    border-radius: 0;
   }
 
   .SignUp form .LinkGroup {

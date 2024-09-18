@@ -3,30 +3,38 @@ import { useRouter } from "next/router";
 import { useSidebarState } from "../contexts/SidebarContext";
 import logo from "../images/Logo.png";
 import Xmark from "../assets/xmark.svg";
-import { Dispatch, useEffect } from "react";
+import { useEffect } from "react";
 import { useUserStateContext } from "contexts/UserContext";
-import { UserInfoType } from "../utils/interfaces";
+import { UserContextType } from "../utils/interfaces";
 import HeaderProfile from "./HeaderProfile";
 import axios from "axios";
 import Budget from "./Budget";
 import { RouletteProvider } from "contexts/RouletteContext";
 import PaymentBrick from "./PaymentSteps";
+import Settings from "./Settings";
+import defaultProfilePicture from '../assets/defaultProfilePic2.svg'
 
 const Header = () => {
   const { sidebarView, toggleSidebar }: any = useSidebarState();
-  const { userInfo, setUserInfo, showBudget, showPayment, setShowPayment } = useUserStateContext() as {
-    userInfo: UserInfoType;
-    setUserInfo: Dispatch<React.SetStateAction<UserInfoType>>;
-    showBudget: boolean;
-    showPayment: boolean;
-    setShowPayment: Dispatch<React.SetStateAction<boolean>>;
-  };
+  const { userInfo, setUserInfo, showBudget, showPayment, setShowPayment, showSettings, setShowSettings, image, setImage } = useUserStateContext() as UserContextType
+
+  const { name, email, picture, tradeLink, phoneNumber, saldo } = userInfo
 
   useEffect(() => {
     const html = document.querySelector("html");
 
     html?.classList.toggle("scrollOff", showBudget);
   }, [showBudget]);
+
+  const profile = {
+    name: name != '' ? name : 'notloggedinuser',
+    email: email != '' ? email : 'notloggedinuser@gmail.com',
+    tradeLink: tradeLink != '' ? tradeLink : 'Sem Trade Link',
+    phoneNumber: phoneNumber != '' ? phoneNumber : 'Sem número cadastrado',
+    picture: picture === "default" ? defaultProfilePicture :
+    (picture && picture.startsWith('https://static-cdn.jtvnw.net')) ? 
+    picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`,
+  }
 
   const router = useRouter();
 
@@ -119,6 +127,7 @@ const Header = () => {
       {showPayment && <RouletteProvider>
         <PaymentBrick props={{setShowPayment}}/>
       </RouletteProvider>}
+      {showSettings && <Settings props={{profile, showSettings, setShowSettings, image, setImage}}/>}
     </header>
   );
 };

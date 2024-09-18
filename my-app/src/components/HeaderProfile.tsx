@@ -4,14 +4,11 @@ import Image from "next/image";
 
 import defaultProfilePicture from '../assets/defaultProfilePic.svg'
 import { useEffect, useState } from "react";
-import Settings from "./Settings";
 import { useRouter } from "next/router";
 
 const HeaderProfile = () => {
-  const { userInfo, setShowBudget, logOut } = useUserStateContext() as UserContextType
+  const { userInfo, setShowBudget, logOut, showSettings, image, openConfig } = useUserStateContext() as UserContextType
   const [ showDropdown, setShowDropdow ] = useState<boolean>(false)
-  const [ showSettings, setShowSettings ] = useState<boolean>(false)
-  const [ image, setImage ] = useState<File | null>(null)
 
   const router = useRouter()
 
@@ -22,15 +19,13 @@ const HeaderProfile = () => {
     html?.classList.toggle('scrollOff', showSettings)
   }, [showSettings])
 
-  const { name, email, picture, tradeLink, phoneNumber, saldo, isAdmin } = userInfo
+  const { name, email, picture, saldo, isAdmin } = userInfo
 
   const saldoString = saldo ? saldo.toString() : '0'
 
   const profile = {
     name: name != '' ? name : 'notloggedinuser',
     email: email != '' ? email : 'notloggedinuser@gmail.com',
-    tradeLink: tradeLink != '' ? tradeLink : 'Sem Trade Link',
-    phoneNumber: phoneNumber != '' ? phoneNumber : 'Sem número cadastrado',
     picture: picture.includes("default") || picture === null ? defaultProfilePicture :
     (picture)?.includes('https://static-cdn.jtvnw.net') ?
     picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`,
@@ -52,10 +47,6 @@ const HeaderProfile = () => {
     setTimeout(() => {
       setShowDropdow(oldValue => !oldValue)
     }, 400);
-  }
-
-  const openConfig = () => {
-    setShowSettings(true)
   }
 
   function handleLogout() {
@@ -90,8 +81,6 @@ const HeaderProfile = () => {
           <button onClick={() => openBudgetPayment()}>Saldo: R$<span className="Value">{profile.budget}</span></button>
         </ul>
       </div>
-
-      {showSettings && <Settings props={{profile, showSettings, setShowSettings, image, setImage}}/>}
     </div>
   );
 }

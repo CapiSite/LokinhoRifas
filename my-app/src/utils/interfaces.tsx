@@ -17,12 +17,17 @@ export interface UserContextType {
   setShowPayment: React.Dispatch<React.SetStateAction<boolean>>;
   showBudget: boolean;
   setShowBudget: React.Dispatch<React.SetStateAction<boolean>>;
+  showSettings: boolean;
+  setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
   lastestTransactions: LastPayment[];
   getLatestTransactions: Function;
   qrcode64: string; 
   setQrcode64: React.Dispatch<React.SetStateAction<string>>;
   valueDiff: number;
   setValueDiff: React.Dispatch<React.SetStateAction<number>>;
+  image: File | null, 
+  setImage: React.Dispatch<React.SetStateAction<File | null>>
+  openConfig: () => void;
 }
 
 export type UserInfoType = {
@@ -53,7 +58,6 @@ export type UserSettingsType = {
     phoneNumber: string;
     email: string;
     picture: string;
-    budget: string | undefined;
   };
   showSettings: boolean;
   setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;

@@ -29,7 +29,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     saldo: 0,
   })
 
+  const [ image, setImage ] = useState<File | null>(null)
+
   const [ showBudget, setShowBudget ] = useState<boolean>(false)
+  const [ showSettings, setShowSettings ] = useState<boolean>(false)
   const [ showPayment, setShowPayment ] = useState<boolean>(false)
   const [ lastestTransactions, setLatestTransactions ] = useState<LastPayment[]>([])
   const [ qrcode64, setQrcode64 ] = useState<string>('')
@@ -55,6 +58,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     })
 
     setLatestTransactions(tempArray)
+  }
+
+  const openConfig = () => {
+    setShowSettings(true)
   }
 
   const getLatestTransactions = () => {
@@ -102,12 +109,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setShowBudget,
     showPayment, 
     setShowPayment,
+    showSettings, 
+    setShowSettings,
     lastestTransactions,
     getLatestTransactions,
     qrcode64, 
     setQrcode64,
     valueDiff,
     setValueDiff,
+    image, 
+    setImage,
+    openConfig,
   }
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>

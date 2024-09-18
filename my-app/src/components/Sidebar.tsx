@@ -14,8 +14,7 @@ import Whatsapp from "../assets/Whatsapp.svg"
 
 const Sidebar = () => {
   const { sidebarView, toggleSidebar } = useSidebarState() as SidebarContextType
-  const { userInfo, setUserInfo } = useUserStateContext() as UserContextType;
-  const [ showSettings, setShowSettings ] = useState<boolean>(false)
+  const { userInfo, setUserInfo, showSettings } = useUserStateContext() as UserContextType;
 
   const router = useRouter();
 
@@ -102,7 +101,7 @@ const Sidebar = () => {
           </button>
         ) : (
           <div className="mobile">
-            <HeaderProfileMobile props={{showSettings, setShowSettings}} />
+            <HeaderProfileMobile />
           </div>
         )}
         <ul className="Socials">

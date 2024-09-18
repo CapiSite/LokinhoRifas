@@ -293,6 +293,8 @@
   .LogIn form {
     align-items: center;
     width: 100vw;
+
+    border-radius: 0;
   }
 
   .LogIn button {

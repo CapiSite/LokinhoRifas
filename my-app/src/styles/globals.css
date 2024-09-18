@@ -352,7 +352,7 @@ header {
   border-top: none;
 }
 
-.Profile .config {
+.config {
   display: flex;
 
   justify-content: center;
@@ -364,14 +364,18 @@ header {
 
   width: 100%;
   height: 100vh;
+
+  z-index: 10;
 }
 
-.Profile .configWrapper {
+.configWrapper {
   display: flex;
 
   justify-content: center;
 
   border-radius: 11px;
+
+  border: 5px solid #222;
 
   height: 600px;
 
@@ -379,7 +383,7 @@ header {
   overflow-y: auto;
 }
 
-.Profile .configWrapperContent {
+.configWrapperContent {
   display: flex;
 
   flex-direction: column;
@@ -394,11 +398,7 @@ header {
 
   background-color: white;
 
-  border: 5px solid #222;
-
   gap: 15px;
-
-  border-radius: 11px;
 
   color: black;
 
@@ -475,7 +475,7 @@ header {
   }
 }
 
-.Profile .config .boxGroup {
+.config .boxGroup {
   display: flex;
 
   width: 100%;
@@ -488,15 +488,19 @@ header {
   padding: 30px 30px 0;
 }
 
-.Profile .accountInfo {
+.config .accountInfo {
   display: flex;
+
+  align-items: center;
+
+  gap: 30px;
 
   width: 100%;
 
   padding: 0 30px;
 }
 
-.Profile .config .imageBox {
+.config .imageBox {
   display: flex;
   width: fit-content;
 
@@ -504,23 +508,25 @@ header {
 
 }
 
-.Profile .config .imageBox img {
+.config .imageBox img {
   background-color: white;
 
   border-radius: 50%;
+
+  outline: 2px solid black;
 
   width: 200px;
   height: auto;
 }
 
-.Profile .config .imageBox input,
-.Profile .config .imageBox button {
+.config .imageBox input,
+.config .imageBox button {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.Profile .config .imageBox input {
+.config .imageBox input {
   z-index: -1;
   width: 0;
   height: 0;
@@ -528,7 +534,7 @@ header {
   opacity: 0;
 }
 
-.Profile .config .imageBox button {
+.config .imageBox button {
   display: flex;
 
   justify-content: center;
@@ -548,14 +554,14 @@ header {
   transition: opacity 0ms ease-out;
 }
 
-.Profile .config .imageBox button:hover {
+.config .imageBox button:hover {
   opacity: .5;
 
   box-shadow: none;
   translate: 0 0;
 }
 
-.Profile .config .imageBox button img {
+.config .imageBox button img {
   width: 50%;
   height: 50%;
 
@@ -987,7 +993,7 @@ header {
   font-size: 30px;
 }
 
-.Profile .configWrapperContent > button {
+.configWrapperContent > button {
   padding: 10px;
 
   width: 40px;
@@ -1000,11 +1006,11 @@ header {
   right: 30px;
 }
 
-.Profile .config h2 {
+.config h2 {
   font-size: 32px;
 }
 
-.Profile .config .box {
+.config .box {
   display: flex;
 
   flex-direction: column;
@@ -1019,24 +1025,24 @@ header {
   border-radius: 11px;
 }
 
-.Profile .config .box:first-of-type, .Profile .config .box:last-of-type {
+.config .box:first-of-type, .config .box:last-of-type {
   width: 100%;
   height: fit-content;
 }
 
-.Profile .config .box h3 {
+.config .box h3 {
   font-size: 24px;
 }
 
-.Profile .config .box:last-of-type {
+.config .box:last-of-type {
   outline: 5px dashed red;
 }
 
-.Profile .config label, .Profile .config input {
+.config label, .config input {
   font-size: 20px;
 }
 
-.Profile .config input {
+.config input {
   display: block;
 
   margin-top: 5px;
@@ -1050,6 +1056,10 @@ header {
   outline: 2px solid;
 
   color: grey;
+}
+
+.config .box:first-child input {
+  width: 100%;
 }
 
 .config .inputWrapper {
@@ -1066,7 +1076,21 @@ header {
   width: 100%;
 }
 
-.Profile .config .box button {
+.config .box button {
+  border-radius: 8px;
+
+  border: none;
+
+  outline: 1px solid #E21A1A;
+
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  cursor: pointer;
+
+  transition: 200ms ease-out;
+
+  white-space: nowrap;
   padding: 7px 31px;
 
   width: fit-content;
@@ -1076,7 +1100,11 @@ header {
   text-align: center;
 }
 
-.Profile .config .inputWrapper button {
+.config .inputWrapper button {
+  border: none;
+
+  cursor: pointer;
+
   position: absolute;
   top: 50%;
   right: 0;
@@ -1092,19 +1120,19 @@ header {
   padding: 5px 5px 0 0;
 }
 
-.Profile .config .box .important {
+.config .box .important {
   font-weight: 700;
   font-size: 18px;
 }
 
-.Profile .config .box:nth-of-type(2) p {
+.config .box:nth-of-type(2) p {
   opacity: .5;
   font-size: 18px;
 
   width: 100%;
 }
 
-.Profile .configBackground {
+.configBackground {
   position: absolute;
   left: 0;
   top: 0;
@@ -2941,49 +2969,48 @@ footer nav div {
     font-size: min(8vmin, 1.5em);
   }
 
-  .Profile .config {
-    top: auto;
-    bottom: 0%;
-
-    height: 200vh;
-
+  .config {
     align-items: flex-end;
+    width: 100%;
   }
 
   .Profile .statusWrapper {
     height: 400px;
   }
 
-  .Profile .configWrapper {
+  .configWrapper {
     border-radius: 20px 20px 0 0;
+    border: none;
 
     height: 400px;
   }
 
-  .Profile .config .box .important {
+  .config .box .important {
     width: fit-content;
     text-align: center;
   }
 
-  .Profile .configWrapperContent {
+  .configWrapperContent {
     border-radius: 0;
     width: 100%;
+
+    border: 5px solid #222;
 
     border: none;
 
     animation: 300ms ease-out 0s 1 forwards showUp;
   }
 
-  .Profile .configWrapperContent h2 {
+  .configWrapperContent h2 {
     font-size: 5.5vmin;
     text-align: center;
   }
 
-  .Profile .config .imageBox img {
+  .config .imageBox img {
     border: 2px solid black;
   }
 
-  .Profile .configWrapperContent .accountInfo {
+  .configWrapperContent .accountInfo {
     flex-direction: column;
 
     align-items: center;
@@ -2991,23 +3018,23 @@ footer nav div {
     text-align: center;
   }
 
-  .Profile .config .box {
+  .config .box {
     width: 100%;
   }
 
-  .Profile .config .box h3 {
+  .config .box h3 {
     text-align: center;
   }
 
-  .Profile .config .box input {
+  .config .box input {
     width: 100%;
   }
 
-  .Profile .config .box > button {
+  .config .box > button {
     width: 100%;
   }
 
-  .Profile .config .box:last-of-type p {
+  .config .box:last-of-type p {
     text-align: justify;
   }
 
@@ -3336,7 +3363,7 @@ footer nav div {
     width: 100%;
   }
 
-  .Profile .config .box > button {
+  .config .box > button {
     width: 100%;
 
     text-align: center;
@@ -3352,7 +3379,7 @@ footer nav div {
     overflow-y: auto;
   }
 
-  .Profile .config label {
+  .config label {
     display: flex;
 
     width: fit-content;

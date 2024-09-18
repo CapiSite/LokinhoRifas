@@ -1,22 +1,16 @@
 import { useUserStateContext } from "contexts/UserContext";
-import { SidebarContextType, UserInfoType }  from '../utils/interfaces'
+import { SidebarContextType, UserContextType }  from '../utils/interfaces'
 import Image from "next/image";
 
 import defaultProfilePicture from '../assets/defaultProfilePic.svg'
-import { Dispatch, useEffect, useState } from "react";
-import Settings from "./Settings";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Budget from "./Budget";
 import { useSidebarState } from "contexts/SidebarContext";
 
-const HeaderProfileMobile = ({ props }: { props: { showSettings: boolean, setShowSettings: React.Dispatch<React.SetStateAction<boolean>> } }) => {
-  const { userInfo, setUserInfo, setShowBudget } = useUserStateContext() as { userInfo: UserInfoType, setUserInfo: Dispatch<React.SetStateAction<UserInfoType>>, setShowBudget: Dispatch<React.SetStateAction<boolean>>  }
+const HeaderProfileMobile = () => {
+  const { userInfo, setUserInfo, setShowBudget, image, showSettings, setShowSettings } = useUserStateContext() as UserContextType
   const [ showDropdown, setShowDropdow ] = useState<boolean>(false)
-  const { showSettings, setShowSettings } = props
-  const [ image, setImage ] = useState<File | null>(null)
-  const {toggleSidebar } = useSidebarState() as SidebarContextType
-  
-  const randomValue = Math.floor(Math.random() * 5000)
+  const { toggleSidebar } = useSidebarState() as SidebarContextType
 
   useEffect(() => {
     const html = document.querySelector('html')
@@ -25,7 +19,7 @@ const HeaderProfileMobile = ({ props }: { props: { showSettings: boolean, setSho
     html?.classList.toggle('scrollOff', showSettings)
   }, [showSettings])
 
-  const { name, email, picture, tradeLink, phoneNumber, saldo } = userInfo
+  const { name, email, picture, saldo } = userInfo
 
   const saldoString = saldo.toString()
 
@@ -33,8 +27,6 @@ const HeaderProfileMobile = ({ props }: { props: { showSettings: boolean, setSho
   const profile = {
     name: name != '' ? name : 'notloggedinuser',
     email: email != '' ? email : 'notloggedinuser@gmail.com',
-    tradeLink: tradeLink != '' ? tradeLink : 'Sem Trade Link',
-    phoneNumber: phoneNumber != '' ? phoneNumber : 'Sem número cadastrado',
     picture: picture === "default" ? defaultProfilePicture :
     (picture && picture.startsWith('https://static-cdn.jtvnw.net')) ? 
     picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`,
@@ -87,8 +79,6 @@ const HeaderProfileMobile = ({ props }: { props: { showSettings: boolean, setSho
           <button onClick={() => openBudgetPayment()}>Saldo: R$<span className="Value">{profile.budget}</span></button>
         </ul>
       </div>
-
-      {showSettings && <Settings props={{profile, showSettings, setShowSettings, image, setImage}}/>}
     </div>
   );
 }
