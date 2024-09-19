@@ -394,6 +394,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     newRewardsArray.map((item: RaffleSkin) => {
       if (item.winner_id === null) {
         const newItem = {
+          //! Alterar para apenas id?
           id: item.skin_id,
           type: item.skinValue >= 1000 ? "Gold" : "Silver",
           itemImageUrl: `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${item.skinPicture}`,
@@ -552,7 +553,6 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     setParticipants(raffle.participants);
     if(raffle.participants.length < 100) {
       loadFillerCards()
-      setIsButtonActive(false)
     }
 
     if (raffle.raffleSkins.filter(skin => skin.winner_id !== null).length == 0) {
@@ -562,6 +562,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     setNewRewards(raffle.raffleSkins);
     filterPurchasableRaffles();
   }, [raffle ? raffle.id : raffle]);
+
 
   const value = {
     availableRaffles,
@@ -574,14 +575,11 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     winners,
     isButtonActive,
     isMockWin,
-    // winner,
     participants,
     rewards,
     setIsButtonActive,
     toggleSelection,
     handleChangeQuantity,
-    // setWinner,
-    // loadFillerCards,
     manageWinner,
     manageMockWinner,
     manageCloseResult,

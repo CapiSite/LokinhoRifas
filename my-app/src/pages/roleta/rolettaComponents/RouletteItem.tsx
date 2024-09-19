@@ -34,7 +34,11 @@ const RouletteItem = ({ props }: { props: CardItemType }) => {
     };
 
     if (profilePicture && !profilePicture.includes('default')) {
-      checkImageExists(profilePicture);
+      const timeoutId = setTimeout(() => {
+        checkImageExists(profilePicture);
+      }, 200);
+
+      return () => clearTimeout(timeoutId);
     }
   }, [profilePicture]);
 
@@ -50,6 +54,7 @@ const RouletteItem = ({ props }: { props: CardItemType }) => {
             src={imgSrc}
             width={60}
             height={60}
+            priority={false}
             alt={`Foto de perfil de ${personName}`}
             onError={(e) => {
               e.preventDefault();

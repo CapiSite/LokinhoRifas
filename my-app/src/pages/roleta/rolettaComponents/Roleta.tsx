@@ -66,7 +66,7 @@ const Hero = () => {
         <div className={style.ButtonGroup}>
           <button disabled={!isButtonActive || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
           {(availableRaffles.length > 0 && participants.length >= 100) && <select disabled={!isButtonActive} className={style.raffleSelector} onChange={(e) => selectRaffle(Number(e.target.value))}>
-            {availableRaffles.filter(raffle => raffle.raffleSkins.length > 0).map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
+            {availableRaffles.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
           </select>}
           <button disabled={!isButtonActive || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
         </div>

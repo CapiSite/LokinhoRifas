@@ -1421,6 +1421,8 @@
 @media only screen and (max-width: 1200px) {
   .RewardsList {
     display: flex;
+
+    flex-direction: column;
     
     flex-wrap: wrap;
 
