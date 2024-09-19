@@ -13,6 +13,7 @@ const RouletteArray = () => {
     fillerParticipants = [],
     getWinner,
     setIsButtonActive,
+    rouletteLoadingState,
   } = useRouletteContext() as RouletteContext;
   
   useEffect(() => {
@@ -30,7 +31,7 @@ const RouletteArray = () => {
 
   return (
     <div className={style.RouletteArray} id="Roulette">
-      {fillerParticipants && fillerParticipants.map((item) => (
+      {(rouletteLoadingState && fillerParticipants) && fillerParticipants.map((item) => (
         <RouletteItem key={uuidv4()} props={{
           ...item,
           nickName: item.user.name + '#' + item.number,
@@ -40,7 +41,7 @@ const RouletteArray = () => {
           number: item.number
         }} />
       ))}
-      {winners &&
+      {(rouletteLoadingState && winners) &&
         winners.map((item) => (
           <RouletteItem key={uuidv4()} props={{
             ...item,
@@ -51,7 +52,7 @@ const RouletteArray = () => {
             number: item.number
           }} />
         ))}
-      {fillerParticipants && fillerParticipants.map((item) => (
+      {(rouletteLoadingState && fillerParticipants) && fillerParticipants.map((item) => (
           <RouletteItem key={uuidv4()} props={{
             ...item,
             nickName: item.user.name + '#' + item.number,

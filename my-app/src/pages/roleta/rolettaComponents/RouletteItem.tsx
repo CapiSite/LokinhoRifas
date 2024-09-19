@@ -4,7 +4,7 @@ import { CardItemType } from "utils/interfaces";
 import cn from "classnames";
 
 import defaultPicture from "../../../assets/defaultProfilePic.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const RouletteItem = ({ props }: { props: CardItemType }) => {
   if (!props) {
@@ -19,28 +19,7 @@ const RouletteItem = ({ props }: { props: CardItemType }) => {
     number = 0,
   } = props;
 
-  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(defaultPicture);
-
-  useEffect(() => {
-    const checkImageExists = async (url: string) => {
-      try {
-        const response = await fetch(url, { method: "HEAD" });
-        if (response.ok) {
-          setImgSrc(url);
-        }
-      } catch (error) {
-        setImgSrc(defaultPicture);
-      }
-    };
-
-    if (profilePicture && !profilePicture.includes('default')) {
-      const timeoutId = setTimeout(() => {
-        checkImageExists(profilePicture);
-      }, 200);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [profilePicture]);
+  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(profilePicture == 'default' ? defaultPicture : profilePicture);
 
   return (
     <div

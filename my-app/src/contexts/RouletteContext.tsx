@@ -7,14 +7,13 @@ import {
   useState,
 } from "react";
 import {
+  ImageCache,
   LastEarnedContextType,
-  Participant,
   Raffle,
   raffleItem,
   RaffleParticipant,
   RaffleReward,
   RaffleSkin,
-  WinnerProperties,
 } from "utils/interfaces";
 import { useLastEarnedState } from "./LastEarnedContext";
 
@@ -56,12 +55,14 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     number: 0,
     id: 0,
     user: {
+        participantid: 0,
         id: 0,
         name: '',
         picture: '',
     }
   });
-  // TODO! Setar algum canto para as propriedades serem atualizadas
+  const [ alreadyRequestedImgs, setAlreadyRequestedImgs ] = useState<ImageCache>([])
+  const [ rouletteLoadingState, setRouletteLoadingState ] = useState<boolean>(false)
   const [rewards, setRewards] = useState<RaffleReward[]>([]);
 
   const [animationState, setAnimationState] = useState<Animation>();
@@ -78,8 +79,8 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   const toggleIsButtonActive = () => setIsButtonActive((oldValue) => !oldValue);
   const toggleWinnerPopupVisibility = () => setWinnerPopupVisible((oldValue) => !oldValue);
 
-  const loadFillerCards = () => {
-    const winnerlessCards = raffle.participants.map((item) => ({
+  const loadFillerCards = (newParticipantsArray: RaffleParticipant[]) => {
+    const winnerlessCards = newParticipantsArray.map((item) => ({
       ...item,
       isWinner: false,
     }));
@@ -278,6 +279,85 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     });
 
     setPurchasableRaffles(newRaffles);
+  };
+
+  const checkImagesInParticipants = async () => {
+    setRouletteLoadingState(false);
+
+    const participants = raffle.participants;
+
+    // Extract and transform users
+    const newUsers = participants.map(p => ({
+      ...p.user,
+      picture: `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${p.user.picture}`,
+      participantId: p.id
+    }));
+
+    // Process images and update users
+    const updatedUsers = await Promise.all(
+      newUsers.map(async (user) => {
+        const cachedImage = alreadyRequestedImgs.find(item => item.url === user.picture);
+
+        if (cachedImage) {
+          return { ...user, picture: cachedImage.success ? user.picture : 'default' };
+        }
+
+        try {
+          const response = await fetch(user.picture, { method: 'HEAD' });
+
+          if (response.ok) {
+            setAlreadyRequestedImgs(prev => {
+              const alreadyExists = prev.some(item => item.url === user.picture);
+              if (!alreadyExists) {
+                return [...prev, { url: user.picture, success: true }];
+              }
+              return prev;
+            });
+            return { ...user, picture: user.picture };
+          } else {
+            setAlreadyRequestedImgs(prev => {
+              const alreadyExists = prev.some(item => item.url === user.picture);
+              if (!alreadyExists) {
+                return [...prev, { url: user.picture, success: false }];
+              }
+              return prev;
+            });
+            return { ...user, picture: 'default' };
+          }
+        } catch (error) {
+          setAlreadyRequestedImgs(prev => {
+            const alreadyExists = prev.some(item => item.url === user.picture);
+            if (!alreadyExists) {
+              return [...prev, { url: user.picture, success: false }];
+            }
+            return prev;
+          });
+          return { ...user, picture: 'default' };
+        }
+      })
+    );
+
+    // Rebuild full participant objects with updated user data
+    const rebuiltParticipants = participants.map(participant => {
+      const updatedUser = updatedUsers.find(user => user.participantId === participant.id);
+      return {
+        ...participant,
+        user: updatedUser || participant.user // Fallback to original if no update found
+      };
+    });
+
+    // Ensure this state updater function matches the expected type
+    setParticipants(rebuiltParticipants); // Use the resolved array here
+
+    if(rebuiltParticipants.length < 100) {
+      loadFillerCards(rebuiltParticipants)
+    }
+
+    if (raffle.raffleSkins.filter(skin => skin.winner_id !== null).length == 0) {
+      setNewWinners(rebuiltParticipants)
+    }
+
+    setRouletteLoadingState(true);
   };
   // ? Functions
 
@@ -550,19 +630,20 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if(!raffle) return
     
-    setParticipants(raffle.participants);
-    if(raffle.participants.length < 100) {
-      loadFillerCards()
-    }
-
-    if (raffle.raffleSkins.filter(skin => skin.winner_id !== null).length == 0) {
-      setNewWinners(raffle.participants)
-    }
+    checkImagesInParticipants()
 
     setNewRewards(raffle.raffleSkins);
     filterPurchasableRaffles();
   }, [raffle ? raffle.id : raffle]);
 
+  useEffect(() => {
+    console.log('Cached requests: ', alreadyRequestedImgs)
+  }, [alreadyRequestedImgs.length])
+
+  useEffect(() => {
+    if(participants.length == 0) return
+    console.log('Participants: ', participants)
+  }, [participants.length])
 
   const value = {
     availableRaffles,
@@ -577,6 +658,10 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     isMockWin,
     participants,
     rewards,
+    alreadyRequestedImgs,
+    rouletteLoadingState,
+    setRouletteLoadingState,
+    setAlreadyRequestedImgs,
     setIsButtonActive,
     toggleSelection,
     handleChangeQuantity,

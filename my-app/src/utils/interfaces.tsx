@@ -358,6 +358,7 @@ export type RaffleParticipant = {
   isWinner?: boolean;
   distanceFromCenter?: number;
   user: {
+    participantid: number;
     id: number;
     name: string;
     picture: string;
@@ -390,6 +391,10 @@ export type RouletteContext = {
   isMockWin: boolean;
   participants: RaffleParticipant[];
   rewards: RaffleReward[];
+  alreadyRequestedImgs: ImageCache,
+  rouletteLoadingState: boolean, 
+  setRouletteLoadingState: React.Dispatch<React.SetStateAction<boolean>>,
+  setAlreadyRequestedImgs: React.Dispatch<React.SetStateAction<ImageCache>>,
   setIsButtonActive: React.Dispatch<React.SetStateAction<boolean>>
   toggleSelection: (id: number) => void;
   handleChangeQuantity: (id: number, newQuantity: number) => void;
@@ -399,6 +404,8 @@ export type RouletteContext = {
   selectRaffle: (id: number) => void;
   getWinner: (winnerParam: HTMLElement) => void;
 };
+
+export type ImageCache = {url: string, success: boolean}[]
 
 export interface LastPayment {
   id: number;
