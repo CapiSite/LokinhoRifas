@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "rm - dist",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && mkdir -p dist/uploads",
     "start": "node -r tsconfig-paths/register dist/server.js",
     "migration:run": "prisma migrate deploy",
     "migration:generate": "npm run dev:load-envs prisma migrate dev",
