@@ -20,9 +20,11 @@ export const createSkin = async (req: Request, res: Response) => {
     }
     const { name, type } = req.body.skinData;
     try {
+        console.log(name, type)
         const value = Number(req.body.skinData.value)
         console.log(name,type,value)
         const skin = await skinService.createSkin({ name, value, picture, type });
+        console.log(skin)
         res.status(httpStatus.CREATED).json(skin);
     } catch (error) {
         res.status(httpStatus.BAD_REQUEST).json({ message: error.message, error });
