@@ -6,7 +6,6 @@ import { AuthenticatedRequest } from './authentication-middleware';
 
 export async function authenticateAdmin(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const userId = req.userId;
-
   if (!userId) {
     return res.status(httpStatus.UNAUTHORIZED).send({
       error: "Acesso negado. Não foi possível verificar o usuário."
@@ -27,6 +26,7 @@ export async function authenticateAdmin(req: AuthenticatedRequest, res: Response
 
     return next();
   } catch (err) {
+    console.log("Erro interno do servidor ao verificar privilégios administrativos.")
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({
       error: "Erro interno do servidor ao verificar privilégios administrativos."
     });

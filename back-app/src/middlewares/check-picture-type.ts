@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import multer from 'multer';
 
 const checkPictureType = (req: Request, res: Response, next:NextFunction) => {
+    console.log(req.body)
     if (typeof req.body.picture === 'string' && req.body.picture === 'Default') {
         // Se a imagem for uma string "Default", não envie para o middleware do multer
         next('route');

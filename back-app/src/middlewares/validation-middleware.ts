@@ -36,6 +36,7 @@ export function parseData(req: Request, res: Response, next: NextFunction) {
 }
 export function parseDataSkin(req: Request, res: Response, next: NextFunction) {
   if (req.body.skinData) {
+    console.log(req.body.skinData)
     req.body.skinData = JSON.parse(req.body.skinData);
   }
   next();
