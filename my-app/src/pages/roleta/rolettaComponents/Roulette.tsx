@@ -15,7 +15,7 @@ const Roulette = () => {
         {participants.length > 0 ? <RouletteArray /> : <EmptyRoulette />}
       </div>
       <div className={style.pin}>
-        <Image src={triangle} alt='Pino da roleta' />
+        <Image height={50} width={30} src={triangle} alt='Pino da roleta' />
       </div>
 
       {availableRaffles.length > 0 && <select disabled={!isButtonActive} className={style.raffleSelector} onChange={(e) => selectRaffle(Number(e.target.value))}>

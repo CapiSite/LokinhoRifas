@@ -44,7 +44,7 @@ const RafflePayment = ({props}: {props: {
       <div className="rafflePaymentWrapper">
         <div className="userPaymentData">
           <div className="value">
-            <h3><Image height={24} src={Currency} alt="Imagem de uma moeda"/> <span>BRL</span></h3>
+            <h3><Image width={50} height={24} src={Currency} alt="Imagem de uma moeda"/> <span>BRL</span></h3>
             <h2>R$ {value.toFixed(2).toString().replace('.', ',')}</h2>
           </div>
           <div className="userBudget">

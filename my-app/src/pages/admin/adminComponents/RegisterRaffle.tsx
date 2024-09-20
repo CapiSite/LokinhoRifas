@@ -3,6 +3,7 @@ import style from '../admin.module.css';
 import CardSkinsCart from './CardSkinsCart';
 import { RegisterRaffleProps} from 'utils/interfaces';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -61,7 +62,7 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
         <div className={style.ContainerCardSkinsCart}>
           {skinsCard?.map((skin) => (
             <CardSkinsCart
-              key={skin.id}
+              key={uuidv4()}
               id={skin.id}
               name={skin.name}
               value={skin.value}

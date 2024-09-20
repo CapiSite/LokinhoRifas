@@ -234,7 +234,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
                   <input type={passwordVisible ? 'text' : "password"} name="oldPassword" id="1" value={userData.oldPassword} onChange={(e => handleChange(e))} />
                   <button onClick={() => toggleStatePassword('password')}>
                     {passwordVisible ?
-                    <Image src={EyeSlashed} alt="Hide password"/> : <Image src={Eye} alt="Show password"/>}
+                    <Image width={50} src={EyeSlashed} alt="Hide password"/> : <Image width={50} src={Eye} alt="Show password"/>}
                   </button>
                 </div>
               </label>
@@ -244,7 +244,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
                   <input type={confirmPasswordVisible ? 'text' : "password"} name="newPassword" id="" value={userData.newPassword} onChange={(e => handleChange(e))} />
                   <button onClick={() => toggleStatePassword('confirmPassword')}>
                     {confirmPasswordVisible ?
-                    <Image src={EyeSlashed} alt="Hide password"/> : <Image src={Eye} alt="Show password"/>}
+                    <Image width={50} src={EyeSlashed} alt="Hide password"/> : <Image width={50} src={Eye} alt="Show password"/>}
                   </button>
                 </div>
               </label>

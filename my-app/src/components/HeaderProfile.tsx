@@ -26,8 +26,8 @@ const HeaderProfile = () => {
   const profile = {
     name: name != '' ? name : 'notloggedinuser',
     email: email != '' ? email : 'notloggedinuser@gmail.com',
-    picture: picture.includes("default") || picture === null ? defaultProfilePicture :
-    (picture)?.includes('https://static-cdn.jtvnw.net') ?
+    picture: picture === "default" ? defaultProfilePicture :
+    (picture && picture.startsWith('https://static-cdn.jtvnw.net')) ? 
     picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`,
     budget: saldoString.includes('.') ? `${saldoString.split('.')[0]},${saldoString.split('.')[1][0]}${saldoString.split('.')[1][1] ? saldoString.split('.')[1][1] : '0'}` : `${saldoString},00`
   }

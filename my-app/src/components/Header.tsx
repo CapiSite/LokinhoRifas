@@ -96,7 +96,7 @@ const Header = () => {
             className={sidebarView ? "LogoBox SidebarOn" : "LogoBox"}
             onClick={() => router.push("/")}
           >
-            <Image className="Logo" src={logo} alt="Logo de Lokinho Rifas" />
+            <Image width={50} className="Logo" src={logo} alt="Logo de Lokinho Rifas" />
           </div>
           <nav className="desktop">
             <ul>
@@ -120,7 +120,7 @@ const Header = () => {
           </div>
         )}
         <button onClick={() => toggleSidebar()} className="mobile tablet">
-          {sidebarView ? <Image src={Xmark} alt="Fechar sidebar" /> : "|||"}
+          {sidebarView ? <Image width={50} src={Xmark} alt="Fechar sidebar" /> : "|||"}
         </button>
       </div>
       {showBudget && <Budget />}

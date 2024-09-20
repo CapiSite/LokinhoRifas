@@ -6,8 +6,8 @@ import axios from "axios";
 import style from "./login.module.css";
 import cn from "classnames";
 
-import Eye from '../../assets/eye.svg'
-import EyeSlashed from '../../assets/eye-slash.svg'
+import Eye from "../../assets/eye.svg";
+import EyeSlashed from "../../assets/eye-slash.svg";
 
 import SingUpBG from "../../images/Cadastro/CADASTROBG.png";
 import Lines from "../../images/Cadastro/Lines.png";
@@ -19,7 +19,7 @@ const Login = () => {
   const router = useRouter();
 
   const [step, setStep] = useState(0);
-  const [ passwordVisible, setPasswordVisible ] = useState(false)
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const addStep = () => {
     setStep((oldValue) => oldValue + 1);
@@ -84,9 +84,9 @@ const Login = () => {
   };
 
   const keyDownHandler = (key: string) => {
-    if(key != 'Enter') return
-    validateLogIn()
-  }
+    if (key != "Enter") return;
+    validateLogIn();
+  };
 
   const validateLogIn = async () => {
     setError("");
@@ -146,8 +146,8 @@ const Login = () => {
   };
 
   const toggleStatePassword = () => {
-    setPasswordVisible(oldPassword => !oldPassword)
-  }
+    setPasswordVisible((oldPassword) => !oldPassword);
+  };
 
   return (
     <>
@@ -176,7 +176,7 @@ const Login = () => {
                           return { ...oldValue, email: e.target.value };
                         })
                       }
-                      onKeyDown={e => keyDownHandler(e.key)}
+                      onKeyDown={(e) => keyDownHandler(e.key)}
                       required
                     />
                   </label>
@@ -184,7 +184,7 @@ const Login = () => {
                     Senha:
                     <div className={style.inputWrapper}>
                       <input
-                        type={passwordVisible ? 'text' : 'password'}
+                        type={passwordVisible ? "text" : "password"}
                         name="password"
                         id="password"
                         value={formDataValue.password}
@@ -193,12 +193,16 @@ const Login = () => {
                             return { ...oldValue, password: e.target.value };
                           })
                         }
-                        onKeyDown={e => keyDownHandler(e.key)}
+                        onKeyDown={(e) => keyDownHandler(e.key)}
                         required
                       />
                       <button onClick={toggleStatePassword}>
-                        {passwordVisible ?
-                        <Image src={EyeSlashed} alt="Hide password"/> : <Image src={Eye} alt="Show password"/>}
+                        {passwordVisible ? (
+                          <Image width={50} height={50} src={EyeSlashed} alt="Hide password" />
+                        ) : (
+                          <Image width={30}
+                          height={50} src={Eye} alt="Show password" />
+                        )}
                       </button>
                     </div>
                   </label>
@@ -224,6 +228,8 @@ const Login = () => {
         <div className={style.background}>
           <div className={style?.["background-0Wrapper"]}>
             <Image
+              width={30}
+              height={50}
               className={style?.["background-0"]}
               priority={true}
               src={SingUpBG}
@@ -231,6 +237,8 @@ const Login = () => {
             />
           </div>
           <Image
+            width={30}
+            height={50}
             className={style?.["background-1"]}
             src={Lines}
             alt="Linhas de fundo"

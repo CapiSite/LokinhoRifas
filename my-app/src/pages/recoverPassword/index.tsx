@@ -210,6 +210,8 @@ const RecoverPassword = () => {
         <div className={style.background}>
           <div className={style?.["background-0Wrapper"]}>
             <Image
+              width={30}
+              height={50}
               className={style?.["background-0"]}
               priority={true}
               src={SingUpBG}
@@ -217,6 +219,8 @@ const RecoverPassword = () => {
             />
           </div>
           <Image
+            width={30}
+            height={50}
             className={style?.["background-1"]}
             src={Lines}
             alt="Linhas de fundo"

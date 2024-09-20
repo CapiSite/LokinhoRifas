@@ -13,10 +13,11 @@ const RouletteArray = () => {
     fillerParticipants = [],
     getWinner,
     setIsButtonActive,
-    rouletteLoadingState,
+    rouletteLoadingState = false,
   } = useRouletteContext() as RouletteContext;
   
   useEffect(() => {
+    if(rouletteLoadingState == false) return
     setTimeout(() => {
       const winner = document.getElementById('winner')
 
@@ -25,8 +26,7 @@ const RouletteArray = () => {
       getWinner(winner)
       setIsButtonActive(true)
     }, 400);
-    // TODO!: Debug slower computers delay
-  }, [raffle ? raffle.id : raffle, winners.length]);
+  }, [raffle ? raffle.id : raffle, winners.length, rouletteLoadingState]);
   
 
   return (

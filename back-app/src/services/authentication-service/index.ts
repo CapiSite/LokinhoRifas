@@ -52,12 +52,13 @@ async function twitchSignIn(code: string) {
       twitchId: userResponse.data.data[0].id,
       picture: userResponse.data.data[0].profile_image_url,
     });
+    console.log(twitchUser)
     const sessionToken = await createSession(twitchUser.id);
+    console.log(sessionToken)
     return { ...twitchUser, sessionToken };
   } else {
     await userRepository.updatedByTwitch(user.id, userResponse.data.data[0].id);
     const sessionToken = await createSession(user.id);
-
     return { sessionToken, id: user.id, email: user.email, name: user.name, picture: user.picture };
   }
 }

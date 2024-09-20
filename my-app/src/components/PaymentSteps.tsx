@@ -255,7 +255,7 @@ const PaymentBrick = ({
             {qrCode != '' && 
             <label className="qrcodecopy">
               <input type="text" onClick={handleClickCopynPaste} value={qrCode} />
-              <Image src={copynpaste} alt="pix copia e cola"/>
+              <Image width={50} src={copynpaste} alt="pix copia e cola"/>
             </label>
             }
 
@@ -263,7 +263,7 @@ const PaymentBrick = ({
             <a onClick={() => removeStep(2)}><Image width={20} height={20} className="seta" src={leftarrow} alt="Voltar"/> Voltar</a>
           </div>
           <div className="step-4">
-            <Image src={shield} alt="Ícone de confirmação" />
+            <Image width={50} src={shield} alt="Ícone de confirmação" />
             <h2>Estamos processando o pagamento!</h2>
             <p>Já já estará disponível o novo saldo!</p>
             <button

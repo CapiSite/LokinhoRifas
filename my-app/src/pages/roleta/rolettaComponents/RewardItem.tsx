@@ -53,6 +53,8 @@ const RewardItem = ({
       <div className={style.RewardItemWrapper}>
         <div className={style.RewardType}>
           <Image
+            width={30}
+            height={50}
             priority={false}
             src={type == "Gold" ? GOLDIcon : SILVERIcon}
             alt={type == "Gold" ? "Icone Gold" : "Icone Silver"}

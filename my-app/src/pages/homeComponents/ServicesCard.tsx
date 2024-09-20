@@ -20,7 +20,7 @@ const ServicesCard = ({ props }: { props: ServicesCardType }) => {
     <div className={style.Card}>
       <div className={style.CardWrapper}>
         <div className={style.ImageWrapper}>
-          <Image src={ImageSVG} alt={ImageAlt} />
+          <Image height={50} width={50} src={ImageSVG} alt={ImageAlt} />
         </div>
         <h3>{CardTitle}</h3>
         <p>{CardContent}</p>

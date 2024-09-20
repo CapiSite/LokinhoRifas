@@ -15,9 +15,10 @@ const RaffleCartItem = ({props}: {props: {
 
   const [ defaultValue, setDefaultValue ] = useState(quantity)
 
-  const [ imgSrc, setImgSrc ] = useState<string | StaticImageData>(bannerSkin)
+  const [ imgSrc, setImgSrc ] = useState<string | StaticImageData>(defaultGunPic)
 
   useEffect(() => {
+    if(bannerSkin.includes('default')) return
     setImgSrc(bannerSkin)
   }, [bannerSkin])
 
@@ -41,7 +42,7 @@ const RaffleCartItem = ({props}: {props: {
         <div className={`glow-2 ${bundleValue > 1000 ? 'Gold' : 'Silver'}`}></div>
         </div>
         <Image className='skin' width={165} height={135} src={imgSrc} alt='Skin principal' onError={() => setImgSrc(defaultGunPic)}/>
-        <Image className="shine" src={shine} alt="Brilho"/>
+        <Image className="shine" width={50} src={shine} alt="Brilho"/>
       </div>
 
       <div className="raffleMetaData">

@@ -35,6 +35,7 @@ async function findById(id: number) {
       id,
     },
   });
+  
   return user;
 }
 

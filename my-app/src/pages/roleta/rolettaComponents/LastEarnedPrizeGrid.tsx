@@ -13,7 +13,7 @@ const LastEarnedPrizeGrid = () => {
     <section className={style.LastPrizes}>
       <div className={style.LastPrizesWrapper}>
         <div className={style.title}>
-          <Image priority={false} src={GIFTIcon} alt='Icone de prêmios'/>
+          <Image height={50} width={30} priority={false} src={GIFTIcon} alt='Icone de prêmios'/>
           <h2>Últimos Prêmios</h2>
         </div>
         <div className={style.EarnedPrizesGrid}>
@@ -23,7 +23,7 @@ const LastEarnedPrizeGrid = () => {
         </div>
       </div>
       <div className={style.background}>
-        <Image priority={false} src={PRIZESBACKGROUND} alt="Fundo de tela"/>
+        <Image height={50} width={30} priority={false} src={PRIZESBACKGROUND} alt="Fundo de tela"/>
       </div>
       <div className={style.glowGroup}>
         <div className={style.growGroupWrapper}>

@@ -12,6 +12,7 @@ const RaffleCard = ({moreDetails, props}: { moreDetails: {setDetailsVisible: Dis
   const [ imgSrc, setImgSrc ] = useState<string | StaticImageData>(defaultGunPic)
 
   useEffect(() => {
+    if(raffle.bannerSkin.includes('default')) return
     setImgSrc(raffle.bannerSkin)
   }, [raffle.id])
 
@@ -26,10 +27,10 @@ const RaffleCard = ({moreDetails, props}: { moreDetails: {setDetailsVisible: Dis
         error.preventDefault()
         setImgSrc(defaultGunPic)
         }}/> 
-      <Image className='shine' src={shine} alt='Skin principal'/>
+      <Image width={50} className='shine' src={shine} alt='Skin principal'/>
 
       {raffle.isSelected && <div className="selectCheck">
-        <Image src={checkMark} alt='check'/>
+        <Image width={50} src={checkMark} alt='check'/>
       </div>}
 
       <div className="glowGroup">

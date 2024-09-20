@@ -85,6 +85,8 @@ const LastEarnedPrizes = ({
         <div className={style.ItemDescription}>
           <div className={style.PrizePoolType}>
             <Image
+              height={50}
+              width={30}
               src={PoolType === "Gold" ? GOLDIcon : SILVERIcon}
               alt={`Ícone da Rifa ${PoolType === "Gold" ? "Gold" : "Silver"}`}
             />

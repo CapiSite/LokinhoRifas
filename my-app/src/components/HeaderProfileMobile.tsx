@@ -21,7 +21,7 @@ const HeaderProfileMobile = () => {
 
   const { name, email, picture, saldo } = userInfo
 
-  const saldoString = saldo.toString()
+  const saldoString = saldo ? saldo.toString() : '0'
 
   const router = useRouter()
   const profile = {

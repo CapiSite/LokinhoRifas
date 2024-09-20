@@ -104,7 +104,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     const roulette = document.getElementById("Roulette");
 
-    const timing = 5000;
+    const timing = 30000;
 
     const randomSide = Math.floor(Math.random() * 2) == 1 ? -1 : 1;
 
@@ -186,7 +186,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if(!participants) return
     if(participants.length == 0) return
     
-    const timer = 5000
+    const timer = 30000
 
     toggleIsButtonActive();
     
@@ -282,8 +282,6 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const checkImagesInParticipants = async () => {
-    setRouletteLoadingState(false);
-
     const participants = raffle.participants;
 
     // Extract and transform users
@@ -356,8 +354,6 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if (raffle.raffleSkins.filter(skin => skin.winner_id !== null).length == 0) {
       setNewWinners(rebuiltParticipants)
     }
-
-    setRouletteLoadingState(true);
   };
   // ? Functions
 
@@ -499,7 +495,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       (winnerArray) => winnerArray.number == Number(winnerParam.dataset.number)
     )[0];
 
-    if(!winnerStats) throw new Error('Participante não encontrado')
+    if(!winnerStats) return
 
     const winnerCardCenter =
       (Math.round(winnerParam.getBoundingClientRect().right) -
@@ -629,21 +625,28 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   // ? Alter participants when raffle changes
   useEffect(() => {
     if(!raffle) return
+    setRouletteLoadingState(false);
     
-    checkImagesInParticipants()
+    setTimeout(() => {
+      checkImagesInParticipants()
 
-    setNewRewards(raffle.raffleSkins);
-    filterPurchasableRaffles();
+      setNewRewards(raffle.raffleSkins);
+      filterPurchasableRaffles();
+
+      setTimeout(() => {
+        setRouletteLoadingState(true);
+      }, 200);
+    }, 200);
   }, [raffle ? raffle.id : raffle]);
 
   useEffect(() => {
     console.log('Cached requests: ', alreadyRequestedImgs)
   }, [alreadyRequestedImgs.length])
 
-  useEffect(() => {
-    if(participants.length == 0) return
-    console.log('Participants: ', participants)
-  }, [participants.length])
+  // useEffect(() => {
+  //   if(participants.length == 0) return
+  //   console.log('Participants: ', participants)
+  // }, [participants.length])
 
   const value = {
     availableRaffles,

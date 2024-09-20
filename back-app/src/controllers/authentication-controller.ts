@@ -22,7 +22,7 @@ export async function twitchPost(req: Request, res: Response) {
     const result = await authenticationService.twitchSignIn(code);
     return res.status(httpStatus.OK).send(result);
   } catch (error) {
-    return res.status(httpStatus.UNAUTHORIZED).send({});
+    return res.status(httpStatus.UNAUTHORIZED).send(error.message);
   }
 }
 

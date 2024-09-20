@@ -7,7 +7,7 @@ const History = () => {
     <section id='SobreNos' className={style.History}>
         <div className={style.HistoryWrapper}>
           <div className={style.col1}>
-            <Image className={style?.['background-0']} src={Retrato} alt="Imagem do Thiago" />
+            <Image width={50} className={style?.['background-0']} src={Retrato} alt="Imagem do Thiago" />
           </div>
           <div className={style.col2}>
             <h2>Quem é Thiago Cordeiro?</h2>

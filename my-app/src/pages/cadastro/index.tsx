@@ -335,7 +335,7 @@ const SignUp = () => {
                           />
                           <button type="button" onClick={() => toggleStatePassword('password')}>
                             {passwordVisible ?
-                            <Image src={EyeSlashed} alt="Hide password"/> : <Image src={Eye} alt="Show password"/>}
+                            <Image width={50} src={EyeSlashed} alt="Hide password"/> : <Image width={50} src={Eye} alt="Show password"/>}
                           </button>
                         </div>
                       </label>
@@ -359,7 +359,7 @@ const SignUp = () => {
                           />
                           <button type="button" onClick={() => toggleStatePassword('confirmPassword')}>
                             {confirmPasswordVisible ?
-                            <Image src={EyeSlashed} alt="Hide password"/> : <Image src={Eye} alt="Show password"/>}
+                            <Image width={50} src={EyeSlashed} alt="Hide password"/> : <Image width={50} src={Eye} alt="Show password"/>}
                           </button>
                         </div>
                       </label>
@@ -443,6 +443,7 @@ const SignUp = () => {
 
                         <button type="button" onClick={changeProfilePic}>
                           <Image
+                            width={50}
                             src={editPencil}
                             alt={"Editar foto de perfil"}
                           />
@@ -516,6 +517,7 @@ const SignUp = () => {
             />
           </div>
           <Image
+            width={50}
             className={style?.["background-1"]}
             src={Lines}
             alt="Linhas de fundo"
