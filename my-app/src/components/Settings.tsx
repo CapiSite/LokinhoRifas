@@ -25,16 +25,16 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
     picture: null
   });
 
-  const [ tradelink, setTradelink ] = useState(userInfo.tradeLink)
-  
+  const [tradelink, setTradelink] = useState(userInfo.tradeLink)
+
   const router = useRouter()
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [ passwordVisible, setPasswordVisible ] = useState(false)
-  const [ confirmPasswordVisible, setConfirmPasswordVisible ] = useState(false)
+  const [passwordVisible, setPasswordVisible] = useState(false)
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
 
   const toggleStatePassword = (field: string) => {
-    if(field == 'password') setPasswordVisible(oldPassword => !oldPassword)
+    if (field == 'password') setPasswordVisible(oldPassword => !oldPassword)
     else setConfirmPasswordVisible(oldPassword => !oldPassword)
   }
 
@@ -142,19 +142,26 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
 
       if (response.status === 200) {
         setSuccess("Conta deletada com sucesso");
-        setTimeout(()=>{router.push('/login')}, 4000)
-        setTimeout(()=>{window.location.reload() }, 4000) 
+        setTimeout(() => { router.push('/login') }, 4000)
+        setTimeout(() => { window.location.reload() }, 4000)
       }
     } catch (err: any) {
       setError(err.response?.data?.message || "Erro ao deletar a conta. Verifique se você está em alguma rifa ativa");
     }
   }
-  
- useEffect(() => {
-    const halves = userInfo.tradeLink ? userInfo.tradeLink != '' ? userInfo.tradeLink.split('?')[1].split('&') : '' : ''
-    setTradelink(`${halves[0]} ${halves[1]}`)
-  }, [userInfo.tradeLink])
-  
+
+  useEffect(() => {
+    if (userInfo.tradeLink && userInfo.tradeLink.includes('?')) {
+      const parts = userInfo.tradeLink.split('?')[1];
+      if (parts && parts.includes('&')) {
+        const halves = parts.split('&');
+        setTradelink(`${halves[0]} ${halves[1]}`);
+      }
+    } else {
+      setTradelink('Sem trade links registrados');
+    }
+  }, [userInfo.tradeLink]);
+
   return (
     <div className="config">
       <div className="statusWrapper">
@@ -234,7 +241,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
                   <input type={passwordVisible ? 'text' : "password"} name="oldPassword" id="1" value={userData.oldPassword} onChange={(e => handleChange(e))} />
                   <button onClick={() => toggleStatePassword('password')}>
                     {passwordVisible ?
-                    <Image width={50} src={EyeSlashed} alt="Hide password"/> : <Image width={50} src={Eye} alt="Show password"/>}
+                      <Image width={50} src={EyeSlashed} alt="Hide password" /> : <Image width={50} src={Eye} alt="Show password" />}
                   </button>
                 </div>
               </label>
@@ -244,7 +251,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
                   <input type={confirmPasswordVisible ? 'text' : "password"} name="newPassword" id="" value={userData.newPassword} onChange={(e => handleChange(e))} />
                   <button onClick={() => toggleStatePassword('confirmPassword')}>
                     {confirmPasswordVisible ?
-                    <Image width={50} src={EyeSlashed} alt="Hide password"/> : <Image width={50} src={Eye} alt="Show password"/>}
+                      <Image width={50} src={EyeSlashed} alt="Hide password" /> : <Image width={50} src={Eye} alt="Show password" />}
                   </button>
                 </div>
               </label>
