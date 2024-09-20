@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "prebuild": "rm - dist",
+    "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.build.json && mkdir -p dist/uploads",
     "start": "node -r tsconfig-paths/register dist/server.js",
     "migration:run": "prisma migrate deploy",
