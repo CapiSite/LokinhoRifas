@@ -5,11 +5,10 @@ import { RegisterRaffleProps} from 'utils/interfaces';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-
-
 const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard }) => {
   const [raffleName, setRaffleName] = useState('');
   const [numberOfTickets, setNumberOfTickets] = useState(1);
+  const [raffleType, setRaffleType] = useState('paid'); 
 
   const calculateTotalPrice = () => {
     return skinsCard?.reduce((total, skin) => total + skin.value, 0).toFixed(2).replace('.', ',');
@@ -23,7 +22,8 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
       const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/raffle`, {
         name: raffleName,
         users_quantity: numberOfTickets,
-        skins: skinsCard.map(skin => ({ id: skin.id }))
+        skins: skinsCard.map(skin => ({ id: skin.id })),
+        type: raffleType // Adiciona o tipo de rifa no envio
       }, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -53,6 +53,13 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
           <div className={style.DivInputRegisterRifa}>
             <label>Quantidade de Numeros:</label>
             <input type='number' value={numberOfTickets} onChange={(e) => setNumberOfTickets(parseInt(e.target.value))} required />
+          </div>
+          <div className={style.DivInputRegisterRifa}>
+            <label>Rifa Free:</label>
+            <select value={raffleType} onChange={(e) => setRaffleType(e.target.value)}  className={style.SelectRaffleType} required>
+            <option value="paid">Não</option>
+            <option value="free">Sim</option>
+            </select>
           </div>
         </div>
       </div>

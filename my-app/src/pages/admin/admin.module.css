@@ -431,6 +431,31 @@ Cadastro de Rifas                                                               
   box-shadow: 0 0 15px #e21a1a;
 }
 
+.SelectRaffleType {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #000;
+  font-weight: 600;
+  transition: border-color 0.3s ease;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.SelectRaffleType:focus {
+  outline: none;
+  border-color: #050505; 
+  background-color: #fff;
+}
+
+.SelectRaffleType option {
+  color: #333;
+}
+
 /* 
 ####################################################################################################
 Card das Skins do cadastro                                                                                            #
