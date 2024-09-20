@@ -59,8 +59,8 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
             <div className={style.DivInputRegisterRifa}>
               <label>Rifa Free:</label>
               <select
-                value={raffleType ? 'true' : 'false'} // Converte o booleano para string
-                onChange={(e) => setRaffleType(e.target.value === 'true')} // Converte a string de volta para booleano
+                value={raffleType ? 'true' : 'false'} 
+                onChange={(e) => setRaffleType(e.target.value === 'true')} 
                 className={style.SelectRaffleType}
                 required
               >

@@ -150,7 +150,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
     }
   }
   
-  useEffect(() => {
+ useEffect(() => {
     const halves = userInfo.tradeLink ? userInfo.tradeLink != '' ? userInfo.tradeLink.split('?')[1].split('&') : '' : ''
     setTradelink(`${halves[0]} ${halves[1]}`)
   }, [userInfo.tradeLink])
