@@ -151,9 +151,17 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
   }
   
   useEffect(() => {
-    const halves = userInfo.tradeLink ? userInfo.tradeLink != '' ? userInfo.tradeLink.split('?')[1].split('&') : '' : ''
-    setTradelink(`${halves[0]} ${halves[1]}`)
-  }, [userInfo.tradeLink])
+    if (userInfo.tradeLink && userInfo.tradeLink.includes('?')) {
+      const parts = userInfo.tradeLink.split('?')[1];
+      if (parts && parts.includes('&')) {
+        const halves = parts.split('&');
+        setTradelink(`${halves[0]} ${halves[1]}`);
+      }
+    } else {
+      setTradelink('Sem trade links registrados');
+    }
+  }, [userInfo.tradeLink]);
+  
 
   return (
     <div className="config">
