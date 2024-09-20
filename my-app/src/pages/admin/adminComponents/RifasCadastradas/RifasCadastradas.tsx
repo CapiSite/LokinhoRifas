@@ -6,7 +6,7 @@ import CardRifas from "./CardRifas";
 export default function RifasCadastradas() {
     const [rifascadastradas, setRifasCadastradas] = useState([]);
     const [loading, setLoading] = useState(true); // Para indicar o status de carregamento
-    const [error, setError] = useState(null); 
+    const [error, setError] = useState(null); // Para capturar erros
     const [pageRaffle, setPageRaffle] = useState(1);
 
     useEffect(() => {
