@@ -7,6 +7,7 @@ import { Raffle } from '@prisma/client';
 interface CreateRaffleParams {
   name: string;
   users_quantity: number;
+  free:boolean;
   skins: { id: number }[];
   userId: number; // Adicionado userId
 }
@@ -31,6 +32,7 @@ export async function createRaffle(params: CreateRaffleParams): Promise<Raffle> 
   return raffleRepository.createRaffle({
     name: params.name,
     users_quantity: params.users_quantity,
+    free: params.free,
     value: raffleValue,
     raffleSkins: repeatedSkins, // Use a lista de skins repetidas
   });

@@ -18,7 +18,8 @@ export interface UpdateSkinParams {
 export type RaffleParams = {
     name: string;
     users_quantity: number;  // Pegando diretamente o campo do modelo Raffle
-    skins: number[];         // Array de IDs de skins
+    skins: number[];
+    free?:boolean;         // Array de IDs de skins
 }
 
 // types/raffleTypes.ts

@@ -16,6 +16,7 @@ export const raffleSchema = Joi.object<RaffleParams>({
         'number.min': 'A quantidade de números deve ser maior que zero',
         'any.required': 'A quantidade de números é obrigatória'
     }),
+    free:Joi.boolean().required(),
     skins: Joi.array().items(
         Joi.object({
             id: Joi.number().integer().required().messages({

@@ -4,12 +4,12 @@ import raffleService from '../services/raffle-service';
 import { AuthenticatedRequest } from '../middlewares'; // Importando AuthenticatedRequest
 
 export const createRaffle = async (req: AuthenticatedRequest, res: Response) => {
-  const { name, users_quantity, skins } = req.body;
+  const { name, users_quantity, free ,skins } = req.body;
   const userId = req.userId; // Obtendo o userId do usuário autenticado
 
   try {
     console.log(req.body);
-    const raffle = await raffleService.createRaffle({ name, users_quantity, skins, userId });
+    const raffle = await raffleService.createRaffle({ name, users_quantity, free,skins, userId });
 
     res.status(httpStatus.CREATED).json(raffle);
   } catch (error) {

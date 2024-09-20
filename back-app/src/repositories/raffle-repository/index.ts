@@ -5,6 +5,7 @@ interface CreateRaffleData {
   name: string;
   users_quantity: number;
   value: number;
+  free:boolean;
   raffleSkins: {
     skin_id: number;
     skinName: string;
@@ -20,6 +21,7 @@ const createRaffle = async (data: CreateRaffleData): Promise<Raffle> => {
       name: data.name,
       users_quantity: data.users_quantity,
       value: data.value,
+      free: data.free,
       raffleSkins: {
         create: data.raffleSkins, // Aqui estamos criando múltiplas instâncias da mesma skin
       },
