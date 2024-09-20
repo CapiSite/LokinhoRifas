@@ -12,8 +12,8 @@ const ServicesRafflesGroup = () => {
     <div className={style.CardGroup}>
       <div className={style.Card}>
 
-        <Image height={50} width={50} className={style.BackgroundRaffle} src={BGRifaPrata} alt="fundo da Rifa" />
-        <Image height={50} width={50} className={style.RaffleLogo} src={ImagemRifaPrata} alt="Logo na rifa de ouro" />
+        <Image height={475} width={400} className={style.BackgroundRaffle} src={BGRifaPrata} alt="fundo da Rifa" />
+        <Image height={250} width={350} className={style.RaffleLogo} src={ImagemRifaPrata} alt="Logo na rifa de ouro" />
 
         <div className={style.RaffleContent}>
           <h3>Grupo Silver</h3>
@@ -25,8 +25,8 @@ const ServicesRafflesGroup = () => {
 
       <div className={style.Card}>
 
-        <Image height={50} width={50} className={style.BackgroundRaffle} src={BGRifaOuro} alt="fundo da Rifa" />
-        <Image height={50} width={50} className={style.RaffleLogo} src={ImagemRifaOuro} alt="Logo na rifa de ouro" />
+        <Image height={475} width={400} className={style.BackgroundRaffle} src={BGRifaOuro} alt="fundo da Rifa" />
+        <Image height={250} width={350} className={style.RaffleLogo} src={ImagemRifaOuro} alt="Logo na rifa de ouro" />
 
         <div className={style.RaffleContent}>
           <h3>Grupo Gold</h3>

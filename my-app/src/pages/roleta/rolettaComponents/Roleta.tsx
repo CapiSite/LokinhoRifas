@@ -73,14 +73,14 @@ const Hero = () => {
       </div>
 
       <div className={style.background}>
-        <Image height={50} width={30} priority={false} src={HEROBACK} alt='Imagem de fundo'/>
+        <Image height={1004} width={2304} priority={false} src={HEROBACK} alt='Imagem de fundo'/>
       </div>
       <div className={style.glowGroup}>
         <div className={style.growGroupWrapper}>
           <div className={style?.["glow-0"]}></div>
         </div>
       </div>
-      <Image height={50} width={30} src={LINES} priority={false} alt='Imagem de fundo'/>
+      <Image height={1004} width={2304} src={LINES} priority={false} alt='Imagem de fundo'/>
     </section>
   );
 }

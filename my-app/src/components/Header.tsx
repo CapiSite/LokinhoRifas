@@ -12,7 +12,7 @@ import Budget from "./Budget";
 import { RouletteProvider } from "contexts/RouletteContext";
 import PaymentBrick from "./PaymentSteps";
 import Settings from "./Settings";
-import defaultProfilePicture from '../assets/defaultProfilePic2.svg'
+import defaultProfilePicture from '../assets/defaultProfilePic.svg'
 
 const Header = () => {
   const { sidebarView, toggleSidebar }: any = useSidebarState();

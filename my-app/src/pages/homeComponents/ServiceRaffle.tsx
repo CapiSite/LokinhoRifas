@@ -17,13 +17,13 @@ const ServiceRaffle = () => {
         <h2>Grupo de Rifas!</h2>
 
         <ServicesRaffleGroup />
-        
+        {/* 1024 × 1227 */}
       </div>
       <div id='Grupos' className={style.background}>
-        <Image height={50} width={50} className={cn(style?.['background-0'], style?.['desktop'])} src={BGRIFAS} alt="Fundo da seção de Rifas" />
-        <Image height={50} width={50} className={cn(style?.['background-0'], style?.['mobile'])} src={BGRIFASMOBILE} alt="Fundo da seção de Rifas" />
-        <Image height={50} width={50} className={cn(style?.['background-1'], style?.['desktop'])} src={BGFiller} alt="Fundo da seção de Rifas" />
-        <Image height={50} width={50} className={cn(style?.['background-2'], style?.['desktop'])} src={BGFiller} alt="Fundo da seção de Rifas" />
+        <Image height={750} width={2304} className={cn(style?.['background-0'], style?.['desktop'])} src={BGRIFAS} alt="Fundo da seção de Rifas" />
+        <Image height={1227} width={1024} className={cn(style?.['background-0'], style?.['mobile'])} src={BGRIFASMOBILE} alt="Fundo da seção de Rifas" />
+        <Image height={50} width={2304} className={cn(style?.['background-1'], style?.['desktop'])} src={BGFiller} alt="Fundo da seção de Rifas" />
+        <Image height={50} width={2304} className={cn(style?.['background-2'], style?.['desktop'])} src={BGFiller} alt="Fundo da seção de Rifas" />
         {/* <Image height={50} src={BackgroundImage} alt="Fundo da seção de Rifas" className={cn(style?.['background-3'], style?.['desktop'])} /> */}
         {/* Removido por causar atritos no fundo!  */}
       </div>

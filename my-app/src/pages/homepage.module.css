@@ -1111,7 +1111,9 @@
 /** MOBILE */
 @media only screen  and (max-width: 1200px) {
   .Hero {
-    height: 1000px;
+    height: 100%;
+
+    margin-bottom: 180px;
   }
 
   .Hero .col1 {
@@ -1176,7 +1178,7 @@
     min-width: 1920px;
 
     position: absolute;
-    right: -550px;
+    right: -750px;
 
     opacity: 1;
 
@@ -1279,12 +1281,14 @@
   }
 
   .ServicesDisplay .background-1 {
+    width: auto;
     height: 135%;
 
     left: -30%;
   }
 
   .ServicesDisplay .background-0 {
+    width: auto;
     height: 165%;
 
     translate: 60px;
@@ -1607,9 +1611,9 @@
 
   .History .background-0 {
     top: 20px;
-    width: 200%;
+    width: 400%;
 
-    translate: -5% -30px;
+    translate: -15% -30px;
   }
 }
 /** MOBILE */

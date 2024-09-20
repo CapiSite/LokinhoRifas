@@ -3,6 +3,7 @@ import defaultGunPic from '../images/Roleta/Prizes/DefaultGunPic.png'
 import shine from '../images/Roleta/WinnerPopup/shine.png'
 import { ChangeEvent, useEffect, useState } from "react";
 import { raffleItem } from "utils/interfaces";
+import MaskedInput from "react-text-mask";
 
 const RaffleCartItem = ({props}: {props: { 
   item: raffleItem,
@@ -54,7 +55,14 @@ const RaffleCartItem = ({props}: {props: {
         <div className="raffleQuantity">
           <label>
             <p>Qtd:</p> 
-            <input min={1} onChange={e => handleInputChange(e)} type="number" name="quantidade"  value={defaultValue} required/>
+            <MaskedInput
+                  mask={[/[0-9]/]}
+                  type="number"
+                  required
+                  onChange={(e => handleInputChange(e))}
+                  value={defaultValue}
+                  name="quantidade"
+                />
           </label>
 
           <h3>x R$ {newValue}</h3>

@@ -84,7 +84,7 @@ const Sidebar = () => {
           className="LogoBox"
           onClick={() => router.push("/")}
         >
-            <Image width={50} className="Logo" src={logo} alt="Logo de Lokinho Rifas" />
+            <Image width={685} className="Logo" src={logo} alt="Logo de Lokinho Rifas" />
         </div>
         <ul className="MainNavigation">
           <li onClick={() => handleRedirectBtn("/#Home")}>Home</li>

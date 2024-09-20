@@ -33,8 +33,8 @@ const LatestWinners = () => {
             <Podium props={{openTab, setOpenTab}}/>
             <WinnersRank />
             <div className={style.background}>
-              <Image height={50} width={50} priority={false} src={PRIZESBACKGROUND} alt="Fundo de tela"/>
-              <Image height={50} width={50} priority={false} src={NewBackground} alt="Fundo de tela"/>
+              <Image height={50} width={2304} priority={false} src={PRIZESBACKGROUND} alt="Fundo de tela"/>
+              <Image height={50} width={2304} priority={false} src={NewBackground} alt="Fundo de tela"/>
             </div>
             <div className={style.glowGroup}>
               <div className={style?.["glow-1"]}></div>

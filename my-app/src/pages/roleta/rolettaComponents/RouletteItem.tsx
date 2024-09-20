@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import { CardItemType } from "utils/interfaces";
 import cn from "classnames";
 
-import defaultPicture from "../../../assets/defaultProfilePic2.svg";
+import defaultPicture from "../../../assets/defaultProfilePic.svg";
 import { useState } from "react";
 
 const RouletteItem = ({ props }: { props: CardItemType }) => {

@@ -27,7 +27,7 @@ const RaffleCard = ({moreDetails, props}: { moreDetails: {setDetailsVisible: Dis
         error.preventDefault()
         setImgSrc(defaultGunPic)
         }}/> 
-      <Image width={50} className='shine' src={shine} alt='Skin principal'/>
+      <Image width={50} className='shine' src={shine} alt='brilho'/>
 
       {raffle.isSelected && <div className="selectCheck">
         <Image width={50} src={checkMark} alt='check'/>

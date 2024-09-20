@@ -39,7 +39,7 @@ const Hero = ({ props }: { props: { isVisible: boolean, setIsVisible: React.Disp
         <Faixas />
       </div>
       <div className={style.background}>
-        <Image width={50} className={style?.['background-0']} src={Background} alt="Plano de fundo" />
+        <Image width={2304} className={style?.['background-0']} src={Background} alt="Plano de fundo" />
       </div>
       <div className={style.GlowGroup}>
         <div className={style?.['glow-0']}>

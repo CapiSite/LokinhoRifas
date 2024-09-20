@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Retrato from '../../images/Homepage/History/THIAGO\ 1.png'
 import style from '../homepage.module.css'
+// 927 × 835
 
 const History = () => {
   return (
     <section id='SobreNos' className={style.History}>
         <div className={style.HistoryWrapper}>
           <div className={style.col1}>
-            <Image width={50} className={style?.['background-0']} src={Retrato} alt="Imagem do Thiago" />
+            <Image width={927} className={style?.['background-0']} src={Retrato} alt="Imagem do Thiago" />
           </div>
           <div className={style.col2}>
             <h2>Quem é Thiago Cordeiro?</h2>
