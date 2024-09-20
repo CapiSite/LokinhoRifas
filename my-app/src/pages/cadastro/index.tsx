@@ -509,7 +509,7 @@ const SignUp = () => {
         <div className={style.background}>
           <div className={style?.["background-0Wrapper"]}>
             <Image
-              priority={true}
+              priority={false}
               width={2304}
               className={style?.["background-0"]}
               src={SingUpBG}
@@ -517,7 +517,8 @@ const SignUp = () => {
             />
           </div>
           <Image
-            width={50}
+            width={2304}
+            priority={false}
             className={style?.["background-1"]}
             src={Lines}
             alt="Linhas de fundo"

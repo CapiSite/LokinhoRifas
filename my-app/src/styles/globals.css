@@ -279,7 +279,7 @@ header {
 }
 
 .Profile .ProfilePicture {
-  width: 40px;
+  min-width: 40px;
   height: 40px;
 
   overflow: hidden;
@@ -292,6 +292,8 @@ header {
 .Profile .ProfilePicture img {
   width: 100%;
   height: 100%;
+
+  background-size: cover;
 }
 
 .Profile .Dropdown {
@@ -405,7 +407,7 @@ header {
   position: relative;
 }
 
-.Profile .statusWrapper {
+.config .statusWrapper {
   display: flex;
 
   justify-content: center;
@@ -418,8 +420,8 @@ header {
   overflow: hidden;
 }
 
-.Profile .statusWrapper .error,
-.Profile .statusWrapper .success {
+.config .statusWrapper .error,
+.config .statusWrapper .success {
   display: flex;
 
   justify-content: center;
@@ -428,8 +430,10 @@ header {
   position: absolute;
   top: 10px;
 
-  width: fit-content;
+  width: 90%;
   height: 70px;
+
+  text-align: center;
 
   font-size: 32px;
 
@@ -453,12 +457,12 @@ header {
 
 }
 
-.Profile .statusWrapper .error {
+.config .statusWrapper .error {
   background-color: rgba(255, 0, 0, 0.6);
   border: 2px solid red;
 }
 
-.Profile .statusWrapper .success {
+.config .statusWrapper .success {
   background-color: rgba(172, 255, 47, 0.6);
   border: 2px solid greenyellow;
 }
@@ -885,7 +889,7 @@ header {
   background-color: #eee;
   
   height: 100%;
-  width: 40px;
+  max-width: 40px;
 
   padding: 3px;
 
@@ -1101,6 +1105,11 @@ header {
 }
 
 .config .inputWrapper button {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
   border: none;
 
   cursor: pointer;
@@ -1112,12 +1121,19 @@ header {
   translate: 0 -50%;
 
   width: fit-content;
-  height: fit-content;
+  height: 100%;
 
   background: none;
   outline: none;
 
-  padding: 5px 5px 0 0;
+  padding: 0;
+}
+
+.config .inputWrapper button img {
+  width: 30px;
+  height: auto;
+  
+  margin-right: 10px;
 }
 
 .config .box .important {
@@ -1676,8 +1692,8 @@ footer nav div {
   top: 10px;
   right: 10px;
 
-  width: 50px;
-  height: 50px;
+  max-width: 50px;
+  max-height: 50px;
 
   z-index: 10;
 }
@@ -2544,6 +2560,11 @@ footer nav div {
     font-size: 30px;
   }
 
+  header button.mobile img {
+    width: 30px;
+    height: auto;
+  }
+
   .Profile .budget .background {
     top: -90px;
   }
@@ -2974,7 +2995,7 @@ footer nav div {
     width: 100%;
   }
 
-  .Profile .statusWrapper {
+  .config .statusWrapper {
     height: 400px;
   }
 

@@ -228,7 +228,7 @@ const Login = () => {
         <div className={style.background}>
           <div className={style?.["background-0Wrapper"]}>
             <Image
-              width={30}
+              width={2304}
               height={50}
               className={style?.["background-0"]}
               priority={true}
@@ -237,7 +237,7 @@ const Login = () => {
             />
           </div>
           <Image
-            width={30}
+            width={2304}
             height={50}
             className={style?.["background-1"]}
             src={Lines}

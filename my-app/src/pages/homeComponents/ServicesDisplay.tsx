@@ -19,8 +19,8 @@ const ServicesDisplay = () => {
     <section className={style.ServicesDisplay}>
     <div className={style.ServicesDisplayWrapper}>
       <div className={style.col1}>
-        <Image height={50} width={50} className={style?.['background-1']} src={NewBackground} alt="Plano de fundo" />
-        <Image height={50} width={50} className={style?.['background-0']} src={NewBackground2} alt="Mockup de celular" />
+        <Image height={540} width={920} className={style?.['background-1']} src={NewBackground} alt="Plano de fundo" />
+        <Image height={680} width={725} className={style?.['background-0']} src={NewBackground2} alt="Mockup de celular" />
       </div>
       <div className={style.col2}>
         <ul>
@@ -55,7 +55,7 @@ const ServicesDisplay = () => {
         </ul>
       </div>
     </div>
-    <Image height={50} width={50} className={style?.['background-2']} src={BackgroundLines} alt="Linhas de fundo" />
+    <Image height={50} width={2304} className={style?.['background-2']} src={BackgroundLines} alt="Linhas de fundo" />
 
     <div className={style.GlowGroup}>
       <div className={style?.['glow-0']}>

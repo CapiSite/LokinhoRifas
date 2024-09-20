@@ -23,7 +23,7 @@ const LastEarnedPrizeGrid = () => {
         </div>
       </div>
       <div className={style.background}>
-        <Image height={50} width={30} priority={false} src={PRIZESBACKGROUND} alt="Fundo de tela"/>
+        <Image height={50} width={2304} priority={false} src={PRIZESBACKGROUND} alt="Fundo de tela"/>
       </div>
       <div className={style.glowGroup}>
         <div className={style.growGroupWrapper}>
