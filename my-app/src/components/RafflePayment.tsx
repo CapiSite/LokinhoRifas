@@ -42,16 +42,6 @@ const RafflePayment = ({props}: {props: {
       </div>
 
       <div className="rafflePaymentWrapper">
-        <div className="userPaymentData">
-          <div className="value">
-            <h3><Image width={50} height={24} src={Currency} alt="Imagem de uma moeda"/> <span>BRL</span></h3>
-            <h2>R$ {value.toFixed(2).toString().replace('.', ',')}</h2>
-          </div>
-          <div className="userBudget">
-            <h3>Saldo Atual: R$ {userInfo.saldo.toFixed(2).toString().replace('.', ',')} BRL</h3>
-            <h3>Saldo Restante: R$ {(userInfo.saldo - value).toFixed(2).toString().replace('.', ',')} BRL</h3>
-          </div>
-        </div>
         <div className="itemTable">
           <div className="header">
             <h3>Produto x Quantidade</h3>
@@ -62,6 +52,16 @@ const RafflePayment = ({props}: {props: {
             <h3><span className="name">{item.name}</span> <div className="quantity">x {item.quantity}</div></h3>
             <h3>R$ {item.value.toString().includes('.') ? `${item.value.toString().split('.')[0]},${item.value.toString().split('.')[1][0]}${item.value.toString().split('.')[1][1] ? item.value.toString().split('.')[1][1] : '0'}` : `${item.value.toString()},00`}</h3>
           </div>)}
+        </div>
+        <div className="userPaymentData">
+          <div className="value">
+            <h3><Image width={50} height={24} src={Currency} alt="Imagem de uma moeda"/> <span>BRL</span></h3>
+            <h2>R$ {value.toFixed(2).toString().replace('.', ',')}</h2>
+          </div>
+          <div className="userBudget">
+            <h3>Saldo Atual: R$ {userInfo.saldo.toFixed(2).toString().replace('.', ',')} BRL</h3>
+            <h3>Saldo Restante: R$ {(userInfo.saldo - value).toFixed(2).toString().replace('.', ',')} BRL</h3>
+          </div>
         </div>
         <div className="purchaseDetails">
           <div className="account">

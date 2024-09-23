@@ -2122,13 +2122,17 @@ footer nav div {
 
   width: 710px;
 
-  gap: 41px;
+  gap: 31px;
 }
 
 .PopupBuy .rafflePayment .userPaymentData,
 .PopupBuy .rafflePayment .itemTable,
 .PopupBuy .rafflePayment .purchaseDetails {
   padding-inline: 60px;
+}
+
+.PopupBuy .userPaymentData {
+  padding-block: 20px;
 }
 
 .PopupBuy .userPaymentData .value {
