@@ -1281,8 +1281,6 @@ footer nav div {
   justify-content: center;
   align-items: center;
 
-  text-align: center;
-
   width: 100%;
   height: 40px;
 
@@ -2840,8 +2838,6 @@ footer nav div {
   }
 
   .Credits p {
-    white-space: nowrap;
-
     font-size: min(4vmin, 16px);
   }
 
