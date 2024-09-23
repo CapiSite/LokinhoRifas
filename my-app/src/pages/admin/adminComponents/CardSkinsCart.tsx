@@ -1,4 +1,5 @@
 import style from '../admin.module.css';
+import Image from "next/image";
 
 interface CardSkinsCartProps {
   id: number;
@@ -11,7 +12,7 @@ interface CardSkinsCartProps {
 const CardSkinsCart: React.FC<CardSkinsCartProps> = ({ id, name, value, picture, onRemove }) => {
   return (
     <div className={style.ContentCard}>
-      <img src={picture} alt={name} className={style.ImageCard} />
+      <Image width={40} height={40} src={picture} alt={name} className={style.ImageCard} />
       <div className={style.DivDataCard}>
         <p>{name}</p>
         <p>R$: {value?.toFixed(2).replace('.', ',')}</p>
