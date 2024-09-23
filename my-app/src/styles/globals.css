@@ -280,6 +280,7 @@ header {
 
 .Profile .ProfilePicture {
   min-width: 40px;
+  max-width: 40px;
   height: 40px;
 
   overflow: hidden;
@@ -512,15 +513,16 @@ header {
 
 }
 
-.config .imageBox img {
+.config .imageBox > img {
   background-color: white;
 
   border-radius: 50%;
 
   outline: 2px solid black;
 
-  width: 200px;
-  height: auto;
+  max-width: 200px;
+  min-width: 200px;
+  min-height: 100%;
 }
 
 .config .imageBox input,
@@ -555,7 +557,11 @@ header {
   border-radius: 50%;
   opacity: 0;
 
+  overflow: hidden;
+
   transition: opacity 0ms ease-out;
+
+  cursor: pointer;
 }
 
 .config .imageBox button:hover {
@@ -1275,10 +1281,12 @@ footer nav div {
   justify-content: center;
   align-items: center;
 
+  text-align: center;
+
   width: 100%;
   height: 40px;
 
-  background: linear-gradient(90deg, #A30006, #E21A1A);
+  background: linear-gradient(90deg, #A3000650, #E21A1A50);
 
   color: white;
 }
@@ -2638,6 +2646,7 @@ footer nav div {
     gap: 30px;
 
     font-size: 30px;
+    font-size: min(30px, 8vmin);
 
     width: 100%;
 

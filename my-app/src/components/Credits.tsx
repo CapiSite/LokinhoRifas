@@ -4,7 +4,7 @@ const Credits = () => {
   return (
     <section className="Credits">
       <div className="CreditsWrapper">
-        <p>Site feito por <Link target="_blank" href="https://github.com/NotJotunnn/creditos/blob/main/lokinhoRifas/creditos.md">Desenvolvedores talentosos</Link></p>
+        <p>Site feito por <Link target="_blank" href="https://github.com/NotJotunnn/creditos/blob/main/lokinhoRifas/creditos.md">Desenvolvedores talentosos na CapiSite</Link></p>
       </div>
     </section>
   );

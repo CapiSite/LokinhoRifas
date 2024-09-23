@@ -5,7 +5,7 @@
   align-items: center;
 
   width: 100%;
-  max-height: 1331px;
+  min-height: 1331px;
 
   color: white;
 
@@ -258,6 +258,7 @@
   left: -50vw;
 
   width: 300vw;
+  height: 536px;
 
   z-index: 1;
 }

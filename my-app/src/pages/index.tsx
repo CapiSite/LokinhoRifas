@@ -8,11 +8,10 @@ import { useEffect, useState } from "react";
 import { useUserStateContext } from "../contexts/UserContext";
 import axios from "axios";
 import { RouletteProvider } from "contexts/RouletteContext";
-import PaymentBrick from "components/PaymentSteps";
 import { UserContextType } from "utils/interfaces";
 
 const Homepage = () => {
-  const { userInfo, setUserInfo, showPayment, setShowPayment } = useUserStateContext() as UserContextType;
+  const { userInfo, setUserInfo, setShowPayment } = useUserStateContext() as UserContextType;
 
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -25,6 +24,7 @@ const Homepage = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("token");
+
       if (storedToken) {
         axios
           .post(
@@ -65,12 +65,14 @@ const Homepage = () => {
           });
       }
     }
-  }, [setUserInfo, userInfo.picture]);
+  }, [userInfo.picture]);
 
   useEffect(() => {
     (async () => {
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get("code");
+
+      console.log(code)
       if (code) {
         try {
           const res = await axios.post(
@@ -96,14 +98,14 @@ const Homepage = () => {
 
   return (
     <>
-      {isVisible && <RouletteProvider>
-        <PopupBuy props={{ isVisible, setIsVisible, setShowPayment }} />
-      </RouletteProvider>}
-      <Hero props={{ isVisible, setIsVisible }} />
-      <Services />
-      <ServicesDisplay />
-      <ServiceRaffle />
-      <History />
+      <RouletteProvider>
+        {isVisible && <PopupBuy props={{ isVisible, setIsVisible, setShowPayment }} />}
+        <Hero props={{ isVisible, setIsVisible }} />
+        <Services />
+        <ServicesDisplay />
+        <ServiceRaffle />
+        <History />
+      </RouletteProvider>
     </>
   );
 };

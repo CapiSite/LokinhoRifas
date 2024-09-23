@@ -238,7 +238,6 @@ const Login = () => {
           </div>
           <Image
             width={2304}
-            height={50}
             className={style?.["background-1"]}
             src={Lines}
             alt="Linhas de fundo"

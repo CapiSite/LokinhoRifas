@@ -23,7 +23,7 @@ const RaffleDetails = ({moreDetails}: { moreDetails: {
         <div className="contentGroup">
           <h2>{rafflesData.name}</h2>
             <p>Valor unitário da rifa: R$ {newValue}!</p>
-            <p>Valor total da rifa: R$ {rafflesData.bundleValue},00!</p>
+            <p>Valor total da rifa: R$ {rafflesData.bundleValue.toFixed(2)}!</p>
           <div className="included">
             <h3>Nesta rifa são incluídos:</h3>
 

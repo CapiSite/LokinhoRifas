@@ -73,13 +73,14 @@ const PopupBuy = ({
 
   const handleStepValidation = () => {
     if (!userInfo.email) return router.reload();
+
     if (step < 3) addStep();
+
     else if (step == 4) {
       setIsVisible(false);
     } else {
       if (userInfo.saldo < total) {
         setShowPrompt(true);
-        // * Lançar um popup na interface para pedir pro usuário comprar mais créditos ou cancelar a compra
       } else {
         const tempArray2 = purchasableRaffles.filter(
           (raffle) => raffle.isSelected
@@ -104,7 +105,6 @@ const PopupBuy = ({
           )
           .then((res) => {
             if(res.data.remainingBalance) setUserInfo(oldValue => ({...oldValue, saldo: res.data.remainingBalance}))
-            // * Verificar se ao retorno a resposta está vindo correta, e atualizar o saldo local de forma correta
             addStep();
           })
           .catch((err) => console.log(err));

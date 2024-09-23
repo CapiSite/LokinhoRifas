@@ -78,7 +78,7 @@ const RewardItem = ({
           </div>
         </div>
         <div className={style.RewardValue}>
-          <h3>R$ {itemValue}.00</h3>
+          <h3>R$ {Number(itemValue).toFixed(2)}</h3>
         </div>
       </div>
     </div>

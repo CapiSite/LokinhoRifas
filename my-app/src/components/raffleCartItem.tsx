@@ -3,7 +3,6 @@ import defaultGunPic from '../images/Roleta/Prizes/DefaultGunPic.png'
 import shine from '../images/Roleta/WinnerPopup/shine.png'
 import { ChangeEvent, useEffect, useState } from "react";
 import { raffleItem } from "utils/interfaces";
-import MaskedInput from "react-text-mask";
 
 const RaffleCartItem = ({props}: {props: { 
   item: raffleItem,
@@ -14,7 +13,7 @@ const RaffleCartItem = ({props}: {props: {
   const { id, quantity, value, name, maxQuantity, skins, bannerSkin, bundleValue } = props.item
   const { handleChangeQuantity, setUpdateQuantity } = props
 
-  const [ defaultValue, setDefaultValue ] = useState(quantity)
+  const [ defaultValue, setDefaultValue ] = useState<string>(quantity.toString())
 
   const [ imgSrc, setImgSrc ] = useState<string | StaticImageData>(defaultGunPic)
 
@@ -24,13 +23,14 @@ const RaffleCartItem = ({props}: {props: {
   }, [bannerSkin])
 
   useEffect(() => {
-    handleChangeQuantity(id, defaultValue)
+    handleChangeQuantity(id, Number(defaultValue) == 0 ? 1 : Math.ceil(Number(defaultValue)))
     setUpdateQuantity(prev => !prev)
   }, [defaultValue])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if(maxQuantity < Number(e.target.value)) return
-    setDefaultValue(Number(e.target.value) == 0 ? 1 : Number(e.target.value))
+    if(maxQuantity < Number(e.target.value)) return setDefaultValue(maxQuantity.toString())
+    if(Number(e.target.value) < 0) return setDefaultValue('0')
+    setDefaultValue(e.target.value)
   }
 
   const newValue = value.toString().includes('.') ? `${value.toString().split('.')[0]},${value.toString().split('.')[1][0]}${value.toString().split('.')[1][1] ? value.toString().split('.')[1][1] : '0'}` : `${value.toString()},00`
@@ -55,14 +55,7 @@ const RaffleCartItem = ({props}: {props: {
         <div className="raffleQuantity">
           <label>
             <p>Qtd:</p> 
-            <MaskedInput
-                  mask={[/[0-9]/]}
-                  type="number"
-                  required
-                  onChange={(e => handleInputChange(e))}
-                  value={defaultValue}
-                  name="quantidade"
-                />
+            <input type="number" onChange={e => handleInputChange(e)} value={defaultValue} name="quantidade"/>
           </label>
 
           <h3>x R$ {newValue}</h3>
