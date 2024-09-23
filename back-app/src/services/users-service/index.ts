@@ -48,8 +48,33 @@ async function getWinners(page: number, itemsPerPage: number) {
 }
 
 async function deleteUser(id: number) {
-  const user = await userRepository.deleteUser(id);
-  return user;
+  // Primeiro, encontre o usuário pelo ID para obter seus dados
+  const user = await userRepository.findById(id);
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  // Se o usuário tiver uma foto e ela não for a imagem padrão, exclua a foto
+  if (user.picture && user.picture !== 'default') {
+    const picturePath = path.join(__dirname, '../../uploads', user.picture);
+    
+    // Verifica se a foto existe e tenta excluí-la
+    fs.access(picturePath, fs.constants.F_OK, (err) => {
+      if (!err) {
+        fs.unlink(picturePath, (unlinkErr) => {
+          if (unlinkErr) {
+            console.error(`Erro ao deletar a foto do usuário: ${unlinkErr}`);
+          } else {
+            console.log(`Foto do usuário deletada: ${picturePath}`);
+          }
+        });
+      }
+    });
+  }
+
+  // Agora que a foto foi removida (se aplicável), deletar o usuário do banco de dados
+  const deletedUser = await userRepository.deleteUser(id);
+  return deletedUser;
 }
 
 async function postWinners(id: number, number: number, raffle_id: number) {

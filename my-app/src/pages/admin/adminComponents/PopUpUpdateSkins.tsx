@@ -2,6 +2,7 @@ import { skinDataType } from "utils/interfaces";
 import style from "../admin.module.css";
 import { useState } from 'react';
 import axios from 'axios';
+import Image from "next/image";
 
 export default function PopUpUpdateSkins({ setPopUpSkins, name, type, picture, id, value, reloadSkins }: any) {
     const [image, setImage] = useState(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`);
@@ -169,7 +170,7 @@ export default function PopUpUpdateSkins({ setPopUpSkins, name, type, picture, i
 
                     <div className={style.DivPhoto}>
                         <input type="file" className={style.fileInput} name="picture" onChange={handleImageChange} />
-                        {image && <img className={style.imagePreview} src={image} alt="Image Preview" />}
+                        {image && <Image width={40} height={40} className={style.imagePreview} src={image} alt="Image Preview" />}
                     </div>
 
                     <div>

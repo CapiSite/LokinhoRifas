@@ -18,6 +18,12 @@ const getSkinByName = async (name: string): Promise<Skin | null> => {
     });
 };
 
+const getSkinById = async (id: number): Promise<Skin | null> => {
+    return await prisma.skin.findFirst({
+        where: { id }
+    });
+};
+
 const getSkinsByIds = async (skinIds: number[]): Promise<Skin[]> => {
     
     return await prisma.skin.findMany({
@@ -53,5 +59,6 @@ export default {
     getSkinsByIds,
     getSkinByName,
     updateSkin,
-    deleteSkin
+    deleteSkin,
+    getSkinById
 };

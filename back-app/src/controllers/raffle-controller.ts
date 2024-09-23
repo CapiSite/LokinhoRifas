@@ -8,12 +8,10 @@ export const createRaffle = async (req: AuthenticatedRequest, res: Response) => 
   const userId = req.userId; // Obtendo o userId do usuário autenticado
 
   try {
-    console.log(req.body);
     const raffle = await raffleService.createRaffle({ name, users_quantity, free,skins, userId });
 
     res.status(httpStatus.CREATED).json(raffle);
   } catch (error) {
-    console.log({ message: error.message, error });
     res.status(httpStatus.BAD_REQUEST).json({ message: error.message, error });
   }
 };
@@ -51,7 +49,6 @@ export async function getAllRaffles(req: Request, res: Response) {
 
 export const deleteRaffle = async (req: AuthenticatedRequest, res: Response) => {
   const { id } = req.params;
-  console.log("oi")
   try {
     const response = await raffleService.deleteRaffle(Number(id));
     res.status(httpStatus.NO_CONTENT).send(response); // Retorna 204 No Content ao deletar com sucesso
@@ -86,7 +83,6 @@ export async function addParticipantToRaffle(req: Request, res: Response) {
 
 export async function removeParticipantFromRaffle(req: Request, res: Response) {
   const { raffleId, number } = req.body;
-  console.log(number)
   try {
     await raffleService.removeParticipantFromRaffle(raffleId, number);
     return res.sendStatus(httpStatus.NO_CONTENT);

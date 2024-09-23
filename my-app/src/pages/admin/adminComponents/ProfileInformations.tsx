@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import style from '../admin.module.css';
 import { useState } from 'react';
 import axios from 'axios';
+import Image from "next/image";
 import { skinDataType, ProfileInformationsProps } from 'utils/interfaces';
 
 
@@ -187,7 +188,7 @@ export default function ProfileInformations({ reloadSkins }: ProfileInformations
                     <div className={style.Data}>
                         <div className={style.ContentPhoto}>
                             <input type="file" className={style.fileInput} name="picture" onChange={handleImageChange} />
-                            {image && <img className={style.imagePreview} src={image} alt="Image Preview" />}
+                            {image && <Image width={40} height={40} className={style.imagePreview} src={image} alt="Image Preview" />}
                         </div>
 
                         <div className={style.ContentInputs}>
