@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:5001/:path*', // Redireciona as rotas /api para o back-end Node.js
+        destination: 'http://localhost:5000/:path*', // Redireciona as rotas /api para o back-end Node.js
       },
     ];
   },
