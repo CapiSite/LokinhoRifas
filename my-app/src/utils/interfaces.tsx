@@ -40,6 +40,7 @@ export type UserInfoType = {
   phoneNumber: string;
   tradeLink: string;
   saldo: number;
+  created: string;
 };
 
 export type InfoTable = {

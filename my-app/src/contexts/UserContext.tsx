@@ -27,6 +27,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     phoneNumber: "",
     tradeLink: "",
     saldo: 0,
+    created: ''
   })
 
   const [ image, setImage ] = useState<File | null>(null)
@@ -88,6 +89,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       phoneNumber: "",
       tradeLink: "",
       saldo: 0,
+      created: ''
     })
 
     router.push("/login")

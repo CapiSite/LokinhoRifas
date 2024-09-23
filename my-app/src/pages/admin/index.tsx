@@ -24,7 +24,8 @@ export default function Admin() {
     isAdmin: false,
     phoneNumber: "",
     tradeLink: "",
-    saldo: 0
+    saldo: 0,
+    created: ''
   });
   const router = useRouter();
 
@@ -54,6 +55,7 @@ export default function Admin() {
             phoneNumber: res.data.user.phoneNumber,
             tradeLink: res.data.user.tradeLink,
             saldo: res.data.user.saldo,
+            created: res.data.user.createdAt
           });
 
           // Se não for admin, redireciona para outra rota
@@ -73,6 +75,7 @@ export default function Admin() {
             phoneNumber: "",
             tradeLink: "",
             saldo: 0,
+            created: ''
           });
           router.push('/login'); 
         });

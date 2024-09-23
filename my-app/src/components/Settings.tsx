@@ -15,7 +15,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { userInfo } = useUserStateContext() as UserContextType;
 
-  const [userData, setUserData] = useState<any>({
+  const [userData, setUserData] = useState({
     tradeLink: profile.tradeLink,
     newTradeLink: "",
     phoneNumber: profile.phoneNumber,
@@ -162,6 +162,17 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
     }
   }, [userInfo.tradeLink]);
 
+  function formatDate(date: string) {
+    const now = new Date(date);
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+    return `${day}/${month}/${year}, às ${hours}:${minutes}`;
+  }
+
   return (
     <div className="config">
       <div className="statusWrapper">
@@ -182,7 +193,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
             <div className="accountContent">
               <h2>{profile.name}</h2>
               <p>{profile.email}</p>
-              <p>Conta criada: 01/08/2024</p>
+              <p>Conta criada: {formatDate(userInfo.created)}</p>
             </div>
           </div>
           <div className="boxGroup">

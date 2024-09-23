@@ -47,6 +47,7 @@ const Homepage = () => {
               phoneNumber: res.data.user.phoneNumber,
               tradeLink: res.data.user.tradeLink,
               saldo: res.data.user.saldo,
+              created: res.data.user.createdAt
             });
           })
           .catch((err) => {
@@ -61,10 +62,12 @@ const Homepage = () => {
               phoneNumber: "",
               tradeLink: "",
               saldo: 0,
+              created: ''
             });
           });
       }
     }
+    // ! DEPENDECIES SUSPEITA
   }, [userInfo.picture]);
 
   useEffect(() => {
@@ -88,6 +91,7 @@ const Homepage = () => {
             picture: res.data.picture,
             token: res.data.sessionToken,
             saldo: res.data.saldo,
+            created: res.data.createdAt
           });
         } catch (error) {
           console.log("Error:", error);

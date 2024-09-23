@@ -47,6 +47,7 @@ const Sidebar = () => {
               phoneNumber: res.data.user.phoneNumber,
               tradeLink: res.data.user.tradeLink,
               saldo: res.data.user.saldo,
+              created: res.data.user.createdAt
             });
           })
           .catch((err) => {
@@ -61,11 +62,12 @@ const Sidebar = () => {
               phoneNumber: "",
               tradeLink: "",
               saldo: 0,
+              created: ''
             });
           });
       }
     }
-  }, [sidebarView, setUserInfo, userInfo.picture]);
+  }, [sidebarView]);
   // * O código acima adiciona e retira scroll da página quando a Sidebar está visível
 
   const handleRedirectBtn = (route: string) => {
