@@ -45,7 +45,7 @@ export default function CardSkins({
     return (
         <>
             <div className={style.ContentCard} >
-                <Image src={`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`} alt="Imagem do card" width={155} height={80} className={style.ImageCard} />
+              <img src={`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`} alt="Imagem do card" className={style.ImageCard} />
                 <div className={style.DivDataCard}>
                     <p>{type} | {name}</p>
                     <p>R$: {value?.toFixed(2).replace('.', ',')}</p>
