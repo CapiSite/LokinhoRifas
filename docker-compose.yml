@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres
+    image: postgres:14
     container_name: postgres
     restart: always
     ports:
@@ -11,8 +11,9 @@ services:
       POSTGRES_DB: lokinho         # Banco de dados a ser criado
       POSTGRES_USER: postgres      # Usuário do Postgres
       POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/
     volumes:
-      - postgres-deploy-volume:/var/lib/postgresql/data
+      - postgres-deploy-volume:/var/lib/postgresql/data/:rw
 
   node:
     container_name: back-app

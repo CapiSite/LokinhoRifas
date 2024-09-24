@@ -164,9 +164,9 @@ const RecoverPassword = () => {
                   <label>
                     Codigo de verificação:
                     <input
-                      type="password"
-                      name="password"
-                      id="Codigo"
+                      type="token"
+                      name="token"
+                      id="token"
                       placeholder="Digite o codigo de verificação"
                       value={formDataValue.token}
                       
