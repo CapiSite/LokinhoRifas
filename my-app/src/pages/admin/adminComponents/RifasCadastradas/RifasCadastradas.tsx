@@ -8,6 +8,7 @@ export default function RifasCadastradas() {
     const [loading, setLoading] = useState(true); // Para indicar o status de carregamento
     const [error, setError] = useState(null); // Para capturar erros
     const [pageRaffle, setPageRaffle] = useState(1);
+    const [reloadPage, setreloadPage] = useState(true);
 
     useEffect(() => {
         axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/raffle/allRaffle?page=${pageRaffle}`, {
@@ -17,6 +18,7 @@ export default function RifasCadastradas() {
         } )
         .then((res:any) => {
             setRifasCadastradas(res.data);
+            setreloadPage(!reloadPage)
         })
         .catch((err) => {
             setError(err.response?.data);
@@ -24,7 +26,7 @@ export default function RifasCadastradas() {
         .finally(() => {
             setLoading(false);
         });
-    }, []);
+    }, [reloadPage]);
 
  
 
