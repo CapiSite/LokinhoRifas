@@ -1,6 +1,6 @@
 const nextConfig = {
   images: {
-    domains: ['localhost', 'static-cdn.jtvnw.net', 'lokinhoskins.com.br']
+    domains: ['localhost', 'static-cdn.jtvnw.net', 'www.lokinhoskins.com.br']
   },
   reactStrictMode: true,
   async rewrites() {
