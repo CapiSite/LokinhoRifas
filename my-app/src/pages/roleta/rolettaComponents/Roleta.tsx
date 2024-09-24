@@ -11,6 +11,7 @@ import NumberSorter from './NumberSorter';
 import Confetti from 'react-confetti'
 import { useEffect, useState } from 'react';
 import Roulette from './Roulette';
+import cn from 'classnames'
 
 
 const Hero = () => {
@@ -65,7 +66,8 @@ const Hero = () => {
 
         <div className={style.ButtonGroup}>
           <button disabled={!isButtonActive || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
-          {(availableRaffles.length > 0 && participants.length >= 100) && <select disabled={!isButtonActive} className={style.raffleSelector} onChange={(e) => selectRaffle(Number(e.target.value))}>
+          {availableRaffles.length > 0 && 
+          <select disabled={!isButtonActive} className={cn(style.raffleSelector, style.mobile, (windowParams.width < 550 || participants.length > 100) && style.Visible)} onChange={(e) => selectRaffle(Number(e.target.value))}>
             {availableRaffles.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
           </select>}
           <button disabled={!isButtonActive || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>

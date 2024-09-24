@@ -92,7 +92,7 @@ const Sidebar = () => {
           <li onClick={() => handleRedirectBtn("/#Home")}>Home</li>
           <li onClick={() => handleRedirectBtn("/roleta")}>Sorteio</li>
           <li onClick={() => handleRedirectBtn("/live")}>Live</li>
-          <li onClick={() => handleRedirectBtn("/ultimosganhadores")}>
+          <li onClick={() => handleRedirectBtn("/latestWinners")}>
             Últimos Ganhadores
           </li>
           <li onClick={() => handleRedirectBtn("/#SobreNos")}>Sobre Nós</li>

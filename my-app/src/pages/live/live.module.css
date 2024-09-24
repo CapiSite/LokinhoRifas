@@ -34,3 +34,9 @@
 .liveFeed {
     max-width: fit-content;
 }
+
+@media only screen and (max-width: 550px) {
+    .liveWrapper {
+        padding: 0;
+    }
+}

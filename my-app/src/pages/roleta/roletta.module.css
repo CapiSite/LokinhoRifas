@@ -98,13 +98,13 @@
 .Roleta > .background::after {
   content: '';
 
-  width: 1000%;
+  width: 300vw;
 
   position: absolute;
   bottom: 160px;
   right: -50vw;
 
-  width: 200vw;
+  /* width: 200vw; */
   height: 90%;
 
   background: linear-gradient(0deg, black 10%, transparent);
@@ -1074,14 +1074,25 @@
   opacity: 1;
 }
 
+.Roleta .raffleSelector {
+  text-transform: capitalize;
 
-.Roleta .buttonGroup .raffleSelector {
-  padding: 15px 30px;
+  text-align: center;
+}
+
+.Roleta .ButtonGroup .raffleSelector {
+  padding: 10px;
+
+  text-align: center;
 
   border: none;
   border-radius: 10px;
 
-  width: 145px;
+  width: 313px;
+  /* height: 60px; */
+
+  font-size: 24px;
+  font-weight: 500;
 
   z-index: 10;
 
@@ -1228,6 +1239,8 @@
 
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+
+  min-height: 628px;
   
   gap: 28px;
 }
@@ -1419,6 +1432,10 @@
 }
 
 @media only screen and (max-width: 1200px) {
+  .emptyRoulette h1 {
+    font-size: min(88px, 10vmin);
+  }
+
   .RewardsList {
     display: flex;
 
@@ -1561,6 +1578,11 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .Roleta > .background::after {
+    right: -20px;
+    width: 1920px;
+  }
+
   .Roleta .ButtonGroup {
     width: 90vw;
   }
@@ -1573,11 +1595,29 @@
     width: 90vw;
   }
 
+  .Roleta .ButtonGroup .raffleSelector {
+    width: 100%;
+    height: 60px;
+
+    font-size: 24px;
+    font-weight: 500;
+
+    border-radius: 12px;
+  }
+
   .LastPrizes .title h2 {
     font-size: min(30px, 8vmin);
   }
 
   .LastPrizes .title img {
     height: min(30px, 8vmin);
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
   }
 }
