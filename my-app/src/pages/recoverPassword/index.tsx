@@ -51,7 +51,7 @@ const RecoverPassword = () => {
   const [formDataValue, setFormDataValue] = useState({
     email: "",
     token: "",
-    password: "",
+    newpassword: "",
   });
 
   useEffect(() => {
@@ -65,17 +65,17 @@ const RecoverPassword = () => {
   const [error, setError] = useState("");
 
   const checkEmail = async () => {
-    axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/forgot-password", {email: formDataValue.email}).then(res => {
+    axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/forgot-password", { email: formDataValue.email }).then(res => {
       addStep();
-    }).catch(err=>{
+    }).catch(err => {
       alert("Email não encontrado")
     })
-          
+
   };
 
   const validateLogIn = async () => {
     setError("");
-    const { email, token, password } = formDataValue;
+    const { email, token, newpassword } = formDataValue;
 
     if (step == 0) {
       if (!email) {
@@ -90,7 +90,7 @@ const RecoverPassword = () => {
     }
 
     if (step == 1) {
-      if (!email || !password) {
+      if (!email || !newpassword || !token) {
         return setError("Todos os campos são obrigatórios!");
       }
 
@@ -100,15 +100,16 @@ const RecoverPassword = () => {
     }
 
     axios
-      .post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/sign-in", {
-        email: formDataValue.email,
-        password: formDataValue.password,
+      .post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/forgot-password", {
+        token: formDataValue.token,
+        newpassword: formDataValue.newpassword,
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         router.push("/");
       })
       .catch((error) => {
+        console.log(error.response);
         setError(error.response.data.message || "Email ou senha incorretos");
       });
   };
@@ -164,26 +165,30 @@ const RecoverPassword = () => {
                   <label>
                     Codigo de verificação:
                     <input
-                      type="token"
+                      type="token" 
                       name="token"
                       id="token"
                       placeholder="Digite o codigo de verificação"
                       value={formDataValue.token}
-                      
+                      onChange={(e) =>
+                        setFormDataValue((oldValue) => {
+                          return { ...oldValue, token: e.target.value }; 
+                        })
+                      }
                       required
                     />
                   </label>
                   <label>
                     Nova Senha:
                     <input
-                      type="password"
-                      name="password"
-                      id="password"
+                      type="newpassword"
+                      name="newpassword"
+                      id="newpassword"
                       placeholder="Nova senha"
-                      value={formDataValue.password}
+                      value={formDataValue.newpassword}
                       onChange={(e) =>
                         setFormDataValue((oldValue) => {
-                          return { ...oldValue, password: e.target.value };
+                          return { ...oldValue, newpassword: e.target.value };
                         })
                       }
                       required
