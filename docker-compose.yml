@@ -1,10 +1,6 @@
 services:
   postgres:
-<<<<<<< HEAD
-    image: postgres:12
-=======
     image: postgres
->>>>>>> 7996af59 (fix/next)
     container_name: postgres
     restart: always
     ports:
