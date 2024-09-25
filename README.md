@@ -8,9 +8,10 @@ Este projeto é um site de rifas desenvolvido para o cliente Lokinho. O site foi
 - Painel administrativo para gerenciar rifas e participantes.
 - Integração com Twitch para eventos ao vivo.
 - Pagamentos seguros com integração ao Mercado Pago.
-- Implantação em ambiente Docker para facilitar o desenvolvimento e a escalabilidade.
 
 ## Tecnologias Utilizadas
+- **Organização:** Trello
+- **Design:** Figma
 - **Front-end:** React, Next.js
 - **Back-end:** Express, Prisma, PostgreSQL
 - **Infraestrutura:** Docker, Nginx
@@ -28,8 +29,8 @@ Este projeto é um site de rifas desenvolvido para o cliente Lokinho. O site foi
 - **Lucas Araújo de Oliveira** (Front-end)  
   Email: lucasao744@gmail.com
 
-- **Leandro Ferreira** (Front-end)  
-  Email: [email do colaborador 2]
+- **Leandro Ferreira** (Front-end, Designer*)  
+  Email: leandro.fcode@gmail.com
 
 ## Sobre Mim
 Meu nome é Hugo Rodrigues Costa, sou desenvolvedor full stack com experiência em construir aplicações web modernas e escaláveis. Estou sempre em busca de novos desafios e oportunidades para expandir meu conhecimento.
