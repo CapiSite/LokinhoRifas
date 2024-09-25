@@ -18,7 +18,7 @@ Este projeto é um site de rifas desenvolvido para o cliente Lokinho. O site foi
 
 ## Demonstração
 - **Site:** [lokinhoskins.com.br](https://lokinhoskins.com.br/)
-- **Imagem/GIF:** ![lokinhoskins](https://github.com/user-attachments/assets/f8bb75cd-5f13-42ad-8b36-f268c65e1de1)
+- ![lokinhoskins](https://github.com/user-attachments/assets/f8bb75cd-5f13-42ad-8b36-f268c65e1de1)
 
 
 ## Equipe do Projeto
