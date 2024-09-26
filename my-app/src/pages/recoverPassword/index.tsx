@@ -110,7 +110,7 @@ const RecoverPassword = () => {
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        router.push("/");
+        router.push("/login");
       })
       .catch((error) => {
         console.log(error.response);
