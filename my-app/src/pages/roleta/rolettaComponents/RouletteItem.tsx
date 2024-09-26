@@ -19,7 +19,7 @@ const RouletteItem = ({ props }: { props: CardItemType }) => {
     number = 0,
   } = props;
 
-  const [imgSrc, setImgSrc] = useState<string>(profilePicture.startsWith('https://static-cdn.jtvnw.net') ? profilePicture : profilePicture.includes('default') ? defaultPicture : profilePicture);
+  const [imgSrc, setImgSrc] = useState<string>(profilePicture.includes('https://static-cdn.jtvnw.net') ? profilePicture.split('uploads/')[1] : profilePicture.includes('default') ? defaultPicture : profilePicture);
 
   return (
     <div
