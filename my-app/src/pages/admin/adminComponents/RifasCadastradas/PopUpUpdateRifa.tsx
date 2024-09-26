@@ -95,10 +95,9 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
             }, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
-
-            if (response.status === 200) {
+            console.log(response)
+            if (response.status === 201) {
                 alert('Usuário adicionado à rifa com sucesso!');
-                setUsersRegisterRaffle(prev => [...prev, response.data]);
             }
         } catch (error) {
             console.error('Erro ao adicionar usuário à rifa:', error);
@@ -113,8 +112,10 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
 
-            if (response.status === 200) {
+            if (response.status === 204) {
                 alert('Usuário removido da rifa com sucesso!');
+                setPopUpUpdateRaffle(false)
+                
                 setUsersRegisterRaffle(prev => prev.filter(user => user.number !== number));
             }
         } catch (error) {
@@ -221,8 +222,8 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
                             <Users
                                 key={person.id}  // Adicionar key para melhorar a performance do React
                                 image={person.picture === "default" ? defaultProfilePicture :
-            (person.picture && person.picture.startsWith('https://static-cdn.jtvnw.net')) ? 
-                person.picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${person.picture}`}
+                                (person.picture && person.picture.startsWith('https://static-cdn.jtvnw.net')) ? 
+                                person.picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${person.picture}`}
                                 name={person.name}
                                 email={person.email}
                                 tradeLink={person.tradeLink}

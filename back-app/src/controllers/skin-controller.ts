@@ -20,6 +20,7 @@ export const createSkin = async (req: Request, res: Response) => {
     }
     const { name, type } = req.body.skinData;
     try {
+        console.log("oi")
         console.log(name, type)
         const value = Number(req.body.skinData.value)
         console.log(name,type,value)
@@ -37,6 +38,7 @@ export const updateSkin = async (req: Request, res: Response) => {
     if (req.file && req.file.path) {
         picture = path.basename(req.file.path);
     }
+    console.log("oi2")
     const { name, value, type } = req.body.skinData;
     console.log(req.body.skinData)
 

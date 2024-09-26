@@ -18,7 +18,6 @@ export default function RifasCadastradas() {
         } )
         .then((res:any) => {
             setRifasCadastradas(res.data);
-            setreloadPage(!reloadPage)
         })
         .catch((err) => {
             setError(err.response?.data);
