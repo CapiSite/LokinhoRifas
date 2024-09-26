@@ -161,7 +161,7 @@ const PopupBuy = ({
 
             {/* Raffle payment lidará com o pagamento através do saldo na conta, essa escolha foi feita pra evitar o possível assincronismo entre a pessoa ter ou não o valor em mãos, algo que à prontifica melhor */}
 
-            <RaffleConfirmation />
+            <RaffleConfirmation props={{ setIsVisible }} />
 
             {/* Por último, a tela de confirmação, nela será apenas adiantado que o pagamento foi realizado com sucesso, e que agora ela terá acesso aos números que está participando na rifa */}
           </div>

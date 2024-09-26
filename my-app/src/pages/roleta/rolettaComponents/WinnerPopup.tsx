@@ -92,7 +92,7 @@ const RoletaWinner = () => {
         </div>
         <h2>Parabéns!</h2>
         <div className={style.UserSkinImageBox}>
-            <Image height={50} width={30} src={userImgSrc} alt="Foto de usuário"/>
+            <Image height={50} width={50} src={userImgSrc} alt="Foto de usuário"/>
         </div>
         {winnerProperties && <h3 className={style.userNickname}>@{winnerProperties.user.name + '#' + winnerProperties.number}</h3>}
         {rewards[0] && <p>Ganhador da {rewards[0].itemName}</p>}

@@ -749,6 +749,8 @@
   justify-content: center;
   align-items: center;
 
+  height: 100%;
+
   flex-direction: column;
 
   position: relative;
@@ -780,7 +782,7 @@
   justify-content: center;
   align-items: center;
 
-  width: 776px;
+  width: calc(40vh);
   height: fit-content;
 
   position: relative;

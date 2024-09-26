@@ -601,8 +601,8 @@ header {
 
   flex-direction: column;
 
-  width: 1235px;
-  height: 800px;
+  width: calc(100% - 200px);
+  height: calc(100% - 100px);
 
   border-radius: 20px;
 
@@ -1510,7 +1510,8 @@ footer nav div {
 
 .PopupBuyContent {
   width: 710px;
-  height: 765px;
+  min-height: 300px;
+  height: calc(100vh - 300px);
 
   position: relative;
 
@@ -1582,7 +1583,7 @@ footer nav div {
 
 .PopupBuyContent .raffleSelect .cardGroup {
   width: 710px;
-  height: 532px;
+  height: calc(100% - 232px);
 
   overflow-y: auto;
 }
@@ -1909,7 +1910,7 @@ footer nav div {
 }
 
 .PopupBuy .raffleBuyQuantity .cartGroup {
-  height: 465px;
+  height: calc(100% - 286px);
 
   overflow: auto;
 }
@@ -1921,7 +1922,7 @@ footer nav div {
 
   gap: 10px;
 
-  padding-block: 30px;
+  padding-block: 10px;
 }
 
 .PopupBuy .raffleBuyQuantity .cartItem {
@@ -2125,6 +2126,13 @@ footer nav div {
   gap: 31px;
 }
 
+.PopupBuy .rafflePaymentWrapper {
+  height: calc(100% - 265px);
+
+  overflow: hidden;
+  overflow-y: auto;
+}
+
 .PopupBuy .rafflePayment .userPaymentData,
 .PopupBuy .rafflePayment .itemTable,
 .PopupBuy .rafflePayment .purchaseDetails {
@@ -2237,6 +2245,15 @@ footer nav div {
 }
 
 .PopupBuy .raffleConfirmation {
+  width: 710px;
+  height: 100%;
+
+  padding-block: 30px;
+
+  overflow-y: auto;
+}
+
+.PopupBuy .raffleConfirmationWrapper {
   display: flex;
 
   flex-direction: column;
@@ -2246,13 +2263,29 @@ footer nav div {
 
   gap: 32px;
 
-  width: 710px;
+  height: fit-content;
 }
 
 .PopupBuy .raffleConfirmation h2 {
   font-size: 26px;
   font-weight: 600;
 }
+
+.PopupBuy .raffleConfirmation button {
+  padding: 15px 9px;
+  font-size: 24px;
+  font-weight: 500;
+
+  border-radius: 7px;
+  border: grey;
+
+  background: linear-gradient(90deg, #1AE22299, #13a11899);
+  background-color: black;
+  color: white;
+
+  cursor: pointer;
+}
+
 
 .PopupBuy .raffleConfirmation p {
   width: 355px;
@@ -2281,9 +2314,7 @@ footer nav div {
 }
 
 .PopupBuy .bottomSection.end {
-  background-color: transparent;
-
-  translate: 0 -45px;
+  display: none;
 }
 
 .PopupBuy .bottomSection button {
@@ -2326,19 +2357,19 @@ footer nav div {
   bottom: 100%;
   left: 0;
 
-  padding: 25px 42px;
+  padding: 15px 42px;
   
   justify-content: flex-end;
   align-items: center;
 
   width: 100%;
-  height: 70px;
+  height: fit-content;
 
   background-color: #ccc;
 }
 
 .PopupBuy .bottomSection .totalValue h3 {
-  font-size: 34px;
+  font-size: min(34px, 3vmin);
   font-weight: 500;
 }
 
@@ -3081,7 +3112,7 @@ footer nav div {
 
     width: 100%;
 
-    height: 400px;
+    height: 500px;
 
     animation: 300ms ease-out 0s 1 forwards showUp;
   }
@@ -3267,7 +3298,7 @@ footer nav div {
     font-size: min(5vmin, 24px);
   }
 
-  .rafflePaymentWrapper {
+  .PopupBuy .rafflePaymentWrapper {
     display: flex;
 
     flex-direction: column;
@@ -3334,6 +3365,10 @@ footer nav div {
   .PopupBuy .prompt .promptWrapper .buttonGroup {
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  .PopupBuy .raffleConfirmationWrapper {
+    height: 100%;
   }
 
   .PopupBuy .raffleConfirmation img {
