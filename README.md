@@ -23,13 +23,13 @@ Este projeto é um site de rifas desenvolvido para o cliente Lokinho. O site foi
 
 
 ## Equipe do Projeto
-- **Hugo Rodrigues Costa** (Back-end, Infraestrutura, Banco de Dados e Front-end)  
+- **Hugo Rodrigues Costa** (Back-end, Infraestrutura, Banco de Dados e Auxilio nas Tecnologias Restantes)  
   Email: hugorodriguescosta1@gmail.com
 
 - **Lucas Araújo de Oliveira** (Front-end)  
   Email: lucasao744@gmail.com
 
-- **Leandro Ferreira** (Front-end, Designer*)  
+- **Leandro Ferreira** (Front-end, Design e Integrações)  
   Email: leandro.fcode@gmail.com
 
 ## Sobre Mim
