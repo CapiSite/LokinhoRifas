@@ -233,8 +233,8 @@ const PaymentBrick = ({
               onChange={handleInputChange}
               />
             <p>Min: R$ 10,00</p>
-            {/*<button disabled={priceValue < 10 || priceValue > 10000} onClick={addStep}> */}
-            <button disabled={priceValue > 10000} onClick={addStep}>
+            {/* <button disabled={priceValue > 10000} onClick={addStep}> */}
+            <button disabled={priceValue < 10 || priceValue > 10000} onClick={addStep}>
               Continuar
             </button>
             <p>Poderá voltar para alterar esse valor depois</p>

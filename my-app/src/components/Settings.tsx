@@ -38,19 +38,30 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
     else setConfirmPasswordVisible(oldPassword => !oldPassword)
   }
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    if (name === "picture") {
-      if (!inputRef.current) return;
-      if (!inputRef.current.files) return;
-      const file = inputRef.current.files[0];
-
+  const handleImageChange = (file: File) => {
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        setError("O tamanho da imagem excede o limite permitido (5MB).");
+        return;
+      }
       setImage(file);
       setUserData((prevState: any) => ({
         ...prevState,
         picture: file
       }));
       updateUser("Image", file);
+      setError("");
+    }
+  };
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    if (name === "picture") {
+      if (!inputRef.current) return;
+      if (!inputRef.current.files) return;
+      const file = inputRef.current.files[0];
+      
+      handleImageChange(file)
     } else {
       setUserData((prevState: any) => ({
         ...prevState,

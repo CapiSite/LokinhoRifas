@@ -39,4 +39,9 @@
     .liveWrapper {
         padding: 0;
     }
+
+    .live {
+        min-height: fit-content;
+        margin-top: 0;
+    }
 }
