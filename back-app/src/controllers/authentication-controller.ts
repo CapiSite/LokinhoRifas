@@ -54,7 +54,7 @@ export async function requestPasswordReset(req: Request, res: Response) {
 
 export async function resetPassword(req: Request, res: Response) {
   const { token, newPassword } = req.body;
-
+  console.log(token, newPassword)
   try {
     await userService.resetPassword(token, newPassword);
     return res.sendStatus(httpStatus.OK);

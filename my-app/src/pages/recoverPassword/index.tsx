@@ -2,7 +2,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import Eye from "../../assets/eye.svg";
+import EyeSlashed from "../../assets/eye-slash.svg";
 import { useUserStateContext } from "contexts/UserContext";
 import style from "./recoverPassword.module.css";
 import cn from "classnames";
@@ -16,6 +17,7 @@ const RecoverPassword = () => {
   const { userInfo, setUserInfo } = useUserStateContext() as UserContextType;
   const { query, push } = useRouter();
   const { email } = query;
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const router = useRouter();
 
   const [step, setStep] = useState(0);
@@ -51,7 +53,7 @@ const RecoverPassword = () => {
   const [formDataValue, setFormDataValue] = useState({
     email: "",
     token: "",
-    newpassword: "",
+    newPassword: "",
   });
 
   useEffect(() => {
@@ -72,10 +74,12 @@ const RecoverPassword = () => {
     })
 
   };
-
+  const toggleStatePassword = () => {
+    setPasswordVisible((oldPassword) => !oldPassword);
+  };
   const validateLogIn = async () => {
     setError("");
-    const { email, token, newpassword } = formDataValue;
+    const { email, token, newPassword } = formDataValue;
 
     if (step == 0) {
       if (!email) {
@@ -90,7 +94,7 @@ const RecoverPassword = () => {
     }
 
     if (step == 1) {
-      if (!email || !newpassword || !token) {
+      if (!email || !newPassword || !token) {
         return setError("Todos os campos são obrigatórios!");
       }
 
@@ -100,9 +104,9 @@ const RecoverPassword = () => {
     }
 
     axios
-      .post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/forgot-password", {
+      .post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth/reset-password", {
         token: formDataValue.token,
-        newpassword: formDataValue.newpassword,
+        newPassword: formDataValue.newPassword,
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
@@ -110,7 +114,7 @@ const RecoverPassword = () => {
       })
       .catch((error) => {
         console.log(error.response);
-        setError(error.response.data.message || "Email ou senha incorretos");
+        setError(error.response.data.message || "Token Incorreto ou senha com menos de 6 caracteres");
       });
   };
 
@@ -180,19 +184,30 @@ const RecoverPassword = () => {
                   </label>
                   <label>
                     Nova Senha:
+                    <div className={style.inputWrapper}>
                     <input
-                      type="newpassword"
-                      name="newpassword"
-                      id="newpassword"
+                      type={passwordVisible ? "text" : "password"}
+                      name="newPassword"
+                      id="newPassword"
                       placeholder="Nova senha"
-                      value={formDataValue.newpassword}
+                      value={formDataValue.newPassword}
                       onChange={(e) =>
                         setFormDataValue((oldValue) => {
-                          return { ...oldValue, newpassword: e.target.value };
+                          return { ...oldValue, newPassword: e.target.value };
                         })
                       }
                       required
                     />
+                    <button onClick={toggleStatePassword}>
+                        {passwordVisible ? (
+                          <Image width={50} height={50} src={EyeSlashed} alt="Hide password" />
+                        ) : (
+                          <Image width={30}
+                          height={50} src={Eye} alt="Show password" />
+                        )}
+                      </button>
+                      </div>
+
                   </label>
                 </div>
               </div>

@@ -6,9 +6,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD,
-    },
-    debug: true, // Ativar o modo de depuração
-    logger: true, // Ativar o log no console
+    } 
   });
 
   // const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
@@ -232,7 +230,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
 <v:textbox inset="0px,0px,0px,0px">
 <center dir="false" style="color:grey;font-family:Arial, sans-serif;font-size:24px">
 <![endif]-->
-																	<div style="background-color:#222;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:0px;border-right:0px solid transparent;border-top:0px solid transparent;color:grey;display:block;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:24px;font-weight:700;mso-border-alt:none;padding-bottom:30px;padding-top:30px;text-align:center;text-decoration:none;width:100%;word-break:keep-all;"><span style="word-break: break-word; padding-left: 20px; padding-right: 20px; font-size: 24px; display: inline-block; letter-spacing: normal;"><span style="word-break: break-word; line-height: 48px;">&nbsp;${token}&nbsp;</span></span></div><!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
+																	<div style="background-color:#222;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:0px;border-right:0px solid transparent;border-top:0px solid transparent;color:grey;display:block;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:24px;font-weight:700;mso-border-alt:none;padding-bottom:30px;padding-top:30px;text-align:center;text-decoration:none;width:100%;word-break:keep-all;"><span style="word-break: break-word; padding-left: 20px; padding-right: 20px; font-size: 24px; display: inline-block; letter-spacing: normal;"><span style="word-break: break-word; line-height: 48px;">${token}</span></span></div><!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
 																</div>
 															</td>
 														</tr>
