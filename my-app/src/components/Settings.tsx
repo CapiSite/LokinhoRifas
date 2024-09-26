@@ -118,7 +118,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
       } else if (object === "password") {
         setError(`Senha antiga incorreta`);
       } else if (object === "Image") {
-        setError(`Falha em alterar a foto`);
+        setError(`Falha ao alterar a foto (o tamanho máximo permitido é 10 MB)`);
       } else {
         setError(`Falha em alterar o número de telefone`);
       }

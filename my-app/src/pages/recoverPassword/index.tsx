@@ -7,7 +7,6 @@ import EyeSlashed from "../../assets/eye-slash.svg";
 import { useUserStateContext } from "contexts/UserContext";
 import style from "./recoverPassword.module.css";
 import cn from "classnames";
-
 import SingUpBG from "../../images/Cadastro/CADASTROBG.png";
 import Lines from "../../images/Cadastro/Lines.png";
 import Image from "next/image";
