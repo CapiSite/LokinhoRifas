@@ -104,7 +104,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     const roulette = document.getElementById("Roulette");
 
-    const timing = 30000;
+    const timing = 60000;
 
     const randomSide = Math.floor(Math.random() * 2) == 1 ? -1 : 1;
 
@@ -186,7 +186,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if(!participants) return
     if(participants.length == 0) return
     
-    const timer = 30000
+    const timer = 60000
 
     toggleIsButtonActive();
     
