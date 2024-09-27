@@ -1639,3 +1639,7 @@
     display: none;
   }
 }
+
+.raffleSelector.Visible {
+  display: block;
+}
