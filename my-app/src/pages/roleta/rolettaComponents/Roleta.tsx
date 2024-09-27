@@ -21,9 +21,11 @@ const Hero = () => {
     isButtonActive, 
     participants = [],
     rewards = [],
+    winners = [],
     availableRaffles = [],
     selectRaffle,
-    isConfettiActive
+    isConfettiActive,
+    winnerProperties
   } = useRouletteContext() as RouletteContext
 
   const {
@@ -50,7 +52,7 @@ const Hero = () => {
     }
   }, [])
 
-
+  const winnerIsCorrected = winners.filter(winner => winner.number == winnerProperties.number).length != 0
 
   return (
     <section className={style.Roleta}>
@@ -65,12 +67,12 @@ const Hero = () => {
         }
 
         <div className={style.ButtonGroup}>
-          <button disabled={!isButtonActive || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
+          <button disabled={!isButtonActive || !winnerIsCorrected || !winnerProperties.distanceFromCenter || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
           {availableRaffles.length > 0 && 
-          <select disabled={!isButtonActive} className={cn(style.raffleSelector, style.mobile, (windowParams.width < 550 || participants.length > 100) && style.Visible)} onChange={(e) => selectRaffle(Number(e.target.value))}>
+          <select disabled={!isButtonActive} name='raffleSelector' className={cn(style.raffleSelector, style.mobile, (windowParams.width < 550 || participants.length > 100) && style.Visible)} onChange={(e) => selectRaffle(Number(e.target.value))}>
             {availableRaffles.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
           </select>}
-          <button disabled={!isButtonActive || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
+          <button disabled={!isButtonActive || !winnerIsCorrected || !winnerProperties.distanceFromCenter || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
         </div>
       </div>
 

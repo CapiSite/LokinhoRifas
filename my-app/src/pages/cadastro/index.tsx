@@ -284,7 +284,7 @@ const SignUp = () => {
                       <label>
                         E-mail:
                         <input
-                        onKeyDown={e => keyDownHandler(e.key)}
+                          onKeyDown={e => keyDownHandler(e.key)}
                           type="email"
                           onChange={(e) =>
                             setFormDataValue((oldValue) => {
@@ -302,8 +302,9 @@ const SignUp = () => {
                       <label>
                         Apelido:
                         <input
-                        onKeyDown={e => keyDownHandler(e.key)}
+                          onKeyDown={e => keyDownHandler(e.key)}
                           type="text"
+                          name="name"
                           onChange={(e) =>
                             setFormDataValue((oldValue) => {
                               return {
@@ -319,7 +320,7 @@ const SignUp = () => {
                         Senha:
                         <div className={style.inputWrapper}>
                           <input
-                          onKeyDown={e => keyDownHandler(e.key)}
+                            onKeyDown={e => keyDownHandler(e.key)}
                             type={passwordVisible ? 'text' : 'password'}
                             onChange={(e) =>
                               setFormDataValue((oldValue) => {
@@ -380,8 +381,9 @@ const SignUp = () => {
                             </div>}
                         </span></p>
                         <input
-                        onKeyDown={e => keyDownHandler(e.key)}
+                          onKeyDown={e => keyDownHandler(e.key)}
                           type="text"
+                          name="tradelink"
                           onChange={(e) =>
                             setFormDataValue((oldValue) => {
                               return {
@@ -416,6 +418,7 @@ const SignUp = () => {
                             /\d/,
                           ]}
                           type="tel"
+                          name="phone"
                           onChange={(e) =>
                             setFormDataValue((oldValue) => {
                               return {

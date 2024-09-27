@@ -48,11 +48,11 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
         <div>
           <div className={style.DivInputRegisterRifa}>
             <label>Nome Da Rifa:</label>
-            <input type='text' value={raffleName} onChange={(e) => setRaffleName(e.target.value)} required placeholder='Digite o Nome da Rifa' />
+            <input type='text' value={raffleName} name='raffleName' onChange={(e) => setRaffleName(e.target.value)} required placeholder='Digite o Nome da Rifa' />
           </div>
           <div className={style.DivInputRegisterRifa}>
             <label>Quantidade de Numeros:</label>
-            <input type='number' value={numberOfTickets} onChange={(e) => setNumberOfTickets(parseInt(e.target.value))} required />
+            <input type='number' value={numberOfTickets} name='quantity' onChange={(e) => setNumberOfTickets(parseInt(e.target.value))} required />
           </div>
           <div className={style.DivInputRegisterRifa}>
 
@@ -62,6 +62,7 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
                 value={raffleType ? 'true' : 'false'} 
                 onChange={(e) => setRaffleType(e.target.value === 'true')} 
                 className={style.SelectRaffleType}
+                name='type'
                 required
               >
                 <option value="false">Não</option>

@@ -8,7 +8,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 const RouletteArray = () => {
   const {
-    raffle,
+    raffle = {
+      createdAt: '',
+      free: false,
+      id: 0,
+      is_active: true,
+      name: '',
+      participants: [],
+      raffleSkins: [],
+      updatedAt: '',
+      users_quantity: 0,
+      value: 0
+    },
     winners = [],
     fillerParticipants = [],
     getWinner,
@@ -17,21 +28,24 @@ const RouletteArray = () => {
   } = useRouletteContext() as RouletteContext;
   
   useEffect(() => {
-    if(rouletteLoadingState == false) return
-    setTimeout(() => {
+    const debounce = setTimeout(() => {
+      if(rouletteLoadingState == false) return
       const winner = document.getElementById('winner')
+      // console.log('here', winner)
 
       if(!winner) return
   
       getWinner(winner)
       setIsButtonActive(true)
     }, 400);
+
+    return () => clearTimeout(debounce)
   }, [raffle ? raffle.id : raffle, winners.length, rouletteLoadingState]);
   
 
   return (
     <div className={style.RouletteArray} id="Roulette">
-      {(rouletteLoadingState && fillerParticipants) && fillerParticipants.map((item) => (
+      {(fillerParticipants && rouletteLoadingState) && fillerParticipants.map((item) => (
         <RouletteItem key={uuidv4()} props={{
           ...item,
           nickName: item.user.name + '#' + item.number,
@@ -41,7 +55,7 @@ const RouletteArray = () => {
           number: item.number
         }} />
       ))}
-      {(rouletteLoadingState && winners) &&
+      {(winners && rouletteLoadingState) &&
         winners.map((item) => (
           <RouletteItem key={uuidv4()} props={{
             ...item,
@@ -52,7 +66,7 @@ const RouletteArray = () => {
             number: item.number
           }} />
         ))}
-      {(rouletteLoadingState && fillerParticipants) && fillerParticipants.map((item) => (
+      {(fillerParticipants && rouletteLoadingState) && fillerParticipants.map((item) => (
           <RouletteItem key={uuidv4()} props={{
             ...item,
             nickName: item.user.name + '#' + item.number,

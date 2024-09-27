@@ -102,9 +102,10 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if (!winnerProperties) return;
     if (!winnerProperties.distanceFromCenter) return;
 
+
     const roulette = document.getElementById("Roulette");
 
-    const timing = 60000;
+    const timing = 30000
 
     const randomSide = Math.floor(Math.random() * 2) == 1 ? -1 : 1;
 
@@ -186,7 +187,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if(!participants) return
     if(participants.length == 0) return
     
-    const timer = 60000
+    const timing = 30000
 
     toggleIsButtonActive();
     
@@ -197,7 +198,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       setTimeout(() => {
         toggleIsButtonActive();
       }, 5000);
-    }, timer);
+    }, timing);
 
     const interval = setInterval(() => {
       setWinnerProperties(participants[Math.floor(Math.random() * (participants.length - 1))])
@@ -227,10 +228,10 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
           setTimeout(() => {
             clearInterval(interval4)
             setWinnerProperties(winners[Math.floor(Math.random() * (winners.length - 1))])
-          }, timer / 6);
-        }, timer / 6);
-      }, timer / 3);
-    }, timer / 3);
+          }, timing / 6);
+        }, timing / 6);
+      }, timing / 3);
+    }, timing / 3);
   }
 
   const manageWinner = () => {
@@ -240,7 +241,6 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const manageMockWinner = () => {
-
     setIsMockWin(true);
 
     participants.length >= 100 ? handleRolling() : setAnimationState(playAnimation());
@@ -287,7 +287,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     // Extract and transform users
     const newUsers = participants.map(p => ({
       ...p.user,
-      picture: `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${p.user.picture}`,
+      picture: p.user.picture.includes('static-cdn') ? p.user.picture :`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${p.user.picture}`,
       participantId: p.id
     }));
 
@@ -351,7 +351,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       loadFillerCards(rebuiltParticipants)
     }
 
-    if (raffle.raffleSkins.filter(skin => skin.winner_id !== null).length == 0) {
+    if (raffle.raffleSkins.filter(skin => skin.winner_id === null).length != 0) {
       setNewWinners(rebuiltParticipants)
     }
   };

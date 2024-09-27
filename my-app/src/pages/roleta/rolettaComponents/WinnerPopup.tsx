@@ -26,50 +26,37 @@ const RoletaWinner = () => {
     },
   } = useRouletteContext() as RouletteContext;
 
-  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(defaultGunPic);
-  const [userImgSrc, setUserImgSrc] = useState<string | StaticImageData>(defaultUserPic);
+  const [imgSrc, setImgSrc] = useState<string | StaticImageData>();
+  const [userImgSrc, setUserImgSrc] = useState<string | StaticImageData>();
 
   useEffect(() => {
-    if(!rewards[0]) return
-    const checkImageExists = async (url: string) => {
-      try {
-        const response = await fetch(url, { method: "HEAD" });
-        if (response.ok) {
-          setImgSrc(rewards[0].itemImageUrl);
-        } else {
-          setImgSrc(defaultGunPic);
-        }
-      } catch (error) {
-        setImgSrc(defaultGunPic);
+    const debounce = setTimeout(() => {
+      if(!rewards) return
+      if(rewards.length === 0) return
+      if(!(rewards[0].itemImageUrl.includes('default'))) {
+        setImgSrc(rewards[0].itemImageUrl)
       }
-    };
+    }, 800);
 
-    if (rewards[0].itemImageUrl && !rewards[0].itemImageUrl.includes('default')) {
-      checkImageExists(rewards[0].itemImageUrl);
-    } else {
-      setImgSrc(defaultGunPic);
+    return () => {
+      clearTimeout(debounce)
     }
-  }, [winnerProperties.id]);
-
+  }, [winnerProperties])
+  
   useEffect(() => {
-    if(!winnerProperties) return
-    const checkImageExists = async (url: string) => {
-      try {
-        const response = await fetch(url, { method: "HEAD" });
-        if (response.ok && winnerProperties.user.picture && !winnerProperties.user.picture.includes('default')) {
-          setUserImgSrc(winnerProperties.user.picture);
-        }
-      } catch (error) {
-        setUserImgSrc(defaultUserPic);
+    const debounce = setTimeout(() => {
+      if(!winnerProperties) return
+      if(winnerProperties.user.picture.includes('https://static-cdn.jtvnw.net')) {
+        setUserImgSrc(winnerProperties.user.picture)
+      } else if(!(winnerProperties.user.picture.includes('default'))) {
+        setUserImgSrc(winnerProperties.user.picture)
       }
-    };
+    }, 800);
 
-    if (winnerProperties.user.picture && !winnerProperties.user.picture.includes('default')) {
-      checkImageExists(winnerProperties.user.picture);
-    } else {
-      setImgSrc(defaultGunPic);
+    return () => {
+      clearTimeout(debounce)
     }
-  }, [winnerProperties.id]);
+  }, [winnerProperties])
 
   return (
     <div
@@ -81,7 +68,7 @@ const RoletaWinner = () => {
           {rewards[0] && <Image
             width={775}
             height={637}
-            src={imgSrc}
+            src={imgSrc || defaultGunPic}
             alt={`Imagem de ${rewards[0].itemName}`}
             onError={(e) => {
               e.preventDefault();
@@ -92,7 +79,7 @@ const RoletaWinner = () => {
         </div>
         <h2>Parabéns!</h2>
         <div className={style.UserSkinImageBox}>
-            <Image height={50} width={50} src={userImgSrc} alt="Foto de usuário"/>
+            <Image height={50} width={50} src={userImgSrc || defaultUserPic} alt="Foto de usuário"/>
         </div>
         {winnerProperties && <h3 className={style.userNickname}>@{winnerProperties.user.name + '#' + winnerProperties.number}</h3>}
         {rewards[0] && <p>Ganhador da {rewards[0].itemName}</p>}

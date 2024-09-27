@@ -19,7 +19,7 @@ const Roulette = () => {
         <Image height={50} width={30} src={triangle} alt='Pino da roleta' />
       </div>
 
-      {availableRaffles.length > 0 && <select disabled={!isButtonActive} className={cn(style.raffleSelector, style.desktop)} onChange={(e) => selectRaffle(Number(e.target.value))}>
+      {availableRaffles.length > 0 && <select name='raffleSelectorRoulette' disabled={!isButtonActive} className={cn(style.raffleSelector, style.desktop)} onChange={(e) => selectRaffle(Number(e.target.value))}>
         {availableRaffles.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
       </select>}
       

@@ -456,6 +456,7 @@
   position: relative;
 }
 
+
 .PersonCardWrapper {
   display: flex;
 
@@ -524,6 +525,10 @@
   background: linear-gradient(180deg, transparent, #D1D515);
 }
 
+.Roulette .PersonCard.filler {
+  filter: grayscale(100%);
+}
+
 .Roulette .ProfilePicture {
   display: flex;
 
@@ -539,6 +544,12 @@
   color: black;
 
   overflow: hidden;
+}
+
+.Roulette .ProfilePicture h1 {
+  font-size: 128px;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .Roulette .ProfilePicture img {
@@ -772,7 +783,13 @@
   padding: 2px;
   border-radius: 50%;
 
+  overflow: hidden;
+
   margin-block: 20px;
+}
+
+.UserSkinImageBox img {
+  border-radius: 50%;
 }
 
 .WinnerPopup .SkinImageBox {
