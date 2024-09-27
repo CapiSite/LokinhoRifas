@@ -10,7 +10,7 @@ COPY . .
 EXPOSE 5000
 
 # Instala as dependências do projeto
-RUN npm install
+RUN RUN npm install --legacy-peer-deps
 
 # Constrói a aplicação
 RUN npm run build
