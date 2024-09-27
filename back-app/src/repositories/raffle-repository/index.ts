@@ -15,6 +15,14 @@ interface CreateRaffleData {
   }[];
 }
 
+interface CreateOrUpdateParticipantParams {
+  user_id: number;
+  raffle_id: number;
+  number: number;
+  is_reserved: boolean;
+  reserved_until: Date | null;
+}
+
 const createRaffle = async (data: CreateRaffleData): Promise<Raffle> => {
   return await prisma.raffle.create({
     data: {
@@ -29,8 +37,9 @@ const createRaffle = async (data: CreateRaffleData): Promise<Raffle> => {
   });
 };
 
+// Atualizar para retornar o campo is_paid e is_reserved
 const getActiveRafflesWithDetails = async () => {
-  return await prisma.raffle.findMany({
+  const res = await prisma.raffle.findMany({
     where: {
       is_active: 'Ativa',
     },
@@ -40,6 +49,8 @@ const getActiveRafflesWithDetails = async () => {
         select: {
           id: true,
           number: true, // Número do participante
+          is_reserved: true, // Retorna se o número está reservado
+          is_paid: true, // Retorna se o número foi pago (novo campo)
           user: {
             select: {
               id: true,
@@ -51,8 +62,11 @@ const getActiveRafflesWithDetails = async () => {
       },
     },
   });
+  console.log(res[1].participants)
+  return res
 };
 
+// Similar para a função getAllRafflesWithDetails
 const getAllRafflesWithDetails = async (page: number) => {
   return await prisma.raffle.findMany({
     include: {
@@ -60,6 +74,8 @@ const getAllRafflesWithDetails = async (page: number) => {
       participants: {
         select: {
           number: true,
+          is_reserved: true,  // Novo campo reservado
+          is_paid: true,      // Novo campo pago
           user: {
             select: {
               id: true,
@@ -212,6 +228,8 @@ async function findParticipantByRaffleAndUser(raffleId: number, number: number) 
   });
 }
 
+
+
 async function addParticipantToRaffle(raffleId: number, userId: number, number: number) {
   return prisma.participant.create({
     data: {
@@ -255,11 +273,12 @@ async function purchaseRaffleNumbers(
     const costPerNumber = raffleData.value / raffleData.users_quantity;
     const totalCost = costPerNumber * quantity;
 
-    // Criar os participantes
+    // Criar os participantes e marcar como is_paid = true
     const participantsData = Array.from({ length: quantity }, (_, i) => ({
       user_id: userId,
       raffle_id: raffleId,
       number: raffleData.participants.length + i + 1,
+      is_paid: true,  // Marcar como pago
     }));
 
     await transaction.participant.createMany({
@@ -294,9 +313,76 @@ async function purchaseRaffleNumbers(
     };
   });
 }
+
+
+async function clearExpiredReservations(now: Date) {
+  await prisma.participant.updateMany({
+    where: {
+      reserved_until: {
+        lte: now,
+      },
+      is_reserved: true,
+    },
+    data: {
+      is_reserved: false,
+      reserved_until: null,
+    },
+  });
+}
+async function findParticipantByRaffleAndNumber(raffleId: number, number: number) {
+  return await prisma.participant.findFirst({
+    where: {
+      raffle_id: raffleId,
+      number,
+    },
+  });
+}
+async function updateParticipantReservation(participantId: number, isReserved: boolean, reservedUntil: Date | null) {
+  return await prisma.participant.update({
+    where: { id: participantId },
+    data: {
+      is_reserved: isReserved,
+      reserved_until: reservedUntil,
+    },
+  });
+}
+async function createOrUpdateParticipant({ user_id, raffle_id, number, is_reserved, reserved_until }: CreateOrUpdateParticipantParams) {
+  const existingParticipant = await prisma.participant.findFirst({
+    where: {
+      raffle_id,
+      number,
+    },
+  });
+
+  if (existingParticipant) {
+    return await prisma.participant.update({
+      where: { id: existingParticipant.id },
+      data: {
+        is_reserved,
+        reserved_until,
+      },
+    });
+  } else {
+    return await prisma.participant.create({
+      data: {
+        user_id,
+        raffle_id,
+        number,
+        is_reserved,
+        reserved_until,
+      },
+    });
+  }
+}
+
+
+
 export default {
   findParticipantByRaffleAndUser,
+  updateParticipantReservation,
+  findParticipantByRaffleAndNumber,
   addParticipantToRaffle,
+  createOrUpdateParticipant,
   removeParticipantFromRaffle,
   createRaffle,
   purchaseRaffleNumbers,
@@ -305,6 +391,7 @@ export default {
   getAllRafflesWithDetails,
   calculateTotalCost,
   createParticipant,
+  clearExpiredReservations,
   deleteRaffle,
   findById,
 };
