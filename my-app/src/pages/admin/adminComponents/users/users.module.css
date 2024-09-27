@@ -34,11 +34,6 @@
     color: rgb(2, 2, 2);
 }
 
-.EmailUser {
-    font-family: "archivo";
-    font-size: 15px;
-    color: #ffffffd1;
-}
 
 .EmailUser2 {
     font-family: "archivo";
@@ -46,6 +41,11 @@
     color: #000000d1;
 }
 
+.tradLink{
+    font-family: "archivo";
+    font-size: 15px;
+    color: #28e931d1;
+}
 .management {
     display: flex;
     flex-direction: row;

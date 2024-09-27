@@ -548,12 +548,11 @@
 
 .Roulette .ProfileInfo {
   width: 100%;
-
   padding: 0 11px 5px;
 }
 
 .Roulette .ProfileInfo h3 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
 
   text-overflow: ellipsis;
@@ -563,13 +562,13 @@
 }
 
 .Roulette .ProfileInfo p {
-  font-size: 12px;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: 400;
 
   text-overflow: ellipsis;
   overflow: hidden;
 
-  color: #A5A4A4;
+  color: #bbb9b9;
 }
 
 .RoletaWrapper .ButtonGroup {

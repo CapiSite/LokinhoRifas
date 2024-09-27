@@ -8,8 +8,8 @@ export default function Users({ id, image, name, tradeLink, email, charge, conte
             <Image width={55} height={55} src={image} className={styles.ImageUser} alt='Foto de perfil' />
             <div className={styles.UserDate}>
                 <p className={ styles.FullNameUser2}>{name}</p>
-                <p className={ styles.EmailUser2 }>{email}</p>
-                <p className={styles.EmailUser2}>{tradeLink}</p> 
+                <p className={ styles.EmailUser }>{email}</p>
+                <p className={styles.tradLink}>{tradeLink}</p> 
             </div>
             <div className={styles.management}>
                 {/* Adicionar ou remover usuário da rifa, conforme contexto */}
