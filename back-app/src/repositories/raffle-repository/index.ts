@@ -337,12 +337,13 @@ async function findParticipantByRaffleAndNumber(raffleId: number, number: number
     },
   });
 }
-async function updateParticipantReservation(participantId: number, isReserved: boolean, reservedUntil: Date | null) {
+async function updateParticipantReservation(participantId: number, isReserved: boolean, reservedUntil: Date | null, isPaid:boolean) {
   return await prisma.participant.update({
     where: { id: participantId },
     data: {
       is_reserved: isReserved,
       reserved_until: reservedUntil,
+      is_paid: isPaid,
     },
   });
 }

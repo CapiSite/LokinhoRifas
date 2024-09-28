@@ -25,7 +25,7 @@ async function reserveRaffleNumber(userId: number, raffleId: number, number: num
       // Checa se a reserva expirou
       if (isAfter(new Date(), participant.reserved_until)) {
         // Se expirou, liberar o número para reserva novamente
-        await raffleRepository.updateParticipantReservation(participant.id, false, null);
+        await raffleRepository.updateParticipantReservation(participant.id, false, null, false);
       } else {
         throw new Error('Número já reservado.');
       }
@@ -127,7 +127,7 @@ async function buyRaffleService(userId: number, raffleArray: Array<{ id: number;
 
       if (participant && participant.is_reserved && isAfter(new Date(), participant.reserved_until)) {
         // Limpa reserva se tiver expirado
-        await raffleRepository.updateParticipantReservation(participant.id, false, null);
+        await raffleRepository.updateParticipantReservation(participant.id, false, null, true);
       }
 
       if (participant && !participant.is_reserved) {
@@ -200,7 +200,7 @@ async function cancelRaffleNumberReservation(raffleId: number, number: number) {
   }
 
   // Atualize o status do participante para remover a reserva
-  return raffleRepository.updateParticipantReservation(participant.id, false, null);
+  return raffleRepository.updateParticipantReservation(participant.id, false, null, false);
 }
 export default {
   addParticipantToRaffle,
