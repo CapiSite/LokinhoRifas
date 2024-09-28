@@ -1,310 +1,97 @@
-import { prisma } from '../../config';
-import { PrismaClient, Raffle } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
-interface CreateRaffleData {
-  name: string;
-  users_quantity: number;
-  value: number;
-  free:boolean;
-  raffleSkins: {
-    skin_id: number;
-    skinName: string;
-    skinValue: number;
-    skinType: string;
-    skinPicture: string;
-  }[];
-}
-
-const createRaffle = async (data: CreateRaffleData): Promise<Raffle> => {
-  return await prisma.raffle.create({
-    data: {
-      name: data.name,
-      users_quantity: data.users_quantity,
-      value: data.value,
-      free: data.free,
-      raffleSkins: {
-        create: data.raffleSkins, // Aqui estamos criando múltiplas instâncias da mesma skin
-      },
-    },
-  });
-};
-
-const getActiveRafflesWithDetails = async () => {
-  return await prisma.raffle.findMany({
+async function getActiveRaffleParticipants() {
+  // Primeiro, encontramos a rifa ativa com o menor ID
+  const lowestActiveRaffle = await prisma.raffle.findFirst({
     where: {
-      is_active: 'Ativa',
-    },
-    include: {
-      raffleSkins: true, // Incluir todas as skins da rifa
-      participants: {
-        select: {
-          id: true,
-          number: true, // Número do participante
-          user: {
-            select: {
-              id: true,
-              name: true,
-              picture: true,
-            },
-          },
-        },
-      },
-    },
-  });
-};
-
-const getAllRafflesWithDetails = async (page: number) => {
-  return await prisma.raffle.findMany({
-    include: {
-      raffleSkins: true,
-      participants: {
-        select: {
-          number: true,
-          user: {
-            select: {
-              id: true,
-              name: true,
-              picture: true,
-            },
-          },
-        },
-      },
-    },
-    skip: (page - 1) * 10,
-    take: 10,
-    orderBy: {
-      id: 'desc',
-    },
-  });
-};
-
-const postActiveRaffles = async (id: number) => {
-  // Primeiro, buscamos a rifa para verificar seu estado atual
-  const raffle = await prisma.raffle.findUnique({
-    where: { id },
-  });
-
-  // Verificamos se a rifa está no estado "Em espera"
-  if (!raffle || raffle.is_active !== 'Em espera') {
-    throw new Error("A rifa não pode ser ativada porque não está no estado 'Em espera'.");
-  }
-
-  // Se estiver "Em espera", podemos prosseguir e ativá-la
-  return await prisma.raffle.update({
-    where: { id },
-    data: { is_active: 'Ativa' },
-  });
-};
-
-const deleteRaffle = async (id: number) => {
-  // Primeiro, buscamos a rifa para verificar seu estado atual
-  const raffle = await prisma.raffle.findUnique({
-    where: { id },
-  });
-
-  // Verificamos se a rifa está no estado "Em espera"
-  if (!raffle || raffle.is_active !== 'Em espera') {
-    throw new Error("A rifa não pode ser ativada porque não está no estado 'Em espera'.");
-  }
-
-  // Se estiver "Em espera", podemos prosseguir e ativá-la
-  await prisma.raffleSkin.deleteMany({
-    where: {
-      raffle_id: id,
-    },
-  });
-
-  await prisma.participant.deleteMany({
-    where: {
-      raffle_id: id,
-    },
-  });
-
-  return await prisma.raffle.delete({
-    where: { id },
-  });
-};
-
-async function calculateTotalCost(raffles: { id: number; quantity: number }[], prismaInstance: PrismaClient = prisma) {
-  let totalCost = 0;
-  for (const raffle of raffles) {
-    const raffleData = await prismaInstance.raffle.findUnique({
-      where: { id: raffle.id },
-    });
-    if (raffleData) {
-      totalCost += raffleData.value * raffle.quantity;
-    }
-  }
-  return totalCost;
-}
-
-async function findById(
-  id: number,
-  transaction: PrismaClient | null = null,
-  options?: { includeParticipants?: boolean },
-) {
-  const prismaInstance = transaction || prisma;
-  return prismaInstance.raffle.findUnique({
-    where: { id },
-    include: {
-      participants: options?.includeParticipants ?? false,
-    },
-  });
-}
-
-async function createParticipant(
-  userId: number,
-  raffleId: number,
-  quantity: number,
-  prismaInstance: PrismaClient = prisma,
-) {
-  if (quantity <= 0) {
-    throw new Error('Quantity must be greater than 0');
-  }
-
-  // Buscar os números já ocupados na rifa, ordenados em ordem crescente
-  const existingParticipants = await prismaInstance.participant.findMany({
-    where: {
-      raffle_id: raffleId,
+      is_active: "Ativa"
     },
     orderBy: {
-      number: 'asc',
-    },
-    select: {
-      number: true,
-    },
-  });
-
-  // Cria um array para armazenar os números disponíveis
-  const availableNumbers = [];
-  let currentNumber = 1;
-  let existingIndex = 0;
-
-  // Identifica os próximos números disponíveis
-  while (availableNumbers.length < quantity) {
-    // Se o número atual não estiver ocupado, adicione-o à lista de disponíveis
-    if (existingIndex >= existingParticipants.length || existingParticipants[existingIndex].number > currentNumber) {
-      availableNumbers.push(currentNumber);
-    } else {
-      existingIndex++;
+      id: 'asc' // Ordena por ID em ordem ascendente
     }
-    currentNumber++;
-  }
-
-  // Cria os participantes com os números disponíveis
-  const participantsData = availableNumbers.map((number) => ({
-    user_id: userId,
-    raffle_id: raffleId,
-    number,
-  }));
-
-  return prismaInstance.participant.createMany({
-    data: participantsData,
   });
-}
 
-async function findParticipantByRaffleAndUser(raffleId: number, number: number) {
-  return prisma.participant.findFirst({
-    where: {
-      raffle_id: raffleId,
-      number: number,
-    },
-  });
-}
-
-async function addParticipantToRaffle(raffleId: number, userId: number, number: number) {
-  return prisma.participant.create({
-    data: {
-      raffle_id: raffleId,
-      user_id: userId,
-      number: number,  // Número atribuído ao participante
-    },
-  });
-}
-
-async function removeParticipantFromRaffle(participantId: number) {
-  return prisma.participant.delete({
-    where: {
-      id: participantId,
-    },
-  });
-}
-
-async function purchaseRaffleNumbers(
-  userId: number,
-  raffleId: number,
-  quantity: number,
-  prismaInstance: PrismaClient = prisma,
-) {
-  // @ts-ignore
-  return await prismaInstance.$transaction(async (transaction) => {
-    const raffleData = await transaction.raffle.findUnique({
-      where: { id: raffleId },
+  // Verifica se há uma rifa ativa
+  if (lowestActiveRaffle) {
+    // Busca os participantes dessa rifa específica
+    const participants = await prisma.participant.findMany({
+      where: {
+        raffle_id: lowestActiveRaffle.id // Usamos o ID da rifa encontrada
+      },
       include: {
-        participants: true,
-      },
+        user: true, // Incluímos detalhes do usuário
+        raffle: true // Incluímos detalhes da rifa
+      }
     });
 
-    if (!raffleData) throw new Error(`Raffle with ID ${raffleId} not found`);
-
-    const availableNumbers = raffleData.users_quantity - raffleData.participants.length;
-    if (availableNumbers < quantity) {
-      throw new Error('Not enough available raffle numbers');
-    }
-
-    const costPerNumber = raffleData.value / raffleData.users_quantity;
-    const totalCost = costPerNumber * quantity;
-
-    // Criar os participantes
-    const participantsData = Array.from({ length: quantity }, (_, i) => ({
-      user_id: userId,
-      raffle_id: raffleId,
-      number: raffleData.participants.length + i + 1,
+    // Tratamos os dados para retornar apenas o necessário
+    return participants.map(participant => ({
+      id: participant.user.id,
+      name: participant.user.name,
+      number: participant.number,
+      picture: participant.user.picture
     }));
-
-    await transaction.participant.createMany({
-      data: participantsData,
-    });
-
-    // Decrementar saldo do usuário
-    await transaction.user.update({
-      where: { id: userId },
-      data: {
-        saldo: {
-          decrement: totalCost,
-        },
-      },
-    });
-
-    // Criar a transação
-    await transaction.transaction.create({
-      data: {
-        user: { connect: { id: userId } },
-        raffle: { connect: { id: raffleId } },
-        transactionAmount: totalCost,
-        type: 'debit',
-        status: 'completed',
-        paymentMethod: 'balance',
-      },
-    });
-
-    return {
-      purchasedQuantity: quantity,
-      totalCost,
-    };
-  });
+  } else {
+    // Retorna uma mensagem específica se não houver rifas ativas
+    return ["Sem Rifa Ativa no momento!"];
+  }
 }
+
+async function getParticipantsByRaffleId(id: number, page: number, pageSize: number = 20) {
+  const participants = await prisma.participant.findMany({
+      where: {
+          raffle_id: id
+      },
+      include: {
+          user: true,
+          raffle: true
+      },
+      skip: (page - 1) * pageSize, // Pular registros baseados na página atual
+      take: pageSize              // Quantidade de registros a serem retornados
+  });
+
+  return participants.map(participant => ({
+      id: participant.user.id,
+      name: participant.user.name,
+      number: participant.number,
+      picture: participant.user.picture,
+      tradeLink: participant.user.tradeLink,
+      email: participant.user.email
+  }));
+}
+
+async function getParticipantsByRaffleName(id:number, name: string, page: number, pageSize: number = 20) {
+  const participants = await prisma.participant.findMany({
+    where: {
+        raffle_id:id,
+        user: {
+            name: {
+                contains: name,
+                mode: 'insensitive' // Ignora maiúsculas e minúsculas
+            }
+        }
+    },
+    include: {
+        user: true,
+        raffle: true
+    },
+    skip: (page - 1) * pageSize, // Pular registros baseados na página atual
+    take: pageSize              // Quantidade de registros a serem retornados
+});
+
+  return participants.map(participant => ({
+      id: participant.user.id,
+      name: participant.user.name,
+      number: participant.number,
+      picture: participant.user.picture,
+      tradeLink: participant.user.tradeLink,
+      email: participant.user.email
+  }));
+}
+
 export default {
-  findParticipantByRaffleAndUser,
-  addParticipantToRaffle,
-  removeParticipantFromRaffle,
-  createRaffle,
-  purchaseRaffleNumbers,
-  getActiveRafflesWithDetails,
-  postActiveRaffles,
-  getAllRafflesWithDetails,
-  calculateTotalCost,
-  createParticipant,
-  deleteRaffle,
-  findById,
+  getActiveRaffleParticipants,
+  getParticipantsByRaffleId,
+  getParticipantsByRaffleName
 };
