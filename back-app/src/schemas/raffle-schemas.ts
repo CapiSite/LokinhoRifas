@@ -3,7 +3,7 @@ import Joi from 'joi';
 
 interface RafflePurchaseParams {
     id: number;
-    numbers: number[];
+    quantity: number;
 }
 
 
@@ -32,22 +32,23 @@ export const raffleSchema = Joi.object<RaffleParams>({
 
 export const buyRaffleSchema = Joi.object({
     raffle: Joi.array().items(
-      Joi.object<RafflePurchaseParams>({
-        id: Joi.number().required().messages({
-          'number.base': 'O id da rifa deve ser um número inteiro',
-          'any.required': 'O id da rifa é obrigatório',
-        }),
-        numbers: Joi.array().items(Joi.number().required()).min(1).required().messages({
-          'array.base': 'Os números devem ser fornecidos como um array',
-          'array.min': 'Ao menos um número deve ser fornecido',
-          'any.required': 'Os números são obrigatórios',
-        }),
-      })
+        Joi.object<RafflePurchaseParams>({
+            id: Joi.number().required().messages({
+                'number.base': 'O id da rifa deve ser um número inteiro',
+                'any.required': 'O id da rifa é obrigatório'
+            }),
+            quantity: Joi.number().integer().min(1).required().messages({
+                'number.base': 'A quantidade de números deve ser um número inteiro',
+                'number.min': 'A quantidade de números deve ser maior que zero',
+                'any.required': 'A quantidade de números é obrigatória'
+            }),
+        })
     ).required().messages({
-      'array.base': 'As rifas devem ser fornecidas como um array',
-      'array.required': 'As rifas são obrigatórias',
-    }),
-  });
+        'array.base': 'As rifas devem ser fornecidas como um array',
+        'array.required': 'As rifas são obrigatórias'
+    })
+});
+
 export const addParticipantSchema = Joi.object({
     raffleId: Joi.number().required(),
     userId: Joi.number().required(),
