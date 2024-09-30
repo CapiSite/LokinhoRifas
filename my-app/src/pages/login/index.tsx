@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import style from "./login.module.css";
@@ -173,7 +173,7 @@ const Login = () => {
                       value={formDataValue.email}
                       onChange={(e) =>
                         setFormDataValue((oldValue) => {
-                          return { ...oldValue, email: e.target.value };
+                          return { ...oldValue, email: (e.target.value).toString().toLowerCase() };
                         })
                       }
                       onKeyDown={(e) => keyDownHandler(e.key)}

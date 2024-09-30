@@ -16,123 +16,7 @@ export const useLastEarnedState = () => {
 };
 
 export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }) => {
-  //! ATENÇÃO TODAS AS IMAGENS DAS ARMAS DEVEM ESTAR NA SEGUINTE RESOLUÇÃO: 165x135!
-  const items: LastEarnedPrizeType[] = [
-    {
-      itemImageUrl: "",
-      TimeOfEarning: "21 horas",
-      unformattedTime: "21 horas",
-      raffleName: "unamed raffle",
-      ChanceOfEarning: "25%",
-      PoolType: "Silver",
-      ItemName: "Nome da Skin",
-      ItemType: "Tipo da Skin",
-      ItemValue: "1,000",
-      WinnerID: 1,
-      WinnerName: "Alison Sousa",
-      WinnerPicture: "",
-    },
-    {
-      itemImageUrl: "",
-      TimeOfEarning: "21 horas",
-      unformattedTime: "21 horas",
-      raffleName: "unamed raffle",
-      ChanceOfEarning: "25%",
-      PoolType: "Silver",
-      ItemName: "Nome da Skin",
-      ItemType: "Tipo da Skin",
-      ItemValue: "1,000",
-      WinnerID: 1,
-      WinnerName: "Alison Sousa",
-      WinnerPicture: "",
-    },
-    {
-      itemImageUrl: "",
-      TimeOfEarning: "21 horas",
-      unformattedTime: "21 horas",
-      raffleName: "unamed raffle",
-      ChanceOfEarning: "25%",
-      PoolType: "Silver",
-      ItemName: "Nome da Skin",
-      ItemType: "Tipo da Skin",
-      ItemValue: "1,000",
-      WinnerID: 1,
-      WinnerName: "Alison Sousa",
-      WinnerPicture: "",
-    },
-    {
-      itemImageUrl: "",
-      TimeOfEarning: "21 horas",
-      unformattedTime: "21 horas",
-      raffleName: "unamed raffle",
-      ChanceOfEarning: "25%",
-      PoolType: "Silver",
-      ItemName: "Nome da Skin",
-      ItemType: "Tipo da Skin",
-      ItemValue: "1,000",
-      WinnerID: 1,
-      WinnerName: "Alison Sousa",
-      WinnerPicture: "",
-    },
-    {
-      itemImageUrl: "",
-      TimeOfEarning: "21 horas",
-      unformattedTime: "21 horas",
-      raffleName: "unamed raffle",
-      ChanceOfEarning: "25%",
-      PoolType: "Silver",
-      ItemName: "Nome da Skin",
-      ItemType: "Tipo da Skin",
-      ItemValue: "1,000",
-      WinnerID: 1,
-      WinnerName: "Alison Sousa",
-      WinnerPicture: "",
-    },
-    {
-      itemImageUrl: "",
-      TimeOfEarning: "21 horas",
-      unformattedTime: "21 horas",
-      raffleName: "unamed raffle",
-      ChanceOfEarning: "25%",
-      PoolType: "Silver",
-      ItemName: "Nome da Skin",
-      ItemType: "Tipo da Skin",
-      ItemValue: "1,000",
-      WinnerID: 1,
-      WinnerName: "Alison Sousa",
-      WinnerPicture: "",
-    },
-    {
-      itemImageUrl: "",
-      TimeOfEarning: "21 horas",
-      unformattedTime: "21 horas",
-      raffleName: "unamed raffle",
-      ChanceOfEarning: "25%",
-      PoolType: "Silver",
-      ItemName: "Nome da Skin",
-      ItemType: "Tipo da Skin",
-      ItemValue: "1,000",
-      WinnerID: 1,
-      WinnerName: "Alison Sousa",
-      WinnerPicture: "",
-    },
-    {
-      itemImageUrl: "",
-      TimeOfEarning: "21 horas",
-      unformattedTime: "21 horas",
-      raffleName: "unamed raffle",
-      ChanceOfEarning: "25%",
-      PoolType: "Silver",
-      ItemName: "Nome da Skin",
-      ItemType: "Tipo da Skin",
-      ItemValue: "1,000",
-      WinnerID: 1,
-      WinnerName: "Alison Sousa",
-      WinnerPicture: "",
-    },
-  ];
-
-  const [lastEarnedList, setLastEarnedList] = useState<LastEarnedPrizeType[]>(items);
+  const [lastEarnedList, setLastEarnedList] = useState<LastEarnedPrizeType[]>([]);
 
   const [ playerRank, setPlayerRank ] = useState<playerRank[]>([])
 
@@ -167,7 +51,7 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
 
       if (earnedDateHours < 1)
         time = `Alguns minutos atrás`;
-      else if (earnedDateDays < 24) 
+      else if (earnedDateHours < 24) 
         time = `${earnedDateHours} hora${earnedDateHours == 1 ? "" : "s"}`;
       else if (earnedDateDays)
         time = `${earnedDateDays} dia${earnedDateDays == 1 ? "" : "s"}`;

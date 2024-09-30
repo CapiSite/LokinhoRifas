@@ -237,8 +237,9 @@
 .Reward {
   display: flex;
 
-  width: 257px;
-  height: 150px;
+  /* width: 257px; */
+  width: 342px;
+  height: 200px;
 
   position: relative;
 }
@@ -325,7 +326,7 @@
 .Reward .RewardContent {
   display: grid;
 
-  grid-template-columns: 103px 122px;
+  grid-template-columns: 133px 122px;
 
   width: 100%;
 
@@ -343,8 +344,8 @@
 .Reward .RewardContent img {
   font-size: 12px;
 
-  width: 103px;
-  height: 73px;
+  width: 133px;
+  height: 103px;
 }
 
 .Reward .RewardContent h2 {
@@ -536,7 +537,10 @@
   align-items: center;
 
   width: 136px;
+  max-width: 136px;
+  
   height: 136px;
+  max-height: 136px;
 
   border-radius: 50%;
   
@@ -554,7 +558,9 @@
 
 .Roulette .ProfilePicture img {
   width: 100%;
-  height: auto;
+  height: 100%;
+
+  object-fit: cover;
 }
 
 .Roulette .ProfileInfo {
@@ -774,13 +780,13 @@
   justify-content: center;
   align-items: center;
 
-  width: fit-content;
-  height: fit-content;
+  width: 50px;
+  height: 50px;
 
   background-color: white;
+
   outline: 2px solid black;
 
-  padding: 2px;
   border-radius: 50%;
 
   overflow: hidden;
@@ -790,6 +796,11 @@
 
 .UserSkinImageBox img {
   border-radius: 50%;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
 }
 
 .WinnerPopup .SkinImageBox {
@@ -813,7 +824,7 @@
   translate: 0 -1100px;
   rotate: -45deg;
 
-  animation: 800ms ease-out 800ms 1 forwards spinIntoView;
+  animation: 800ms ease-out 5.8s 1 forwards spinIntoView;
 
   z-index: 2;
 }
@@ -821,9 +832,12 @@
 .WinnerPopup .SkinImageBox img:last-of-type {
   position: absolute;
 
+  width: 400%;
+  height: auto;
+
   opacity: 0;
   
-  animation: 800ms ease-out 1400ms 1 forwards fadeInWoBlur, 8s linear 1400ms infinite forwards slowPersistentRotation;
+  animation: 800ms ease-out 6.4s 1 forwards fadeInWoBlur, 8s linear 6.4s infinite forwards slowPersistentRotation;
 
   z-index: 1;
 }
@@ -1332,7 +1346,7 @@
 
   padding: 25px 20px 0;
 
-  font-size: 8px;
+  font-size: 10px;
 
   width: 100%;
 
@@ -1477,7 +1491,7 @@
     justify-content: center;
     align-items: center;
 
-    width: 257px;
+    width: 342px;
     height: fit-content;
 
     border-radius: 0 0 20px 20px;

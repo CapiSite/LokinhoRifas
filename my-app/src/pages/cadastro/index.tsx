@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import cn from "classnames";
 
 import axios from "axios";
@@ -290,7 +290,7 @@ const SignUp = () => {
                             setFormDataValue((oldValue) => {
                               return {
                                 ...oldValue,
-                                email: String(e.target.value),
+                                email: String(e.target.value).toLowerCase(),
                               };
                             })
                           }

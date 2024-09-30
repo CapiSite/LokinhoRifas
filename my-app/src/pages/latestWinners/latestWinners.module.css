@@ -157,6 +157,11 @@
 }
 
 .latestWinners .podium > div > img {
+  width: 90px;
+  height: 90px;
+
+  object-fit: cover;
+
   border-radius: 50%;
 }
 
@@ -410,7 +415,7 @@
 
   .latestWinners .podium > div > img {
     width: min(100px, 100%);
-    height: auto;
+    height: min(100px, 100%);
 
     padding-inline: 10px;
   }

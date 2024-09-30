@@ -62,7 +62,7 @@ const HeaderProfileMobile = () => {
       <div className="ProfileWrapper">
         <div className="ProfileContent" onClick={() => toggleOnDropdownVisibility()}>
           <div className="ProfilePicture">
-            <Image width={40} height={40} src={image ? URL.createObjectURL(image) : profile.picture} alt="Imagem de perfil"/>
+            <Image width={160} height={160} src={image ? URL.createObjectURL(image) : profile.picture} alt="Imagem de perfil"/>
           </div>
           <div className="ProfileText">
             <h2>{profile.name}</h2>

@@ -91,7 +91,6 @@ export default function Admin() {
   }, [userInfo.isAdmin]);
 
   const loadSkins = () => {
-    console.log('here')
     axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/skin")
       .then((res) => {
         setSkinteste(res.data);

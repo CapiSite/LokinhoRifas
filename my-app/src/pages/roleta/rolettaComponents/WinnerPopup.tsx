@@ -33,8 +33,13 @@ const RoletaWinner = () => {
     const debounce = setTimeout(() => {
       if(!rewards) return
       if(rewards.length === 0) return
+      
       if(!(rewards[0].itemImageUrl.includes('default'))) {
         setImgSrc(rewards[0].itemImageUrl)
+      }
+      else {
+        if(imgSrc == defaultGunPic) return
+        setImgSrc(defaultGunPic)
       }
     }, 800);
 
@@ -46,10 +51,15 @@ const RoletaWinner = () => {
   useEffect(() => {
     const debounce = setTimeout(() => {
       if(!winnerProperties) return
+      
       if(winnerProperties.user.picture.includes('https://static-cdn.jtvnw.net')) {
         setUserImgSrc(winnerProperties.user.picture)
       } else if(!(winnerProperties.user.picture.includes('default'))) {
         setUserImgSrc(winnerProperties.user.picture)
+      } else {
+        if(userImgSrc == defaultUserPic) return
+
+        setUserImgSrc(defaultUserPic)
       }
     }, 800);
 
@@ -75,7 +85,7 @@ const RoletaWinner = () => {
               setImgSrc(defaultGunPic);
             }}
           />}
-          <Image height={50} width={50} src={shine} alt="Brilho de fundo" />
+          <Image height={775} width={637} src={shine} alt="Brilho de fundo" />
         </div>
         <h2>Parabéns!</h2>
         <div className={style.UserSkinImageBox}>

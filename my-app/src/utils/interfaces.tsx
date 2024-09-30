@@ -87,6 +87,8 @@ export type CardItemType = {
   nickName: string;
   isWinner: boolean;
   number: number;
+  index?: number;
+  distanceFromCenter?: number;
 };
 
 // export type RaffleParticipant = {

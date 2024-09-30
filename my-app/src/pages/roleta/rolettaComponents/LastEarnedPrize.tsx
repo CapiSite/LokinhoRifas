@@ -97,7 +97,7 @@ const LastEarnedPrizes = ({
             <p>{ItemType}</p>
           </div>
           <div className={style.ItemValue}>
-            <h3>R$ {ItemValue}.00</h3>
+            <h3>R$ {Number(ItemValue).toFixed(2)}</h3>
           </div>
         </div>
       </div>

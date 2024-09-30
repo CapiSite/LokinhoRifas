@@ -2,13 +2,29 @@ import style from '../roletta.module.css';
 import RouletteArray from './RouletteArray';
 import Image from 'next/image';
 import triangle from '../../../assets/pintriangle.svg';
-import { RouletteContext } from 'utils/interfaces';
+import { Raffle, RouletteContext } from 'utils/interfaces';
 import { useRouletteContext } from 'contexts/RouletteContext';
 import EmptyRoulette from './EmptyRoulette';
 import cn from 'classnames'
+import { useEffect, useState } from 'react';
 
 const Roulette = () => {
-  const { availableRaffles = [], selectRaffle, participants = [], isButtonActive } = useRouletteContext() as RouletteContext
+  const { availableRaffles = [], selectRaffle, participants = [], isButtonActive, raffle } = useRouletteContext() as RouletteContext
+  
+  const [ raffleList, setRaffleList ] = useState<Raffle[]>([])
+
+  
+  useEffect(() => {
+      const debounce = setTimeout(() => {
+      const tempRaffleList = availableRaffles.filter(raffleItem => raffleItem.id != raffle.id)
+    
+      tempRaffleList.unshift(raffle)
+  
+      setRaffleList(tempRaffleList)
+    }, 200);
+
+    return () => clearTimeout(debounce)
+  }, [raffle.id])
 
   return (
     <div className={style.Roulette}>
@@ -20,7 +36,7 @@ const Roulette = () => {
       </div>
 
       {availableRaffles.length > 0 && <select name='raffleSelectorRoulette' disabled={!isButtonActive} className={cn(style.raffleSelector, style.desktop)} onChange={(e) => selectRaffle(Number(e.target.value))}>
-        {availableRaffles.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
+        {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
       </select>}
       
       <div className={style.background}>

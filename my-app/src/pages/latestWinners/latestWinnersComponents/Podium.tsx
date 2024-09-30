@@ -19,21 +19,21 @@ const Podium = ({ props }: { props: {openTab: string, setOpenTab: React.Dispatch
     <div className={cn(style.col2, style.top)}>
       <h2>Top jogadores do rank</h2>
       <div className={style.podium}>
-        {playerRank.length > 2 && <div className={style.silverMedal}>
+        {playerRank.length > 1 && <div className={style.silverMedal}>
           {playerRank[1].profilePicture && <Image width={90} height={90} src={playerRank[1].profilePicture.includes('default') ? defaultProfilePic : playerRank[1].profilePicture} alt='Imagem de perfil' />}
           <div className={style.podiumBlock}>
             <h3>{playerRank[1].name}</h3>
             <p>{playerRank[1].winCount}</p>
           </div>
         </div>}
-        {playerRank.length > 1 && <div className={style.goldMedal}>
+        {playerRank.length > 0 && <div className={style.goldMedal}>
           {playerRank[0].profilePicture && <Image width={90} height={90} src={playerRank[0].profilePicture.includes('default') ? defaultProfilePic : playerRank[0].profilePicture} alt='Imagem de perfil' />}
           <div className={style.podiumBlock}>
             <h3>{playerRank[0].name}</h3>
             <p>{playerRank[0].winCount}</p>
           </div>
         </div>}
-        {playerRank.length > 3 && <div className={style.bronzeMedal}>
+        {playerRank.length > 2 && <div className={style.bronzeMedal}>
           {playerRank[2].profilePicture && <Image width={90} height={90} src={playerRank[2].profilePicture.includes('default') ? defaultProfilePic : playerRank[2].profilePicture} alt='Imagem de perfil' />}
           <div className={style.podiumBlock}>
             <h3>{playerRank[2].name}</h3>
