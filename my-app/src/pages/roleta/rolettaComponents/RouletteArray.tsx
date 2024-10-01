@@ -40,7 +40,7 @@ const RouletteArray = () => {
     }, 200);
 
     return () => clearTimeout(debounce)
-  }, [winners.length, rouletteLoadingState, winnerProperties.distanceFromCenter]);
+  }, [winners.length, rouletteLoadingState, winnerProperties?.distanceFromCenter]);
 
   return (
     <div className={style.RouletteArray} id="Roulette">
@@ -63,7 +63,7 @@ const RouletteArray = () => {
             personName: item.user.name,
             isWinner: item.isWinner ? item.isWinner : false,
             number: item.number,
-            distanceFromCenter: item.distanceFromCenter,
+            distanceFromCenter: item?.distanceFromCenter,
             index,
           }} />
         ))}

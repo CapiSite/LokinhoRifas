@@ -15,16 +15,17 @@ const Roulette = () => {
 
   
   useEffect(() => {
-      const debounce = setTimeout(() => {
-      const tempRaffleList = availableRaffles.filter(raffleItem => raffleItem.id != raffle.id)
-    
-      tempRaffleList.unshift(raffle)
+    const debounce = setTimeout(() => {
+      if (!raffle) return; // Adicionando uma verificação para garantir que `raffle` não seja indefinido.
+      const tempRaffleList = availableRaffles.filter(raffleItem => raffleItem.id != (raffle?.id || 0));
   
-      setRaffleList(tempRaffleList)
+      tempRaffleList.unshift(raffle);
+  
+      setRaffleList(tempRaffleList);
     }, 200);
-
-    return () => clearTimeout(debounce)
-  }, [raffle.id])
+ 
+    return () => clearTimeout(debounce);
+ }, [raffle?.id, availableRaffles]); // Verificando se `raffle.id` existe
 
   return (
     <div className={style.Roulette}>

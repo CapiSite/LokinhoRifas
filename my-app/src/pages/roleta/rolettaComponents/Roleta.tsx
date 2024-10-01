@@ -55,23 +55,24 @@ const Hero = () => {
   }, [])
 
   useEffect(() => {
-    if(!raffle) return
-    setRaffleList([])
-
-    const debounce = setTimeout(() => {
-      const tempRaffleList = availableRaffles.filter(raffleItem => raffleItem.id != raffle.id)
-    
-      tempRaffleList.unshift(raffle)
+    if (!raffle) return; // Adicionando verificação para garantir que `raffle` não seja indefinido.
+    setRaffleList([]);
   
-      setRaffleList(tempRaffleList)
+    const debounce = setTimeout(() => {
+      const tempRaffleList = availableRaffles.filter(raffleItem => raffleItem.id !== (raffle?.id || 0));
+   
+      tempRaffleList.unshift(raffle);
+  
+      setRaffleList(tempRaffleList);
     }, 200);
+  
+    return () => clearTimeout(debounce);
+  }, [raffle?.id, availableRaffles]); // Usando o operador opcional `?.`
+  
 
-    return () => clearTimeout(debounce)
-  }, [raffle.id])
+  const winnerIsCorrected = winners.filter(winner => winner.number === winnerProperties?.number).length !== 0;
 
-  const winnerIsCorrected = winners.filter(winner => winner.number == winnerProperties.number).length != 0
-
-  console.log(!isButtonActive, !winnerIsCorrected, (!winnerProperties.distanceFromCenter && participants.length < 100), ' (', !winnerProperties.distanceFromCenter, participants.length < 100, ') ', participants.length === 0, rewards.length === 0)
+  console.log(!isButtonActive, !winnerIsCorrected, (!winnerProperties?.distanceFromCenter && participants.length < 100), ' (', !winnerProperties?.distanceFromCenter, participants.length < 100, ') ', participants.length === 0, rewards.length === 0)
 
   return (
     <section className={style.Roleta}>
@@ -86,12 +87,12 @@ const Hero = () => {
         }
 
         <div className={style.ButtonGroup}>
-          <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties.distanceFromCenter && participants.length < 100) || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
+          <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
           {availableRaffles.length > 0 && 
           <select disabled={!isButtonActive} name='raffleSelector' className={cn(style.raffleSelector, style.mobile, (windowParams.width < 550 || participants.length >= 100) ? style.Visible : '')} onChange={(e) => selectRaffle(Number(e.target.value))}>
             {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
           </select>}
-          <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties.distanceFromCenter && participants.length < 100) || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
+          <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
         </div>
       </div>
 
