@@ -68,7 +68,10 @@ export default function PopUpUpdateSkins({ setPopUpSkins, name, type, picture, i
         { name: "UMP-45" },
         { name: "USP-S" },
         { name: "XM1014" },
-        { name: "Zeus x27" }
+        { name: "Zeus x27" },
+        { name: "Broche" },
+        { name: "Agente" },
+        { name: "Adesivo" }
       ]);
     const [error, setError] = useState('');
 
