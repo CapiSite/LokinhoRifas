@@ -3504,3 +3504,8 @@ footer nav div {
 .scrollOff {
   overflow: hidden;
 }
+
+
+.currentQuantity{
+  font-size: 1rem !important;
+}

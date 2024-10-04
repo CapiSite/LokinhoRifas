@@ -275,6 +275,7 @@ export type raffleItem = {
   id: number;
   skins: string[];
   name: string;
+  users_quantity:number;
   value: number;
   quantity: number;
   maxQuantity: number;

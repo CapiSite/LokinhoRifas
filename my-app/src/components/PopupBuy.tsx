@@ -48,6 +48,7 @@ const PopupBuy = ({
   };
 
   useEffect(() => {
+    console.log(purchasableRaffles)
     setSelectedItems(purchasableRaffles.filter(raffle => raffle.isSelected))
   }, [step])
 

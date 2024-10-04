@@ -619,6 +619,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
         skins,
         name,
         value: value / users_quantity,
+        users_quantity,
         quantity: 1,
         maxQuantity: users_quantity - participants.length,
         isSelected: false,
