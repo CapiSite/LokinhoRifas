@@ -80,9 +80,6 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   const toggleIsButtonActive = () => setIsButtonActive((oldValue) => !oldValue);
   const toggleWinnerPopupVisibility = () => setWinnerPopupVisible((oldValue) => !oldValue);
 
-  const shuffleParticipants = (participants: RaffleParticipant[]): RaffleParticipant[] => {
-    return participants.sort(() => Math.random() - 0.5);
-  };
 
   const debuggingFormatDate = () => {
     const date = new Date(Date.now());
@@ -107,7 +104,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       }
     }
 
-    const tempShuffledArray: RaffleParticipant[] = shuffleParticipants(tempArray)
+    const tempShuffledArray: RaffleParticipant[] = tempArray
 
     tempShuffledArray.splice(300 - Math.round(newParticipantsArray.length / 2), 10000)
 
@@ -463,9 +460,9 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       user: possibleWinners[random].user
     }
 
-    setWinners(shuffleParticipants(possibleWinners));
+    setWinners(possibleWinners);
 
-    loadFillerCards(shuffleParticipants(possibleWinners))
+    loadFillerCards(possibleWinners)
 
     setWinnerProperties(possibleWinners[random]);
   };
@@ -489,7 +486,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       user: possibleWinners[random].user
     }
 
-    setWinners(shuffleParticipants(possibleWinners));
+    setWinners(possibleWinners);
 
     setWinnerProperties(possibleWinners[random]);
   };
