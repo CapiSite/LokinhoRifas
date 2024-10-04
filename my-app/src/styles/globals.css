@@ -1324,6 +1324,10 @@ footer nav div {
   text-decoration: underline;
 }
 
+.Credits p {
+  text-align: center;
+}
+
 .PopupBuy {
   display: flex;
 
