@@ -1316,8 +1316,11 @@ footer nav div {
 }
 
 .Credits a {
-  color: aqua;
+  color: white;
+  text-decoration: none;
+}
 
+.Credits a:hover {
   text-decoration: underline;
 }
 
