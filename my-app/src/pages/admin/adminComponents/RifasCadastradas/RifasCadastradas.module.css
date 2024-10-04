@@ -16,6 +16,50 @@
 card da rifa                                                                            #
 #########################################################################################
 */
+/* Estilos para o container das rifas */
+/* Estilos para o container das rifas */
+.ContainerRifasCadastradas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px; /* Para dar espaço para os botões de paginação */
+    padding-bottom: 20px; /* Ajuste de padding para melhor espaçamento */
+    height: auto; /* Permite que o container tenha altura dinâmica */
+}
+
+/* Estilos para os botões de paginação */
+.PaginationButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px; /* Espaçamento entre os botões */
+    width: 100%; /* Ocupa 100% da largura abaixo das rifas */
+}
+
+.PaginationButtons button {
+    background-color: #b71c1c; /* Cor de fundo vermelho escuro */
+    color: #fff; /* Cor do texto branca */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    min-width: 100px; /* Define uma largura mínima para os botões */
+}
+
+.PaginationButtons button:disabled {
+    background-color: #555; /* Cor de fundo quando desabilitado */
+    cursor: not-allowed;
+}
+
+.PaginationButtons button:hover:not(:disabled) {
+    background-color: #d32f2f; /* Cor de fundo ao passar o mouse */
+}
+
 
 .ContainerCardRifa{
     width: 180px;
