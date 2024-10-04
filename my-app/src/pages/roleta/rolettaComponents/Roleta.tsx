@@ -97,7 +97,7 @@ const Hero = () => {
       </div>
 
       <div className={style.background}>
-        <Image height={1004} width={2304} priority={false} src={HEROBACK} alt='Imagem de fundo'/>
+        <Image priority={false} src={HEROBACK} alt='Imagem de fundo'/>
       </div>
       <div className={style.glowGroup}>
         <div className={style.growGroupWrapper}>

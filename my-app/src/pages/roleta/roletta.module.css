@@ -32,6 +32,12 @@
 }
 
 
+.background img {
+  /* MUDAR A POSIÇÃO DA IMAGEM PARA ABAIXO DO HEADER */
+  position: relative;
+  top: -150px;
+}
+
 .Roleta .glowGroup {
   display: flex;
 
@@ -122,7 +128,8 @@
   align-items: center;
 
   width: 1335px;
-  height: 1253px;
+  height: 1000px;
+  /* Originalmente 1253px */
 
   gap: 83px;
 
