@@ -98,7 +98,7 @@ const Header = () => {
             className={sidebarView ? "LogoBox SidebarOn" : "LogoBox"}
             onClick={() => router.push("/")}
           >
-            <Image width={50} quality={100} className="Logo" src={logo} alt="Logo de Lokinho Rifas" />
+            <Image quality={100} className="Logo" src={logo} alt="Logo de Lokinho Rifas" />
           </div>
           <nav className="desktop">
             <ul>

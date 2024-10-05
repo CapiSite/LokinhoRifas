@@ -51,7 +51,7 @@ const RoletaWinner = () => {
   useEffect(() => {
     const debounce = setTimeout(() => {
       if(!winnerProperties) return
-      
+      console.log(winnerProperties.user.picture)
       if(winnerProperties.user.picture.includes('https://static-cdn.jtvnw.net')) {
         setUserImgSrc(winnerProperties.user.picture)
       } else if(!(winnerProperties.user.picture.includes('default'))) {
@@ -89,7 +89,12 @@ const RoletaWinner = () => {
         </div>
         <h2>Parabéns!</h2>
         <div className={style.UserSkinImageBox}>
-            <Image height={50} width={50} src={userImgSrc || defaultUserPic} alt="Foto de usuário"/>
+            <Image height={50} width={50} src={typeof userImgSrc === 'string' // Verifica se userImgSrc é uma string
+      ? userImgSrc.startsWith('http') // Se for string, verifica se começa com http
+        ? userImgSrc // Mantém a URL como está
+        : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${userImgSrc}` // Adiciona o caminho do backend
+      : defaultUserPic // Exibe a imagem padrão se não houver userImgSrc ou se for StaticImageData
+      } alt="Foto de usuário"/>
         </div>
         {winnerProperties && <h3 className={style.userNickname}>@{winnerProperties.user.name + '#' + winnerProperties.number}</h3>}
         {rewards[0] && <p>Ganhador da {rewards[0].itemName}</p>}

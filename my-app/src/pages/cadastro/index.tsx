@@ -125,7 +125,7 @@ const SignUp = () => {
       }
 
       else if(await checkEmail() == false) {
-        return setError("Este e-mail já está sendo usado.");
+        return setError("Este e-mail ou apelido já está sendo usado.");
       }
     }
     
@@ -133,7 +133,7 @@ const SignUp = () => {
       if (!name || !email || !password || !confirmPassword || !tradeLink || !phoneNumber) {
         return setError("Todos os campos são obrigatórios!");
       } else if ((await checkEmail()) == false) {
-        return setError("Este e-mail já está sendo usado.");
+        return setError("Este e-mail ou apelido já está sendo usado.");
       } else if (
         !/^https:\/\/steamcommunity\.com\/tradeoffer\/new\/\?partner=\d+&token=\w+$/.test(
           tradeLink
@@ -149,7 +149,7 @@ const SignUp = () => {
       if (!name || !email || !password || !confirmPassword || !tradeLink || !phoneNumber) {
         return setError("Todos os campos são obrigatórios!");
       } else if ((await checkEmail()) == false) {
-        return setError("Este e-mail já está sendo usado.");
+        return setError("Este e-mail ou apelido já está sendo usado.");
       }
       
       else if (!/^https:\/\/steamcommunity\.com\/tradeoffer\/new\/\?partner=\d+&token=\w+$/.test(tradeLink)) {

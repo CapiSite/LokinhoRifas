@@ -59,8 +59,8 @@ const RouletteItem = ({ props }: { props: CardItemType }) => {
         <div className={style.ProfilePicture}>
           <Image
             src={imgSrc}
-            width={60}
-            height={60}
+            width={500}
+            height={500}
             priority={false}
             alt={`Foto de perfil de ${personName}`}
             onError={(e) => {

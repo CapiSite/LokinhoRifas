@@ -674,7 +674,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     }, 200);
 
     return () => clearTimeout(debounce)
-  }, [raffle ? raffle.id : raffle]);
+  }, [raffle?.id]);
 
   // useEffect(() => {
   //   console.count('winnerProperties variable')
