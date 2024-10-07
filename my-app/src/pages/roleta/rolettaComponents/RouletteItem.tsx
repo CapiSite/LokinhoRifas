@@ -18,7 +18,8 @@ const RouletteItem = ({ props }: { props: CardItemType }) => {
     nickName,
     isWinner,
     number,
-    distanceFromCenter
+    distanceFromCenter,
+    debugWinners
   } = props;
 
   const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
@@ -51,7 +52,7 @@ const RouletteItem = ({ props }: { props: CardItemType }) => {
 
   return (
     <div
-      className={cn(style.PersonCard)}
+      className={cn(style.PersonCard, debugWinners ? style.winner : '')}
       id={isWinner ? `winner` : ""}
       data-number={number}
     >

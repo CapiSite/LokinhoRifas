@@ -13,16 +13,16 @@ const Twitch = () => {
 
   useEffect(() => {
     axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/text")
-  .then((res: any) => {
-    if (res.data) {
-      setTextInfo(res.data);
-    } else {
-      console.error("Nenhum dado retornado da API");
-    }
-  })
-  .catch((err: any) => {
-    console.error(err.response ? err.response.data : 'Erro ao buscar dados');
-  });
+    .then((res: any) => {
+      if (res.data) {
+        setTextInfo(res.data);
+      } else {
+        console.error("Nenhum dado retornado da API");
+      }
+    })
+    .catch((err: any) => {
+      console.error(err.response ? err.response.data : 'Erro ao buscar dados');
+    });
 
     
     const handleResize = () => {

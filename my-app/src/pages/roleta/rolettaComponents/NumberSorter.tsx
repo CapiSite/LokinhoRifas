@@ -5,7 +5,7 @@ import { Fragment, ReactNode, useEffect, useState } from 'react';
 import { BsTypeH2 } from 'react-icons/bs';
 
 const NumberSorter = () => {
-  const { participants = [], raffle, winnerProperties } = useRouletteContext() as RouletteContext
+  const { participants = [], raffle, winnerProperties, winners = [] } = useRouletteContext() as RouletteContext
 
   // window.innerWidth
   // window.innerHeight
@@ -57,8 +57,8 @@ const NumberSorter = () => {
       <div className={style.NumberSorterWrapper}>
         {winnerProperties ? 
         <>
-          <h2 className={zeroAmount > 4 ? style.scroll : ''}>{handleNumber(winnerProperties.number)}</h2>
-          <p><span className={style.mainName}>{winnerProperties.user.name}</span><span className={style.number}>#{winnerProperties.number.toString().padStart(zeroAmount, '0')}</span></p> 
+          <h2 className={zeroAmount > 4 ? style.scroll : ''}>{handleNumber(winners[winnerProperties].number)}</h2>
+          <p><span className={style.mainName}>{winners[winnerProperties].user.name}</span><span className={style.number}>#{winners[winnerProperties].number.toString().padStart(zeroAmount, '0')}</span></p> 
         </>
         : <h2>Sem participantes</h2>}
       </div>

@@ -466,7 +466,6 @@
   position: relative;
 }
 
-
 .PersonCardWrapper {
   display: flex;
 
@@ -504,6 +503,10 @@
   border-bottom: 5px solid #D1D515;
 }
 
+.Roulette .PersonCard.winner {
+  border-bottom: 5px solid white;
+}
+
 .Roulette .PersonCard::after {
   content: '';
 
@@ -533,6 +536,10 @@
 
 .Roulette .PersonCard:nth-child(5n)::after {
   background: linear-gradient(180deg, transparent, #D1D515);
+}
+
+.Roulette .PersonCard.winner::after {
+  background: linear-gradient(180deg, transparent, white);
 }
 
 .Roulette .PersonCard.filler {

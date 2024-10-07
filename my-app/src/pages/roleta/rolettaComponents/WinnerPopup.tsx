@@ -15,15 +15,8 @@ const RoletaWinner = () => {
     winnerPopupVisible,
     manageCloseResult,
     isMockWin,
-    winnerProperties = {
-      number: 0,
-      id: 0,
-      user: {
-          id: 0,
-          name: '',
-          picture: '',
-      }
-    },
+    winnerProperties,
+    winners = []
   } = useRouletteContext() as RouletteContext;
 
   const [imgSrc, setImgSrc] = useState<string | StaticImageData>();
@@ -50,12 +43,11 @@ const RoletaWinner = () => {
   
   useEffect(() => {
     const debounce = setTimeout(() => {
-      if(!winnerProperties) return
-      console.log(winnerProperties.user.picture)
-      if(winnerProperties.user.picture.includes('https://static-cdn.jtvnw.net')) {
-        setUserImgSrc(winnerProperties.user.picture)
-      } else if(!(winnerProperties.user.picture.includes('default'))) {
-        setUserImgSrc(winnerProperties.user.picture)
+      // console.log(winners[winnerProperties]?.user.picture)
+      if(winners[winnerProperties]?.user.picture.includes('https://static-cdn.jtvnw.net')) {
+        setUserImgSrc(winners[winnerProperties]?.user.picture)
+      } else if(!(winners[winnerProperties]?.user.picture.includes('default'))) {
+        setUserImgSrc(winners[winnerProperties]?.user.picture)
       } else {
         if(userImgSrc == defaultUserPic) return
 
@@ -96,7 +88,7 @@ const RoletaWinner = () => {
       : defaultUserPic // Exibe a imagem padrão se não houver userImgSrc ou se for StaticImageData
       } alt="Foto de usuário"/>
         </div>
-        {winnerProperties && <h3 className={style.userNickname}>@{winnerProperties.user.name + '#' + winnerProperties.number}</h3>}
+        {winners && <h3 className={style.userNickname}>@{winners[winnerProperties]?.user.name + '#' + winners[winnerProperties]?.number}</h3>}
         {rewards[0] && <p>Ganhador da {rewards[0].itemName}</p>}
 
         <button onClick={() => manageCloseResult(isMockWin)}>
