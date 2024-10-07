@@ -46,7 +46,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   // ? Init variables
 
   // ? Necessary variables
-  const [ timing, setTiming ] = useState<number>(30000) // default: 30000
+  const [ timing, setTiming ] = useState<number>(5000) // default: 30000
   const [participants, setParticipants] = useState<RaffleParticipant[]>([]);
   const [winners, setWinners] = useState<RaffleParticipant[]>([])
   const [fillerParticipants, setFillerParticipants] = useState<RaffleParticipant[]>(
