@@ -60,7 +60,7 @@ const RouletteArray = () => {
             isWinner: item.isWinner ? item.isWinner : false,
             number: item.number,
             distanceFromCenter: item.distanceFromCenter,
-            debugWinners: true,
+            // debugWinners: true,
           }} />
         ))}
       {(fillerParticipants && rouletteLoadingState) && fillerParticipants.map((item) => (
