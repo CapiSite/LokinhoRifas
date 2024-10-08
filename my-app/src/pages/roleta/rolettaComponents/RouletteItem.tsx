@@ -6,68 +6,29 @@ import cn from "classnames";
 import defaultPicture from "../../../assets/defaultProfilePic.svg";
 import { useEffect, useState } from "react";
 import { useRouletteContext } from "contexts/RouletteContext";
+import React from "react";
 
-const RouletteItem = ({ props }: { props: CardItemType }) => {
-  if (!props) {
-    return <div>Error: No props provided</div>;
-  }
+const RouletteItem = React.memo(({ props }: { props: CardItemType }) => {
+  const { profilePicture, personName, number, isWinner } = props;
 
-  const {
-    profilePicture,
-    personName,
-    nickName,
-    isWinner,
-    number,
-    distanceFromCenter,
-    debugWinners
-  } = props;
-
-  const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
+  const [imgSrc, setImgSrc] = useState<string>(profilePicture);
 
   useEffect(() => {
-    const debounce = setTimeout(() => {
-      if(isWinner) {
-        // console.count('Item 2 foi renderizado: ')
-        // console.log('item data: \n', 
-        //   profilePicture,
-        //   personName,
-        //   nickName,
-        //   isWinner,
-        //   number,
-        //   distanceFromCenter
-        // )
-      }
-      if(profilePicture.includes('https://static-cdn.jtvnw.net')) {
-        setImgSrc(profilePicture)
-      } else if(!(profilePicture.includes('default'))) {
-        setImgSrc(profilePicture)
-      }
-    }, 400);
-
-    return () => {
-      clearTimeout(debounce)
+    if (profilePicture !== imgSrc) {
+      setImgSrc(profilePicture);
     }
-  }, [])
-
+  }, [profilePicture, imgSrc]);
 
   return (
-    <div
-      className={cn(style.PersonCard, debugWinners ? style.winner : '')}
-      id={isWinner ? `winner` : ""}
-      data-number={number}
-    >
+    <div className={cn(style.PersonCard, isWinner ? style.winner : '')}>
       <div className={style.PersonCardWrapper}>
         <div className={style.ProfilePicture}>
           <Image
             src={imgSrc}
             width={500}
             height={500}
-            priority={false}
             alt={`Foto de perfil de ${personName}`}
-            onError={(e) => {
-              e.preventDefault();
-              setImgSrc(defaultPicture);
-            }}
+            onError={(e) => setImgSrc(defaultPicture)}
           />
         </div>
         <div className={style.ProfileInfo}>
@@ -76,6 +37,6 @@ const RouletteItem = ({ props }: { props: CardItemType }) => {
       </div>
     </div>
   );
-};
+});
 
 export default RouletteItem;

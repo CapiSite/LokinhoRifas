@@ -24,22 +24,17 @@ const RoletaWinner = () => {
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      if(!rewards) return
-      if(rewards.length === 0) return
-      
-      if(!(rewards[0].itemImageUrl.includes('default'))) {
-        setImgSrc(rewards[0].itemImageUrl)
-      }
-      else {
-        if(imgSrc == defaultGunPic) return
-        setImgSrc(defaultGunPic)
+      if(winners[winnerProperties]?.user.picture.includes('https://static-cdn.jtvnw.net')) {
+        setUserImgSrc(winners[winnerProperties]?.user.picture);
+      } else if(!(winners[winnerProperties]?.user.picture.includes('default'))) {
+        setUserImgSrc(winners[winnerProperties]?.user.picture);
+      } else {
+        setUserImgSrc(defaultUserPic);
       }
     }, 800);
-
-    return () => {
-      clearTimeout(debounce)
-    }
-  }, [winnerProperties])
+    return () => clearTimeout(debounce);
+  }, [winnerProperties]);
+  
   
   useEffect(() => {
     const debounce = setTimeout(() => {
