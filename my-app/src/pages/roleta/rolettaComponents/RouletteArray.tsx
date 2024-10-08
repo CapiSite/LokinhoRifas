@@ -42,7 +42,7 @@ const RouletteArray = () => {
     }, 400);
 
     return () => clearTimeout(debounce)
-  }, [winners.length, rouletteLoadingState, winnerProperties.id]);
+  }, [winners.length, rouletteLoadingState, winnerProperties?.id]);
 
   return (
     <div className={style.RouletteArray} id="Roulette">
@@ -50,7 +50,7 @@ const RouletteArray = () => {
         <RouletteItem key={uuidv4()} props={{
           ...item,
           nickName: item.user.name + '#' + item.number,
-          profilePicture: item.user.picture,
+          profilePicture: item.user.picture || '',
           personName: item.user.name,
           isWinner: false,
           number: item.number
