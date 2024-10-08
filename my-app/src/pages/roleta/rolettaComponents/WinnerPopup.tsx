@@ -24,25 +24,30 @@ const RoletaWinner = () => {
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      if(winners[winnerProperties]?.user.picture.includes('https://static-cdn.jtvnw.net')) {
-        setUserImgSrc(winners[winnerProperties]?.user.picture);
-      } else if(!(winners[winnerProperties]?.user.picture.includes('default'))) {
-        setUserImgSrc(winners[winnerProperties]?.user.picture);
-      } else {
-        setUserImgSrc(defaultUserPic);
+      if(!rewards) return
+      if(rewards.length === 0) return
+      
+      if(!(rewards[0].itemImageUrl.includes('default'))) {
+        setImgSrc(rewards[0].itemImageUrl)
+      }
+      else {
+        if(imgSrc == defaultGunPic) return
+        setImgSrc(defaultGunPic)
       }
     }, 800);
-    return () => clearTimeout(debounce);
-  }, [winnerProperties]);
+
+    return () => {
+      clearTimeout(debounce)
+    }
+  }, [winnerProperties])
   
   
   useEffect(() => {
     const debounce = setTimeout(() => {
-      // console.log(winners[winnerProperties]?.user.picture)
-      if(winners[winnerProperties]?.user.picture.includes('https://static-cdn.jtvnw.net')) {
-        setUserImgSrc(winners[winnerProperties]?.user.picture)
-      } else if(!(winners[winnerProperties]?.user.picture.includes('default'))) {
-        setUserImgSrc(winners[winnerProperties]?.user.picture)
+      if(winnerProperties?.user.picture.includes('https://static-cdn.jtvnw.net')) {
+        setUserImgSrc(winnerProperties?.user.picture)
+      } else if(!(winnerProperties?.user.picture.includes('default'))) {
+        setUserImgSrc(winnerProperties?.user.picture)
       } else {
         if(userImgSrc == defaultUserPic) return
 
@@ -83,7 +88,7 @@ const RoletaWinner = () => {
       : defaultUserPic // Exibe a imagem padrão se não houver userImgSrc ou se for StaticImageData
       } alt="Foto de usuário"/>
         </div>
-        {winners && <h3 className={style.userNickname}>@{winners[winnerProperties]?.user.name + '#' + winners[winnerProperties]?.number}</h3>}
+        {winners && <h3 className={style.userNickname}>@{winnerProperties?.user.name + '#' + winnerProperties?.number}</h3>}
         {rewards[0] && <p>Ganhador da {rewards[0].itemName}</p>}
 
         <button onClick={() => manageCloseResult(isMockWin)}>

@@ -2355,13 +2355,66 @@ footer nav div {
   font-weight: 500;
 
   border-radius: 7px;
-  border: grey;
 
-  background: linear-gradient(90deg, #1AE22299, #13a11899);
-  background-color: black;
   color: white;
 
   cursor: pointer;
+
+  position: relative;
+  overflow: hidden;
+
+  background-color: black;
+}
+
+.PopupBuy .bottomSection button::before {
+  content: '';
+
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 0;
+
+  background: linear-gradient(90deg, #1AE22299, #13a11899);
+}
+
+.PopupBuy .bottomSection button[data-progress='30']::before {
+  width: 30%;
+}
+
+.PopupBuy .bottomSection button[data-progress='100']::before {
+  width: 100%;
+
+  transition: width 400ms ease-in-out;
+}
+
+
+.PopupBuy .bottomSection button::after {
+  display: flex;
+
+  content: attr(data-text);
+
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  border: grey;
+
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 0;
+}
+
+.PopupBuy .bottomSection button:hover::after {
+  filter: brightness(80%);
 }
 
 .PopupBuy .bottomSection button:disabled {

@@ -1,26 +1,27 @@
 import style from "../roletta.module.css";
-import Image, { StaticImageData } from "next/image";
-import { CardItemType, RouletteContext } from "utils/interfaces";
+import Image from "next/image";
+import { CardItemType } from "utils/interfaces";
 import cn from "classnames";
 
 import defaultPicture from "../../../assets/defaultProfilePic.svg";
 import { useEffect, useState } from "react";
-import { useRouletteContext } from "contexts/RouletteContext";
 import React from "react";
 
 const RouletteItem = React.memo(({ props }: { props: CardItemType }) => {
-  const { profilePicture, personName, number, isWinner } = props;
+  const { profilePicture, personName, number, debugWinners, isWinner } = props;
 
   const [imgSrc, setImgSrc] = useState<string>(profilePicture);
 
   useEffect(() => {
-    if (profilePicture !== imgSrc) {
-      setImgSrc(profilePicture);
+    if(profilePicture.includes('https://static-cdn.jtvnw.net')) {
+      setImgSrc(profilePicture)
+    } else if(!(profilePicture.includes('default')) && profilePicture !== imgSrc) {
+      setImgSrc(profilePicture)
     }
   }, [profilePicture, imgSrc]);
 
   return (
-    <div className={cn(style.PersonCard, isWinner ? style.winner : '')}>
+    <div data-number={number} id={isWinner ? 'winner' : ''} className={cn(style.PersonCard)}>
       <div className={style.PersonCardWrapper}>
         <div className={style.ProfilePicture}>
           <Image

@@ -29,6 +29,7 @@ const PopupBuy = ({
   const {
     purchasableRaffles = [],
     toggleSelection,
+    clearOutSelections,
     handleChangeQuantity,
   } = useRouletteContext() as RouletteContext;
 
@@ -42,6 +43,8 @@ const PopupBuy = ({
   const [step, setStep] = useState(1);
   const [total, setTotal] = useState(0);
   const [showPrompt, setShowPrompt] = useState(false);
+  const [ disableBtn, setDisableBtn ] = useState(false)
+  const [ animationProgress, setAnimationProgress ] = useState(100)
 
   const addStep = () => {
     setStep((oldValue) => (oldValue += 1));
@@ -51,6 +54,10 @@ const PopupBuy = ({
     console.log(purchasableRaffles)
     setSelectedItems(purchasableRaffles.filter(raffle => raffle.isSelected))
   }, [step])
+
+  useEffect(() => {
+    clearOutSelections()
+  }, [])
 
   useEffect(() => {
     if(selectedItems.length == 0) return
@@ -83,6 +90,7 @@ const PopupBuy = ({
       if (userInfo.saldo < total) {
         setShowPrompt(true);
       } else {
+        setDisableBtn(true)
         const tempArray2 = purchasableRaffles.filter(
           (raffle) => raffle.isSelected
         );
@@ -91,6 +99,8 @@ const PopupBuy = ({
           id: raffle.id,
           quantity: raffle.quantity,
         }));
+
+        setAnimationProgress(30)
 
         axios
           .post(
@@ -106,7 +116,11 @@ const PopupBuy = ({
           )
           .then((res) => {
             if(res.data.remainingBalance) setUserInfo(oldValue => ({...oldValue, saldo: res.data.remainingBalance}))
-            addStep();
+              setAnimationProgress(100)
+              setTimeout(() => {
+                addStep();
+                setDisableBtn(false)
+              }, 1000);
           })
           .catch((err) => console.log(err));
       }
@@ -181,9 +195,11 @@ const PopupBuy = ({
               onClick={handleStepValidation}
               disabled={
                 purchasableRaffles.filter((raffle) => raffle.isSelected)
-                  .length == 0
+                  .length == 0 || disableBtn
               }
               className={`${(step == 1 || step == 4) && "center"}`}
+              data-progress={animationProgress}
+              data-text={handleButtonText()}
             >
               {handleButtonText()}
             </button>

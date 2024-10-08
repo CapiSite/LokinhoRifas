@@ -22,21 +22,27 @@ const RouletteArray = () => {
     },
     winners = [],
     fillerParticipants = [],
-    getWinner,
     setIsButtonActive,
     rouletteLoadingState = false,
     winnerProperties,
-    distanceFromCenter
+    getWinner,
   } = useRouletteContext() as RouletteContext;
   
   useEffect(() => {
     const debounce = setTimeout(() => {
       if(rouletteLoadingState == false) return
+      const winner = document.getElementById('winner')
+
+      
+      if(!winner) return
+  
+      getWinner(winner)
+
       setIsButtonActive(true)
     }, 400);
 
     return () => clearTimeout(debounce)
-  }, [winners.length, rouletteLoadingState, distanceFromCenter]);
+  }, [winners.length, rouletteLoadingState, winnerProperties.id]);
 
   return (
     <div className={style.RouletteArray} id="Roulette">
@@ -60,7 +66,7 @@ const RouletteArray = () => {
             isWinner: item.isWinner ? item.isWinner : false,
             number: item.number,
             distanceFromCenter: item.distanceFromCenter,
-            // debugWinners: true,
+            debugWinners: true,
           }} />
         ))}
       {(fillerParticipants && rouletteLoadingState) && fillerParticipants.map((item) => (

@@ -46,14 +46,14 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   // ? Init variables
 
   // ? Necessary variables
-  const [ timing, setTiming ] = useState<number>(5000) // default: 30000
+  const [ timing, setTiming ] = useState<number>(30000) // default: 30000
   const [participants, setParticipants] = useState<RaffleParticipant[]>([]);
   const [winners, setWinners] = useState<RaffleParticipant[]>([])
   const [fillerParticipants, setFillerParticipants] = useState<RaffleParticipant[]>(
     []
   );
-  const [winnerProperties, setWinnerProperties] = useState<number>(0);
-  const [distanceFromCenter, setDistanceFromCenter] = useState<number>(0);
+  const [winnerProperties, setWinnerProperties] = useState<RaffleParticipant>();
+  // const [distanceFromCenter, setDistanceFromCenter] = useState<number>(0);
   const [ alreadyRequestedImgs, setAlreadyRequestedImgs ] = useState<ImageCache>([])
   const [ rouletteLoadingState, setRouletteLoadingState ] = useState<boolean>(false)
   const [rewards, setRewards] = useState<RaffleReward[]>([]);
@@ -98,13 +98,14 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     const tempShuffledArray: RaffleParticipant[] = tempArray
 
-    tempShuffledArray.splice(300 - Math.round(newParticipantsArray.length / 2), 10000)
+    // tempShuffledArray.splice(300, 10000)
 
     setFillerParticipants(tempShuffledArray);
   };
 
   const playAnimation = () => {
-    if (distanceFromCenter == 0) return;
+    if (!winnerProperties) return;
+    if (!winnerProperties.distanceFromCenter) return;
 
     const roulette = document.getElementById("Roulette");
 
@@ -133,7 +134,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
             { transform: `translateX(80px)`, offset: 0.009 },
             {
               transform: `translateX(-${
-                distanceFromCenter + random
+                winnerProperties.distanceFromCenter + random
               }px)`,
               offset: 1,
             },
@@ -163,7 +164,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
             { transform: `translateX(80px)`, offset: 0.009 },
             {
               transform: `translateX(-${
-                distanceFromCenter - random
+                winnerProperties.distanceFromCenter - random
               }px)`,
               offset: 1,
             },
@@ -200,33 +201,33 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     }, timing);
 
     const interval = setInterval(() => {
-      setWinnerProperties(Math.floor(Math.random() * winners.length - 1))
+      setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
     }, 100);
 
     setTimeout(() => {
       clearInterval(interval)
 
       const interval2 = setInterval(() => {
-        setWinnerProperties(Math.floor(Math.random() * winners.length - 1))
+        setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
       }, 200);
       
       setTimeout(() => {
         clearInterval(interval2)
 
         const interval3 = setInterval(() => {
-          setWinnerProperties(Math.floor(Math.random() * winners.length - 1))
+          setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
         }, 400);
         
         setTimeout(() => {
           clearInterval(interval3)
 
           const interval4 = setInterval(() => {
-            setWinnerProperties(Math.floor(Math.random() * winners.length - 1))
+            setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
           }, 800);
 
           setTimeout(() => {
             clearInterval(interval4)
-            setWinnerProperties(Math.floor(Math.random() * winners.length - 1))
+            setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
           }, timing / 6);
         }, timing / 6);
       }, timing / 3);
@@ -269,6 +270,14 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     const newRaffles = purchasableRaffles.map((raffle) => {
       if (raffle.id == id) return { ...raffle, isSelected: !raffle.isSelected };
       return raffle;
+    });
+
+    setPurchasableRaffles(newRaffles);
+  };
+
+  const clearOutSelections = () => {
+    const newRaffles = purchasableRaffles.map((raffle) => {
+      return { ...raffle, isSelected: false };
     });
 
     setPurchasableRaffles(newRaffles);
@@ -357,9 +366,10 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   const addLatestWinnerToTable = async () => {
     if (!raffle.participants) return;
     if (!raffle) return;
+    if (!winnerProperties) return;
 
     const participantWinner = winners.filter(
-      (item) => item.number == winners[winnerProperties].number
+      (item) => item.number == winnerProperties.number
     )[0];
 
     const date = Date.now();
@@ -418,10 +428,11 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   };
   const removeWinnerAndRaffleFromRoulette = () => {
     if (!winners) return;
+    if (!winnerProperties) return;
     if (!rewards) return;
 
     const updatedParticipants = winners.filter(
-      (item) => item.number != winners[winnerProperties].number
+      (item) => item.number != winnerProperties.number
     );
 
     setNewWinners(updatedParticipants)
@@ -453,7 +464,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     loadFillerCards(possibleWinners)
 
-    setWinnerProperties(random);
+    setWinnerProperties(possibleWinners[random]);
   };
   const setNewWinnersQuickly = (newParticipantsArray: RaffleParticipant[]) => {
     // console.count('arrived in setNewWinners')
@@ -477,7 +488,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     setWinners(possibleWinners);
 
-    setWinnerProperties(random);
+    setWinnerProperties(possibleWinners[random]);
   };
   // * Sanitize Participants
 
@@ -508,38 +519,38 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     setRewards(tempArray);
   };
 
-  const getWinner = () => {
-    // if (!winnerParam) return;
+  const getWinner = (winnerParam: HTMLElement) => {
+    if (!winnerParam) return;
 
-    // const winnerStats = winners.filter(
-    //   (winnerArray) => winnerArray.number == Number(winnerParam.dataset.number)
-    // )[0];
+    const winnerStats = winners.filter(
+      (winnerArray) => winnerArray.number == Number(winnerParam.dataset.number)
+    )[0];
 
-    // if(!winnerStats) return
+    if(!winnerStats) return
 
-    // const winnerCardCenter =
-    //   (Math.round(winnerParam.getBoundingClientRect().right) -
-    //     Math.round(winnerParam.getBoundingClientRect().left)) /
-    //     2 +
-    //   Math.round(winnerParam.getBoundingClientRect().left) -
-    //   window.innerWidth / 2;
+    const winnerCardCenter =
+      (Math.round(winnerParam.getBoundingClientRect().right) -
+        Math.round(winnerParam.getBoundingClientRect().left)) /
+        2 +
+      Math.round(winnerParam.getBoundingClientRect().left) -
+      window.innerWidth / 2;
 
-    // const centerOfCard =
-    //   winnerCardCenter < 0 ? winnerCardCenter * -1 : winnerCardCenter;
+    const centerOfCard =
+      winnerCardCenter < 0 ? winnerCardCenter * -1 : winnerCardCenter;
     
-    // console.log(centerOfCard)
-
-    // console.log(winnerStats, winners)
-
-    // console.log(winners.indexOf(winnerStats), winners.length - 1, winnerCardCenter, (Math.round(winnerParam.getBoundingClientRect().right) -
-    // Math.round(winnerParam.getBoundingClientRect().left)))
+    setWinnerProperties({
+      ...winnerStats,
+      distanceFromCenter: centerOfCard
+    })
 
     // 68211.5
     // 230
     // 68211.5 + (230 * winnerIndexOnWinners) + (2 * winnersLength)
     // 69371.5
 
-    setDistanceFromCenter(68211.5 + (230 * winnerProperties) + (2 * winnerProperties))
+    // setDistanceFromCenter(69539 + (230 * winnerProperties) + (2 * winnerProperties))
+
+    // console.log(69539 + (230 * winnerProperties) + (2 * winnerProperties), winnerProperties, winners[winnerProperties], winners)
   };
   // * Sanitize Rewards
 
@@ -674,15 +685,15 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     return () => clearTimeout(debounce)
   }, [raffle?.id]);
 
-  useEffect(() => {
+  // useEffect(() => {
     // console.count('winnerProperties variable')
     // console.log('altered at ' + debuggingFormatDate())
-    const debounce = setTimeout(() => {
-      getWinner()
-    }, 400);
+    // const debounce = setTimeout(() => {
+      // getWinner()
+    // }, 400);
 
-    return () => clearTimeout(debounce)
-  }, [winnerProperties])
+    // return () => clearTimeout(debounce)
+  // }, [winnerProperties])
 
   // useEffect(() => {
   //   console.count('isButtonActive variable')
@@ -764,11 +775,11 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     rewards,
     alreadyRequestedImgs,
     rouletteLoadingState,
-    distanceFromCenter,
     setRouletteLoadingState,
     setAlreadyRequestedImgs,
     setIsButtonActive,
     toggleSelection,
+    clearOutSelections,
     handleChangeQuantity,
     manageWinner,
     manageMockWinner,
