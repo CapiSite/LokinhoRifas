@@ -176,85 +176,113 @@ export async function updatedByTwitch(userId: number, twitchId: string) {
 
 export async function getLastWinners(page: number, itemsPerPage: number) {
   try {
-    const lastRaffles = await prisma.raffle.findMany({
+    // Passo 1: Buscar as skins com updatedAt não nulo
+    const skinsWithUpdatedAt = await prisma.raffleSkin.findMany({
       take: itemsPerPage,
       skip: (page - 1) * itemsPerPage,
       where: {
-        raffleSkins: {
-          some: {
-            winner_id: { not: null },
-          },
-        },
-      },
-      include: {
-        raffleSkins: {
-          include: {
-            winner: {
-              include: {
-                user: true,
-              },
-            },
-          },
-        },
-        participants: true, // Inclui os participantes para calcular as chances
+        winner_id: { not: null }, // Filtra apenas skins com ganhadores
+        updatedAt: { not: null }, // Apenas com updatedAt não nulo
       },
       orderBy: {
-        id: 'desc',
+        updatedAt: 'desc', // Ordena por updatedAt das skins
+      },
+      include: {
+        raffle: {
+          include: {
+            participants: true, // Inclui os participantes para calcular as chances
+          },
+        },
+        winner: {
+          include: {
+            user: true, // Inclui informações do usuário vencedor
+          },
+        },
       },
     });
 
-    const winners = lastRaffles.map((raffle) => {
-      let remainingParticipants = raffle.participants.length;
-
-      const skinsWithWinners = raffle.raffleSkins
-        .filter((skin) => skin.winner_id !== null)
-        .map((skin) => {
-          const sanitizedWinner = { ...skin.winner.user };
-
-          // Remover informações sensíveis
-          delete sanitizedWinner.twitchId;
-          delete sanitizedWinner.updatedAt;
-          delete sanitizedWinner.password;
-          delete sanitizedWinner.createdAt;
-
-          // Calcular a chance de vitória
-          const chance = (1 / remainingParticipants) * 100;
-
-          // Reduz o número de participantes restantes
-          remainingParticipants -= 1;
-
-          return {
-            skin: {
-              id: skin.id,
-              skinName: skin.skinName,
-              skinValue: skin.skinValue,
-              skinType: skin.skinType,
-              skinPicture: skin.skinPicture,
-            },
-            winner: sanitizedWinner,
-            chance: chance.toFixed(2) + '%',
-          };
-        });
-
-      return {
+    // Passo 2: Buscar as skins com updatedAt nulo e ordenar pelo updatedAt da rifa
+    const skinsWithoutUpdatedAt = await prisma.raffleSkin.findMany({
+      take: itemsPerPage,
+      skip: (page - 1) * itemsPerPage,
+      where: {
+        winner_id: { not: null }, // Filtra apenas skins com ganhadores
+        updatedAt: null, // Apenas com updatedAt nulo
+      },
+      orderBy: {
+        raffle: { updatedAt: 'desc' }, // Ordena pelo updatedAt da rifa
+      },
+      include: {
         raffle: {
-          id: raffle.id,
-          name: raffle.name,
-          value: raffle.value,
-          is_active: raffle.is_active,
-          createdAt: raffle.createdAt,
-          updatedAt: raffle.updatedAt,
-          skinsWithWinners: skinsWithWinners,
+          include: {
+            participants: true, // Inclui os participantes para calcular as chances
+          },
         },
-      };
+        winner: {
+          include: {
+            user: true, // Inclui informações do usuário vencedor
+          },
+        },
+      },
     });
 
-    return winners;
+    // Passo 3: Concatenar os resultados (skins com updatedAt primeiro, depois sem)
+    const recentSkins = [...skinsWithUpdatedAt, ...skinsWithoutUpdatedAt];
+
+    // Agrupar as rifas e mapear os dados
+    const raffles = recentSkins.reduce((acc, skin) => {
+      const raffle = skin.raffle;
+      let raffleData = acc.find(r => r.raffle.id === raffle.id);
+
+      if (!raffleData) {
+        raffleData = {
+          raffle: {
+            id: raffle.id,
+            name: raffle.name,
+            value: raffle.value,
+            is_active: raffle.is_active,
+            createdAt: raffle.createdAt,
+            updatedAt: raffle.updatedAt,
+            skinsWithWinners: [],
+          },
+        };
+        acc.push(raffleData);
+      }
+
+      const sanitizedWinner = { ...skin.winner.user };
+
+      // Remover informações sensíveis do ganhador
+      delete sanitizedWinner.twitchId;
+      delete sanitizedWinner.updatedAt;
+      delete sanitizedWinner.password;
+      delete sanitizedWinner.createdAt;
+
+      // Calcular a chance de vitória
+      const chance = (1 / raffle.participants.length) * 100;
+
+      raffleData.raffle.skinsWithWinners.push({
+        skin: {
+          id: skin.id,
+          skinName: skin.skinName,
+          skinValue: skin.skinValue,
+          skinType: skin.skinType,
+          skinPicture: skin.skinPicture,
+        },
+        winner: sanitizedWinner,
+        chance: chance.toFixed(2) + '%',
+      });
+
+      return acc;
+    }, []);
+
+    return raffles;
   } catch (error) {
     console.error('Error fetching last winners: ', error);
     throw new Error('Could not fetch last winners');
   }
 }
+
+
 
 export async function update(id: number, data: Prisma.UserUpdateInput): Promise<User> {
   return prisma.user.update({

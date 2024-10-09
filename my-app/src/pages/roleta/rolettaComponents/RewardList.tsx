@@ -2,20 +2,28 @@ import style from '../roletta.module.css'
 import RewardsArray from './RewardArray';
 import cn from 'classnames'
 
-const RewardList = () => {
+const RewardList = ({ props }: { props: { isVisible: boolean, setIsVisible: React.Dispatch<React.SetStateAction<boolean>> } }) => {
+  if (!props || !props.setIsVisible) {
+    return null;
+  }
+  const {isVisible, setIsVisible } = props;
+  const handleShowRaffles = () => {
+    console.log(isVisible)
+      setIsVisible(true);
+  }
   return (
     <div className={style.RewardsList}>
       <div className={cn(style.desktop, style.RewardsAd)}>
         <div className={style.RewardsAdContent}>
           <p><span className={style.highlight}>NOVOS</span> PRÊMIOS</p>
-          <button>Faça Parte</button>
+          <button  onClick={()=>handleShowRaffles()}>Faça Parte</button>
         </div>
       </div>
         <RewardsArray />
       <div className={cn(style.mobile, style.RewardsAd)}>
         <div className={style.RewardsAdContent}>
           <p><span className={style.highlight}>NOVOS</span> PRÊMIOS</p>
-          <button>Faça Parte</button>
+          <button onClick={()=>handleShowRaffles()}>Faça Parte</button>
         </div>
       </div>
     </div>

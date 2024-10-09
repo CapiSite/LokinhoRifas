@@ -14,7 +14,11 @@ import Roulette from './Roulette';
 import cn from 'classnames'
 
 
-const Hero = () => {
+const Hero = ({ props }: { props: { isVisible: boolean, setIsVisible: React.Dispatch<React.SetStateAction<boolean>> } }) => {
+  if (!props || !props.setIsVisible) {
+    return null;
+  }
+  const { isVisible ,setIsVisible } = props;
   const { 
     manageWinner, 
     manageMockWinner, 
@@ -80,7 +84,7 @@ const Hero = () => {
         {isConfettiActive && <Confetti width={windowParams.width} height={windowParams.height}/>}
         <div className={style.HeroFrontImage}>
         </div>
-        <RewardList />
+        <RewardList props={{ isVisible, setIsVisible }} />
         {participants.length >= 100 ? 
           <NumberSorter /> :
           <Roulette />

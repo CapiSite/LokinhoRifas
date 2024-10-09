@@ -50,7 +50,7 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
       let time = "";
 
       if (earnedDateHours < 1)
-        time = `Alguns minutos atrás`;
+        time = `poucos minutos atrás`;
       else if (earnedDateHours < 24) 
         time = `${earnedDateHours} hora${earnedDateHours == 1 ? "" : "s"}`;
       else if (earnedDateDays)

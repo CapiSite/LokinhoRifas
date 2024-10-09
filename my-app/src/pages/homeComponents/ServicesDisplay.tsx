@@ -29,12 +29,12 @@ const ServicesDisplay = () => {
               <Image height={50} width={50} src={Colaboração} alt="Grupo de Rifas" />
               Compramos suas Skins
             </h3>
-            <p>As melhores Rifas de CSGO, entre e ganhe!</p>
+            <p>As melhores Rifas de CS2, entre e ganhe!</p>
           </li>
           <li>
             <h3>
               <Image height={50} width={50} src={Moeda} alt="Compramos suas Skins" />
-              Compramos suas Skins
+              Prêmios diários
             </h3>
             <p>Pagamento imediato via pix, rápido e seguro!</p>
           </li>

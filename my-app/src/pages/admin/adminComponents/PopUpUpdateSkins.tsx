@@ -173,7 +173,7 @@ export default function PopUpUpdateSkins({ setPopUpSkins, name, type, picture, i
 
                     <div className={style.DivPhoto}>
                         <input type="file" className={style.fileInput} name="picture" onChange={handleImageChange} />
-                        {image && <Image width={40} height={40} className={style.imagePreview} src={image} alt="Image Preview" />}
+                        {image && <Image width={2000} height={2000} className={style.imagePreview} src={image} alt="Image Preview" />}
                     </div>
 
                     <div>
