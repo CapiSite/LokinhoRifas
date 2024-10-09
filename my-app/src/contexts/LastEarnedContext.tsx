@@ -34,6 +34,7 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
     const filterPendingRaffles = dataArray.filter(item => item.raffle.is_active != 'Em espera')
     
     filterPendingRaffles.map((item: LastEarnedWinnerType) => {
+      console.log(item)
       const { updatedAt, skinsWithWinners, name } = item.raffle;
 
       // * alterar imagem do item
@@ -57,8 +58,8 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
         time = `${earnedDateDays} dia${earnedDateDays == 1 ? "" : "s"}`;
 
       skinsWithWinners.map(win => {
-        const { skin, winner, chance } = win
-
+        const { skin, winner, chance } = win;
+      
         const newItem = {
           itemImageUrl: `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${skin.skinPicture}`,
           TimeOfEarning: time,
@@ -72,11 +73,11 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
           WinnerID: winner.id,
           WinnerName: winner.name,
           WinnerPicture: winner.picture,
+          WinnerNumber: winner.number, // Certifique-se de que o número do ganhador seja extraído aqui
         };
-  
+      
         tempArray.push(newItem);
-
-      })
+      });
 
     });
 
@@ -107,6 +108,7 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
           `/users/winners?page=${1}&itemsPerPage=${50}`
       )
       .then((res: any) => {
+        console.log(res.data)
         setNewLastEarnedList(res.data);
       })
       .catch((err: any) => console.error(err));

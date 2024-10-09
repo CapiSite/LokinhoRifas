@@ -1341,12 +1341,13 @@ footer nav div {
   width: 100%;
   height: 100dvh;
 
-  z-index: 9;
+  z-index: 11;
 }
 
 .PopupBuy .seta {
   width: 35px;
   height: auto;
+  z-index: 10;
 }
 
 .PopupBuy .prompt {
@@ -1649,6 +1650,13 @@ footer nav div {
   position: relative;
 
   cursor: pointer;
+}
+
+.PopupBuyContent .raffleSelect .cardGroupWrapper .card {
+  width: 49%; /* Define que o card ocupe 49% da largura disponível, com espaço entre eles */
+  max-width: 49%; /* Limita o tamanho máximo do card */
+  min-width: 300px; /* Define o tamanho mínimo do card */
+  box-sizing: border-box;
 }
 
 .PopupBuyContent .card .skin {

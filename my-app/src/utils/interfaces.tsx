@@ -183,7 +183,8 @@ export type LastEarnedWinnerType = {
         name: string,
         phoneNumber?: string,
         picture: string,
-        saldo: number
+        saldo: number,
+        number:number
       }
     }[],
     updatedAt: string
@@ -244,6 +245,9 @@ export type LastEarnFrontEndType = {
   ItemName: string;
   ItemType: string;
   ItemValue: string;
+  WinnerPicture: File | string;
+  WinnerNumber: string;
+  WinnerName: number;
 };
 
 export interface FormDataType {

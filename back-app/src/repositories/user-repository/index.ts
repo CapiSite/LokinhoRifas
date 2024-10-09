@@ -260,6 +260,9 @@ export async function getLastWinners(page: number, itemsPerPage: number) {
       // Calcular a chance de vitória
       const chance = (1 / raffle.participants.length) * 100;
 
+      // Aqui estamos pegando o número do participante (ganhador)
+      const winnerNumber = skin.winner.number;
+
       raffleData.raffle.skinsWithWinners.push({
         skin: {
           id: skin.id,
@@ -268,7 +271,10 @@ export async function getLastWinners(page: number, itemsPerPage: number) {
           skinType: skin.skinType,
           skinPicture: skin.skinPicture,
         },
-        winner: sanitizedWinner,
+        winner: {
+          ...sanitizedWinner,
+          number: winnerNumber, // Adiciona o número do ganhador aqui
+        },
         chance: chance.toFixed(2) + '%',
       });
 
@@ -281,6 +287,7 @@ export async function getLastWinners(page: number, itemsPerPage: number) {
     throw new Error('Could not fetch last winners');
   }
 }
+
 
 
 

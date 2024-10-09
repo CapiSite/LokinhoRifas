@@ -28,11 +28,16 @@ const LastEarnedPrizes = ({
     ItemName = "Item Desconhecido",
     ItemType = "Tipo Desconhecido",
     ItemValue = "0.00",
+    WinnerNumber = 0,
+    WinnerPicture = "Sem foto",
+    WinnerName = "Sem nome",
   } = props.item;
 
   const [imgSrc, setImgSrc] = useState<string | StaticImageData>(defaultGunPic);
+  const [winnerPic, setWinnerPic] = useState<string | StaticImageData>(defaultGunPic);
 
   useEffect(() => {
+    // Função para verificar e atualizar a imagem do item
     const checkImageExists = async (url: string) => {
       try {
         const response = await fetch(url, { method: "HEAD" });
@@ -44,10 +49,22 @@ const LastEarnedPrizes = ({
       }
     };
 
-    if (itemImageUrl && !itemImageUrl.includes('default')) {
+    if (itemImageUrl && !itemImageUrl.includes("default")) {
       checkImageExists(itemImageUrl);
     }
   }, [itemImageUrl]);
+
+  useEffect(() => {
+    // Atualizando a imagem do ganhador de acordo com as condições
+    if (typeof WinnerPicture === "string" && WinnerPicture.includes("https://static-cdn.jtvnw.net")) {
+      setWinnerPic(WinnerPicture); // Se a imagem for da Twitch, use-a diretamente
+    } else if (typeof WinnerPicture === "string" && !WinnerPicture.includes("default")) {
+      setWinnerPic(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${WinnerPicture}`); // Adiciona a rota do backend para imagens locais
+    } else {
+      setWinnerPic(defaultGunPic); // Usa a imagem padrão
+    }
+  }, [WinnerPicture]);
+  
 
   return (
     <div
@@ -99,6 +116,24 @@ const LastEarnedPrizes = ({
           <div className={style.ItemValue}>
             <h3>R$ {Number(ItemValue).toFixed(2)}</h3>
           </div>
+        </div>
+      </div>
+      <div className={style.WinnerInfo}>
+        <div className={style.WinnerDetails}>
+          <Image
+            width={50}
+            height={50}
+            src={winnerPic}
+            alt={`Foto do ganhador ${WinnerName}`}
+            onError={() => {
+              setWinnerPic(defaultGunPic); // Em caso de erro, exibe a imagem padrão
+            }}
+            className={style.WinnerPicture}
+          />
+          <p className={style.WinnerText}>
+            {`#${WinnerNumber}`} <br />
+            {WinnerName}
+          </p>
         </div>
       </div>
     </div>

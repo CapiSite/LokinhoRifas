@@ -1148,6 +1148,34 @@
 
   transition: opacity 200ms ease-in-out;
 }
+.WinnerInfo {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 8px;
+  color: white;
+  z-index: 1;
+}
+
+.WinnerDetails {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.WinnerPicture {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.WinnerText {
+  font-size: 12px;
+  text-align: left;
+}
 
 .Roleta .buttonGroup .raffleSelector:hover {
   opacity: 1;
