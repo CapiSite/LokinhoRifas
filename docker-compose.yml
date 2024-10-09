@@ -6,7 +6,7 @@ services:
     ports:
       - 5000:5000
     environment:
-      DATABASE_URL: "postgresql://lokinhodb:thiagoco@172.17.0.1:5432/lokinho"
+      DATABASE_URL: "postgresql://postgres:thiagoco@172.17.0.1:5432/lokinho"
     env_file:
       - back-app/.env
     volumes:
