@@ -51,7 +51,7 @@ const PopupBuy = ({
   };
 
   useEffect(() => {
-    console.log(purchasableRaffles)
+    // console.log(purchasableRaffles)
     setSelectedItems(purchasableRaffles.filter(raffle => raffle.isSelected))
   }, [step])
 
@@ -61,7 +61,7 @@ const PopupBuy = ({
 
   useEffect(() => {
     if(selectedItems.length == 0) return
-    console.log(selectedItems)
+    // console.log(selectedItems)
   }, [selectedItems.length])
 
   const removeStep = () => {
@@ -163,7 +163,7 @@ const PopupBuy = ({
             <RaffleSelectQuantity
               setQuantity={{
                 setTotal,
-                rafflesData: purchasableRaffles,
+                rafflesData: selectedItems,
                 handleChangeQuantity
               }}
             />

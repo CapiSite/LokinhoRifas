@@ -402,6 +402,8 @@ export type RouletteContext = {
   rewards: RaffleReward[];
   alreadyRequestedImgs: ImageCache,
   rouletteLoadingState: boolean,
+  spinState: boolean,
+  setSpinState: React.Dispatch<React.SetStateAction<boolean>>,
   setRouletteLoadingState: React.Dispatch<React.SetStateAction<boolean>>,
   setAlreadyRequestedImgs: React.Dispatch<React.SetStateAction<ImageCache>>,
   setIsButtonActive: React.Dispatch<React.SetStateAction<boolean>>

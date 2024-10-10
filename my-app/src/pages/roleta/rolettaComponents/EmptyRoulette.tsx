@@ -3,10 +3,11 @@ import style from '../roletta.module.css';
 import { RouletteContext } from 'utils/interfaces';
 
 const EmptyRoulette = () => {
-  const {availableRaffles = []} = useRouletteContext() as RouletteContext
+  const {availableRaffles = [], raffle} = useRouletteContext() as RouletteContext
 
   return (
-    <div className={style.emptyRoulette}><h1>{availableRaffles.length == 0 ? 'Sem Rifas no momento' : 'Rifa sem participantes ainda!'}</h1></div>
+    <div className={style.emptyRoulette}><h1>{availableRaffles.length == 0 ? 'Sem Rifas no momento' : `Rifa sem participantes ainda!`}</h1>
+    <h2>Números em estoque: {raffle.users_quantity}</h2></div>
   );
 }
  

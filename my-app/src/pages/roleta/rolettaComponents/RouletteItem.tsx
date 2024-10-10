@@ -6,29 +6,33 @@ import defaultPicture from "../../../assets/defaultProfilePic.svg";
 import { useEffect, useState } from "react";
 import React from "react";
 
-const RouletteItem = React.memo(
-  ({ props }: { props?: CardItemType }) => {
-    // Desestruturando props
-    const {
-      profilePicture = '',
-      personName = 'Unknown',
-      number = 0,
-      isWinner = false,
-    } = props || {};
+const RouletteItem = React.memo(({ props }: { props?: CardItemType }) => {
+  // Ensure props is defined and has the necessary properties
+  const {
+    profilePicture = '',
+    personName = 'Unknown',
+    number = 0,
+    debugWinners = false,
+    isWinner = false,
+    index,
+  } = props || {}; // Use empty object if props is undefined
 
     const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
 
-    // Atualize a imagem apenas se a 'profilePicture' mudar
-    useEffect(() => {
-      console.log("oi")
-      if (profilePicture && profilePicture !== imgSrc) {
-        if (profilePicture.includes('https://static-cdn.jtvnw.net')) {
-          setImgSrc(profilePicture);
-        } else if (!profilePicture.includes('default')) {
-          setImgSrc(profilePicture);
-        }
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      // index == 0 && console.log(profilePicture)
+      // index == 0 && console.log(imgSrc == profilePicture)
+      if (!profilePicture) return setImgSrc(defaultPicture);
+      else if(profilePicture.includes('https://static-cdn.jtvnw.net')) {
+        setImgSrc(profilePicture);
+      } else if (!profilePicture.includes('default') && profilePicture !== imgSrc) {
+        setImgSrc(profilePicture);
       }
-    }, [profilePicture]); // Somente 'profilePicture' é a dependência
+
+      return () => clearTimeout(debounce)
+    }, 400);
+  }, [profilePicture]);
 
     return (
       <div

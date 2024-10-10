@@ -76,7 +76,9 @@ const Hero = ({ props }: { props: { isVisible: boolean, setIsVisible: React.Disp
 
   const winnerIsCorrected = winners.filter(winner => winner.number === winnerProperties?.number).length !== 0;
 
-  // console.log(!isButtonActive, !winnerIsCorrected, (!winnerProperties?.distanceFromCenter), ' (', !winnerProperties?.distanceFromCenter, participants.length < 100, ') ', participants.length === 0, rewards.length === 0, winnerProperties?.distanceFromCenter)
+  // useEffect(() => {
+  //   console.log(!isButtonActive, !winnerIsCorrected, (!winnerProperties?.distanceFromCenter), ' (', !winnerProperties?.distanceFromCenter, participants.length < 100, ') ', participants.length === 0, rewards.length === 0, winnerProperties?.distanceFromCenter)
+  // }, [manageMockWinner])
 
   return (
     <section className={style.Roleta}>
@@ -94,7 +96,7 @@ const Hero = ({ props }: { props: { isVisible: boolean, setIsVisible: React.Disp
           <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
           {availableRaffles.length > 0 && 
           <select disabled={!isButtonActive} name='raffleSelector' className={cn(style.raffleSelector, style.mobile, (windowParams.width < 550 || participants.length >= 100) ? style.Visible : '')} onChange={(e) => selectRaffle(Number(e.target.value))}>
-            {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
+            {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {raffle.users_quantity - raffle.participants.length}%</option>)}
           </select>}
           <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
         </div>

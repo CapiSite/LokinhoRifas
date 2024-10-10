@@ -34,7 +34,7 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
     const filterPendingRaffles = dataArray.filter(item => item.raffle.is_active != 'Em espera')
     
     filterPendingRaffles.map((item: LastEarnedWinnerType) => {
-      console.log(item)
+      // console.log(item)
       const { updatedAt, skinsWithWinners, name } = item.raffle;
 
       // * alterar imagem do item
@@ -107,7 +107,7 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
         `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/users/winners?page=1&itemsPerPage=50`
       )
       .then((res: any) => {
-        console.log(res.data);
+        // console.log(res.data);
         setNewLastEarnedList(res.data);
       })
       .catch((err: any) => console.error(err));

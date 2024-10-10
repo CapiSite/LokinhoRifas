@@ -11,7 +11,7 @@ const RaffleSelectQuantity = ({setQuantity}: {setQuantity: {setTotal: Dispatch<R
   useEffect(() => {
     console.log(rafflesData)
     changeTotal()
-  }, [updateQuantity])
+  }, [updateQuantity, rafflesData.length])
 
 
   const changeTotal = () => {

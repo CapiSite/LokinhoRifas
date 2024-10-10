@@ -65,11 +65,11 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   // ? Component variables
   const [winnerPopupVisible, setWinnerPopupVisible] = useState<boolean>(false);
   const [isButtonActive, setIsButtonActive] = useState<boolean>(true);
+  const [spinState, setSpinState] = useState<boolean>(true);
   const [isConfettiActive, setIsConfettiActive] = useState<boolean>(false);
   // ? Component variables
 
   // ? Functions
-  const toggleIsButtonActive = () => setIsButtonActive((oldValue) => !oldValue);
   const toggleWinnerPopupVisibility = () => setWinnerPopupVisible((oldValue) => !oldValue);
 
 
@@ -111,14 +111,16 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     const randomSide = Math.floor(Math.random() * 2) == 1 ? -1 : 1;
 
-    toggleIsButtonActive();
+    setIsButtonActive(false)
+    setSpinState(false)
     
     setTimeout(() => {
       toggleWinnerPopupVisibility();
       setIsConfettiActive(true)
 
       setTimeout(() => {
-        toggleIsButtonActive();
+        setIsButtonActive(true)
+        setSpinState(true)
       }, 5000);
     }, timing);
 
@@ -189,14 +191,16 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if(!raffle.participants) return
     if(raffle.participants.length == 0) return
 
-    toggleIsButtonActive();
+    setIsButtonActive(false)
+    setSpinState(false)
     
     setTimeout(() => {
       toggleWinnerPopupVisibility();
       setIsConfettiActive(true)
 
       setTimeout(() => {
-        toggleIsButtonActive();
+        setIsButtonActive(true)
+        setSpinState(true)
       }, 5000);
     }, timing);
 
@@ -775,6 +779,8 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     rewards,
     alreadyRequestedImgs,
     rouletteLoadingState,
+    spinState,
+    setSpinState,
     setRouletteLoadingState,
     setAlreadyRequestedImgs,
     setIsButtonActive,

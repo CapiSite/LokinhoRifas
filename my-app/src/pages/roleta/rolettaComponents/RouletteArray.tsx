@@ -30,17 +30,18 @@ const RouletteArray = React.memo(() => {  // Aplicando React.memo no componente
   
   useEffect(() => {
     const debounce = setTimeout(() => {
-      if (rouletteLoadingState === false) return;
-      const winner = document.getElementById('winner');
-      
-      if (!winner) return;
-  
-      getWinner(winner);
-      setIsButtonActive(true);
+      if (rouletteLoadingState === true || !winnerProperties?.distanceFromCenter) {
+        const winner = document.getElementById('winner');
+        
+        if (!winner) return;
+    
+        getWinner(winner);
+        setIsButtonActive(true);
+      };
     }, 400);
 
     return () => clearTimeout(debounce);
-  }, [winners.length, rouletteLoadingState, winnerProperties?.id, setIsButtonActive, getWinner]);
+  }, [winners.length, rouletteLoadingState, winnerProperties?.distanceFromCenter]);
 
   return (
     <div className={style.RouletteArray} id="Roulette">
@@ -54,28 +55,29 @@ const RouletteArray = React.memo(() => {  // Aplicando React.memo no componente
           number: item.number
         }} />
       ))}
-      {(winners && rouletteLoadingState) && winners.map((item, index) => (
-        <RouletteItem key={`${item.id}-${index}`} props={{
-          ...item,
-          nickName: item.user.name + '#' + item.number,
-          profilePicture: item.user.picture,
-          personName: item.user.name,
-          isWinner: item.isWinner ? item.isWinner : false,
-          number: item.number,
-          distanceFromCenter: item.distanceFromCenter,
-          debugWinners: true,
-        }} />
-      ))}
-      {(fillerParticipants && rouletteLoadingState) && fillerParticipants.map((item, index) => (
-        <RouletteItem key={`${item.id}-${index}`} props={{
-          ...item,
-          nickName: item.user.name + '#' + item.number,
-          profilePicture: item.user.picture,
-          personName: item.user.name,
-          isWinner: false,
-          number: item.number
-        }} />
-      ))}
+      {(winners && rouletteLoadingState) &&
+        winners.map((item) => (
+          <RouletteItem key={uuidv4()} props={{
+            ...item,
+            nickName: item.user.name + '#' + item.number,
+            profilePicture: item.user.picture,
+            personName: item.user.name,
+            isWinner: item.isWinner ? item.isWinner : false,
+            number: item.number,
+            distanceFromCenter: item.distanceFromCenter,
+            debugWinners: true,
+          }} />
+        ))}
+      {(fillerParticipants && rouletteLoadingState) && fillerParticipants.map((item) => (
+          <RouletteItem key={uuidv4()} props={{
+            ...item,
+            nickName: item.user.name + '#' + item.number,
+            profilePicture: item.user.picture,
+            personName: item.user.name,
+            isWinner: false,
+            number: item.number
+          }} />
+        ))}
     </div>
   );
 }, (prevProps:any, nextProps:any) => {

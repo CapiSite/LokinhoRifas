@@ -6,12 +6,13 @@ import { Raffle, RouletteContext } from 'utils/interfaces';
 import { useRouletteContext } from 'contexts/RouletteContext';
 import EmptyRoulette from './EmptyRoulette';
 import cn from 'classnames'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Roulette = () => {
-  const { availableRaffles = [], selectRaffle, participants = [], isButtonActive, raffle } = useRouletteContext() as RouletteContext
+  const { availableRaffles = [], selectRaffle, participants = [], isButtonActive, spinState, raffle } = useRouletteContext() as RouletteContext
   
   const [ raffleList, setRaffleList ] = useState<Raffle[]>([])
+  const [ afk, setAfk ] = useState(true)
 
   
   useEffect(() => {
@@ -25,11 +26,50 @@ const Roulette = () => {
     }, 200);
  
     return () => clearTimeout(debounce);
- }, [raffle?.id, availableRaffles]); // Verificando se `raffle.id` existe
+  }, [raffle?.id, availableRaffles]); // Verificando se `raffle.id` existe
+
+  const afkTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const startAfkTimeout = () => {
+    if (afkTimeoutRef.current) {
+      clearTimeout(afkTimeoutRef.current);
+    }
+
+    afkTimeoutRef.current = setTimeout(() => {
+      setAfk(false);
+    }, 30000);
+  };
+
+  const cancelAfkTimeout = () => {
+    if (afkTimeoutRef.current) {
+      clearTimeout(afkTimeoutRef.current);
+      afkTimeoutRef.current = null;
+    }
+    setAfk(true);
+  };
+
+  useEffect(() => {
+    if (!spinState) {
+      cancelAfkTimeout();
+    } else {
+      startAfkTimeout();
+    }
+
+    return () => {
+      if (afkTimeoutRef.current) {
+        clearTimeout(afkTimeoutRef.current);
+      }
+    };
+  }, [spinState]);
+
+  useEffect(() => {
+    setAfk(false)
+  }, [raffle?.id])
 
   return (
     <div className={style.Roulette}>
       <div className={style.RouletteBox}>
+        {(participants.length > 0 && participants.length !== raffle.users_quantity) && <h1 className={cn(style.Stock, afk ? style.running : '')}>Estoque restante: {raffle.users_quantity - participants.length}</h1>}
         {participants.length > 0 ? <RouletteArray /> : <EmptyRoulette />}
       </div>
       <div className={style.pin}>
@@ -37,7 +77,7 @@ const Roulette = () => {
       </div>
 
       {availableRaffles.length > 0 && <select name='raffleSelectorRoulette' disabled={!isButtonActive} className={cn(style.raffleSelector, style.desktop)} onChange={(e) => selectRaffle(Number(e.target.value))}>
-        {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name}</option>)}
+        {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {(raffle.participants.length / raffle.users_quantity) * 100}%</option>)}
       </select>}
       
       <div className={style.background}>
