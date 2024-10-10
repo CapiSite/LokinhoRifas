@@ -132,7 +132,6 @@ const LastEarnedPrizes = ({
           />
           <p className={style.WinnerText}>
             {`#${WinnerNumber}`} <br />
-            {WinnerName}
           </p>
         </div>
       </div>
