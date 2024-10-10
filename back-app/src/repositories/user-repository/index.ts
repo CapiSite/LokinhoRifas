@@ -422,10 +422,10 @@ async function getTopWinnersWithSkinsAndParticipants(
 ) {
   const offset = (page - 1) * itemsPerPage;
 
-  // Criando o mapa com a tipagem correta
+  // Criando o mapa com a tipagem correta para armazenar os vencedores
   const winnersMap: { [key: number]: Winner } = {};
 
-  // Definindo a cláusula where para o período, caso fornecido
+  // Definindo a cláusula where para o período com base no campo createdAt (data do sorteio da skin)
   const dateFilter: any = {};
   if (startDate && endDate) {
     dateFilter.createdAt = {
@@ -442,73 +442,78 @@ async function getTopWinnersWithSkinsAndParticipants(
     };
   }
 
-  // Agrupar vencedores por winner_id, obtido via a tabela Participant
+  // Agrupar vencedores por winner_id na tabela RaffleSkin e contar quantas vezes o participante venceu
   const topWinners = await prisma.raffleSkin.groupBy({
     by: ['winner_id'],
     _count: {
-      winner_id: true, // Contar quantas vezes o participante venceu
+      winner_id: true,
     },
     where: {
       winner_id: {
-        not: null, // Considerar apenas aqueles que têm um vencedor
+        not: null, // Filtra para pegar apenas aqueles que têm um vencedor
       },
-      ...dateFilter, // Filtro de datas (opcional)
+      ...dateFilter, // Aplica o filtro de datas baseado em createdAt
     },
   });
 
-  // Organizar por maiores vitórias primeiro
+  // Organizar vencedores com base no número de vitórias
   const sortedWinners = topWinners.sort((a, b) => b._count.winner_id - a._count.winner_id);
 
-  // Buscar detalhes dos usuários, participações e as skins ganhas
+  // Buscar detalhes dos vencedores e suas skins ganhas
   for (const winner of sortedWinners) {
-    // Buscar o `user_id` do `winner_id` na tabela Participant
+    // Obter o participante a partir do winner_id
     const participant = await prisma.participant.findUnique({
       where: {
-        id: winner.winner_id!, // Aqui pegamos o `winner_id` para obter o `user_id`
+        id: winner.winner_id!, // Usar o winner_id para buscar o participant e seus dados
       },
       include: {
-        user: true, // Aqui pegamos o `user_id` e os dados do `User`
+        user: true, // Incluir os dados do usuário vencedor
       },
     });
 
     if (!participant || !participant.user) continue;
 
-    const userId = participant.user.id; // Pegamos o `user_id`
+    const userId = participant.user.id;
 
-    // Buscar todas as skins ganhas por este `user_id`
+    // Buscar todas as skins ganhas por este usuário com o filtro de datas
     const skinsWon = await prisma.raffleSkin.findMany({
       where: {
         winner_id: winner.winner_id,
-        ...dateFilter, // Filtro de datas aplicado às skins
+        ...dateFilter, // Aplica o filtro de datas baseado no campo createdAt
       },
     });
 
-    // Contar o número de participações deste `user_id` na tabela `Participant`
+    // Contar o número de participações deste usuário no período fornecido
     const participations = await prisma.participant.count({
       where: {
         user_id: userId,
-        ...dateFilter, // Filtro de datas aplicado às participações
+        raffle: {
+          raffleSkins: {
+            some: dateFilter, // Filtro de datas para contar participações com base na skin sorteada
+          },
+        },
       },
     });
 
-    // Se o usuário já existe no `winnersMap`, incrementa as vitórias e adiciona skins
+    // Se o usuário já está no winnersMap, adicionar as vitórias e skins ganhas
     if (winnersMap[userId]) {
       winnersMap[userId].totalWins += winner._count.winner_id;
-      winnersMap[userId].skinsWon.push(...skinsWon.map((skin) => ({
-        skinName: skin.skinName,
-        skinValue: skin.skinValue,
-        skinType: skin.skinType,
-        skinPicture: skin.skinPicture,
-      })));
+      winnersMap[userId].skinsWon.push(
+        ...skinsWon.map((skin) => ({
+          skinName: skin.skinName,
+          skinValue: skin.skinValue,
+          skinType: skin.skinType,
+          skinPicture: skin.skinPicture,
+        }))
+      );
     } else {
-      // Se o usuário não está no `winnersMap`, adiciona uma nova entrada
+      // Caso contrário, adicionar um novo vencedor ao mapa
       winnersMap[userId] = {
         user: {
           id: participant.user.id,
           name: participant.user.name,
           email: participant.user.email,
           picture: participant.user.picture,
-
         },
         totalWins: winner._count.winner_id,
         skinsWon: skinsWon.map((skin) => ({
@@ -517,19 +522,20 @@ async function getTopWinnersWithSkinsAndParticipants(
           skinType: skin.skinType,
           skinPicture: skin.skinPicture,
         })),
-        participations, // Contagem de participações
+        participations, // Número de participações do usuário no período
       };
     }
   }
 
-  // Transformar o `winnersMap` em uma lista e ordenar novamente para garantir que os maiores vencedores apareçam no topo
+  // Transformar winnersMap em uma lista e ordenar por número de vitórias
   const winnersList = Object.values(winnersMap).sort((a, b) => b.totalWins - a.totalWins);
 
-  // Paginar os resultados após ordenar
+  // Paginação dos resultados
   const paginatedWinners = winnersList.slice(offset, offset + itemsPerPage);
 
   return paginatedWinners;
 }
+
 
 
 const userRepository = {

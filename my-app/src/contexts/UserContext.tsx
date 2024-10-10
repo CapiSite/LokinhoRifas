@@ -98,7 +98,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if(!userInfo.email) return
     getLatestTransactions()
-  }, [])
+  }, [userInfo.email])
 
   // useEffect(() => {
   //   console.log(lastestTransactions)

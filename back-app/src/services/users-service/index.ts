@@ -200,7 +200,7 @@ async function getUsers(page: number, limit: number, search: string) {
   };
 }
 async function getWinnersRank(page: number, itemsPerPage: number, startDate?: Date, endDate?: Date) {
-  return await userRepository.getTopWinnersWithSkinsAndParticipants(page, itemsPerPage);
+  return await userRepository.getTopWinnersWithSkinsAndParticipants(page, itemsPerPage, startDate, endDate);
 }
 
 export type CreateUserParams = Omit<

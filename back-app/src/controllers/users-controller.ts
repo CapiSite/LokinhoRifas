@@ -127,11 +127,17 @@ export async function getUsers(req: Request, res: Response) {
 export async function getWinnersRank(req: Request, res: Response) {
   try {
     const { page, itemsPerPage, startDate, endDate } = req.query;
+
+    // Convertendo as datas para Date, caso sejam fornecidas
+    const start = startDate ? new Date(startDate as string) : undefined;
+    const end = endDate ? new Date(endDate as string) : undefined;
+
+    // Chamando a função de serviço com as datas e os parâmetros de paginação
     const rank = await userService.getWinnersRank(
       Number(page),
       Number(itemsPerPage),
-      startDate ? new Date(startDate as string) : undefined,
-      endDate ? new Date(endDate as string) : undefined,
+      start,
+      end
     );
     return res.status(httpStatus.OK).send(rank);
   } catch (error) {
@@ -139,3 +145,4 @@ export async function getWinnersRank(req: Request, res: Response) {
     return res.status(httpStatus.BAD_REQUEST).send({ error: 'Could not fetch winners rank' });
   }
 }
+

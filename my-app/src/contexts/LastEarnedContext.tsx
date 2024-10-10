@@ -104,18 +104,27 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
   useEffect(() => {
     axios
       .get(
-        process.env.NEXT_PUBLIC_REACT_NEXT_APP +
-          `/users/winners?page=${1}&itemsPerPage=${50}`
+        `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/users/winners?page=1&itemsPerPage=50`
       )
       .then((res: any) => {
-        console.log(res.data)
+        console.log(res.data);
         setNewLastEarnedList(res.data);
       })
       .catch((err: any) => console.error(err));
-    
-    axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/users/rank?page=${1}&itemsPerPage=${50}`).then(res => sanitizeLatestWinners(res.data))
-    .catch(err => console.log(err))
+  
+    // Adicionando o filtro de data para o rank do mês
+    const currentDate = new Date();
+    const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).toISOString();
+    const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).toISOString();
+  
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/users/rank?page=1&itemsPerPage=50&startDate=${startOfMonth}&endDate=${endOfMonth}`
+      )
+      .then((res) => sanitizeLatestWinners(res.data))
+      .catch((err) => console.log(err));
   }, []);
+  
 
   const value = {
     lastEarnedList,

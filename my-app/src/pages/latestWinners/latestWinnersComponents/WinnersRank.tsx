@@ -16,7 +16,7 @@ const WinnersRank = () => {
               <th>Rank</th>
               <th>User</th>
               <th>Vitórias</th>
-              <th>Rifas participadas</th>
+              <th>Números comprados</th>
             </tr>
           </thead>
           <tbody>
