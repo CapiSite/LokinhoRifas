@@ -17,7 +17,7 @@ const Podium = ({ props }: { props: {openTab: string, setOpenTab: React.Dispatch
 
   return (
     <div className={cn(style.col2, style.top)}>
-      <h2>Top jogadores do rank</h2>
+      <h2>Top jogadores do mês</h2>
       <div className={style.podium}>
         {playerRank.length > 1 && <div className={style.silverMedal}>
           {playerRank[1].profilePicture && <Image width={90} height={90} src={playerRank[1].profilePicture.includes('default') ? defaultProfilePic : playerRank[1].profilePicture} alt='Imagem de perfil' />}
