@@ -1,6 +1,6 @@
-import defaultGunPic from '../images/Roleta/Prizes/DefaultGunPic.png'
-import shine from '../images/Roleta/WinnerPopup/shine.png'
-import checkMark from '../assets/checkmark.svg'
+import defaultGunPic from '../../../images/Roleta/Prizes/DefaultGunPic.png'
+import shine from '../../../images/Roleta/WinnerPopup/shine.png'
+import checkMark from '../../../assets/checkmark.svg'
 import Image, { StaticImageData } from "next/image";
 import { Dispatch, useEffect, useState } from 'react';
 import { raffleItem } from 'utils/interfaces';

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useSidebarState } from "../contexts/SidebarContext";
 import logo from "../images/Logo.png";
 import Xmark from "../assets/xmark.svg";
 import { useEffect } from "react";
@@ -8,41 +7,13 @@ import { useUserStateContext } from "contexts/UserContext";
 import { UserContextType } from "../utils/interfaces";
 import HeaderProfile from "./HeaderProfile";
 import axios from "axios";
-import Budget from "./Budget";
-import { RouletteProvider } from "contexts/RouletteContext";
-import PaymentBrick from "./PaymentSteps";
-import Settings from "./Settings";
-import defaultProfilePicture from '../assets/defaultProfilePic.svg'
 
 const Header = () => {
-  const { sidebarView, toggleSidebar }: any = useSidebarState();
-  const { userInfo, setUserInfo, showBudget, showPayment, setShowPayment, showSettings, setShowSettings, image, setImage } = useUserStateContext() as UserContextType
-
-  const { name, email, picture, tradeLink, phoneNumber, saldo } = userInfo
-
-  useEffect(() => {
-    const html = document.querySelector("html");
-
-    html?.classList.toggle("scrollOff", showBudget);
-  }, [showBudget]);
-
-  const profile = {
-    name: name != '' ? name : 'notloggedinuser',
-    email: email != '' ? email : 'notloggedinuser@gmail.com',
-    tradeLink: tradeLink != '' ? tradeLink : 'Sem Trade Link',
-    phoneNumber: phoneNumber != '' ? phoneNumber : 'Sem número cadastrado',
-    picture: picture === "default" ? defaultProfilePicture :
-    (picture && picture.startsWith('https://static-cdn.jtvnw.net')) ? 
-    picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`,
-  }
+  const { userInfo, setUserInfo, showSidebar, toggleSidebar } = useUserStateContext() as UserContextType
 
   const router = useRouter();
 
   useEffect(() => {
-    const htmlElement = document.querySelector("html");
-
-    htmlElement?.classList.toggle("SidebarOn", sidebarView);
-
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
@@ -87,15 +58,15 @@ const Header = () => {
           });
       }
     }
-  }, [sidebarView]);
+  }, [showSidebar]);
   // * O código acima adiciona e retira scroll da página quando a Sidebar está visível
 
   return (
-    <header className={sidebarView ? "no-background" : ""}>
+    <header className={showSidebar ? "no-background" : ""}>
       <div className="HeaderWrapper">
         <div className="MainHeader">
           <div
-            className={sidebarView ? "LogoBox SidebarOn" : "LogoBox"}
+            className={showSidebar ? "LogoBox SidebarOn" : "LogoBox"}
             onClick={() => router.push("/")}
           >
             <Image quality={100} className="Logo" src={logo} alt="Logo de Lokinho Rifas" />
@@ -122,14 +93,9 @@ const Header = () => {
           </div>
         )}
         <button onClick={() => toggleSidebar()} className="mobile tablet">
-          {sidebarView ? <Image width={50} src={Xmark} alt="Fechar sidebar" /> : "|||"}
+          {showSidebar ? <Image width={50} src={Xmark} alt="Fechar sidebar" /> : "|||"}
         </button>
       </div>
-      {showBudget && <Budget />}
-      {showPayment && <RouletteProvider>
-        <PaymentBrick props={{setShowPayment}}/>
-      </RouletteProvider>}
-      {showSettings && <Settings props={{profile, showSettings, setShowSettings, image, setImage}}/>}
     </header>
   );
 };

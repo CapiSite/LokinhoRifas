@@ -19,6 +19,10 @@ export interface UserContextType {
   setShowBudget: React.Dispatch<React.SetStateAction<boolean>>;
   showSettings: boolean;
   setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
+  showRafflePopup: boolean;
+  setShowRafflePopup: React.Dispatch<React.SetStateAction<boolean>>;
+  showSidebar: boolean;
+  setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   lastestTransactions: LastPayment[];
   getLatestTransactions: Function;
   qrcode64: string; 
@@ -28,6 +32,7 @@ export interface UserContextType {
   image: File | null, 
   setImage: React.Dispatch<React.SetStateAction<File | null>>
   openConfig: () => void;
+  toggleSidebar: () => void;
 }
 
 export type UserInfoType = {
@@ -60,8 +65,6 @@ export type UserSettingsType = {
     email: string;
     picture: string;
   };
-  showSettings: boolean;
-  setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
   image: File | null;
   setImage: React.Dispatch<React.SetStateAction<File | null>>;
 };

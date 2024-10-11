@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { raffleItem, RouletteContext, UserContextType } from "utils/interfaces";
-import Link from "next/link";
 
-import leftarrow from '../assets/arrowleft.svg'
+import leftarrow from "../../../assets/arrowleft.svg";
 
 import RaffleDetails from "./RaffleDetails";
 import StepCounter from "./stepCounter";
@@ -16,16 +15,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Image from "next/image";
 
-const PopupBuy = ({
-  props,
-}: {
-  props: {
-    isVisible: boolean;
-    setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowPayment: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-}) => {
-
+const PopupBuy = () => {
   const {
     purchasableRaffles = [],
     toggleSelection,
@@ -33,18 +23,26 @@ const PopupBuy = ({
     handleChangeQuantity,
   } = useRouletteContext() as RouletteContext;
 
+  const {
+    userInfo,
+    setUserInfo,
+    setShowRafflePopup,
+    setShowPayment,
+    showRafflePopup,
+  } = useUserStateContext() as UserContextType;
+
   const router = useRouter();
 
-  const { isVisible, setIsVisible, setShowPayment } = props;
-  const { userInfo, setUserInfo } = useUserStateContext() as UserContextType
   const [detailsVisible, setDetailsVisible] = useState(false);
-  const [ selectedItems, setSelectedItems ] = useState<raffleItem[]>(purchasableRaffles.filter(raffle => raffle.isSelected))
+  const [selectedItems, setSelectedItems] = useState<raffleItem[]>(
+    purchasableRaffles.filter((raffle) => raffle.isSelected)
+  );
   const [raffleDetails, setRaffleDetails] = useState(0);
   const [step, setStep] = useState(1);
   const [total, setTotal] = useState(0);
   const [showPrompt, setShowPrompt] = useState(false);
-  const [ disableBtn, setDisableBtn ] = useState(false)
-  const [ animationProgress, setAnimationProgress ] = useState(100)
+  const [disableBtn, setDisableBtn] = useState(false);
+  const [animationProgress, setAnimationProgress] = useState(100);
 
   const addStep = () => {
     setStep((oldValue) => (oldValue += 1));
@@ -52,17 +50,17 @@ const PopupBuy = ({
 
   useEffect(() => {
     // console.log(purchasableRaffles)
-    setSelectedItems(purchasableRaffles.filter(raffle => raffle.isSelected))
-  }, [step])
+    setSelectedItems(purchasableRaffles.filter((raffle) => raffle.isSelected));
+  }, [step]);
 
   useEffect(() => {
-    clearOutSelections()
-  }, [])
+    clearOutSelections();
+  }, []);
 
   useEffect(() => {
-    if(selectedItems.length == 0) return
+    if (selectedItems.length == 0) return;
     // console.log(selectedItems)
-  }, [selectedItems.length])
+  }, [selectedItems.length]);
 
   const removeStep = () => {
     setStep((oldValue) => (oldValue -= 1));
@@ -83,14 +81,13 @@ const PopupBuy = ({
     if (!userInfo.email) return router.reload();
 
     if (step < 3) addStep();
-
     else if (step == 4) {
-      setIsVisible(false);
+      setShowRafflePopup(false);
     } else {
       if (userInfo.saldo < total) {
         setShowPrompt(true);
       } else {
-        setDisableBtn(true)
+        setDisableBtn(true);
         const tempArray2 = purchasableRaffles.filter(
           (raffle) => raffle.isSelected
         );
@@ -100,7 +97,7 @@ const PopupBuy = ({
           quantity: raffle.quantity,
         }));
 
-        setAnimationProgress(30)
+        setAnimationProgress(30);
 
         axios
           .post(
@@ -115,12 +112,16 @@ const PopupBuy = ({
             }
           )
           .then((res) => {
-            if(res.data.remainingBalance) setUserInfo(oldValue => ({...oldValue, saldo: res.data.remainingBalance}))
-              setAnimationProgress(100)
-              setTimeout(() => {
-                addStep();
-                setDisableBtn(false)
-              }, 1000);
+            if (res.data.remainingBalance)
+              setUserInfo((oldValue) => ({
+                ...oldValue,
+                saldo: res.data.remainingBalance,
+              }));
+            setAnimationProgress(100);
+            setTimeout(() => {
+              addStep();
+              setDisableBtn(false);
+            }, 1000);
           })
           .catch((err) => console.log(err));
       }
@@ -130,7 +131,7 @@ const PopupBuy = ({
   const handlePrompt = (redirect: boolean) => {
     setShowPrompt(false);
 
-    if (redirect) setShowPayment(true)
+    if (redirect) setShowPayment(true);
   };
 
   const newTotal = total.toString().includes(".")
@@ -142,7 +143,7 @@ const PopupBuy = ({
     : `${total.toString()},00`;
 
   return (
-    <section className={`PopupBuy ${isVisible ? "" : "not-show"}`}>
+    <section className={`PopupBuy ${showRafflePopup ? "" : "not-show"}`}>
       <div className="PopupBuyWrapper">
         <StepCounter steps={{ step }} />
 
@@ -159,24 +160,19 @@ const PopupBuy = ({
             />
 
             {/* Raffle select é a primeira etapa, o usuário precisa ter pelo menos uma rifa selecionada para progredir */}
-
             <RaffleSelectQuantity
               setQuantity={{
                 setTotal,
                 rafflesData: selectedItems,
-                handleChangeQuantity
+                handleChangeQuantity,
               }}
             />
 
             {/* Raffle select quantity é a segunda, aqui ele poderá adicionar mais números referentes as rifas selecionadas na etapa anterior */}
-
-            <RafflePayment
-              props={{ selectedItems, step }}
-            />
+            <RafflePayment props={{ selectedItems, step }} />
 
             {/* Raffle payment lidará com o pagamento através do saldo na conta, essa escolha foi feita pra evitar o possível assincronismo entre a pessoa ter ou não o valor em mãos, algo que à prontifica melhor */}
-
-            <RaffleConfirmation props={{ setIsVisible }} />
+            <RaffleConfirmation props={{ setIsVisible: setShowRafflePopup }} />
 
             {/* Por último, a tela de confirmação, nela será apenas adiantado que o pagamento foi realizado com sucesso, e que agora ela terá acesso aos números que está participando na rifa */}
           </div>
@@ -187,9 +183,16 @@ const PopupBuy = ({
               </div>
             )}
             {step > 1 && step < 4 && (
-              <Link href={""} onClick={removeStep}>
-                <Image width={20} height={20} className="seta" src={leftarrow} alt="Voltar"/> Voltar
-              </Link>
+              <p onClick={removeStep}>
+                <Image
+                  width={20}
+                  height={20}
+                  className="seta"
+                  src={leftarrow}
+                  alt="Voltar"
+                />{" "}
+                Voltar
+              </p>
             )}
             <button
               onClick={handleStepValidation}
@@ -206,7 +209,10 @@ const PopupBuy = ({
           </div>
         </div>
 
-        <div onClick={() => setIsVisible(false)} className="background"></div>
+        <div
+          onClick={() => setShowRafflePopup(false)}
+          className="background"
+        ></div>
         {detailsVisible && (
           <RaffleDetails
             moreDetails={{
@@ -228,7 +234,10 @@ const PopupBuy = ({
               <button onClick={() => handlePrompt(false)}>Cancelar</button>
             </div>
           </div>
-          <div onClick={() => setIsVisible(false)} className="background"></div>
+          <div
+            onClick={() => setShowRafflePopup(false)}
+            className="background"
+          ></div>
         </div>
       )}
     </section>

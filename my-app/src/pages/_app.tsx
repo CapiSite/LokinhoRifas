@@ -8,9 +8,9 @@ import Footer from "../components/Footer";
 import { UserProvider } from "../contexts/UserContext";
 import Header from "../components/Header";
 import { TextProvider } from "../contexts/TextContext";
-import { SidebarStateProvider } from "../contexts/SidebarContext";
 import Credits from "../components/Credits";
 import Sidebar from "../components/Sidebar";
+import PopUps from "components/popups";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -48,17 +48,16 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Lokinho Skins</title>
       </Head>
-      <SidebarStateProvider>
-        <UserProvider>
-          <TextProvider>
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-            <Credits />
-            <Sidebar />
-          </TextProvider>
-        </UserProvider>
-      </SidebarStateProvider>
+      <UserProvider>
+        <TextProvider>
+          <PopUps />
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+          <Credits />
+          <Sidebar />
+        </TextProvider>
+      </UserProvider>
     </>
   );
 }

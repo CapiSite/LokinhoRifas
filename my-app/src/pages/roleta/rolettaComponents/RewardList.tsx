@@ -1,16 +1,23 @@
+import { useUserStateContext } from 'contexts/UserContext';
 import style from '../roletta.module.css'
 import RewardsArray from './RewardArray';
 import cn from 'classnames'
+import { UserContextType } from 'utils/interfaces';
+import { useRouter } from 'next/router';
 
-const RewardList = ({ props }: { props: { isVisible: boolean, setIsVisible: React.Dispatch<React.SetStateAction<boolean>> } }) => {
-  if (!props || !props.setIsVisible) {
-    return null;
-  }
-  const {isVisible, setIsVisible } = props;
+const RewardList = () => {
+  const { setShowRafflePopup, userInfo } = useUserStateContext() as UserContextType
+
+  const router = useRouter()
+
   const handleShowRaffles = () => {
-    console.log(isVisible)
-      setIsVisible(true);
+    if (userInfo.token !== '') {
+      setShowRafflePopup(true);
+    } else {
+      router.push('/login');
+    }
   }
+
   return (
     <div className={style.RewardsList}>
       <div className={cn(style.desktop, style.RewardsAd)}>

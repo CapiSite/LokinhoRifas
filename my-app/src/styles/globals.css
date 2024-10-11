@@ -381,7 +381,7 @@ header .Profile .ProfileContent {
   width: 100%;
   height: 100dvh;
 
-  z-index: 10;
+  z-index: 11;
 }
 
 .configWrapper {
@@ -609,7 +609,7 @@ header .Profile .ProfileContent {
   width: 100%;
   height: 100dvh;
 
-  z-index: 10;
+  z-index: 11;
 }
 
 .budgetWrapper {
@@ -2358,6 +2358,11 @@ footer nav div {
 }
 
 .PopupBuy .bottomSection button {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
   padding: 15px 9px;
   font-size: 24px;
   font-weight: 500;
@@ -2399,7 +2404,6 @@ footer nav div {
   transition: width 400ms ease-in-out;
 }
 
-
 .PopupBuy .bottomSection button::after {
   display: flex;
 
@@ -2429,7 +2433,12 @@ footer nav div {
   filter: grayscale(100%);
 }
 
-.PopupBuy .bottomSection a {
+.PopupBuy .bottomSection p {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  
   color: black;
 
   font-size: 24px;
@@ -2661,10 +2670,6 @@ footer nav div {
 
 /** Mobile */
 @media only screen and (max-width: 1200px) {
-  html.SidebarOn {
-    overflow: hidden;
-  }
-
   .HeaderWrapper {
     width: 90%;
     
@@ -3242,11 +3247,11 @@ footer nav div {
   }
 
   .PopupBuyContent .raffleSelect .cardGroup {
-    height: min(270px, 40%);
+    height: 270px;
   }
 
   .PopupBuy .raffleBuyQuantity .cartGroup {
-    height: 200px;
+    height: 190px;
   }
 
   .raffleSelect .cardGroupWrapper, .PopupBuyContent .raffleSelect .cardGroup {

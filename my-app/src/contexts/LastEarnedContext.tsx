@@ -1,5 +1,5 @@
 import axios from "axios";
-import RaffleCard from "components/RaffleCard";
+import RaffleCard from "components/popups/BuyRaffle/RaffleCard";
 import {
   ReactNode,
   createContext,

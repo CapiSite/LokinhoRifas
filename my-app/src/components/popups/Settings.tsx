@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import editPencil from '../assets/editPencil.svg';
+import editPencil from '../../assets/editPencil.svg';
 import { UserContextType, UserSettingsType } from 'utils/interfaces';
 import { useEffect, useRef, useState } from 'react';
 import { useUserStateContext } from 'contexts/UserContext';
@@ -7,13 +7,13 @@ import axios from 'axios';
 import MaskedInput from 'react-text-mask';
 import { useRouter } from 'next/router';
 
-import Eye from '../assets/eye.svg'
-import EyeSlashed from '../assets/eye-slash.svg'
+import Eye from '../../assets/eye.svg'
+import EyeSlashed from '../../assets/eye-slash.svg'
 
 const Settings = ({ props }: { props: UserSettingsType }) => {
-  const { profile, setShowSettings, image, setImage } = props;
+  const { profile, image, setImage } = props;
   const inputRef = useRef<HTMLInputElement>(null);
-  const { userInfo } = useUserStateContext() as UserContextType;
+  const { userInfo, setShowSettings } = useUserStateContext() as UserContextType;
 
   const [userData, setUserData] = useState({
     tradeLink: profile.tradeLink,

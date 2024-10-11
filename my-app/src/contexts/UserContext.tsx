@@ -35,6 +35,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [ showBudget, setShowBudget ] = useState<boolean>(false)
   const [ showSettings, setShowSettings ] = useState<boolean>(false)
   const [ showPayment, setShowPayment ] = useState<boolean>(false)
+  const [ showRafflePopup, setShowRafflePopup ] = useState<boolean>(false)
+  const [ showSidebar, setShowSidebar ] = useState<boolean>(false)
+
   const [ lastestTransactions, setLatestTransactions ] = useState<LastPayment[]>([])
   const [ qrcode64, setQrcode64 ] = useState<string>('')
   const [ valueDiff, setValueDiff ] = useState(0)
@@ -95,10 +98,23 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     router.push("/login")
   }
 
+  const toggleSidebar = () => {
+    setShowSidebar(prev => !prev)
+  }
+
   useEffect(() => {
     if(!userInfo.email) return
     getLatestTransactions()
   }, [userInfo.email])
+
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+
+    const isPopUpVisible = showRafflePopup || showBudget || showSettings || showPayment || showSidebar
+
+    html?.classList.toggle("scrollOff", isPopUpVisible);
+  }, [showBudget, showRafflePopup, showSettings, showPayment, showSidebar]);
 
   // useEffect(() => {
   //   console.log(lastestTransactions)
@@ -114,6 +130,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setShowPayment,
     showSettings, 
     setShowSettings,
+    showRafflePopup, 
+    setShowRafflePopup,
+    showSidebar, 
+    setShowSidebar,
     lastestTransactions,
     getLatestTransactions,
     qrcode64, 
@@ -123,6 +143,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     image, 
     setImage,
     openConfig,
+    toggleSidebar,
   }
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>

@@ -1,23 +1,14 @@
 import { useUserStateContext } from "contexts/UserContext";
-import { SidebarContextType, UserContextType }  from '../utils/interfaces'
+import { UserContextType }  from '../utils/interfaces'
 import Image from "next/image";
 
 import defaultProfilePicture from '../assets/defaultProfilePic.svg'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { useSidebarState } from "contexts/SidebarContext";
 
 const HeaderProfileMobile = () => {
-  const { userInfo, setUserInfo, setShowBudget, image, showSettings, setShowSettings } = useUserStateContext() as UserContextType
+  const { userInfo, setUserInfo, setShowBudget, image, setShowSettings, toggleSidebar } = useUserStateContext() as UserContextType
   const [ showDropdown, setShowDropdow ] = useState<boolean>(false)
-  const { toggleSidebar } = useSidebarState() as SidebarContextType
-
-  useEffect(() => {
-    const html = document.querySelector('html')
-
-    
-    html?.classList.toggle('scrollOff', showSettings)
-  }, [showSettings])
 
   const { name, email, picture, saldo } = userInfo
 

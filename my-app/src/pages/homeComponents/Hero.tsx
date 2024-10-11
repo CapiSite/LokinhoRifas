@@ -7,17 +7,13 @@ import { UserContext } from 'contexts/UserContext';
 import { useRouter } from 'next/router';
 import { UserContextType } from 'utils/interfaces';
 
-const Hero = ({ props }: { props: { isVisible: boolean, setIsVisible: React.Dispatch<React.SetStateAction<boolean>> } }) => {
-  if (!props || !props.setIsVisible) {
-    return null;
-  }
-  const { setIsVisible } = props;
+const Hero = () => {
   const router = useRouter();
-  const { userInfo } = useContext(UserContext) as UserContextType;
+  const { userInfo, setShowRafflePopup } = useContext(UserContext) as UserContextType;
 
   const handleShowRaffles = () => {
     if (userInfo.token !== '') {
-      setIsVisible(true);
+      setShowRafflePopup(true);
     } else {
       router.push('/login');
     }

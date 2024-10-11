@@ -1,6 +1,6 @@
 import { useUserStateContext } from "contexts/UserContext";
 import { raffleItem, rafflePayment, UserContextType } from "utils/interfaces";
-import Currency from '../assets/currency.svg'
+import Currency from '../../../assets/currency.svg'
 import Image from "next/image";
 import { useEffect } from "react";
 

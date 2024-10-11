@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import checkMark from '../assets/checkmark.shield.svg'
+import checkMark from '../../../assets/checkmark.shield.svg'
 
 const RaffleConfirmation = ({ props }: { props: { setIsVisible: React.Dispatch<React.SetStateAction<boolean>> } }) => {
 

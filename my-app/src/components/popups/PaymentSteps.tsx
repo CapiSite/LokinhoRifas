@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Dispatch, useEffect, useRef, useState } from "react";
-import shield from "../assets/checkmark.shield.svg";
-import copynpaste from "../assets/copynpaste.svg"
-import leftarrow from "../assets/arrowleft.svg"
+import shield from "../../assets/checkmark.shield.svg";
+import copynpaste from "../../assets/copynpaste.svg"
+import leftarrow from "../../assets/arrowleft.svg"
 import { useRouter } from "next/router";
 import { useUserStateContext } from "contexts/UserContext";
 import { UserContextType } from "utils/interfaces";
@@ -16,13 +16,7 @@ declare global {
   }
 }
 
-const PaymentBrick = ({
-  props,
-}: {
-  props: {
-    setShowPayment: Dispatch<React.SetStateAction<boolean>>;
-  };
-}) => {
+const PaymentBrick = () => {
   const [sdkLoaded, setSdkLoaded] = useState(false);
   const [price, setPrice] = useState('');
   const [priceValue, setPriceValue] = useState(0);
@@ -33,6 +27,8 @@ const PaymentBrick = ({
   const [qrCode, setQrCode] = useState("");
   const router = useRouter();
 
+  const { setShowPayment } = useUserStateContext() as UserContextType
+
   useEffect(() => {
     if(price == '') return
     let tempNum = price.split('R$ ')[1]
@@ -40,7 +36,6 @@ const PaymentBrick = ({
     setPriceValue(Number(tempNum.replace(',', '.')))
   }, [price])
 
-  const { setShowPayment } = props;
   const { qrcode64, valueDiff, setQrcode64 } = useUserStateContext() as UserContextType
 
   const addStep = () => {

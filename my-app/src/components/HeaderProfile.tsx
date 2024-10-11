@@ -3,21 +3,14 @@ import { UserContextType }  from '../utils/interfaces'
 import Image from "next/image";
 
 import defaultProfilePicture from '../assets/defaultProfilePic.svg'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 const HeaderProfile = () => {
-  const { userInfo, setShowBudget, logOut, showSettings, image, openConfig } = useUserStateContext() as UserContextType
+  const { userInfo, setShowBudget, logOut, image, openConfig } = useUserStateContext() as UserContextType
   const [ showDropdown, setShowDropdow ] = useState<boolean>(false)
 
   const router = useRouter()
-
-  useEffect(() => {
-    const html = document.querySelector('html')
-
-    
-    html?.classList.toggle('scrollOff', showSettings)
-  }, [showSettings])
 
   const { name, email, picture, saldo, isAdmin } = userInfo
 

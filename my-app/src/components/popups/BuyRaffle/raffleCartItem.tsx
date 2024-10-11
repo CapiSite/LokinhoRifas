@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from "next/image";
-import defaultGunPic from '../images/Roleta/Prizes/DefaultGunPic.png';
-import shine from '../images/Roleta/WinnerPopup/shine.png';
+import defaultGunPic from '../../../images/Roleta/Prizes/DefaultGunPic.png';
+import shine from '../../../images/Roleta/WinnerPopup/shine.png';
 import { ChangeEvent, useEffect, useState } from "react";
 import { raffleItem } from "utils/interfaces";
 
