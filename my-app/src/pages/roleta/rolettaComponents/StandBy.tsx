@@ -23,7 +23,7 @@ const StandBy = ({props}: {props: {afk: boolean}}) => {
     const tempArray: RaffleParticipant[] = []
 
     winners.map(participant => {
-      if(tempArray.filter(item => item.user.id == participant.user.id).length == 0) tempArray.push(participant)
+      if(tempArray.filter(item => item.number == participant.number).length == 0) tempArray.push(participant)
     })
 
     setUsers(tempArray)
@@ -81,7 +81,7 @@ const StandBy = ({props}: {props: {afk: boolean}}) => {
     <div className={cn(style.usersBox, afk ? style.running : '')}>
       <div className={style.usersBoxWrapper} id='StandBy'>
         {users.length > 0 && users.map(user => (
-          <StandByItem key={uuidv4()} user={{name: user.user.name || 'Unknown', picture: user.user.picture || ''}}/>
+          <StandByItem key={uuidv4()} user={{name: user.user.name || 'Unknown', picture: user.user.picture || '', number: user.number || 0}}/>
         ))}
       </div>
     </div>

@@ -3,9 +3,9 @@ import defaultPicture from '../../../assets/defaultProfilePic2.svg'
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-const StandByItem = ({user}: { user: { name: string, picture: string } }) => {
+const StandByItem = ({user}: { user: { name: string, picture: string, number: number } }) => {
 
-  const { name = 'Unknown', picture = '' } = user
+  const { name = 'Unknown', picture = '', number = 0 } = user
 
   const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
 
@@ -27,7 +27,7 @@ const StandByItem = ({user}: { user: { name: string, picture: string } }) => {
   return (
     <div className={style.user}>
       <Image width={136} height={136} src={imgSrc} alt={`Foto de perfil de ${name}`}/>
-      <h1>{name}</h1>
+      <h1>{name}#{number}</h1>
     </div>
   );
 }
