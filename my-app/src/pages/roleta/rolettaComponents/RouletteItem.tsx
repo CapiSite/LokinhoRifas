@@ -17,12 +17,10 @@ const RouletteItem = React.memo(({ props }: { props?: CardItemType }) => {
     index,
   } = props || {}; // Use empty object if props is undefined
 
-    const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
+  const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      // index == 0 && console.log(profilePicture)
-      // index == 0 && console.log(imgSrc == profilePicture)
       if (!profilePicture) return setImgSrc(defaultPicture);
       else if(profilePicture.includes('https://static-cdn.jtvnw.net')) {
         setImgSrc(profilePicture);

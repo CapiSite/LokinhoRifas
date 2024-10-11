@@ -7,6 +7,7 @@ import { useRouletteContext } from 'contexts/RouletteContext';
 import EmptyRoulette from './EmptyRoulette';
 import cn from 'classnames'
 import { useEffect, useRef, useState } from 'react';
+import StandBy from './StandBy';
 
 const Roulette = () => {
   const { availableRaffles = [], selectRaffle, participants = [], isButtonActive, spinState, raffle } = useRouletteContext() as RouletteContext
@@ -68,8 +69,11 @@ const Roulette = () => {
 
   return (
     <div className={style.Roulette}>
-      <div className={style.RouletteBox}>
+      <div className={style.RouletteBox} id='RouletteBox'>
         {(participants.length > 0 && participants.length !== raffle.users_quantity) && <h1 className={cn(style.Stock, afk ? style.running : '')}>Estoque restante: {raffle.users_quantity - participants.length}</h1>}
+
+        {participants.length > 0 && <StandBy props={{afk}} />}
+
         {participants.length > 0 ? <RouletteArray /> : <EmptyRoulette />}
       </div>
       <div className={style.pin}>

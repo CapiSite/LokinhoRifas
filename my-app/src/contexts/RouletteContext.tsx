@@ -46,16 +46,20 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   // ? Init variables
 
   // ? Necessary variables
-  const [ timing, setTiming ] = useState<number>(30000) // default: 30000
+  const [timing, setTiming] = useState<number>(30000); // default: 30000
+  const [delay, setDelay] = useState<number>(700); // default: 700
   const [participants, setParticipants] = useState<RaffleParticipant[]>([]);
-  const [winners, setWinners] = useState<RaffleParticipant[]>([])
-  const [fillerParticipants, setFillerParticipants] = useState<RaffleParticipant[]>(
-    []
-  );
+  const [winners, setWinners] = useState<RaffleParticipant[]>([]);
+  const [fillerParticipants, setFillerParticipants] = useState<
+    RaffleParticipant[]
+  >([]);
   const [winnerProperties, setWinnerProperties] = useState<RaffleParticipant>();
   // const [distanceFromCenter, setDistanceFromCenter] = useState<number>(0);
-  const [ alreadyRequestedImgs, setAlreadyRequestedImgs ] = useState<ImageCache>([])
-  const [ rouletteLoadingState, setRouletteLoadingState ] = useState<boolean>(false)
+  const [alreadyRequestedImgs, setAlreadyRequestedImgs] = useState<ImageCache>(
+    []
+  );
+  const [rouletteLoadingState, setRouletteLoadingState] =
+    useState<boolean>(false);
   const [rewards, setRewards] = useState<RaffleReward[]>([]);
 
   const [animationState, setAnimationState] = useState<Animation>();
@@ -70,17 +74,17 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   // ? Component variables
 
   // ? Functions
-  const toggleWinnerPopupVisibility = () => setWinnerPopupVisible((oldValue) => !oldValue);
-
+  const toggleWinnerPopupVisibility = () =>
+    setWinnerPopupVisible((oldValue) => !oldValue);
 
   const debuggingFormatDate = () => {
     const date = new Date(Date.now());
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-    
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+
     return `${hours}:${minutes}:${seconds}`;
-};
+  };
 
   const loadFillerCards = (newParticipantsArray: RaffleParticipant[]) => {
     const winnerlessCards = newParticipantsArray.map((item) => ({
@@ -96,7 +100,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       }
     }
 
-    const tempShuffledArray: RaffleParticipant[] = tempArray
+    const tempShuffledArray: RaffleParticipant[] = tempArray;
 
     // tempShuffledArray.splice(300, 10000)
 
@@ -111,18 +115,18 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     const randomSide = Math.floor(Math.random() * 2) == 1 ? -1 : 1;
 
-    setIsButtonActive(false)
-    setSpinState(false)
-    
+    setIsButtonActive(false);
+    setSpinState(false);
+
     setTimeout(() => {
       toggleWinnerPopupVisibility();
-      setIsConfettiActive(true)
+      setIsConfettiActive(true);
 
       setTimeout(() => {
-        setIsButtonActive(true)
-        setSpinState(true)
+        setIsButtonActive(true);
+        setSpinState(true);
       }, 5000);
-    }, timing);
+    }, timing + delay);
 
     if (randomSide == -1) {
       // * Variável que segura animação
@@ -145,6 +149,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
             duration: timing,
             easing: "cubic-bezier(.04,.81,.48,1)",
             fill: "forwards",
+            delay
           }
         ),
         document.timeline
@@ -175,6 +180,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
             duration: timing,
             easing: "cubic-bezier(.04,.81,.48,1)",
             fill: "forwards",
+            delay
           }
         ),
         document.timeline
@@ -186,79 +192,93 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       return spinAnimation;
     }
   };
-  
-  const handleRolling = () => {
-    if(!raffle.participants) return
-    if(raffle.participants.length == 0) return
 
-    setIsButtonActive(false)
-    setSpinState(false)
-    
+  const handleRolling = () => {
+    if (!raffle.participants) return;
+    if (raffle.participants.length == 0) return;
+
+    setIsButtonActive(false);
+    setSpinState(false);
+
     setTimeout(() => {
       toggleWinnerPopupVisibility();
-      setIsConfettiActive(true)
+      setIsConfettiActive(true);
 
       setTimeout(() => {
-        setIsButtonActive(true)
-        setSpinState(true)
+        setIsButtonActive(true);
+        setSpinState(true);
       }, 5000);
     }, timing);
 
     const interval = setInterval(() => {
-      setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
+      setWinnerProperties(
+        winners[Math.floor(Math.random() * winners.length - 1)]
+      );
     }, 100);
 
     setTimeout(() => {
-      clearInterval(interval)
+      clearInterval(interval);
 
       const interval2 = setInterval(() => {
-        setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
+        setWinnerProperties(
+          winners[Math.floor(Math.random() * winners.length - 1)]
+        );
       }, 200);
-      
+
       setTimeout(() => {
-        clearInterval(interval2)
+        clearInterval(interval2);
 
         const interval3 = setInterval(() => {
-          setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
+          setWinnerProperties(
+            winners[Math.floor(Math.random() * winners.length - 1)]
+          );
         }, 400);
-        
+
         setTimeout(() => {
-          clearInterval(interval3)
+          clearInterval(interval3);
 
           const interval4 = setInterval(() => {
-            setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
+            setWinnerProperties(
+              winners[Math.floor(Math.random() * winners.length - 1)]
+            );
           }, 800);
 
           setTimeout(() => {
-            clearInterval(interval4)
-            setWinnerProperties(winners[Math.floor(Math.random() * winners.length - 1)])
+            clearInterval(interval4);
+            setWinnerProperties(
+              winners[Math.floor(Math.random() * winners.length - 1)]
+            );
           }, timing / 6);
         }, timing / 6);
       }, timing / 3);
     }, timing / 3);
-  }
+  };
 
   const manageWinner = () => {
     setIsMockWin(false);
 
-    raffle.participants.length >= 100 ? handleRolling() : setAnimationState(playAnimation());
+    raffle.participants.length >= 100
+      ? handleRolling()
+      : setAnimationState(playAnimation());
   };
 
   const manageMockWinner = () => {
     setIsMockWin(true);
 
-    raffle.participants.length >= 100 ? handleRolling() : setAnimationState(playAnimation());
+    raffle.participants.length >= 100
+      ? handleRolling()
+      : setAnimationState(playAnimation());
   };
 
   const manageCloseResult = () => {
     toggleWinnerPopupVisibility();
-    setIsConfettiActive(false)
+    setIsConfettiActive(false);
 
-    if (raffle.participants.length < 100) animationState?.cancel()
+    if (raffle.participants.length < 100) animationState?.cancel();
 
     if (isMockWin) {
-      setNewWinnersQuickly(winners)
-      return
+      setNewWinnersQuickly(winners);
+      return;
     }
 
     addLatestWinnerToTable();
@@ -300,27 +320,36 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     const participants = raffle.participants;
 
     // Extract and transform users
-    const newUsers = participants.map(p => ({
+    const newUsers = participants.map((p) => ({
       ...p.user,
-      picture: p.user.picture.includes('static-cdn') ? p.user.picture :`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${p.user.picture}`,
-      participantId: p.id
+      picture: p.user.picture.includes("static-cdn")
+        ? p.user.picture
+        : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${p.user.picture}`,
+      participantId: p.id,
     }));
 
     // Process images and update users
     const updatedUsers = await Promise.all(
       newUsers.map(async (user) => {
-        const cachedImage = alreadyRequestedImgs.find(item => item.url === user.picture);
+        const cachedImage = alreadyRequestedImgs.find(
+          (item) => item.url === user.picture
+        );
 
         if (cachedImage) {
-          return { ...user, picture: cachedImage.success ? user.picture : 'default' };
+          return {
+            ...user,
+            picture: cachedImage.success ? user.picture : "default",
+          };
         }
 
         try {
-          const response = await fetch(user.picture, { method: 'HEAD' });
+          const response = await fetch(user.picture, { method: "HEAD" });
 
           if (response.ok) {
-            setAlreadyRequestedImgs(prev => {
-              const alreadyExists = prev.some(item => item.url === user.picture);
+            setAlreadyRequestedImgs((prev) => {
+              const alreadyExists = prev.some(
+                (item) => item.url === user.picture
+              );
               if (!alreadyExists) {
                 return [...prev, { url: user.picture, success: true }];
               }
@@ -328,41 +357,47 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
             });
             return { ...user, picture: user.picture };
           } else {
-            setAlreadyRequestedImgs(prev => {
-              const alreadyExists = prev.some(item => item.url === user.picture);
+            setAlreadyRequestedImgs((prev) => {
+              const alreadyExists = prev.some(
+                (item) => item.url === user.picture
+              );
               if (!alreadyExists) {
                 return [...prev, { url: user.picture, success: false }];
               }
               return prev;
             });
-            return { ...user, picture: 'default' };
+            return { ...user, picture: "default" };
           }
         } catch (error) {
-          setAlreadyRequestedImgs(prev => {
-            const alreadyExists = prev.some(item => item.url === user.picture);
+          setAlreadyRequestedImgs((prev) => {
+            const alreadyExists = prev.some(
+              (item) => item.url === user.picture
+            );
             if (!alreadyExists) {
               return [...prev, { url: user.picture, success: false }];
             }
             return prev;
           });
-          return { ...user, picture: 'default' };
+          return { ...user, picture: "default" };
         }
       })
     );
 
     // Rebuild full participant objects with updated user data
-    const rebuiltParticipants = participants.map(participant => {
-      const updatedUser = updatedUsers.find(user => user.participantId === participant.id);
+    const rebuiltParticipants = participants.map((participant) => {
+      const updatedUser = updatedUsers.find(
+        (user) => user.participantId === participant.id
+      );
       return {
         ...participant,
-        user: updatedUser || participant.user // Fallback to original if no update found
+        user: updatedUser || participant.user, // Fallback to original if no update found
       };
     });
 
     // Ensure this state updater function matches the expected type
     setParticipants(rebuiltParticipants); // Use the resolved array here
 
-    setNewWinners(rebuiltParticipants)
+    setNewWinners(rebuiltParticipants);
   };
   // ? Functions
 
@@ -397,7 +432,8 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       itemImageUrl: rewards[0].itemImageUrl,
       TimeOfEarning: time,
       unformattedTime: date.toString(),
-      ChanceOfEarning: ((1 / raffle.participants.length) * 100).toFixed(2) + "%",
+      ChanceOfEarning:
+        ((1 / raffle.participants.length) * 100).toFixed(2) + "%",
       PoolType: rewards[0].type,
       ItemName: rewards[0].itemName,
       ItemType: rewards[0].itemType,
@@ -439,7 +475,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       (item) => item.number != winnerProperties.number
     );
 
-    setNewWinners(updatedParticipants)
+    setNewWinners(updatedParticipants);
 
     setRewards(rewards.filter((reward) => reward != rewards[0]));
   };
@@ -452,21 +488,25 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if (newParticipantsArray.length == 0) return;
     // console.log('passed verification in setNewWinners')
 
-    const oldWinnersId = raffle.raffleSkins.filter(item => item.winner_id).map(item => '#' + item.winner_id)
-    const possibleWinners = newParticipantsArray.filter(item => !(oldWinnersId.join().includes('#' + item.id)))
+    const oldWinnersId = raffle.raffleSkins
+      .filter((item) => item.winner_id)
+      .map((item) => "#" + item.winner_id);
+    const possibleWinners = newParticipantsArray.filter(
+      (item) => !oldWinnersId.join().includes("#" + item.id)
+    );
 
-    const random = Math.floor(Math.random() * (possibleWinners.length - 1))
+    const random = Math.floor(Math.random() * (possibleWinners.length - 1));
 
     possibleWinners[random] = {
       id: possibleWinners[random].id,
       number: possibleWinners[random].number,
       isWinner: true,
-      user: possibleWinners[random].user
-    }
+      user: possibleWinners[random].user,
+    };
 
     setWinners(possibleWinners);
 
-    loadFillerCards(possibleWinners)
+    loadFillerCards(possibleWinners);
 
     setWinnerProperties(possibleWinners[random]);
   };
@@ -476,19 +516,26 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if (newParticipantsArray.length == 0) return;
     // console.log('passed verification in setNewWinners')
 
-    const newWinners = newParticipantsArray.map(participant => ({...participant, isWinner: false}))
+    const newWinners = newParticipantsArray.map((participant) => ({
+      ...participant,
+      isWinner: false,
+    }));
 
-    const oldWinnersId = raffle.raffleSkins.filter(item => item.winner_id).map(item => '#' + item.winner_id)
-    const possibleWinners = newWinners.filter(item => !(oldWinnersId.join().includes('#' + item.id)))
+    const oldWinnersId = raffle.raffleSkins
+      .filter((item) => item.winner_id)
+      .map((item) => "#" + item.winner_id);
+    const possibleWinners = newWinners.filter(
+      (item) => !oldWinnersId.join().includes("#" + item.id)
+    );
 
-    const random = Math.floor(Math.random() * (possibleWinners.length - 1))
+    const random = Math.floor(Math.random() * (possibleWinners.length - 1));
 
     possibleWinners[random] = {
       id: possibleWinners[random].id,
       number: possibleWinners[random].number,
       isWinner: true,
-      user: possibleWinners[random].user
-    }
+      user: possibleWinners[random].user,
+    };
 
     setWinners(possibleWinners);
 
@@ -530,7 +577,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       (winnerArray) => winnerArray.number == Number(winnerParam.dataset.number)
     )[0];
 
-    if(!winnerStats) return
+    if (!winnerStats) return;
 
     const winnerCardCenter =
       (Math.round(winnerParam.getBoundingClientRect().right) -
@@ -541,11 +588,11 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     const centerOfCard =
       winnerCardCenter < 0 ? winnerCardCenter * -1 : winnerCardCenter;
-    
+
     setWinnerProperties({
       ...winnerStats,
-      distanceFromCenter: centerOfCard
-    })
+      distanceFromCenter: centerOfCard,
+    });
 
     // 68211.5
     // 230
@@ -636,27 +683,25 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
         bannerSkin,
         bundleValue,
       };
-      
+
       tempArray.unshift(tempObject);
     });
-    
+
     setPurchasableRaffles(handleBigNames(tempArray));
   };
   // * Available for purchase raffles
-  
+
   // * INIT
   const getRaffleList = () => {
     // * adicionar escolha de rifas com padrão caso não haja parâmetro
     axios
       .get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/raffle", {})
       .then((res) => {
-        setAvailableRaffles(res.data.filter(
-          (result: Raffle) => result.raffleSkins.length > 0
-        ));
+        setAvailableRaffles(
+          res.data.filter((result: Raffle) => result.raffleSkins.length > 0)
+        );
         setRaffle(
-          res.data.filter(
-            (result: Raffle) => result.raffleSkins.length > 0
-          )[0]
+          res.data.filter((result: Raffle) => result.raffleSkins.length > 0)[0]
         );
       })
       .catch((err: any) => console.error("Raffles error ", err.response));
@@ -669,14 +714,14 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
   // ? Alter participants when raffle changes
   useEffect(() => {
-    if(!raffle) return
+    if (!raffle) return;
     setRouletteLoadingState(false);
 
     // console.count('Raffle variable')
     // console.log('altered at ' + debuggingFormatDate())
-    
+
     const debounce = setTimeout(() => {
-      checkImagesInParticipants()
+      checkImagesInParticipants();
 
       setNewRewards(raffle.raffleSkins);
       filterPurchasableRaffles();
@@ -686,17 +731,17 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       }, 200);
     }, 200);
 
-    return () => clearTimeout(debounce)
+    return () => clearTimeout(debounce);
   }, [raffle?.id]);
 
   // useEffect(() => {
-    // console.count('winnerProperties variable')
-    // console.log('altered at ' + debuggingFormatDate())
-    // const debounce = setTimeout(() => {
-      // getWinner()
-    // }, 400);
+  // console.count('winnerProperties variable')
+  // console.log('altered at ' + debuggingFormatDate())
+  // const debounce = setTimeout(() => {
+  // getWinner()
+  // }, 400);
 
-    // return () => clearTimeout(debounce)
+  // return () => clearTimeout(debounce)
   // }, [winnerProperties])
 
   // useEffect(() => {

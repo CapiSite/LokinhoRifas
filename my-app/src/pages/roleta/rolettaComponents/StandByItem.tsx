@@ -1,0 +1,35 @@
+import style from '../roletta.module.css'
+import defaultPicture from '../../../assets/defaultProfilePic2.svg'
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+
+const StandByItem = ({user}: { user: { name: string, picture: string } }) => {
+
+  const { name = 'Unknown', picture = '' } = user
+
+  const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
+
+  // useEffect(() => {
+  //   const debounce = setTimeout(() => {
+  //     if (!picture) return setImgSrc(defaultPicture.src);
+  //     else if(picture.includes('https://static-cdn.jtvnw.net')) {
+  //       setImgSrc(picture);
+  //     } else if (!picture.includes('default') && picture !== imgSrc) {
+  //       setImgSrc(picture);
+  //     }
+
+  //     return () => clearTimeout(debounce)
+  //   }, 400);
+  // }, [picture]);
+
+  // console.log(imgSrc)
+
+  return (
+    <div className={style.user}>
+      <Image width={136} height={136} src={imgSrc} alt={`Foto de perfil de ${name}`}/>
+      <h1>{name}</h1>
+    </div>
+  );
+}
+ 
+export default StandByItem;
