@@ -548,6 +548,8 @@
   height: 136px;
   max-height: 136px;
 
+  object-fit: cover;
+
   border-radius: 50%;
 
   overflow: hidden;
@@ -908,7 +910,7 @@
   justify-content: center;
   align-items: center;
 
-  width: 90px;
+  width: auto;
   height: 90px;
 
   background-color: white;
@@ -925,7 +927,7 @@
 .UserSkinImageBox img {
   border-radius: 50%;
 
-  width: 100%;
+  width: auto;
   height: 100%;
 
   object-fit: cover;

@@ -68,7 +68,6 @@ const Hero = () => {
   
     return () => clearTimeout(debounce);
   }, [raffle?.id, availableRaffles]); // Usando o operador opcional `?.`
-  
 
   const winnerIsCorrected = winners.filter(winner => winner.number === winnerProperties?.number).length !== 0;
 

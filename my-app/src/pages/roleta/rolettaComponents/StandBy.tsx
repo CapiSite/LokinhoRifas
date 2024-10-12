@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import cn from 'classnames'
 
 const StandBy = ({props}: {props: {afk: boolean}}) => {
+  if(!props) return <div>No users found</div>
 
   const { afk } = props
 

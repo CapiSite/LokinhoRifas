@@ -70,7 +70,7 @@ const Roulette = () => {
   return (
     <div className={style.Roulette}>
       <div className={style.RouletteBox} id='RouletteBox'>
-        {(participants.length > 0 && participants.length !== raffle.users_quantity) && <h1 className={cn(style.Stock, afk ? style.running : '')}>Estoque restante: {raffle.users_quantity - participants.length}</h1>}
+        {(participants.length > 0 && participants.length !== (raffle?.users_quantity || 0)) && <h1 className={cn(style.Stock, afk ? style.running : '')}>Estoque restante: {(raffle?.users_quantity || 0) - participants.length}</h1>}
 
         {participants.length > 0 && <StandBy props={{afk}} />}
 
@@ -81,7 +81,7 @@ const Roulette = () => {
       </div>
 
       {availableRaffles.length > 0 && <select name='raffleSelectorRoulette' disabled={!isButtonActive} className={cn(style.raffleSelector, style.desktop)} onChange={(e) => selectRaffle(Number(e.target.value))}>
-        {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {(raffle.participants.length / raffle.users_quantity) * 100}%</option>)}
+        {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {(raffle.participants.length / raffle?.users_quantity || 0) * 100}%</option>)}
       </select>}
       
       <div className={style.background}>

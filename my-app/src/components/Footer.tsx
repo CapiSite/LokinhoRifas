@@ -4,7 +4,6 @@ import ExternalLink from '../assets/ExternalLink.svg'
 import Image from 'next/image';
 import { useRouter } from "next/router";
 
-import { useSidebarState } from "../contexts/SidebarContext";
 import Link from 'next/link';
 
 const Footer = () => {
