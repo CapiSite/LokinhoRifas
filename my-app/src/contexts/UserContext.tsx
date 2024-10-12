@@ -7,7 +7,7 @@ import {
   useEffect,
   useState,
 } from "react"
-import { LastPayment, LastPaymentBack } from "utils/interfaces"
+import { LastPayment, LastPaymentBack, raffleItem } from "utils/interfaces"
 
 export const UserContext = createContext({})
 
@@ -37,6 +37,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [ showPayment, setShowPayment ] = useState<boolean>(false)
   const [ showRafflePopup, setShowRafflePopup ] = useState<boolean>(false)
   const [ showSidebar, setShowSidebar ] = useState<boolean>(false)
+  const [ showNumberPicker, setShowNumberPicker ] = useState<boolean>(false)
+
+  const [ raffleSelected, setRaffleSelected ] = useState<raffleItem>()
 
   const [ lastestTransactions, setLatestTransactions ] = useState<LastPayment[]>([])
   const [ qrcode64, setQrcode64 ] = useState<string>('')
@@ -134,6 +137,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setShowRafflePopup,
     showSidebar, 
     setShowSidebar,
+    showNumberPicker,
+    setShowNumberPicker,
+    raffleSelected,
+    setRaffleSelected,
     lastestTransactions,
     getLatestTransactions,
     qrcode64, 

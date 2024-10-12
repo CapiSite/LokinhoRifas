@@ -91,7 +91,7 @@ const Hero = () => {
           <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
           {availableRaffles.length > 0 && 
           <select disabled={!isButtonActive} name='raffleSelector' className={cn(style.raffleSelector, style.mobile, (windowParams.width < 550 || participants.length >= 100) ? style.Visible : '')} onChange={(e) => selectRaffle(Number(e.target.value))}>
-            {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {(raffle.participants.length / raffle.users_quantity) * 100}%</option>)}
+            {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {Math.round((raffle.participants.length / raffle.users_quantity) * 100)}%</option>)}
           </select>}
           <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
         </div>

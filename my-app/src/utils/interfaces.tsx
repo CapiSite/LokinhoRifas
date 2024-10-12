@@ -23,6 +23,10 @@ export interface UserContextType {
   setShowRafflePopup: React.Dispatch<React.SetStateAction<boolean>>;
   showSidebar: boolean;
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  showNumberPicker: boolean;
+  setShowNumberPicker: React.Dispatch<React.SetStateAction<boolean>>;
+  raffleSelected: raffleItem;
+  setRaffleSelected: React.Dispatch<React.SetStateAction<raffleItem>>;
   lastestTransactions: LastPayment[];
   getLatestTransactions: Function;
   qrcode64: string; 

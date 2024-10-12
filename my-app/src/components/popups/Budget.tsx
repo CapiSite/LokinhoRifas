@@ -1,6 +1,9 @@
 import { useUserStateContext } from "contexts/UserContext";
 import { UserContextType } from "utils/interfaces";
 
+import Xmark from "../../assets/xmark.svg";
+import Image from "next/image";
+
 const Budget = () => {
   const { userInfo, setShowPayment, setShowBudget, lastestTransactions, setQrcode64, setValueDiff } = useUserStateContext() as UserContextType;
 
@@ -43,6 +46,7 @@ const Budget = () => {
   return (
     <div className="budget">
       <div className="budgetWrapper">
+        <button className='closeBtn mobile' onClick={() => setShowBudget(false)}><Image src={Xmark} width={20} height={20} alt='Fechar configurações'/></button>
         <div className="currentBudget">
           <h1>R$ {userInfo.saldo.toFixed(2).toString().replace(".", ",")}</h1>
           <h2>Saldo Atual</h2>

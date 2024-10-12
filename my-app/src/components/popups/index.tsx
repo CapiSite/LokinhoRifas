@@ -8,6 +8,7 @@ import Budget from "./Budget";
 import Settings from "./Settings";
 import PaymentBrick from "./PaymentSteps";
 import PopupBuy from "./BuyRaffle";
+import NumberPicker from "./NumberPicker";
 
 const PopUps = () => {
   const {
@@ -16,6 +17,7 @@ const PopUps = () => {
     showPayment,
     showSettings,
     showRafflePopup,
+    showNumberPicker,
     image,
     setImage,
   } = useUserStateContext() as UserContextType;
@@ -41,6 +43,7 @@ const PopUps = () => {
       <RouletteProvider>
         {showPayment && <PaymentBrick />}
         {showRafflePopup && <PopupBuy />}
+        {showNumberPicker && <NumberPicker />}
       </RouletteProvider>
       {showSettings && <Settings props={{ profile, image, setImage }} />}
     </>

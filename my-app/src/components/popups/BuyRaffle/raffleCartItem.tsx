@@ -2,7 +2,8 @@ import Image, { StaticImageData } from "next/image";
 import defaultGunPic from '../../../images/Roleta/Prizes/DefaultGunPic.png';
 import shine from '../../../images/Roleta/WinnerPopup/shine.png';
 import { ChangeEvent, useEffect, useState } from "react";
-import { raffleItem } from "utils/interfaces";
+import { raffleItem, UserContextType } from "utils/interfaces";
+import { useUserStateContext } from "contexts/UserContext";
 
 const RaffleCartItem = ({props}: {props: { 
   item: raffleItem,
@@ -15,6 +16,8 @@ const RaffleCartItem = ({props}: {props: {
 
   const [defaultValue, setDefaultValue] = useState<string>(quantity.toString());
   const [imgSrc, setImgSrc] = useState<string | StaticImageData>(defaultGunPic);
+
+  const { setRaffleSelected, setShowNumberPicker } = useUserStateContext() as UserContextType
 
   useEffect(() => {
     if (bannerSkin.includes('default')) return;
@@ -36,6 +39,11 @@ const RaffleCartItem = ({props}: {props: {
     ? `${value.toString().split('.')[0]},${value.toString().split('.')[1][0]}${value.toString().split('.')[1][1] ? value.toString().split('.')[1][1] : '0'}` 
     : `${value.toString()},00`;
 
+  const handleRafflePick = () => {
+    setRaffleSelected(props.item)
+    setShowNumberPicker(true)
+  }
+
   return (
     <div className="cartItem">
       <div className="raffleBanner desktop">
@@ -54,7 +62,7 @@ const RaffleCartItem = ({props}: {props: {
         </div>
 
         <div className="raffleQuantity">
-          <label>
+          {users_quantity > 100 ? <label>
             <p>Qtd:</p> 
             <input 
               type="number" 
@@ -62,15 +70,12 @@ const RaffleCartItem = ({props}: {props: {
               value={defaultValue} 
               name="quantidade" 
             />
-          </label>
-
-          {/* Exibe o número de participantes atuais (users_quantity) e o máximo que uma pessoa pode comprar (maxQuantity) */}
+          </label> : <button onClick={() => handleRafflePick()}>Selecionar Números</button>}
           
 
           <h3>x R$ {newValue}</h3>
         </div>
-        <p className="currentQuantity">Rifas compradas: {users_quantity-maxQuantity}/{users_quantity}</p>
-
+        <p className="currentQuantity">Números restantes: {maxQuantity}</p>
       </div>
     </div>
   );

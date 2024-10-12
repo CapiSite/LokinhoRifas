@@ -1652,13 +1652,6 @@ footer nav div {
   cursor: pointer;
 }
 
-.PopupBuyContent .raffleSelect .cardGroupWrapper .card {
-  width: 49%; /* Define que o card ocupe 49% da largura disponível, com espaço entre eles */
-  max-width: 49%; /* Limita o tamanho máximo do card */
-  min-width: 300px; /* Define o tamanho mínimo do card */
-  box-sizing: border-box;
-}
-
 .PopupBuyContent .card .skin {
   position: absolute;
   
@@ -2046,6 +2039,186 @@ footer nav div {
 
   font-size: 24px;
   font-weight: 500;
+}
+
+.PopupBuy .raffleBuyQuantity .raffleMetaData .raffleQuantity button {
+  padding-inline: 10px;
+  margin-block: 10px;
+
+  height: 28px;
+
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+
+  color: white;
+
+  border-radius: 4px;
+  border: 2px solid #A30006;
+
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.NumberPicker {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100dvh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 12;
+}
+
+.NumberPicker .background {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #000;
+  opacity: .5;
+
+  cursor: pointer;
+}
+
+.NumberPickerWrapper {
+  display: grid;
+
+  grid-template-rows: 90px 80% 1fr;
+
+  width: min(100%, 500px);
+  height: min(100dvh, 850px);
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  background-color: white;
+
+  z-index: 12;
+}
+
+.NumberPickerWrapper .infoSection {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px 10px;
+}
+
+.NumberPickerWrapper .infoSection h2 {
+  font-weight: 500;
+  text-align: center;
+}
+
+.NumberPickerWrapper .infoSection p {
+  text-align: center;
+}
+
+.NumberPickerWrapper .loading {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.NumberPickerWrapper .loading h1 {
+  font-size: 34px;
+
+  text-align: center;
+
+  font-weight: 500;
+}
+
+.NumberPickerWrapper .NumberGroup {
+  display: flex;
+
+  justify-content: space-between;
+  align-content: flex-start;
+
+  padding: 20px;
+
+  gap: 5px;
+
+  width: min(100%, 500px);
+  height: 100%;
+
+  overflow: auto;
+
+  flex-wrap: wrap;
+}
+
+.NumberPickerWrapper .NumberGroup button {
+  width: 40px;
+  height: 40px;
+
+  font-size: 20px;
+
+  border-radius: 50%;
+}
+
+.NumberPickerWrapper .NumberGroup button.selected {
+  background: linear-gradient(90deg, #1AE22299, #13a11899);
+  background-color: black;
+  color: white;
+
+  border: 2px solid #13a11899;
+}
+
+.NumberPickerWrapper .NumberGroup button.notAvailable {
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  border: 2px solid #A30006;
+}
+
+.NumberPickerWrapper .BottomSection {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 30px 0;
+
+  background-color: #eee;
+}
+
+.NumberPickerWrapper .BottomSection button {
+  background: linear-gradient(90deg, #1AE22299, #13a11899);
+  background-color: black;
+  color: white;
+
+  border: 2px solid #13a11899;
+  border-radius: 8px;
+
+  font-weight: 500;
+  font-size: 16px;
+
+  padding: 15px;
+
+  cursor: pointer;
+}
+
+.NumberPickerWrapper .BottomSection button:disabled {
+  filter: grayscale(100%);
+}
+
+.NumberPickerWrapper .BottomSection p {
+  cursor: pointer;
 }
 
 .PopupBuy .raffleBuyQuantity .raffleMetaData .raffleQuantity p {
@@ -2979,12 +3152,15 @@ footer nav div {
   }
 
   .budgetWrapper {
-    border-radius: 40px 40px 0 0;
+    border-radius: 0;
     width: 100%;
-    height: min(600px, 60%);
+    height: 100%;
+    max-height: unset;
 
     overflow: hidden;
     overflow-y: auto;
+
+    position: relative;
 
     padding: 30px 0;
     padding-bottom: calc(30px + env(safe-area-inset-bottom, 20px)); /* Novo ajuste */
@@ -2993,6 +3169,25 @@ footer nav div {
     animation: 300ms ease-out 0s 1 forwards showUp;
   }
 
+  .budget .budgetWrapper .closeBtn {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    border-radius: 50%;
+    background: linear-gradient(90deg, #E21A1A, #A30006);
+    rotate: 0deg;
+
+    width: 40px;
+    height: 40px;
+
+    z-index: 1;
+  }
 
   .budgetWrapper .tableWrapper {
     width: 100%;
@@ -3132,14 +3327,36 @@ footer nav div {
   }
 
   .config .statusWrapper {
-    height: 400px;
+    height: 100%;
+  }
+
+  .config .closeBtn {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    border-radius: 50%;
+    background: linear-gradient(90deg, #E21A1A, #A30006);
+    rotate: 0deg;
+
+    width: 40px;
+    height: 40px;
+
+    z-index: 1;
   }
 
   .configWrapper {
-    border-radius: 20px 20px 0 0;
+    border-radius: 0;
     border: none;
 
-    height: 400px;
+    height: 100%;
+
+    position: relative;
   }
 
   .config .box .important {
@@ -3204,17 +3421,19 @@ footer nav div {
   }
 
   .PopupBuyContent {
-    border-radius: 20px 20px 0 0;
+    border-radius: 0;
 
     width: 100%;
 
-    height: 500px;
+    max-height: 100%;
+    height: 100%;
 
     animation: 300ms ease-out 0s 1 forwards showUp;
   }
 
   .PopupBuyWrapper {
     width: 100%;
+    height: 100%;
   }
 
   .PopupBuy .PopupBuyWrapper > .background {
@@ -3247,11 +3466,26 @@ footer nav div {
   }
 
   .PopupBuyContent .raffleSelect .cardGroup {
-    height: 270px;
+    height: calc(100vh - 216px);
   }
 
   .PopupBuy .raffleBuyQuantity .cartGroup {
-    height: 190px;
+    height: calc(100vh - 316px);
+  }
+
+  .NumberPickerWrapper {
+    border-radius: 0;
+  }
+
+  .NumberPickerWrapper .NumberGroup button {
+    width: 80px;
+    height: 80px;
+
+    font-size: 40px;
+  }
+
+  .NumberPickerWrapper .BottomSection button {
+    padding: min(2vmin, 15px) 15px;
   }
 
   .raffleSelect .cardGroupWrapper, .PopupBuyContent .raffleSelect .cardGroup {
@@ -3265,7 +3499,8 @@ footer nav div {
   }
 
   .raffleSelect .cardGroupWrapper .card {
-    width: min(49%, 340px);
+    min-width: 380px;
+    width: 49%;
   }
 
   .raffleSelect .cardGroupWrapper .card .skin {
@@ -3326,7 +3561,11 @@ footer nav div {
   .PopupBuy .bottomSection {
     flex-direction: column-reverse;
 
-    justify-content: center;
+    justify-content: space-evenly;
+
+    flex-wrap: wrap;
+
+    padding: 15px;
 
     gap: 10px;
     width: 100%;
@@ -3402,7 +3641,7 @@ footer nav div {
     align-items: center;
 
     width: 100%;
-    height: 270px;
+    height: calc(100vh - 216px);
 
     background-color: #ddd;
 
@@ -3520,8 +3759,13 @@ footer nav div {
     border-radius: 20px 20px 0 0;
   }
 
-  .raffleSelect .cardGroupWrapper .card {
-    width: 100%;
+  .PopupBuyContent .raffleSelect .cardGroupWrapper .card {
+    width: 80%;
+    min-width: 300px;
+  }
+
+  .NumberPickerWrapper .BottomSection button {
+    width: min-content;
   }
 
   .config .box > button {

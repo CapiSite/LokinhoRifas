@@ -81,7 +81,7 @@ const Roulette = () => {
       </div>
 
       {availableRaffles.length > 0 && <select name='raffleSelectorRoulette' disabled={!isButtonActive} className={cn(style.raffleSelector, style.desktop)} onChange={(e) => selectRaffle(Number(e.target.value))}>
-        {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {(raffle.participants.length / raffle?.users_quantity || 0) * 100}%</option>)}
+        {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {Math.round((raffle.participants.length / raffle.users_quantity) * 100)}%</option>)}
       </select>}
       
       <div className={style.background}>

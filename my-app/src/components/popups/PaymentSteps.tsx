@@ -48,7 +48,9 @@ const PaymentBrick = () => {
   
   useEffect(() => {
     if (valueDiff != 0) {
-      setPrice(maskValue(valueDiff.toFixed(2).toString()));
+      const finalValue = valueDiff >= 10 ? valueDiff : 10
+      
+      setPrice(maskValue(finalValue.toFixed(2).toString()));
     } else if (qrcode64 != '') {
       setStep(3)
       setQrCode64(qrcode64)

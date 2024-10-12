@@ -182,25 +182,23 @@ const PopupBuy = () => {
                 <h3>Total: R$ {newTotal}</h3>
               </div>
             )}
-            {step > 1 && step < 4 && (
-              <p onClick={removeStep}>
-                <Image
-                  width={20}
-                  height={20}
-                  className="seta"
-                  src={leftarrow}
-                  alt="Voltar"
-                />{" "}
-                Voltar
-              </p>
-            )}
+            <p onClick={step == 1 ? () => setShowRafflePopup(false) : removeStep}>
+              {step > 1 && <Image
+                width={20}
+                height={20}
+                className="seta"
+                src={leftarrow}
+                alt="Voltar"
+              />}
+              {step == 1 ? " Cancelar" : " Voltar"}
+            </p>
             <button
               onClick={handleStepValidation}
               disabled={
                 purchasableRaffles.filter((raffle) => raffle.isSelected)
                   .length == 0 || disableBtn
               }
-              className={`${(step == 1 || step == 4) && "center"}`}
+              className={`${(step == 4) && "center"}`}
               data-progress={animationProgress}
               data-text={handleButtonText()}
             >

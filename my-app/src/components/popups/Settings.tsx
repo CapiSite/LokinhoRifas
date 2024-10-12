@@ -6,6 +6,7 @@ import { useUserStateContext } from 'contexts/UserContext';
 import axios from 'axios';
 import MaskedInput from 'react-text-mask';
 import { useRouter } from 'next/router';
+import Xmark from "../../assets/xmark.svg";
 
 import Eye from '../../assets/eye.svg'
 import EyeSlashed from '../../assets/eye-slash.svg'
@@ -191,6 +192,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
         {error && <div onClick={() => resolveToast()} className="error">{error}!</div>}
       </div>
       <div className="configWrapper">
+        <button className='closeBtn mobile' onClick={() => setShowSettings(false)}><Image src={Xmark} width={20} height={20} alt='Fechar configurações'/></button>
         <div className="configWrapperContent">
           <h2>Configurações de usuário</h2>
           <div className="accountInfo">
