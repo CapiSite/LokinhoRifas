@@ -59,16 +59,27 @@ export const deleteRaffle = async (req: AuthenticatedRequest, res: Response) => 
 
 export async function buyRaffleController(req: AuthenticatedRequest, res: Response) {
   const userId = req.userId;
-  const raffleArray = req.body.raffle as Array<{ id: number; quantity: number; selections?: number[] }>;
+  const raffleArray = req.body.raffle as Array<{ id: number; selections?: number[] }>;
 
   try {
-    const result = await raffleService.buyRaffleInSequenceOrSpecific(userId, raffleArray);
+    const result = await raffleService.payReservedRaffleNumbers(userId, raffleArray);
     return res.status(httpStatus.OK).send(result);
   } catch (error) {
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ message: error.message });
   }
 }
 
+export async function reserveRaffleNumberController(req: AuthenticatedRequest, res: Response) {
+  const userId = req.userId;
+  const raffleArray = req.body.raffle as Array<{ id: number; quantity: number; selections?: number[] }>;
+
+  try {
+    const result = await raffleService.reserveRaffleNumbers(userId, raffleArray);
+    return res.status(httpStatus.OK).send(result);
+  } catch (error) {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ message: error.message });
+  }
+}
 
 export async function addParticipantToRaffle(req: Request, res: Response) {
   const { raffleId, userId } = req.body;

@@ -342,6 +342,98 @@ async function purchaseRaffleNumbers(
   });
 }
 
+// Função para reservar números em sequência
+async function reserveNumbersInSequence(
+  userId: number,
+  raffleId: number,
+  quantity: number,
+  reservedUntil: Date,
+  prismaInstance: PrismaClient = prisma
+) {
+  if (quantity <= 0) {
+    throw new Error('Quantity must be greater than 0');
+  }
+
+  const existingParticipants = await prismaInstance.participant.findMany({
+    where: {
+      raffle_id: raffleId,
+      is_reserved: false, // Somente números que não estão reservados
+      is_paid: false, // E que ainda não foram pagos
+    },
+    orderBy: {
+      number: 'asc',
+    },
+    select: {
+      number: true,
+    },
+  });
+
+  const availableNumbers = [];
+  let currentNumber = 1;
+  let existingIndex = 0;
+
+  while (availableNumbers.length < quantity) {
+    if (existingIndex >= existingParticipants.length || existingParticipants[existingIndex].number > currentNumber) {
+      availableNumbers.push(currentNumber);
+    } else {
+      existingIndex++;
+    }
+    currentNumber++;
+  }
+
+  const participantsData = availableNumbers.map((number) => ({
+    user_id: userId,
+    raffle_id: raffleId,
+    number,
+    is_reserved: true,
+    reserved_until: reservedUntil,
+  }));
+
+  return prismaInstance.participant.createMany({
+    data: participantsData,
+  });
+}
+
+// Função para reservar números específicos
+async function reserveSpecificNumbers(
+  userId: number,
+  raffleId: number,
+  selectedNumbers: number[],
+  reservedUntil: Date,
+  prismaInstance: PrismaClient = prisma
+) {
+  const participantsData = [];
+
+  for (const number of selectedNumbers) {
+    const participantExists = await prismaInstance.participant.findFirst({
+      where: {
+        raffle_id: raffleId,
+        number: number,
+        is_paid: false, // Somente números que não foram pagos
+      },
+    });
+
+    if (participantExists) {
+      throw new Error(`Number ${number} is already taken or reserved.`);
+    }
+
+    participantsData.push({
+      user_id: userId,
+      raffle_id: raffleId,
+      number,
+      is_reserved: true,
+      reserved_until: reservedUntil,
+    });
+  }
+
+  return prismaInstance.participant.createMany({
+    data: participantsData,
+  });
+}
+
+
+
+
 async function clearExpiredReservations(now: Date) {
   await prisma.participant.updateMany({
     where: {
@@ -357,21 +449,61 @@ async function clearExpiredReservations(now: Date) {
   });
 }
 
+// Função para pagar um número reservado
+async function payForReservedNumber(userId: number, raffleId: number, number: number) {
+  return prisma.participant.updateMany({
+    where: {
+      raffle_id: raffleId,
+      user_id: userId,
+      number: number,
+      is_reserved: true,
+    },
+    data: {
+      is_reserved: false,
+      is_paid: true,
+      reserved_until: null,
+    },
+  });
+}
+
+// Função para cancelar números não pagos
+async function cancelUnpaidReservations(userId: number, raffleId: number, paidNumbers: number[]) {
+  return prisma.participant.updateMany({
+    where: {
+      raffle_id: raffleId,
+      user_id: userId,
+      number: {
+        notIn: paidNumbers,
+      },
+      is_reserved: true,
+    },
+    data: {
+      is_reserved: false,
+      reserved_until: null,
+    },
+  });
+}
+
+
 
 export default {
   findParticipantByRaffleAndUser,
   addParticipantToRaffle,
   removeParticipantFromRaffle,
+  cancelUnpaidReservations,
   createRaffle,
   createParticipantInSequence,
   purchaseRaffleNumbers,
   createParticipantWithSpecificNumbers,
   getActiveRafflesWithDetails,
   postActiveRaffles,
+  payForReservedNumber,
   getAllRafflesWithDetails,
   calculateTotalCost,
+  reserveNumbersInSequence,
   isNumberTaken,
   clearExpiredReservations,
+  reserveSpecificNumbers,
   deleteRaffle,
   findById,
 };
