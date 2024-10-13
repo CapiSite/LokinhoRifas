@@ -71,6 +71,9 @@ model Participant {
   user_id   Int
   raffle_id Int
   number    Int
+  is_reserved    Boolean   @default(false)
+  reserved_until DateTime? // Expira após 10 minutos
+  is_paid        Boolean        @default(false)
   user      User   @relation(fields: [user_id], references: [id])
   raffle    Raffle @relation(fields: [raffle_id], references: [id])
 

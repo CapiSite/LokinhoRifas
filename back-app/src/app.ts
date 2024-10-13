@@ -15,7 +15,12 @@ import {
 } from './routers';
 import { loadEnv, connectDb, disconnectDB } from './config';
 import path from 'path';
-
+import cron from 'node-cron';
+import raffleService from './services/raffle-service'; // Importe o serviço onde a função clearExpiredReservations está
+cron.schedule('* * * * *', async () => {
+  console.log('Verificando reservas expiradas...');
+  await raffleService.clearExpiredReservations();
+});
 loadEnv();
 
 const uploadsDir = path.resolve(__dirname, '.', 'uploads');

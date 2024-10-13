@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { UserContextType } from "utils/interfaces";
 
 const NumberPicker = () => {
-  const { raffleSelected, setShowNumberPicker } = useUserStateContext() as UserContextType
+  const { raffleSelected, setShowNumberPicker, userInfo } = useUserStateContext() as UserContextType
+
   const [ possibleNumbers, setPossibleNumbers ] = useState<{number: number, reserved: boolean, notAvailable: boolean, selected: boolean}[]>([])
   const [ fillerNumbers, setFillerNumbers ] = useState<{number: number, available: boolean, selected: boolean}[]>([])
 
@@ -11,6 +12,10 @@ const NumberPicker = () => {
     const debouncer = setTimeout(() => {
       const tempArray = []
       const tempArrayFiller = []
+
+      // TODO Alterar para checar participantes
+
+      // console.log(raffleSelected)
 
       for(let i = 1; i <= raffleSelected.users_quantity; i++) {
         tempArray.push({ number: i, reserved: i <= raffleSelected.maxQuantity, notAvailable: i <= raffleSelected.maxQuantity, selected: false })
@@ -39,7 +44,15 @@ const NumberPicker = () => {
   const handleConfirm = () => {
     if(possibleNumbers.filter(item => item.selected).length == 0) return
 
-    // ...Etapas no back
+    // TODO Adicionar etapas no back
+    // TODO enviar número, userId e id da rifa
+
+
+
+    // Rotas de:
+    // Reservar
+    // Cancelar
+    // Comprar
 
     setShowNumberPicker(false)
   }

@@ -1,13 +1,13 @@
-import raffleRepository from "../../repositories/raffle-repository";
-import skinRepository from "../../repositories/skin-repository";
-import transactionRepository from "../../repositories/transaction-repository";
-import userRepository from "../../repositories/user-repository";
+import raffleRepository from '../../repositories/raffle-repository';
+import skinRepository from '../../repositories/skin-repository';
+import transactionRepository from '../../repositories/transaction-repository';
+import userRepository from '../../repositories/user-repository';
 import { Raffle } from '@prisma/client';
 
 interface CreateRaffleParams {
   name: string;
   users_quantity: number;
-  free:boolean;
+  free: boolean;
   skins: { id: number }[];
   userId: number; // Adicionado userId
 }

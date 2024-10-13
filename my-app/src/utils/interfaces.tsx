@@ -148,6 +148,9 @@ export type Participant = {
   nickName: string;
   number: number;
   isWinner: boolean;
+  is_reserved?: boolean;
+  reserved_until?: Date;
+  is_paid?: boolean;
 };
 
 export type PersonCardContextType = {
@@ -290,6 +293,7 @@ export type raffleItem = {
   users_quantity:number;
   value: number;
   quantity: number;
+  selected?: number[];
   maxQuantity: number;
   isSelected: boolean;
   bannerSkin: string;
