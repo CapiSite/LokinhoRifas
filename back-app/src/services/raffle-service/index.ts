@@ -1,13 +1,13 @@
-import raffleRepository from '../../repositories/raffle-repository';
-import skinRepository from '../../repositories/skin-repository';
-import transactionRepository from '../../repositories/transaction-repository';
-import userRepository from '../../repositories/user-repository';
+import raffleRepository from "../../repositories/raffle-repository";
+import skinRepository from "../../repositories/skin-repository";
+import transactionRepository from "../../repositories/transaction-repository";
+import userRepository from "../../repositories/user-repository";
 import { Raffle } from '@prisma/client';
 
 interface CreateRaffleParams {
   name: string;
   users_quantity: number;
-  free: boolean;
+  free:boolean;
   skins: { id: number }[];
   userId: number; // Adicionado userId
 }
@@ -57,21 +57,22 @@ async function deleteRaffle(id: number) {
   return await raffleRepository.deleteRaffle(id);
 }
 
-async function buyRaffleService(userId: number, raffleArray: Array<{ id: number; quantity: number }>) {
+async function buyRaffleInSequenceOrSpecific(
+  userId: number,
+  raffleArray: Array<{ id: number; quantity: number; selections?: number[] }>
+) {
   const results: Array<{ id: number; success: boolean; purchasedQuantity: number; message: string }> = [];
-  console.log(userId, raffleArray);
   const user = await userRepository.findById(userId);
   if (!user) throw new Error('User not found');
 
   let remainingBalance = user.saldo;
 
   for (const raffle of raffleArray) {
-    const { id, quantity } = raffle;
+    const { id, quantity, selections } = raffle;
 
     let purchasedQuantity = 0;
     let totalSpent = 0;
 
-    // Verificação da rifa e saldo do usuário
     const raffleData = await raffleRepository.findById(id, null, { includeParticipants: true });
     if (!raffleData) {
       results.push({ id, success: false, purchasedQuantity: 0, message: `Raffle with ID ${id} not found` });
@@ -92,27 +93,59 @@ async function buyRaffleService(userId: number, raffleArray: Array<{ id: number;
       continue;
     }
 
-    for (let i = 0; i < quantity; i++) {
+    if (selections && selections.length > 0) {
+      // Caso o usuário tenha selecionado números específicos
       try {
+        await raffleRepository.createParticipantWithSpecificNumbers(userId, id, selections);
+
         // Atualiza o saldo do usuário
-        remainingBalance -= costPerNumber;
-        totalSpent += costPerNumber;
+        remainingBalance -= totalCost;
+        totalSpent += totalCost;
 
-        await userRepository.decrementUserBalance(userId, costPerNumber);
+        await userRepository.decrementUserBalance(userId, totalCost);
 
-        // Cria o participante para a rifa
-        await raffleRepository.createParticipant(userId, id, 1);
-
-        purchasedQuantity += 1;
-        results.push({ id, success: true, purchasedQuantity, message: `1 raffle number purchased successfully` });
+        purchasedQuantity = selections.length;
+        results.push({
+          id,
+          success: true,
+          purchasedQuantity,
+          message: `${purchasedQuantity} specific raffle numbers purchased successfully`,
+        });
       } catch (error) {
         results.push({
           id,
           success: false,
           purchasedQuantity,
-          message: `Failed to purchase raffle number: ${error.message}`,
+          message: `Failed to purchase specific raffle numbers: ${error.message}`,
         });
-        break; // Para de tentar comprar se falhar
+        continue;
+      }
+    } else {
+      // Caso o usuário não tenha selecionado números (compra em sequência)
+      try {
+        await raffleRepository.createParticipantInSequence(userId, id, quantity);
+
+        // Atualiza o saldo do usuário
+        remainingBalance -= totalCost;
+        totalSpent += totalCost;
+
+        await userRepository.decrementUserBalance(userId, totalCost);
+
+        purchasedQuantity = quantity;
+        results.push({
+          id,
+          success: true,
+          purchasedQuantity,
+          message: `${purchasedQuantity} raffle numbers purchased in sequence`,
+        });
+      } catch (error) {
+        results.push({
+          id,
+          success: false,
+          purchasedQuantity,
+          message: `Failed to purchase raffle numbers in sequence: ${error.message}`,
+        });
+        continue;
       }
     }
 
@@ -143,6 +176,8 @@ async function buyRaffleService(userId: number, raffleArray: Array<{ id: number;
     remainingBalance,
   };
 }
+
+
 async function addParticipantToRaffle(raffleId: number, userId: number) {
   const raffleData = await raffleRepository.findById(raffleId, null, { includeParticipants: true });
   if (!raffleData) throw new Error(`Raffle with ID ${raffleId} not found`);
@@ -161,7 +196,13 @@ async function removeParticipantFromRaffle(raffleId: number, number: number) {
   await raffleRepository.removeParticipantFromRaffle(participant.id);
 }
 
+async function clearExpiredReservations() {
+  const now = new Date();
+  await raffleRepository.clearExpiredReservations(now);
+}
+
 export default {
+  clearExpiredReservations,
   addParticipantToRaffle,
   removeParticipantFromRaffle,
   createRaffle,
@@ -169,5 +210,5 @@ export default {
   activeRaffles,
   getAllRaffles,
   deleteRaffle,
-  buyRaffleService,
+  buyRaffleInSequenceOrSpecific,
 };

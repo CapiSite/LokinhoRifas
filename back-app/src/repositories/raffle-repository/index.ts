@@ -152,11 +152,11 @@ async function findById(
   });
 }
 
-async function createParticipant(
+async function createParticipantInSequence(
   userId: number,
   raffleId: number,
   quantity: number,
-  prismaInstance: PrismaClient = prisma,
+  prismaInstance: PrismaClient = prisma
 ) {
   if (quantity <= 0) {
     throw new Error('Quantity must be greater than 0');
@@ -201,6 +201,53 @@ async function createParticipant(
   return prismaInstance.participant.createMany({
     data: participantsData,
   });
+}
+
+// Nova função para criar participantes com números específicos
+async function createParticipantWithSpecificNumbers(
+  userId: number,
+  raffleId: number,
+  selectedNumbers: number[],
+  prismaInstance: PrismaClient = prisma
+) {
+  const participantsData = [];
+
+  // Verifica se os números selecionados estão disponíveis
+  for (const number of selectedNumbers) {
+    const participantExists = await prismaInstance.participant.findFirst({
+      where: {
+        raffle_id: raffleId,
+        number: number,
+      },
+    });
+
+    if (participantExists) {
+      throw new Error(`Number ${number} is already taken in the raffle.`);
+    }
+
+    // Se o número estiver disponível, adiciona na lista de participantes a serem criados
+    participantsData.push({
+      user_id: userId,
+      raffle_id: raffleId,
+      number,
+    });
+  }
+
+  // Cria os participantes com os números específicos
+  return prismaInstance.participant.createMany({
+    data: participantsData,
+  });
+}
+
+// Função para verificar se um número já foi tomado por outro participante
+async function isNumberTaken(raffleId: number, number: number) {
+  const participantExists = await prisma.participant.findFirst({
+    where: {
+      raffle_id: raffleId,
+      number: number,
+    },
+  });
+  return !!participantExists; // Retorna verdadeiro se o número já foi tomado
 }
 
 async function findParticipantByRaffleAndUser(raffleId: number, number: number) {
@@ -294,17 +341,37 @@ async function purchaseRaffleNumbers(
     };
   });
 }
+
+async function clearExpiredReservations(now: Date) {
+  await prisma.participant.updateMany({
+    where: {
+      reserved_until: {
+        lte: now,
+      },
+      is_reserved: true,
+    },
+    data: {
+      is_reserved: false,
+      reserved_until: null,
+    },
+  });
+}
+
+
 export default {
   findParticipantByRaffleAndUser,
   addParticipantToRaffle,
   removeParticipantFromRaffle,
   createRaffle,
+  createParticipantInSequence,
   purchaseRaffleNumbers,
+  createParticipantWithSpecificNumbers,
   getActiveRafflesWithDetails,
   postActiveRaffles,
   getAllRafflesWithDetails,
   calculateTotalCost,
-  createParticipant,
+  isNumberTaken,
+  clearExpiredReservations,
   deleteRaffle,
   findById,
 };

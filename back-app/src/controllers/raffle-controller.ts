@@ -4,11 +4,11 @@ import raffleService from '../services/raffle-service';
 import { AuthenticatedRequest } from '../middlewares'; // Importando AuthenticatedRequest
 
 export const createRaffle = async (req: AuthenticatedRequest, res: Response) => {
-  const { name, users_quantity, free, skins } = req.body;
+  const { name, users_quantity, free ,skins } = req.body;
   const userId = req.userId; // Obtendo o userId do usuário autenticado
 
   try {
-    const raffle = await raffleService.createRaffle({ name, users_quantity, free, skins, userId });
+    const raffle = await raffleService.createRaffle({ name, users_quantity, free,skins, userId });
 
     res.status(httpStatus.CREATED).json(raffle);
   } catch (error) {
@@ -59,15 +59,16 @@ export const deleteRaffle = async (req: AuthenticatedRequest, res: Response) => 
 
 export async function buyRaffleController(req: AuthenticatedRequest, res: Response) {
   const userId = req.userId;
-  const raffleArray = req.body.raffle as Array<{ id: number; quantity: number }>;
+  const raffleArray = req.body.raffle as Array<{ id: number; quantity: number; selections?: number[] }>;
 
   try {
-    const result = await raffleService.buyRaffleService(userId, raffleArray);
+    const result = await raffleService.buyRaffleInSequenceOrSpecific(userId, raffleArray);
     return res.status(httpStatus.OK).send(result);
   } catch (error) {
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ message: error.message });
   }
 }
+
 
 export async function addParticipantToRaffle(req: Request, res: Response) {
   const { raffleId, userId } = req.body;
