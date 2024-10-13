@@ -2104,6 +2104,10 @@ footer nav div {
   background-color: white;
 
   z-index: 12;
+
+  translate: 0 500%;
+
+  animation: 300ms ease-out 0s 1 forwards showUp;
 }
 
 .NumberPickerWrapper .infoSection {
@@ -3722,18 +3726,6 @@ footer nav div {
 
 
 
-  @keyframes showUp {
-    0% {
-      translate: 0 100%;
-    }
-    100% {
-      translate: 0;
-    }
-  }
-
-
-
-
   .mobile {
     display: block;
   }
@@ -3826,4 +3818,15 @@ footer nav div {
 
 .currentQuantity{
   font-size: 1rem !important;
+}
+
+
+
+@keyframes showUp {
+  0% {
+    translate: 0 100%;
+  }
+  100% {
+    translate: 0;
+  }
 }
