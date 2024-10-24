@@ -1,13 +1,13 @@
-import raffleRepository from "../../repositories/raffle-repository";
-import skinRepository from "../../repositories/skin-repository";
-import transactionRepository from "../../repositories/transaction-repository";
-import userRepository from "../../repositories/user-repository";
+import raffleRepository from '../../repositories/raffle-repository';
+import skinRepository from '../../repositories/skin-repository';
+import transactionRepository from '../../repositories/transaction-repository';
+import userRepository from '../../repositories/user-repository';
 import { Raffle } from '@prisma/client';
 
 interface CreateRaffleParams {
   name: string;
   users_quantity: number;
-  free:boolean;
+  free: boolean;
   skins: { id: number }[];
   userId: number; // Adicionado userId
 }
@@ -59,7 +59,7 @@ async function deleteRaffle(id: number) {
 
 async function buyRaffleInSequenceOrSpecific(
   userId: number,
-  raffleArray: Array<{ id: number; quantity: number; selections?: number[] }>
+  raffleArray: Array<{ id: number; quantity: number; selections?: number[] }>,
 ) {
   const results: Array<{ id: number; success: boolean; purchasedQuantity: number; message: string }> = [];
   const user = await userRepository.findById(userId);
@@ -179,7 +179,7 @@ async function buyRaffleInSequenceOrSpecific(
 
 async function reserveRaffleNumbers(
   userId: number,
-  raffleArray: Array<{ id: number; quantity: number; selections?: number[] }>
+  raffleArray: Array<{ id: number; quantity: number; selections?: number[] }>,
 ) {
   const results: Array<{ id: number; success: boolean; reservedQuantity: number; message: string }> = [];
   const user = await userRepository.findById(userId);
@@ -251,7 +251,6 @@ async function reserveRaffleNumbers(
   return results;
 }
 
-
 async function addParticipantToRaffle(raffleId: number, userId: number) {
   const raffleData = await raffleRepository.findById(raffleId, null, { includeParticipants: true });
   if (!raffleData) throw new Error(`Raffle with ID ${raffleId} not found`);
@@ -283,10 +282,7 @@ async function clearExpiredReservations() {
  * @returns {Promise<Array<{ id: number; success: boolean; paidQuantity: number; message: string }>>} - Array of objects with the raffle ID, success status, paid quantity, and message
  */
 /******  a1246304-d96f-4853-9947-d333e08b8d53  *******/
-async function payReservedRaffleNumbers(
-  userId: number,
-  raffleArray: Array<{ id: number; selections?: number[] }>
-) {
+async function payReservedRaffleNumbers(userId: number, raffleArray: Array<{ id: number; selections?: number[] }>) {
   const results: Array<{ id: number; success: boolean; paidQuantity: number; message: string }> = [];
   const user = await userRepository.findById(userId);
   if (!user) throw new Error('User not found');
@@ -323,7 +319,12 @@ async function payReservedRaffleNumbers(
         }
 
         if (remainingBalance < costPerNumber) {
-          results.push({ id, success: false, paidQuantity, message: `Insufficient balance for number ${selectedNumber}` });
+          results.push({
+            id,
+            success: false,
+            paidQuantity,
+            message: `Insufficient balance for number ${selectedNumber}`,
+          });
           break;
         }
 
@@ -362,7 +363,6 @@ async function payReservedRaffleNumbers(
 
   return results;
 }
-
 
 export default {
   clearExpiredReservations,

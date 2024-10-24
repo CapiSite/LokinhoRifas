@@ -9,10 +9,29 @@ const RaffleSelectQuantity = ({setQuantity}: {setQuantity: {setTotal: Dispatch<R
 
   
   useEffect(() => {
-    console.log(rafflesData)
     changeTotal()
   }, [updateQuantity, rafflesData.length])
 
+  // TODO: Atualizar números selecionados na propriedade selected? da rifa selecionada
+    // TODO: Criar uma função em useRouletteContext para adicionar ou remover números da rifa que se está editando
+  // TODO: Descobrir como enviar os números para o back caso tenha algum selecionado individualmente
+
+  // ? Quando reservamos?
+    // ? Ao pressionar o botão de selecionar números, ou ao passar da etapa de seleção
+
+//   type raffleItem = {
+//     id: number;
+//     skins: string[];
+//     name: string;
+//     users_quantity: number;
+//     value: number;
+//     quantity: number;
+//     selected?: number[];
+//     maxQuantity: number;
+//     isSelected: boolean;
+//     bannerSkin: string;
+//     bundleValue: number;
+// }
 
   const changeTotal = () => {
     if(rafflesData.length == 0) return

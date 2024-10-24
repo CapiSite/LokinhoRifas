@@ -38,7 +38,7 @@ export const buyRaffleSchema = Joi.object({
     .items(
       Joi.object({
         id: Joi.number().required(), // ID da rifa
-        quantity: Joi.number().min(1).required(), // Quantidade de números a ser comprada ou reservada
+        quantity: Joi.number().min(1).optional(), // Quantidade de números a ser comprada ou reservada
         selections: Joi.array().items(Joi.number()).optional().default([]), // Números específicos a serem comprados, opcional
       }),
     )

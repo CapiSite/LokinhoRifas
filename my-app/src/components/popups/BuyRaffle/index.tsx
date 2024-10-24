@@ -94,9 +94,11 @@ const PopupBuy = () => {
 
         const tempArray = tempArray2.map((raffle) => ({
           id: raffle.id,
-          numbers: raffle.quantity,
+          quantity: raffle.quantity,
           // selections: raffle.selected,
         }));
+
+        // 
 
         setAnimationProgress(30);
 

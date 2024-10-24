@@ -9,7 +9,7 @@ import cn from "classnames";
 import Eye from "../../assets/eye.svg";
 import EyeSlashed from "../../assets/eye-slash.svg";
 
-import SingUpBG from "../../images/Cadastro/CADASTROBG.png";
+import SignUpBG from "../../images/Cadastro/CADASTROBG.png";
 import Lines from "../../images/Cadastro/Lines.png";
 import Image from "next/image";
 
