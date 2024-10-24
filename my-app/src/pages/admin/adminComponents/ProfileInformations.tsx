@@ -24,6 +24,7 @@ export default function ProfileInformations({ reloadSkins }: ProfileInformations
         { name: "AK-47" },
         { name: "AUG" },
         { name: "AWP" },
+        { name: "Luva" },
         { name: "Baioneta" },
         { name: "Baioneta M9" },
         { name: "Berettas Duplas" },

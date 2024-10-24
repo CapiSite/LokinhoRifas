@@ -647,7 +647,8 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     const options = availableRaffles.filter(
       (raffle) =>
         raffle.free == false &&
-        raffle.participants.length != raffle.users_quantity
+        raffle.participants.length != raffle.users_quantity &&
+        raffle.participants.length < raffle.users_quantity
     );
 
     options.map((raffle) => {

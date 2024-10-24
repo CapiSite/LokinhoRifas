@@ -49,18 +49,17 @@ const PopupBuy = () => {
   };
 
   useEffect(() => {
-    // console.log(purchasableRaffles)
     setSelectedItems(purchasableRaffles.filter((raffle) => raffle.isSelected));
-  }, [step]);
+  }, [step, purchasableRaffles]);
 
   useEffect(() => {
     clearOutSelections();
   }, []);
 
-  useEffect(() => {
-    if (selectedItems.length == 0) return;
+  // useEffect(() => {
+  //   if (selectedItems.length == 0) return;
     // console.log(selectedItems)
-  }, [selectedItems.length]);
+  // }, [selectedItems.length]);
 
   const removeStep = () => {
     setStep((oldValue) => (oldValue -= 1));

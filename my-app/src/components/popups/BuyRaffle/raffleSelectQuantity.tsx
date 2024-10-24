@@ -10,7 +10,7 @@ const RaffleSelectQuantity = ({setQuantity}: {setQuantity: {setTotal: Dispatch<R
   
   useEffect(() => {
     changeTotal()
-  }, [updateQuantity, rafflesData.length])
+  }, [updateQuantity, rafflesData])
 
   // TODO: Atualizar números selecionados na propriedade selected? da rifa selecionada
     // TODO: Criar uma função em useRouletteContext para adicionar ou remover números da rifa que se está editando

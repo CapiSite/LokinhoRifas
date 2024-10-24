@@ -2,64 +2,14 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import logo from "../images/Logo.png";
 import Xmark from "../assets/xmark.svg";
-import { useEffect } from "react";
 import { useUserStateContext } from "contexts/UserContext";
 import { UserContextType } from "../utils/interfaces";
 import HeaderProfile from "./HeaderProfile";
-import axios from "axios";
 
 const Header = () => {
-  const { userInfo, setUserInfo, showSidebar, toggleSidebar } = useUserStateContext() as UserContextType
+  const { userInfo, showSidebar, toggleSidebar } = useUserStateContext() as UserContextType
 
   const router = useRouter();
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("token");
-      if (storedToken) {
-        axios
-          .post(
-            process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/auth",
-            {},
-            {
-              headers: {
-                Authorization: `Bearer ${storedToken}`,
-              },
-            }
-          )
-          .then((res) => {
-            setUserInfo({
-              id: res.data.user.id,
-              name: res.data.user.name,
-              email: res.data.user.email,
-              picture: res.data.user.picture,
-              token: res.data.user.token,
-              isAdmin: res.data.user.isAdmin,
-              phoneNumber: res.data.user.phoneNumber,
-              tradeLink: res.data.user.tradeLink,
-              saldo: res.data.user.saldo,
-              created: res.data.user.createdAt
-            });
-          })
-          .catch((err) => {
-            localStorage.setItem("token", "");
-            setUserInfo({
-              id: "",
-              name: "",
-              email: "",
-              picture: "",
-              token: "",
-              isAdmin: false,
-              phoneNumber: "",
-              tradeLink: "",
-              saldo: 0,
-              created: ''
-            });
-          });
-      }
-    }
-  }, [showSidebar]);
-  // * O código acima adiciona e retira scroll da página quando a Sidebar está visível
 
   return (
     <header className={showSidebar ? "no-background" : ""}>
