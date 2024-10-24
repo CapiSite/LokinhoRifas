@@ -4,11 +4,11 @@ import style from "./RifasCadastradas.module.css";
 import CardRifas from "./CardRifas";
 
 export default function RifasCadastradas() {
-    const [rifascadastradas, setRifasCadastradas] = useState([]); // Armazena as rifas
-    const [loading, setLoading] = useState(true); // Para indicar o status de carregamento
-    const [error, setError] = useState(null); // Para capturar erros
-    const [pageRaffle, setPageRaffle] = useState(1); // Página atual
-    const [hasMoreRaffles, setHasMoreRaffles] = useState(true); // Controle para saber se há mais rifas
+    const [rifascadastradas, setRifasCadastradas] = useState([]); 
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null); 
+    const [pageRaffle, setPageRaffle] = useState(1); 
+    const [hasMoreRaffles, setHasMoreRaffles] = useState(true); 
 
     // Função para carregar as rifas de uma página específica
     const loadRaffles = (page: number) => {
@@ -60,15 +60,15 @@ export default function RifasCadastradas() {
             {/* Botões de paginação */}
             <div className={style.PaginationButtons}>
                 <button
-                    onClick={() => setPageRaffle((prev) => Math.max(prev - 1, 1))} // Botão Anterior
-                    disabled={pageRaffle === 1} // Desabilitar se for a primeira página
+                    onClick={() => setPageRaffle((prev) => Math.max(prev - 1, 1))} 
+                    disabled={pageRaffle === 1} 
                 >
                     Anterior
                 </button>
 
                 <button
-                    onClick={() => setPageRaffle((prev) => prev + 1)} // Botão Próxima
-                    disabled={!hasMoreRaffles} // Desabilitar se não houver mais rifas ou menos de 10 rifas na página
+                    onClick={() => setPageRaffle((prev) => prev + 1)}
+                    disabled={!hasMoreRaffles} 
                 >
                     Próxima
                 </button>

@@ -14,7 +14,11 @@ export default function Users({ id, image, name, tradeLink, email, charge, conte
             <div className={styles.management}>
                 {/* Adicionar ou remover usuário da rifa, conforme contexto */}
                 {context === "ParticipantsRafle" && (
+                    <div className={styles.divNumberRaflle}>
+                    <p>quantidade de numeros comprados: {id}</p>
+
                     <div className={styles.deleteUser} onClick={() => onDeleteUserRaffle(id)}>Remover</div>
+                    </div>
                 )}
 
                 {context === "addParticipantsRaflle" && (

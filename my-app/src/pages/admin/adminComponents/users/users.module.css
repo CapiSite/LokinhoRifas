@@ -105,3 +105,9 @@
 .AddUser:hover {
     background-color: #00bfff;
 }
+
+.divNumberRaflle{
+    display: flex;
+    gap: 100px;
+    align-items: center;
+}
