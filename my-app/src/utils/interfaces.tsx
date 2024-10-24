@@ -335,6 +335,22 @@ export interface User {
   number: string;
 }
 
+export interface UserPopUp {
+  id: number;
+  name: string;
+  email: string;
+  number: string;
+  picture: string;
+  tradeLink: string;
+  count: number;
+  charge: string;
+}
+
+export interface PopUpUpdateRifaProps {
+  setPopUpUpdateRaffle: (value: boolean) => void;
+  raffleId: string;
+}
+
 export type RegisterRifa = {
   id: number;
   name: string;

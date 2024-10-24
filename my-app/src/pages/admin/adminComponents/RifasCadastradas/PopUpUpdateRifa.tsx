@@ -5,25 +5,10 @@ import Users from "../users/Users";
 import axios from "axios";
 import defaultProfilePicture from '../../../../assets/defaultProfilePic.svg';
 import Loading from "./Loading";
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    number: string;
-    picture: string;
-    tradeLink: string;
-    count: number;
-    charge: string;
-}
-
-interface PopUpUpdateRifaProps {
-    setPopUpUpdateRaffle: (value: boolean) => void;
-    raffleId: string;
-}
+import { UserPopUp, PopUpUpdateRifaProps } from "utils/interfaces";
 
 export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopUpUpdateRifaProps) {
-    const [usersRegisterRaffle, setUsersRegisterRaffle] = useState<User[]>([]);
+    const [usersRegisterRaffle, setUsersRegisterRaffle] = useState<UserPopUp[]>([]);
     const [addUser, setAddUser] = useState<boolean>(true);
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [page, setPage] = useState<number>(1);
@@ -64,13 +49,13 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
 
             const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
 
-            const response = await axios.get<{ users: User[] }>(url, { params, headers });
+            const response = await axios.get<{ users: UserPopUp[] }>(url, { params, headers });
 
             let newUsers = response.data.users || response.data; // Adaptar para ambos os endpoints
 
             // Agrupando os usuários por quantidade de números comprados
             if (addUser) {
-                const userMap = newUsers.reduce((acc: { [key: string]: any }, user: User) => {
+                const userMap = newUsers.reduce((acc: { [key: string]: any }, user: UserPopUp) => {
                     if (!acc[user.id]) {
                         acc[user.id] = { ...user, count: 1 };
                     } else {
@@ -154,7 +139,7 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
         }
         else {
             if (!addUser) {
-                axios.get<{ users: User[] }>(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/users`, {
+                axios.get<{ users: UserPopUp[] }>(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/users`, {
                     params: {
                         page,
                         search: e.target.value
@@ -175,7 +160,7 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
                 })
 
             } else {
-                axios.get<User[]>(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/roulette/participants/raffle/${raffleId}`, {
+                axios.get<UserPopUp[]>(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/roulette/participants/raffle/${raffleId}`, {
                     params: {
                         page,
                         name: e.target.value
@@ -233,7 +218,7 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
                                 {addUser && "Mostrar Usuários"}
                             </div>
                         )}
-                        {usersRegisterRaffle.map((person: User) => (
+                        {usersRegisterRaffle.map((person: UserPopUp) => (
                             <Users
                             key={person.id}
                             image={person.picture === "default" ? defaultProfilePicture :
@@ -243,7 +228,7 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
                             email={person.email}
                             tradeLink={person.tradeLink}
                             charge={person.charge}
-                            count={person.count}  // Certifique-se de que 'count' está sendo passado
+                            count={person.count}  
                             onnumberChange={() => { }}
                             onDeleteUserRaffle={() => handleDeleteUserRaffle(person.number)}
                             onAddUser={() => handleAddUser(person.id)}
