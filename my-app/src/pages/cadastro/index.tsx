@@ -10,7 +10,7 @@ import style from "./cadastro.module.css";
 
 import SingUpBG from "../../images/Cadastro/CADASTROBG.png";
 import Lines from "../../images/Cadastro/Lines.png";
-import defaultProfilePic from "../../assets/defaultProfilePic.svg";
+import defaultProfilePic from "../../assets/defaultProfilePic2.svg";
 import editPencil from "../../assets/editPencil.svg";
 import { FormDataType } from "utils/interfaces";
 import MaskedInput from "react-text-mask";
