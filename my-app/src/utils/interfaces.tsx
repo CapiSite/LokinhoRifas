@@ -316,13 +316,14 @@ export interface UsersProps {
   tradeLink: string;
   charge: string;
   context: string;
-  onChargeChange: (id: number, newCharge: string) => void;
-  onDeleteUser: (id: number) => void;
+
   onDeleteUserRaffle:(id: number) => void;
   onAddUser: (id: number) => void;
   onnumberChange:(id: number) => void;
-  number: string;
+  
+  count: number;
 }
+
 
 export interface User {
   id: number;

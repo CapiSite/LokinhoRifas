@@ -32,7 +32,8 @@
     font-family: "archivo black";
     font-size: 20px;
     margin-bottom: 3px;
-    color: rgb(2, 2, 2);
+    color: rgb(0, 0, 0);
+    font-weight: 700;
 }
 
 
@@ -45,7 +46,7 @@
 .tradLink{
     font-family: "archivo";
     font-size: 15px;
-    color: #28e931d1;
+    color: #0ba320;
 }
 .management {
     display: flex;
@@ -110,4 +111,9 @@
     display: flex;
     gap: 100px;
     align-items: center;
+}
+
+.countNumber{
+    color: #000000;
+    font-weight: 700;
 }

@@ -13,6 +13,8 @@ interface User {
     number: string;
     picture: string;
     tradeLink: string;
+    count: number;
+    charge: string;
 }
 
 interface PopUpUpdateRifaProps {
@@ -48,7 +50,7 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
 
 
     const fetchUsers = async (shouldFetchMore: boolean = true): Promise<void> => {
-        if (loading || !shouldFetchMore) return; // Verifica se deve continuar a busca
+        if (loading || !shouldFetchMore) return;
         setLoading(true);
         try {
             const url = addUser
@@ -64,11 +66,24 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
 
             const response = await axios.get<{ users: User[] }>(url, { params, headers });
 
-            const newUsers = response.data.users || response.data; // Adaptar para ambos os endpoints
+            let newUsers = response.data.users || response.data; // Adaptar para ambos os endpoints
+
+            // Agrupando os usuários por quantidade de números comprados
+            if (addUser) {
+                const userMap = newUsers.reduce((acc: { [key: string]: any }, user: User) => {
+                    if (!acc[user.id]) {
+                        acc[user.id] = { ...user, count: 1 };
+                    } else {
+                        acc[user.id].count += 1;
+                    }
+                    return acc;
+                }, {});
+
+                newUsers = Object.values(userMap); // Converter o objeto para um array
+            }
 
             setUsersRegisterRaffle((prevUsers) => [...prevUsers, ...newUsers]);
 
-            // Se o número de usuários retornados for menor que o esperado (ex: 20 por página), não há mais para carregar
             if (newUsers.length === 0) {
                 setHasMore(false);
             }
@@ -115,7 +130,7 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
             if (response.status === 204) {
                 alert('Usuário removido da rifa com sucesso!');
                 setPopUpUpdateRaffle(false)
-                
+
                 setUsersRegisterRaffle(prev => prev.filter(user => user.number !== number));
             }
         } catch (error) {
@@ -213,33 +228,31 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
                             <p>Nenhum participante encontrado.</p>  // Fallback quando o array estiver vazio
                         )}
                         {count == 0 && (
-                            <div className={style.ButtonAddMember2} onClick={() => { setSearchQuery(""); setAddUser(!addUser); setCount(1)  }
+                            <div className={style.ButtonAddMember2} onClick={() => { setSearchQuery(""); setAddUser(!addUser); setCount(1) }
                             }>
                                 {addUser && "Mostrar Usuários"}
                             </div>
                         )}
                         {usersRegisterRaffle.map((person: User) => (
                             <Users
-                                key={person.id}  // Adicionar key para melhorar a performance do React
-                                image={person.picture === "default" ? defaultProfilePicture :
+                            key={person.id}
+                            image={person.picture === "default" ? defaultProfilePicture :
                                 (person.picture && person.picture.startsWith('https://static-cdn.jtvnw.net')) ? 
                                 person.picture : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${person.picture}`}
-                                name={person.name}
-                                email={person.email}
-                                tradeLink={person.tradeLink}
-                                onnumberChange={() => { }}
-                                onDeleteUserRaffle={() => handleDeleteUserRaffle(person.number)}
-                                onAddUser={() => handleAddUser(person.id)}
-                                onDeleteUser={() => { }}
-                                context={addUser ? "ParticipantsRafle" : "addParticipantsRaflle"}
-                                id={0}
-                                charge={""}
-                                onChargeChange={function (id: number, newCharge: string): void {
-                                    throw new Error("Function not implemented.");
-                                }}
-                                number={""}
-                            />
+                            name={person.name}
+                            email={person.email}
+                            tradeLink={person.tradeLink}
+                            charge={person.charge}
+                            count={person.count}  // Certifique-se de que 'count' está sendo passado
+                            onnumberChange={() => { }}
+                            onDeleteUserRaffle={() => handleDeleteUserRaffle(person.number)}
+                            onAddUser={() => handleAddUser(person.id)}
+                            context={addUser ? "ParticipantsRafle" : "addParticipantsRaflle"}
+                            id={person.id}
+                        />
+                        
                         ))}
+
                         {loading && <Loading />}
                     </div>
                 </div>

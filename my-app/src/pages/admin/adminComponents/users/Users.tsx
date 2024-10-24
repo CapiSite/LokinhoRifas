@@ -2,22 +2,20 @@ import Image from "next/image";
 import styles from './users.module.css';
 import { UsersProps } from "utils/interfaces";
 
-export default function Users({ id, image, name, tradeLink, email, charge, context, onChargeChange, onDeleteUser, onDeleteUserRaffle, onAddUser, onnumberChange }: UsersProps) {
+export default function Users({ id, image, name, tradeLink, email, charge, count, context, onDeleteUserRaffle, onAddUser }: UsersProps) {
     return (
         <div className={styles.ContainerUser}>
             <Image width={55} height={55} src={image} className={styles.ImageUser} alt='Foto de perfil' />
             <div className={styles.UserDate}>
-                <p className={ styles.FullNameUser2}>{name}</p>
-                <p className={ styles.EmailUser }>{email}</p>
-                <p className={styles.tradLink}>{tradeLink}</p> 
+                <p className={styles.FullNameUser2}>{name}</p>
+                <p className={styles.EmailUser}>{email}</p>
+                <p className={styles.tradLink}>{tradeLink}</p>
             </div>
             <div className={styles.management}>
-                {/* Adicionar ou remover usuário da rifa, conforme contexto */}
                 {context === "ParticipantsRafle" && (
                     <div className={styles.divNumberRaflle}>
-                    <p>quantidade de numeros comprados: {id}</p>
-
-                    <div className={styles.deleteUser} onClick={() => onDeleteUserRaffle(id)}>Remover</div>
+                        <p className={styles.countNumber}>Qtd de números: {count}</p> 
+                        <div className={styles.deleteUser} onClick={() => onDeleteUserRaffle(id)}>Remover</div>
                     </div>
                 )}
 
@@ -28,3 +26,4 @@ export default function Users({ id, image, name, tradeLink, email, charge, conte
         </div>
     );
 }
+
