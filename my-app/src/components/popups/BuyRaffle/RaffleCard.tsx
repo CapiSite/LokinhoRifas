@@ -1,4 +1,4 @@
-import defaultGunPic from '../../../images/Roleta/Prizes/DefaultGunPic.png'
+import defaultGunPic from '../../../images/Roleta/Prizes/Preloaders.svg'
 import shine from '../../../images/Roleta/WinnerPopup/shine.png'
 import checkMark from '../../../assets/checkmark.svg'
 import Image, { StaticImageData } from "next/image";
