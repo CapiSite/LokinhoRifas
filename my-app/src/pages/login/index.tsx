@@ -232,7 +232,7 @@ const Login = () => {
               height={50}
               className={style?.["background-0"]}
               priority={true}
-              src={SingUpBG}
+              src={SignUpBG}
               alt="Imagem de fundo"
             />
           </div>
