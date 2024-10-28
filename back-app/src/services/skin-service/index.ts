@@ -35,17 +35,17 @@ export async function updateSkin(id: number, params: UpdateSkinParams): Promise<
 }
 
 export async function deleteSkin(id: number): Promise<Skin> {
+    // Verifica se a skin existe antes de deletar
     const existingSkin = await skinRepository.getSkinById(id);
 
-    if (existingSkin && existingSkin.picture !== 'default.jpg') {
-        const imagePath = path.join(uploadFolderPath, existingSkin.picture);
-        if (fs.existsSync(imagePath)) {
-            fs.unlinkSync(imagePath);
-        }
+    if (!existingSkin) {
+        throw new Error(`Skin com ID ${id} não encontrada.`);
     }
 
+    // Apenas deleta a skin do banco de dados, sem mexer na imagem
     return skinRepository.deleteSkin(id);
 }
+
 
 
 

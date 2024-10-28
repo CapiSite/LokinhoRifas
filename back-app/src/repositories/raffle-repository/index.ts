@@ -97,17 +97,17 @@ const postActiveRaffles = async (id: number) => {
 };
 
 const deleteRaffle = async (id: number) => {
-  // Primeiro, buscamos a rifa para verificar seu estado atual
   const raffle = await prisma.raffle.findUnique({
     where: { id },
+    include: {
+      participants: true, // Inclui os participantes para contar quantos existem
+    }
   });
 
-  // Verificamos se a rifa está no estado "Em espera"
-  if (!raffle || raffle.is_active !== 'Em espera') {
+  if (!raffle || raffle.participants.length !== 0) {
     throw new Error("A rifa não pode ser ativada porque não está no estado 'Em espera'.");
   }
 
-  // Se estiver "Em espera", podemos prosseguir e ativá-la
   await prisma.raffleSkin.deleteMany({
     where: {
       raffle_id: id,

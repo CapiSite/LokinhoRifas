@@ -3,39 +3,36 @@ import Image from "next/image";
 import { CardItemType } from "utils/interfaces";
 import cn from "classnames";
 import defaultPicture from "../../../assets/defaultProfilePic.svg";
-import { useEffect, useState } from "react";
-import React from "react";
+import React, { useMemo, useState } from "react";
 
-const RouletteItem = React.memo(({ props }: { props?: CardItemType }) => {
-  // Ensure props is defined and has the necessary properties
-  const {
-    profilePicture = '',
-    personName = 'Unknown',
-    number = 0,
-    debugWinners = false,
-    isWinner = false,
-    index,
-  } = props || {}; // Use empty object if props is undefined
+const RouletteItem = React.memo(
+  ({ props }: { props?: CardItemType }) => {
+    // Desestruturar as props com valores padrão
+    const {
+      profilePicture = "",
+      personName = "Unknown",
+      number = 0,
+      isWinner = false,
+    } = props || {};
 
-  const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
+    // Estado para gerenciar a fonte da imagem dinamicamente
+    const [imgSrc, setImgSrc] = useState<string>(defaultPicture);
 
-  useEffect(() => {
-    const debounce = setTimeout(() => {
-      if (!profilePicture) return setImgSrc(defaultPicture);
-      else if(profilePicture.includes('https://static-cdn.jtvnw.net')) {
+    // Calcular a fonte da imagem com base no profilePicture
+    useMemo(() => {
+      if (!profilePicture) {
+        setImgSrc(defaultPicture);
+      } else if (profilePicture.includes("https://static-cdn.jtvnw.net")) {
         setImgSrc(profilePicture);
-      } else if (!profilePicture.includes('default') && profilePicture !== imgSrc) {
+      } else if (!profilePicture.includes("default")) {
         setImgSrc(profilePicture);
       }
-
-      return () => clearTimeout(debounce)
-    }, 400);
-  }, [profilePicture]);
+    }, [profilePicture]);
 
     return (
       <div
         data-number={number}
-        id={isWinner ? 'winner' : ''}
+        id={isWinner ? "winner" : ""}
         className={cn(style.PersonCard)}
       >
         <div className={style.PersonCardWrapper}>
@@ -45,11 +42,7 @@ const RouletteItem = React.memo(({ props }: { props?: CardItemType }) => {
               width={500}
               height={500}
               alt={`Foto de perfil de ${personName}`}
-              onError={() => {
-                if (imgSrc !== defaultPicture) {
-                  setImgSrc(defaultPicture);
-                }
-              }}
+              onError={() => setImgSrc(defaultPicture)} // Voltar para a imagem padrão em caso de erro
             />
           </div>
           <div className={style.ProfileInfo}>
@@ -59,12 +52,12 @@ const RouletteItem = React.memo(({ props }: { props?: CardItemType }) => {
       </div>
     );
   },
-  // Função de comparação para evitar re-renderizações desnecessárias
-  (prevProps:any, nextProps:any) => {
+  (prevProps, nextProps) => {
+    // Função de comparação para evitar re-renderizações desnecessárias
     return (
-      prevProps.props.profilePicture === nextProps.props.profilePicture &&
-      prevProps.props.isWinner === nextProps.props.isWinner &&
-      prevProps.props.number === nextProps.props.number
+      prevProps.props?.profilePicture === nextProps.props?.profilePicture &&
+      prevProps.props?.isWinner === nextProps.props?.isWinner &&
+      prevProps.props?.number === nextProps.props?.number
     );
   }
 );

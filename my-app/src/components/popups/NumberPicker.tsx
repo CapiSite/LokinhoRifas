@@ -14,7 +14,7 @@ const NumberPicker = () => {
       const tempArrayFiller = []
 
       // TODO Alterar para checar participantes
-
+      console.log(raffleSelected)
       // console.log(raffleSelected)
 
       for(let i = 1; i <= raffleSelected.users_quantity; i++) {

@@ -27,7 +27,8 @@ export default function PopUpRifa({
             console.log(err)
         })
     }
-
+console.log("usersss", users_quantity)
+console.log("participantes", participants)
     function DeleteRifa() {
         axios.delete(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/raffle/remove-raffle/${id}`, 
         {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
@@ -70,7 +71,7 @@ export default function PopUpRifa({
                             <button 
                                 className={style.ButtonPopUpRifa} 
                                 onClick={() => DeleteRifa()} 
-                                disabled={is_active !== "Em espera"}>
+                                disabled={participants.length !== 0}>
                                 Deletar Rifa
                             </button>
                             <button className={style.ButtonPopUpRifa} onClick={() => {
