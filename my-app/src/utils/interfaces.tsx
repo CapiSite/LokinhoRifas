@@ -293,6 +293,7 @@ export type raffleItem = {
   users_quantity:number;
   value: number;
   quantity: number;
+  participants: RaffleParticipant[];
   selected?: number[];
   maxQuantity: number;
   isSelected: boolean;
@@ -392,6 +393,7 @@ export type RaffleSkin = {
 export type RaffleParticipant = {
   number: number;
   id: number;
+  is_paid?: boolean;
   isWinner?: boolean;
   distanceFromCenter?: number;
   user: {
@@ -438,6 +440,7 @@ export type RouletteContext = {
   toggleSelection: (id: number) => void;
   clearOutSelections: () => void;
   handleChangeQuantity: (id: number, newQuantity: number) => void;
+  handleChangeNumbers: (id: number, newNumberArray: number[]) => void;
   manageWinner: Function;
   manageMockWinner: Function;
   manageCloseResult: Function;

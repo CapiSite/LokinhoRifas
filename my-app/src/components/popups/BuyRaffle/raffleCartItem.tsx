@@ -73,9 +73,9 @@ const RaffleCartItem = ({props}: {props: {
           </label> : <button onClick={() => handleRafflePick()}>Selecionar Números</button>}
           
 
-          <h3>x R$ {newValue}</h3>
+          <h3>{users_quantity < 100 ? `${quantity} ` : ''}x R$ {newValue}</h3>
         </div>
-        <p className="currentQuantity">Números restantes: {maxQuantity}</p>
+        <p className="currentQuantity">Números restantes: {maxQuantity} - {quantity}</p>
       </div>
     </div>
   );

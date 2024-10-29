@@ -39,6 +39,7 @@ const getActiveRafflesWithDetails = async () => {
       participants: {
         select: {
           id: true,
+          is_paid:true,
           number: true, // Número do participante
           user: {
             select: {
@@ -264,7 +265,9 @@ async function addParticipantToRaffle(raffleId: number, userId: number, number: 
     data: {
       raffle_id: raffleId,
       user_id: userId,
-      number: number,  // Número atribuído ao participante
+      number: number,
+      is_paid: true,
+      // is_reserved: true,
     },
   });
 }

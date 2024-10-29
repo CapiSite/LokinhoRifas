@@ -316,6 +316,15 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     setPurchasableRaffles(newRaffles);
   };
 
+  const handleChangeNumbers = (id: number, newNumberArray: number[]) => {
+    const newRaffles = purchasableRaffles.map((raffle) => {
+      if (raffle.id == id) return { ...raffle, selected: newNumberArray, quantity: newNumberArray.length };
+      return raffle;
+    });
+
+    setPurchasableRaffles(newRaffles);
+  };
+
   const checkImagesInParticipants = async () => {
     const participants = raffle.participants;
 
@@ -680,6 +689,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
         users_quantity,
         quantity: 1,
         maxQuantity: users_quantity - participants.length,
+        participants,
         isSelected: false,
         bannerSkin,
         bundleValue,
@@ -833,6 +843,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     toggleSelection,
     clearOutSelections,
     handleChangeQuantity,
+    handleChangeNumbers,
     manageWinner,
     manageMockWinner,
     manageCloseResult,

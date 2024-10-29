@@ -50,6 +50,8 @@ const PopupBuy = () => {
 
   useEffect(() => {
     setSelectedItems(purchasableRaffles.filter((raffle) => raffle.isSelected));
+
+    console.log(purchasableRaffles.filter((raffle) => raffle.isSelected))
   }, [step, purchasableRaffles]);
 
   useEffect(() => {
@@ -79,10 +81,12 @@ const PopupBuy = () => {
   const handleStepValidation = () => {
     if (!userInfo.email) return router.reload();
 
-    if (step < 3) addStep();
+    if (step < 2) addStep();
     else if (step == 4) {
       setShowRafflePopup(false);
-    } else {
+    } else if (step == 2) {
+      if(purchasableRaffles.filter((raffle) => raffle.isSelected && raffle.quantity).length > 0) addStep()
+    } else if (step == 3) {
       if (userInfo.saldo < total) {
         setShowPrompt(true);
       } else {
@@ -197,7 +201,7 @@ const PopupBuy = () => {
             <button
               onClick={handleStepValidation}
               disabled={
-                purchasableRaffles.filter((raffle) => raffle.isSelected)
+                purchasableRaffles.filter((raffle) => raffle.isSelected && raffle.quantity > 0)
                   .length == 0 || disableBtn
               }
               className={`${(step == 4) && "center"}`}

@@ -2148,6 +2148,12 @@ footer nav div {
   font-weight: 500;
 }
 
+.NumberPickerWrapper .Content {
+  height: 100%;
+
+  overflow: auto;
+}
+
 .NumberPickerWrapper .NumberGroup {
   display: flex;
 
@@ -2159,9 +2165,6 @@ footer nav div {
   gap: 5px;
 
   width: min(100%, 500px);
-  height: 100%;
-
-  overflow: auto;
 
   flex-wrap: wrap;
 }
@@ -2175,6 +2178,13 @@ footer nav div {
   border-radius: 50%;
 }
 
+.NumberPickerWrapper .NumberGroup button.notReserved {
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  border: 2px solid #A30006;
+}
+
 .NumberPickerWrapper .NumberGroup button.selected {
   background: linear-gradient(90deg, #1AE22299, #13a11899);
   background-color: black;
@@ -2183,9 +2193,77 @@ footer nav div {
   border: 2px solid #13a11899;
 }
 
+.NumberPickerWrapper .NumberGroup button.selected:disabled {
+  background: linear-gradient(90deg, #ffe41d99, #c6c91799);
+  background-color: black;
+  color: white;
+
+  border: 2px solid #c6c91799;
+}
+
 .NumberPickerWrapper .NumberGroup button.notAvailable {
   background: linear-gradient(90deg, #E21A1A, #A30006);
   color: white;
+
+  filter: grayscale(100%);
+
+  border: 2px solid #A30006;
+}
+
+.NumberPickerWrapper .NumberGroupLegend {
+  display: grid;
+
+  grid-template-columns: 1fr 90%;
+
+  align-content: center;
+  align-items: center;
+
+  padding-inline: 20px;
+
+  gap: 5px;
+
+  width: min(100%, 500px);
+
+  flex-wrap: wrap;
+}
+
+.NumberPickerWrapper .NumberGroupLegend button {
+  width: 40px;
+  height: 40px;
+
+  font-size: 20px;
+
+  border-radius: 50%;
+}
+
+.NumberPickerWrapper .NumberGroupLegend button.notReserved {
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  border: 2px solid #A30006;
+}
+
+.NumberPickerWrapper .NumberGroupLegend button.selected {
+  background: linear-gradient(90deg, #1AE22299, #13a11899);
+  background-color: black;
+  color: white;
+
+  border: 2px solid #13a11899;
+}
+
+.NumberPickerWrapper .NumberGroupLegend button.selected:disabled {
+  background: linear-gradient(90deg, #ffe41d99, #c6c91799);
+  background-color: black;
+  color: white;
+
+  border: 2px solid #c6c91799;
+}
+
+.NumberPickerWrapper .NumberGroupLegend button.notAvailable {
+  background: linear-gradient(90deg, #E21A1A, #A30006);
+  color: white;
+
+  filter: grayscale(100%);
 
   border: 2px solid #A30006;
 }
