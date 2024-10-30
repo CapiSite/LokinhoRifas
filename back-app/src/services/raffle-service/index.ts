@@ -3,6 +3,7 @@ import skinRepository from '../../repositories/skin-repository';
 import transactionRepository from '../../repositories/transaction-repository';
 import userRepository from '../../repositories/user-repository';
 import { Raffle } from '@prisma/client';
+import { prisma } from '../../config';
 
 interface CreateRaffleParams {
   name: string;
@@ -57,126 +58,6 @@ async function deleteRaffle(id: number) {
   return await raffleRepository.deleteRaffle(id);
 }
 
-async function buyRaffleInSequenceOrSpecific(
-  userId: number,
-  raffleArray: Array<{ id: number; quantity: number; selections?: number[] }>,
-) {
-  const results: Array<{ id: number; success: boolean; purchasedQuantity: number; message: string }> = [];
-  const user = await userRepository.findById(userId);
-  if (!user) throw new Error('User not found');
-
-  let remainingBalance = user.saldo;
-
-  for (const raffle of raffleArray) {
-    const { id, quantity, selections } = raffle;
-
-    let purchasedQuantity = 0;
-    let totalSpent = 0;
-
-    const raffleData = await raffleRepository.findById(id, null, { includeParticipants: true });
-    if (!raffleData) {
-      results.push({ id, success: false, purchasedQuantity: 0, message: `Raffle with ID ${id} not found` });
-      continue;
-    }
-
-    const availableNumbers = raffleData.users_quantity - raffleData.participants.length;
-    if (availableNumbers < quantity) {
-      results.push({ id, success: false, purchasedQuantity: 0, message: `Not enough available raffle numbers` });
-      continue;
-    }
-
-    const costPerNumber = raffleData.value / raffleData.users_quantity;
-    const totalCost = costPerNumber * quantity;
-
-    if (remainingBalance < totalCost) {
-      results.push({ id, success: false, purchasedQuantity: 0, message: `Insufficient balance` });
-      continue;
-    }
-
-    if (selections && selections.length > 0) {
-      // Caso o usuário tenha selecionado números específicos
-      try {
-        await raffleRepository.createParticipantWithSpecificNumbers(userId, id, selections);
-
-        // Atualiza o saldo do usuário
-        remainingBalance -= totalCost;
-        totalSpent += totalCost;
-
-        await userRepository.decrementUserBalance(userId, totalCost);
-
-        purchasedQuantity = selections.length;
-        results.push({
-          id,
-          success: true,
-          purchasedQuantity,
-          message: `${purchasedQuantity} specific raffle numbers purchased successfully`,
-        });
-      } catch (error) {
-        results.push({
-          id,
-          success: false,
-          purchasedQuantity,
-          message: `Failed to purchase specific raffle numbers: ${error.message}`,
-        });
-        continue;
-      }
-    } else {
-      // Caso o usuário não tenha selecionado números (compra em sequência)
-      try {
-        await raffleRepository.createParticipantInSequence(userId, id, quantity);
-
-        // Atualiza o saldo do usuário
-        remainingBalance -= totalCost;
-        totalSpent += totalCost;
-
-        await userRepository.decrementUserBalance(userId, totalCost);
-
-        purchasedQuantity = quantity;
-        results.push({
-          id,
-          success: true,
-          purchasedQuantity,
-          message: `${purchasedQuantity} raffle numbers purchased in sequence`,
-        });
-      } catch (error) {
-        results.push({
-          id,
-          success: false,
-          purchasedQuantity,
-          message: `Failed to purchase raffle numbers in sequence: ${error.message}`,
-        });
-        continue;
-      }
-    }
-
-    // Registra a transação para todos os números comprados
-    if (purchasedQuantity > 0) {
-      try {
-        await transactionRepository.createTransaction({
-          user: { connect: { id: userId } },
-          raffle: { connect: { id } },
-          transactionAmount: totalSpent,
-          type: 'debit',
-          status: 'completed',
-          paymentMethod: 'balance',
-        });
-      } catch (error) {
-        results.push({
-          id,
-          success: false,
-          purchasedQuantity,
-          message: `Transaction error after purchasing ${purchasedQuantity} numbers: ${error.message}`,
-        });
-      }
-    }
-  }
-
-  return {
-    results,
-    remainingBalance,
-  };
-}
-
 async function reserveRaffleNumbers(
   userId: number,
   raffleArray: Array<{ id: number; quantity: number; selections?: number[] }>,
@@ -190,7 +71,6 @@ async function reserveRaffleNumbers(
 
   for (const raffle of raffleArray) {
     const { id, quantity, selections } = raffle;
-
     let reservedQuantity = 0;
 
     const raffleData = await raffleRepository.findById(id, null, { includeParticipants: true });
@@ -205,28 +85,20 @@ async function reserveRaffleNumbers(
       continue;
     }
 
-    if (selections && selections.length > 0) {
-      // Caso o usuário tenha selecionado números específicos
-      try {
-        await raffleRepository.reserveSpecificNumbers(userId, id, selections, reservationTime);
-        reservedQuantity = selections.length;
-        results.push({
-          id,
-          success: true,
-          reservedQuantity,
-          message: `${reservedQuantity} specific raffle numbers reserved successfully`,
-        });
-      } catch (error) {
-        results.push({
-          id,
-          success: false,
-          reservedQuantity,
-          message: `Failed to reserve specific raffle numbers: ${error.message}`,
-        });
-        continue;
+    // Buscar reservas anteriores do usuário
+    const existingReservations = await raffleRepository.findUserReservations(userId, id);
+    const existingNumbers = existingReservations.map((res) => res.number);
+
+    // Se o array de 'selections' vier vazio, cancelar todas as reservas anteriores
+    if (!selections || selections.length === 0) {
+      if (existingReservations.length > 0) {
+        const numbersToCancel = existingReservations.map((res) => res.number);
+
+        // Cancela todas as reservas anteriores
+        await raffleRepository.cancelReservations(userId, id, numbersToCancel);
       }
-    } else {
-      // Caso o usuário não tenha selecionado números (reserva em sequência)
+
+      // Reservar números em sequência
       try {
         await raffleRepository.reserveNumbersInSequence(userId, id, quantity, reservationTime);
         reservedQuantity = quantity;
@@ -242,6 +114,40 @@ async function reserveRaffleNumbers(
           success: false,
           reservedQuantity,
           message: `Failed to reserve raffle numbers in sequence: ${error.message}`,
+        });
+        continue;
+      }
+    } else {
+      // Filtrar os números da nova seleção que já estão reservados pelo usuário
+      const numbersToReserve = selections.filter((number) => !existingNumbers.includes(number));
+
+      // Cancelar números que não estão mais na nova seleção
+      const numbersToCancel = existingReservations
+        .filter((res) => !selections.includes(res.number))
+        .map((res) => res.number);
+
+      if (numbersToCancel.length > 0) {
+        await raffleRepository.cancelReservations(userId, id, numbersToCancel);
+      }
+
+      try {
+        if (numbersToReserve.length > 0) {
+          await raffleRepository.reserveSpecificNumbers(userId, id, numbersToReserve, reservationTime);
+          reservedQuantity = numbersToReserve.length;
+        }
+
+        results.push({
+          id,
+          success: true,
+          reservedQuantity,
+          message: `${reservedQuantity} specific raffle numbers reserved successfully`,
+        });
+      } catch (error) {
+        results.push({
+          id,
+          success: false,
+          reservedQuantity,
+          message: `Failed to reserve specific raffle numbers: ${error.message}`,
         });
         continue;
       }
@@ -273,27 +179,30 @@ async function clearExpiredReservations() {
   const now = new Date();
   await raffleRepository.clearExpiredReservations(now);
 }
+export interface PayReservedRaffleNumbersResult {
+  id: number; // ID da rifa
+  success: boolean; // Indica se o pagamento foi bem-sucedido
+  paidQuantity: number; // Quantidade de números pagos
+  message: string; // Mensagem informativa sobre o pagamento
+}
+// Representa um item de rifa no array de compra
+export interface RaffleArrayItem {
+  id: number; // ID da rifa
+  selections?: number[]; // Números selecionados pelo usuário (opcional)
+}
 
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * Pay for reserved raffle numbers
- * @param {number} userId - ID of the user who reserved the raffle numbers
- * @param {Array<{ id: number; selections?: number[] }>} raffleArray - Array of objects with the raffle ID and optional array of selected numbers
- * @returns {Promise<Array<{ id: number; success: boolean; paidQuantity: number; message: string }>>} - Array of objects with the raffle ID, success status, paid quantity, and message
- */
-/******  a1246304-d96f-4853-9947-d333e08b8d53  *******/
-async function payReservedRaffleNumbers(userId: number, raffleArray: Array<{ id: number; selections?: number[] }>) {
-  const results: Array<{ id: number; success: boolean; paidQuantity: number; message: string }> = [];
+export async function payReservedRaffleNumbers(
+  userId: number,
+  raffleArray: RaffleArrayItem[],
+): Promise<PayReservedRaffleNumbersResult[]> {
+  const results: PayReservedRaffleNumbersResult[] = [];
   const user = await userRepository.findById(userId);
   if (!user) throw new Error('User not found');
-
   let remainingBalance = user.saldo;
 
   for (const raffle of raffleArray) {
     const { id, selections } = raffle;
-
     let paidQuantity = 0;
-    let totalSpent = 0;
 
     const raffleData = await raffleRepository.findById(id, null, { includeParticipants: true });
     if (!raffleData) {
@@ -303,61 +212,57 @@ async function payReservedRaffleNumbers(userId: number, raffleArray: Array<{ id:
 
     const costPerNumber = raffleData.value / raffleData.users_quantity;
 
-    if (selections && selections.length > 0) {
-      // Pagar os números especificados
-      for (const selectedNumber of selections) {
-        const participant = await raffleRepository.findParticipantByRaffleAndUser(id, selectedNumber);
+    // Verificar se há saldo suficiente para todos os números selecionados
+    if (remainingBalance < costPerNumber * selections.length) {
+      results.push({ id, success: false, paidQuantity, message: 'Insufficient balance' });
+      continue;
+    }
 
-        if (!participant || !participant.is_reserved) {
-          results.push({
-            id,
-            success: false,
-            paidQuantity,
-            message: `Number ${selectedNumber} is not reserved or already paid`,
-          });
-          continue;
-        }
+    // Preparar promessas Prisma para serem usadas na transação
+    const transactionPromises = selections.map((selectedNumber) => {
+      return prisma.participant.updateMany({
+        where: {
+          raffle_id: id,
+          user_id: userId,
+          number: selectedNumber,
+          is_reserved: true,
+          is_paid: false,
+        },
+        data: {
+          is_reserved: false,
+          is_paid: true,
+          reserved_until: null,
+        },
+      });
+    });
 
-        if (remainingBalance < costPerNumber) {
-          results.push({
-            id,
-            success: false,
-            paidQuantity,
-            message: `Insufficient balance for number ${selectedNumber}`,
-          });
-          break;
-        }
+    transactionPromises.push(
+      prisma.user.updateMany({
+        where: { id: userId },
+        data: {
+          saldo: {
+            decrement: costPerNumber * selections.length,
+          },
+        },
+      }),
+    );
 
-        try {
-          // Atualiza o saldo do usuário
-          remainingBalance -= costPerNumber;
-          totalSpent += costPerNumber;
+    try {
+      // Executar todas as promessas dentro de uma única transação Prisma
+      await prisma.$transaction(transactionPromises);
 
-          await userRepository.decrementUserBalance(userId, costPerNumber);
+      // Atualizar o saldo restante e a quantidade de números pagos
+      remainingBalance -= costPerNumber * selections.length;
+      paidQuantity = selections.length;
 
-          // Marca o número como pago
-          await raffleRepository.payForReservedNumber(userId, id, selectedNumber);
-
-          paidQuantity += 1;
-          results.push({
-            id,
-            success: true,
-            paidQuantity,
-            message: `Number ${selectedNumber} paid successfully`,
-          });
-        } catch (error) {
-          results.push({
-            id,
-            success: false,
-            paidQuantity,
-            message: `Failed to pay for number ${selectedNumber}: ${error.message}`,
-          });
-          break;
-        }
-      }
-
-      // Cancelar reservas não pagas
-      await raffleRepository.cancelUnpaidReservations(userId, id, selections);
+      results.push({
+        id,
+        success: true,
+        paidQuantity,
+        message: `${paidQuantity} numbers paid successfully`,
+      });
+    } catch (error) {
+      results.push({ id, success: false, paidQuantity, message: `Transaction failed: ${error.message}` });
     }
   }
 
@@ -375,5 +280,4 @@ export default {
   getAllRaffles,
   payReservedRaffleNumbers,
   deleteRaffle,
-  buyRaffleInSequenceOrSpecific,
 };

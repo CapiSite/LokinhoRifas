@@ -29,12 +29,12 @@ export interface UserContextType {
   setRaffleSelected: React.Dispatch<React.SetStateAction<raffleItem>>;
   lastestTransactions: LastPayment[];
   getLatestTransactions: Function;
-  qrcode64: string; 
+  qrcode64: string;
   setQrcode64: React.Dispatch<React.SetStateAction<string>>;
   valueDiff: number;
   setValueDiff: React.Dispatch<React.SetStateAction<number>>;
-  image: File | null, 
-  setImage: React.Dispatch<React.SetStateAction<File | null>>
+  image: File | null;
+  setImage: React.Dispatch<React.SetStateAction<File | null>>;
   openConfig: () => void;
   toggleSidebar: () => void;
 }
@@ -173,39 +173,39 @@ export type RewardItemContextType = {
 
 export type LastEarnedWinnerType = {
   raffle: {
-    createdAt: string,
-    id: number,
-    is_active: "Ativa" | "Em espera" | "Inativa",
-    name: string,
+    createdAt: string;
+    id: number;
+    is_active: "Ativa" | "Em espera" | "Inativa";
+    name: string;
     skinsWithWinners: {
       chance: string;
       skin: {
-        id: number,
-        skinName: string,
-        skinPicture: string,
-        skinType: string,
-        skinValue: number
-      },
+        id: number;
+        skinName: string;
+        skinPicture: string;
+        skinType: string;
+        skinValue: number;
+      };
       winner: {
-        email: string,
-        id: number,
-        isAdmin: boolean,
-        name: string,
-        phoneNumber?: string,
-        picture: string,
-        saldo: number,
-        number:number
-      }
-    }[],
-    updatedAt: string
+        email: string;
+        id: number;
+        isAdmin: boolean;
+        name: string;
+        phoneNumber?: string;
+        picture: string;
+        saldo: number;
+        number: number;
+      };
+    }[];
+    updatedAt: string;
   };
 };
 
 export type LastEarnedContextType = {
-  lastEarnedList: LastEarnedPrizeType[],
-  NewAdditions: (latestWinner: LastEarnedPrizeType) => void,
-  playerRank: playerRank[],
-}
+  lastEarnedList: LastEarnedPrizeType[];
+  NewAdditions: (latestWinner: LastEarnedPrizeType) => void;
+  playerRank: playerRank[];
+};
 
 export type WinnerType = {
   id: number;
@@ -218,11 +218,11 @@ export type WinnerType = {
 };
 
 export type playerRank = {
-  name: string,
-  profilePicture: string,
-  winCount: number,
-  participations: number,
-}
+  name: string;
+  profilePicture: string;
+  winCount: number;
+  participations: number;
+};
 
 export type RaffleType = {
   id: number;
@@ -290,7 +290,7 @@ export type raffleItem = {
   id: number;
   skins: string[];
   name: string;
-  users_quantity:number;
+  users_quantity: number;
   value: number;
   quantity: number;
   participants: RaffleParticipant[];
@@ -313,18 +313,17 @@ export interface UsersProps {
   id: number;
   image: string;
   name: string;
-  email:string;
+  email: string;
   tradeLink: string;
   charge: string;
   context: string;
 
-  onDeleteUserRaffle:(id: number) => void;
+  onDeleteUserRaffle: (id: number) => void;
   onAddUser: (id: number) => void;
-  onnumberChange:(id: number) => void;
-  
+  onnumberChange: (id: number) => void;
+
   count: number;
 }
-
 
 export interface User {
   id: number;
@@ -332,7 +331,7 @@ export interface User {
   name: string;
   tradLink: string;
   charge: string;
-  email:string;
+  email: string;
   number: string;
 }
 
@@ -394,6 +393,7 @@ export type RaffleParticipant = {
   number: number;
   id: number;
   is_paid?: boolean;
+  is_reserved?: boolean;
   isWinner?: boolean;
   distanceFromCenter?: number;
   user: {
@@ -410,12 +410,12 @@ export type RaffleReward = RewardItemType & {
 
 export type WinnerProperties = Participant & {
   distanceFromCenter: number;
-}
+};
 
 export type SidebarContextType = {
-  sidebarView: boolean,
-  toggleSidebar: Function,
-}
+  sidebarView: boolean;
+  toggleSidebar: Function;
+};
 
 export type RouletteContext = {
   availableRaffles: Raffle[];
@@ -430,13 +430,13 @@ export type RouletteContext = {
   isMockWin: boolean;
   participants: RaffleParticipant[];
   rewards: RaffleReward[];
-  alreadyRequestedImgs: ImageCache,
-  rouletteLoadingState: boolean,
-  spinState: boolean,
-  setSpinState: React.Dispatch<React.SetStateAction<boolean>>,
-  setRouletteLoadingState: React.Dispatch<React.SetStateAction<boolean>>,
-  setAlreadyRequestedImgs: React.Dispatch<React.SetStateAction<ImageCache>>,
-  setIsButtonActive: React.Dispatch<React.SetStateAction<boolean>>
+  alreadyRequestedImgs: ImageCache;
+  rouletteLoadingState: boolean;
+  spinState: boolean;
+  setSpinState: React.Dispatch<React.SetStateAction<boolean>>;
+  setRouletteLoadingState: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlreadyRequestedImgs: React.Dispatch<React.SetStateAction<ImageCache>>;
+  setIsButtonActive: React.Dispatch<React.SetStateAction<boolean>>;
   toggleSelection: (id: number) => void;
   clearOutSelections: () => void;
   handleChangeQuantity: (id: number, newQuantity: number) => void;
@@ -448,13 +448,13 @@ export type RouletteContext = {
   getWinner: (winnerParam: HTMLElement) => void;
 };
 
-export type ImageCache = {url: string, success: boolean}[]
+export type ImageCache = { url: string; success: boolean }[];
 
 export interface LastPayment {
   id: number;
   date: string;
   status: string;
-  type: 'credit' | 'debit';
+  type: "credit" | "debit";
   qrCodeBase64: string | null;
   exchanged: number;
   method: string;
@@ -472,7 +472,7 @@ export interface LastPaymentBack {
   status: string;
   status_detail: string | null;
   transactionAmount: number;
-  type: 'credit' | 'debit';
+  type: "credit" | "debit";
   user_id: number;
 }
 
@@ -482,4 +482,3 @@ export type rafflePayment = {
   quantity: number;
   value: number;
 };
-

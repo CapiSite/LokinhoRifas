@@ -51,7 +51,7 @@ const PopupBuy = () => {
   useEffect(() => {
     setSelectedItems(purchasableRaffles.filter((raffle) => raffle.isSelected));
 
-    console.log(purchasableRaffles.filter((raffle) => raffle.isSelected))
+    console.log(purchasableRaffles.filter((raffle) => raffle.isSelected));
   }, [step, purchasableRaffles]);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const PopupBuy = () => {
 
   // useEffect(() => {
   //   if (selectedItems.length == 0) return;
-    // console.log(selectedItems)
+  // console.log(selectedItems)
   // }, [selectedItems.length]);
 
   const removeStep = () => {
@@ -85,7 +85,12 @@ const PopupBuy = () => {
     else if (step == 4) {
       setShowRafflePopup(false);
     } else if (step == 2) {
-      if(purchasableRaffles.filter((raffle) => raffle.isSelected && raffle.quantity).length > 0) addStep()
+      if (
+        purchasableRaffles.filter(
+          (raffle) => raffle.isSelected && raffle.quantity
+        ).length > 0
+      )
+        addStep();
     } else if (step == 3) {
       if (userInfo.saldo < total) {
         setShowPrompt(true);
@@ -98,10 +103,10 @@ const PopupBuy = () => {
         const tempArray = tempArray2.map((raffle) => ({
           id: raffle.id,
           quantity: raffle.quantity,
-          // selections: raffle.selected,
+          selections: raffle.selected || [],
         }));
 
-        // 
+        //
 
         setAnimationProgress(30);
 
@@ -188,23 +193,28 @@ const PopupBuy = () => {
                 <h3>Total: R$ {newTotal}</h3>
               </div>
             )}
-            <p onClick={step == 1 ? () => setShowRafflePopup(false) : removeStep}>
-              {step > 1 && <Image
-                width={20}
-                height={20}
-                className="seta"
-                src={leftarrow}
-                alt="Voltar"
-              />}
+            <p
+              onClick={step == 1 ? () => setShowRafflePopup(false) : removeStep}
+            >
+              {step > 1 && (
+                <Image
+                  width={20}
+                  height={20}
+                  className="seta"
+                  src={leftarrow}
+                  alt="Voltar"
+                />
+              )}
               {step == 1 ? " Cancelar" : " Voltar"}
             </p>
             <button
               onClick={handleStepValidation}
               disabled={
-                purchasableRaffles.filter((raffle) => raffle.isSelected && raffle.quantity > 0)
-                  .length == 0 || disableBtn
+                purchasableRaffles.filter(
+                  (raffle) => raffle.isSelected && raffle.quantity > 0
+                ).length == 0 || disableBtn
               }
-              className={`${(step == 4) && "center"}`}
+              className={`${step == 4 && "center"}`}
               data-progress={animationProgress}
               data-text={handleButtonText()}
             >

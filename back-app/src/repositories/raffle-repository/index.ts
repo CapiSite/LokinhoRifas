@@ -5,7 +5,7 @@ interface CreateRaffleData {
   name: string;
   users_quantity: number;
   value: number;
-  free:boolean;
+  free: boolean;
   raffleSkins: {
     skin_id: number;
     skinName: string;
@@ -37,9 +37,13 @@ const getActiveRafflesWithDetails = async () => {
     include: {
       raffleSkins: true, // Incluir todas as skins da rifa
       participants: {
+        where: {
+          OR: [{ is_paid: true }, { is_reserved: true }],
+        },
         select: {
           id: true,
-          is_paid:true,
+          is_paid: true,
+          is_reserved: true,
           number: true, // Número do participante
           user: {
             select: {
@@ -102,7 +106,7 @@ const deleteRaffle = async (id: number) => {
     where: { id },
     include: {
       participants: true, // Inclui os participantes para contar quantos existem
-    }
+    },
   });
 
   if (!raffle || raffle.participants.length !== 0) {
@@ -157,7 +161,7 @@ async function createParticipantInSequence(
   userId: number,
   raffleId: number,
   quantity: number,
-  prismaInstance: PrismaClient = prisma
+  prismaInstance: PrismaClient = prisma,
 ) {
   if (quantity <= 0) {
     throw new Error('Quantity must be greater than 0');
@@ -209,7 +213,7 @@ async function createParticipantWithSpecificNumbers(
   userId: number,
   raffleId: number,
   selectedNumbers: number[],
-  prismaInstance: PrismaClient = prisma
+  prismaInstance: PrismaClient = prisma,
 ) {
   const participantsData = [];
 
@@ -251,8 +255,12 @@ async function isNumberTaken(raffleId: number, number: number) {
   return !!participantExists; // Retorna verdadeiro se o número já foi tomado
 }
 
-async function findParticipantByRaffleAndUser(raffleId: number, number: number) {
-  return prisma.participant.findFirst({
+async function findParticipantByRaffleAndUser(
+  raffleId: number,
+  number: number,
+  transaction: PrismaClient = prisma, // Usar a instância de transação, se fornecida
+) {
+  return transaction.participant.findFirst({
     where: {
       raffle_id: raffleId,
       number: number,
@@ -267,7 +275,6 @@ async function addParticipantToRaffle(raffleId: number, userId: number, number: 
       user_id: userId,
       number: number,
       is_paid: true,
-      // is_reserved: true,
     },
   });
 }
@@ -351,7 +358,7 @@ async function reserveNumbersInSequence(
   raffleId: number,
   quantity: number,
   reservedUntil: Date,
-  prismaInstance: PrismaClient = prisma
+  prismaInstance: PrismaClient = prisma,
 ) {
   if (quantity <= 0) {
     throw new Error('Quantity must be greater than 0');
@@ -397,46 +404,6 @@ async function reserveNumbersInSequence(
   });
 }
 
-// Função para reservar números específicos
-async function reserveSpecificNumbers(
-  userId: number,
-  raffleId: number,
-  selectedNumbers: number[],
-  reservedUntil: Date,
-  prismaInstance: PrismaClient = prisma
-) {
-  const participantsData = [];
-
-  for (const number of selectedNumbers) {
-    const participantExists = await prismaInstance.participant.findFirst({
-      where: {
-        raffle_id: raffleId,
-        number: number,
-        is_paid: false, // Somente números que não foram pagos
-      },
-    });
-
-    if (participantExists) {
-      throw new Error(`Number ${number} is already taken or reserved.`);
-    }
-
-    participantsData.push({
-      user_id: userId,
-      raffle_id: raffleId,
-      number,
-      is_reserved: true,
-      reserved_until: reservedUntil,
-    });
-  }
-
-  return prismaInstance.participant.createMany({
-    data: participantsData,
-  });
-}
-
-
-
-
 async function clearExpiredReservations(now: Date) {
   await prisma.participant.updateMany({
     where: {
@@ -453,13 +420,20 @@ async function clearExpiredReservations(now: Date) {
 }
 
 // Função para pagar um número reservado
-async function payForReservedNumber(userId: number, raffleId: number, number: number) {
-  return prisma.participant.updateMany({
+export async function payForReservedNumber(
+  userId: number,
+  raffleId: number,
+  numberToPay: number,
+  transaction: PrismaClient = prisma,
+): Promise<void> {
+  console.log(userId, raffleId, numberToPay);
+  await transaction.participant.updateMany({
     where: {
       raffle_id: raffleId,
       user_id: userId,
-      number: number,
+      number: numberToPay,
       is_reserved: true,
+      is_paid: false,
     },
     data: {
       is_reserved: false,
@@ -469,14 +443,13 @@ async function payForReservedNumber(userId: number, raffleId: number, number: nu
   });
 }
 
-// Função para cancelar números não pagos
-async function cancelUnpaidReservations(userId: number, raffleId: number, paidNumbers: number[]) {
+async function cancelReservations(userId: number, raffleId: number, numbersToCancel: number[]) {
   return prisma.participant.updateMany({
     where: {
-      raffle_id: raffleId,
       user_id: userId,
+      raffle_id: raffleId,
       number: {
-        notIn: paidNumbers,
+        in: numbersToCancel,
       },
       is_reserved: true,
     },
@@ -487,7 +460,102 @@ async function cancelUnpaidReservations(userId: number, raffleId: number, paidNu
   });
 }
 
+// Função para reservar números específicos
+async function reserveSpecificNumbers(
+  userId: number,
+  raffleId: number,
+  selectedNumbers: number[],
+  reservedUntil: Date,
+) {
+  const participantsData = [];
 
+  for (const number of selectedNumbers) {
+    const participantExists = await prisma.participant.findFirst({
+      where: {
+        raffle_id: raffleId,
+        number: number,
+        is_paid: false, // Não foi pago
+        is_reserved: true, // Está reservado
+      },
+    });
+
+    if (participantExists) {
+      throw new Error(`Number ${number} is already taken or reserved.`);
+    }
+
+    participantsData.push({
+      user_id: userId,
+      raffle_id: raffleId,
+      number,
+      is_reserved: true,
+      reserved_until: reservedUntil,
+    });
+  }
+
+  return prisma.participant.createMany({
+    data: participantsData,
+  });
+}
+
+// Atualizar números reservados para pagos dentro de uma transação
+export async function payForReservedNumbers(
+  userId: number,
+  raffleId: number,
+  numbersToPay: number[],
+  transaction: PrismaClient,
+): Promise<void> {
+  console.log(userId, raffleId, numbersToPay);
+  await transaction.participant.updateMany({
+    where: {
+      raffle_id: raffleId,
+      user_id: userId,
+      number: { in: numbersToPay },
+      is_reserved: true,
+      is_paid: false,
+    },
+    data: {
+      is_reserved: false,
+      is_paid: true,
+      reserved_until: null,
+    },
+  });
+}
+
+// Buscar números reservados pelo usuário (somente leitura, sem transação)
+export async function findUserReservations(userId: number, raffleId: number): Promise<{ number: number }[]> {
+  return prisma.participant.findMany({
+    where: {
+      user_id: userId,
+      raffle_id: raffleId,
+      is_reserved: true,
+      is_paid: false,
+    },
+    select: {
+      number: true,
+    },
+  });
+}
+
+// Cancelar números não pagos dentro de uma transação
+export async function cancelUnpaidReservations(
+  userId: number,
+  raffleId: number,
+  paidNumbers: number[],
+  transaction: PrismaClient = prisma,
+): Promise<void> {
+  await transaction.participant.updateMany({
+    where: {
+      raffle_id: raffleId,
+      user_id: userId,
+      number: { notIn: paidNumbers },
+      is_reserved: true,
+    },
+    data: {
+      is_reserved: false,
+      reserved_until: null,
+    },
+  });
+}
 
 export default {
   findParticipantByRaffleAndUser,
@@ -509,4 +577,7 @@ export default {
   reserveSpecificNumbers,
   deleteRaffle,
   findById,
+  cancelReservations,
+  findUserReservations,
+  payForReservedNumbers,
 };

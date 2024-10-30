@@ -57,13 +57,13 @@ export const deleteRaffle = async (req: AuthenticatedRequest, res: Response) => 
   }
 };
 
-export async function buyRaffleController(req: AuthenticatedRequest, res: Response) {
+export async function buyRaffleController(req: AuthenticatedRequest, res: Response): Promise<Response> {
   const userId = req.userId;
   const raffleArray = req.body.raffle as Array<{ id: number; selections?: number[] }>;
 
   try {
-    const result = await raffleService.payReservedRaffleNumbers(userId, raffleArray);
-    return res.status(httpStatus.OK).send(result);
+    const results = await raffleService.payReservedRaffleNumbers(userId, raffleArray);
+    return res.status(httpStatus.OK).send(results);
   } catch (error) {
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ message: error.message });
   }
