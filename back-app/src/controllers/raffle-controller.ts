@@ -37,6 +37,15 @@ export async function getRaffles(req: Request, res: Response) {
   }
 }
 
+export async function getRafflesForRoulette(req: Request, res: Response) {
+  try {
+    const raffles = await raffleService.getRafflesForRoulette();
+    return res.status(httpStatus.OK).send(raffles);
+  } catch (error) {
+    return res.status(httpStatus.BAD_REQUEST).send(error);
+  }
+}
+
 export async function getAllRaffles(req: Request, res: Response) {
   try {
     const { page } = req.query;
@@ -59,7 +68,7 @@ export const deleteRaffle = async (req: AuthenticatedRequest, res: Response) => 
 
 export async function buyRaffleController(req: AuthenticatedRequest, res: Response): Promise<Response> {
   const userId = req.userId;
-  const raffleArray = req.body.raffle as Array<{ id: number; selections?: number[] }>;
+  const raffleArray = req.body.raffle as Array<{ id: number; quantity: number; selections?: number[] }>;
 
   try {
     const results = await raffleService.payReservedRaffleNumbers(userId, raffleArray);

@@ -58,6 +58,35 @@ const getActiveRafflesWithDetails = async () => {
   });
 };
 
+const getActiveRafflesWithDetailsForRoulette = async () => {
+  return await prisma.raffle.findMany({
+    where: {
+      is_active: 'Ativa',
+    },
+    include: {
+      raffleSkins: true, // Incluir todas as skins da rifa
+      participants: {
+        where: {
+          is_paid: true,
+        },
+        select: {
+          id: true,
+          is_paid: true,
+          is_reserved: true,
+          number: true, // Número do participante
+          user: {
+            select: {
+              id: true,
+              name: true,
+              picture: true,
+            },
+          },
+        },
+      },
+    },
+  });
+};
+
 const getAllRafflesWithDetails = async (page: number) => {
   return await prisma.raffle.findMany({
     include: {
@@ -580,4 +609,5 @@ export default {
   cancelReservations,
   findUserReservations,
   payForReservedNumbers,
+  getActiveRafflesWithDetailsForRoulette,
 };

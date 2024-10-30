@@ -35,7 +35,7 @@ async function findById(id: number) {
       id,
     },
   });
-  
+
   return user;
 }
 
@@ -88,6 +88,21 @@ async function postWinners(params: { participantId: number; raffleId: number }) 
 
     if (raffle.is_active !== 'Ativa') {
       throw new Error('Raffle not active');
+    }
+
+    // Verifica se o participante existe e se seu número está pago
+    const participant = await prisma.participant.findUnique({
+      where: {
+        id: params.participantId,
+      },
+    });
+
+    if (!participant) {
+      throw new Error('Participant not found');
+    }
+
+    if (!participant.is_paid) {
+      throw new Error('Participant number is not paid');
     }
 
     // Verifica se o participante já é vencedor de algum raffleSkin nesta rifa
@@ -232,7 +247,7 @@ export async function getLastWinners(page: number, itemsPerPage: number) {
     // Agrupar as rifas e mapear os dados
     const raffles = recentSkins.reduce((acc, skin) => {
       const raffle = skin.raffle;
-      let raffleData = acc.find(r => r.raffle.id === raffle.id);
+      let raffleData = acc.find((r) => r.raffle.id === raffle.id);
 
       if (!raffleData) {
         raffleData = {
@@ -288,9 +303,6 @@ export async function getLastWinners(page: number, itemsPerPage: number) {
   }
 }
 
-
-
-
 export async function update(id: number, data: Prisma.UserUpdateInput): Promise<User> {
   return prisma.user.update({
     where: { id },
@@ -309,7 +321,6 @@ export async function incrementUserBalance(id: number, saldo: number): Promise<U
     },
   });
 }
-
 
 export async function deleteUser(id: number): Promise<void> {
   const activeRaffles = await prisma.participant.findMany({
@@ -402,7 +413,7 @@ type Winner = {
     id: number;
     name: string;
     email: string;
-    picture: string,
+    picture: string;
   };
   totalWins: number;
   skinsWon: Array<{
@@ -415,10 +426,10 @@ type Winner = {
 };
 
 async function getTopWinnersWithSkinsAndParticipants(
-  page: number, 
-  itemsPerPage: number, 
-  startDate?: Date, 
-  endDate?: Date
+  page: number,
+  itemsPerPage: number,
+  startDate?: Date,
+  endDate?: Date,
 ) {
   const offset = (page - 1) * itemsPerPage;
 
@@ -504,7 +515,7 @@ async function getTopWinnersWithSkinsAndParticipants(
           skinValue: skin.skinValue,
           skinType: skin.skinType,
           skinPicture: skin.skinPicture,
-        }))
+        })),
       );
     } else {
       // Caso contrário, adicionar um novo vencedor ao mapa
@@ -535,8 +546,6 @@ async function getTopWinnersWithSkinsAndParticipants(
 
   return paginatedWinners;
 }
-
-
 
 const userRepository = {
   findByName,

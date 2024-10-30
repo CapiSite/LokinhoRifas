@@ -51,9 +51,11 @@ const NumberPicker = () => {
         });
       }
 
-      for (let i = raffleSelected.users_quantity + 1; i <= 150; i++) {
+      for (let i = raffleSelected.users_quantity + 1; i <= 110; i++) {
         tempArrayFiller.push({ number: i, available: true, selected: false });
       }
+
+      // TODO Arredondar Número de botões da rifa sempre pra 3 décimais àcima
 
       setPossibleNumbers(tempArray);
       setFillerNumbers(tempArrayFiller);

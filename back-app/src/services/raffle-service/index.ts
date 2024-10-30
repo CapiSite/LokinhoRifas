@@ -43,7 +43,10 @@ async function getRaffles() {
   const raffles = await raffleRepository.getActiveRafflesWithDetails();
   return raffles;
 }
-
+async function getRafflesForRoulette() {
+  const raffles = await raffleRepository.getActiveRafflesWithDetailsForRoulette();
+  return raffles;
+}
 async function getAllRaffles(page: number) {
   const raffles = await raffleRepository.getAllRafflesWithDetails(page);
   return raffles;
@@ -280,4 +283,5 @@ export default {
   getAllRaffles,
   payReservedRaffleNumbers,
   deleteRaffle,
+  getRafflesForRoulette,
 };
