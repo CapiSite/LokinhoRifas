@@ -24,13 +24,21 @@ export async function updateSkin(id: number, params: UpdateSkinParams): Promise<
 
     const existingSkin = await skinRepository.getSkinById(id);
 
-    if (existingSkin && existingSkin.picture !== picture && existingSkin.picture !== 'default.jpg') {
+    // Verificar se há uma imagem atual e renomear a nova para o mesmo nome
+    if (existingSkin && existingSkin.picture !== 'default.jpg') {
         const oldImagePath = path.join(uploadFolderPath, existingSkin.picture);
-        if (fs.existsSync(oldImagePath)) {
-            fs.unlinkSync(oldImagePath); 
+
+        if (picture && fs.existsSync(path.join(uploadFolderPath, picture))) {
+            // Caminho da nova imagem
+            const newImagePath = path.join(uploadFolderPath, picture);
+
+            // Substituir o novo arquivo pelo nome da imagem antiga
+            fs.renameSync(newImagePath, oldImagePath);
+            params.picture = existingSkin.picture; // Mantém o nome antigo no banco
         }
     }
 
+    // Atualizar o skin com os novos dados e o nome da imagem mantido
     return skinRepository.updateSkin(id, params);
 }
 

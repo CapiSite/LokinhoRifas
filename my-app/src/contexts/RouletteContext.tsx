@@ -303,7 +303,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
   const clearOutSelections = () => {
     const newRaffles = purchasableRaffles.map((raffle) => {
-      return { ...raffle, isSelected: false };
+      return { ...raffle, isSelected: false, selected: [] };
     });
 
     setPurchasableRaffles(newRaffles);
@@ -334,17 +334,18 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   const checkImagesInParticipants = async () => {
     const participants = raffle.participants;
 
-    // Extract and transform users
-    const newUsers = participants.map((p) => ({
-      ...p.user,
-      picture: p.user.picture.includes("static-cdn")
-        ? p.user.picture
-        : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${p.user.picture}`,
-      participantId: p.id,
-    }));
+    if(participants.length < 100 ) {
+      // Extract and transform users
+      const newUsers = participants.map((p) => ({
+        ...p.user,
+        picture: p.user.picture.includes("static-cdn")
+          ? p.user.picture
+          : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${p.user.picture}`,
+        participantId: p.id,
+      }));
 
-    // Process images and update users
-    const updatedUsers = await Promise.all(
+      // Process images and update users
+      const updatedUsers = await Promise.all(
       newUsers.map(async (user) => {
         const cachedImage = alreadyRequestedImgs.find(
           (item) => item.url === user.picture
@@ -396,23 +397,27 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
           return { ...user, picture: "default" };
         }
       })
-    );
-
-    // Rebuild full participant objects with updated user data
-    const rebuiltParticipants = participants.map((participant) => {
-      const updatedUser = updatedUsers.find(
-        (user) => user.participantId === participant.id
       );
-      return {
-        ...participant,
-        user: updatedUser || participant.user, // Fallback to original if no update found
-      };
-    });
-
-    // Ensure this state updater function matches the expected type
-    setParticipants(rebuiltParticipants); // Use the resolved array here
-
-    setNewWinners(rebuiltParticipants);
+      
+      // Rebuild full participant objects with updated user data
+      const rebuiltParticipants = participants.map((participant) => {
+        const updatedUser = updatedUsers.find(
+          (user) => user.participantId === participant.id
+        );
+        return {
+          ...participant,
+          user: updatedUser || participant.user, // Fallback to original if no update found
+        };
+      });
+      
+      // Ensure this state updater function matches the expected type
+      setParticipants(rebuiltParticipants); // Use the resolved array here
+      
+      setNewWinners(rebuiltParticipants);
+    } else {
+      setParticipants(raffle.participants);
+      setNewWinners(raffle.participants);
+    }
   };
   // ? Functions
 

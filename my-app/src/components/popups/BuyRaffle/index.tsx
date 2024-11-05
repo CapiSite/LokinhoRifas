@@ -58,8 +58,11 @@ const PopupBuy = () => {
   }, [step, purchasableRaffles]);
 
   useEffect(() => {
+    console.log(purchasableRaffles)
+    
+    if(step != 0) return
     clearOutSelections();
-  }, [step == 4]);
+  }, [step]);
 
   // useEffect(() => {
   //   getPurchasableRaffles();

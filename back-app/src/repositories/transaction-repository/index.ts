@@ -37,15 +37,20 @@ async function createTransactionMeli(data: TransactionData) {
   });
 }
 
-async function updateTransactionStatus(data: TransactionUpdateData) {
+async function updateTransactionStatus(data: {
+  paymentId: string;
+  status: string;
+  statusDetail?: string;
+  dateApproved?: Date | null;
+  isProcessed?: boolean; // Permite atualizar o campo de controle
+}) {
   return prisma.transaction.update({
-    where: {
-      paymentId: data.paymentId,
-    },
+    where: { paymentId: data.paymentId },
     data: {
       status: data.status,
       status_detail: data.statusDetail,
       dateApproved: data.dateApproved,
+      isProcessed: data.isProcessed,
     },
   });
 }
@@ -55,9 +60,17 @@ async function getTransactionById(userId: number) {
     where: {
       user_id: userId,
     },
+    include: {
+      raffle: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
 
-  transactions.map((transaction) => {
+  // Remove o campo paymentId de cada transação, se necessário
+  transactions.forEach((transaction) => {
     delete transaction.paymentId;
   });
 
@@ -70,11 +83,18 @@ async function createTransaction(data: Prisma.TransactionCreateInput, prismaInst
   });
 }
 
+async function getTransactionByPaymentId(paymentId: string) {
+  return prisma.transaction.findUnique({
+    where: { paymentId },
+  });
+}
+
 const transactionRepository = {
   createTransactionMeli,
   createTransaction,
   updateTransactionStatus,
   getTransactionById,
+  getTransactionByPaymentId
 };
 
 export default transactionRepository;

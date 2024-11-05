@@ -84,6 +84,14 @@ export async function handlePaymentNotification(paymentId: string) {
 
     console.log("Resposta do pagamento obtida:", paymentResponse);
 
+    // Verifica se a transação já existe e foi processada para evitar duplicação
+    const existingTransaction = await transactionRepository.getTransactionByPaymentId(paymentId);
+    if (existingTransaction && existingTransaction.isProcessed) {
+      console.log("Pagamento já processado anteriormente, ignorando duplicata.");
+      return existingTransaction; // Retorna a transação existente sem processar novamente
+    }
+
+    // Atualiza o status da transação no banco de dados
     const updatedTransaction = await transactionRepository.updateTransactionStatus({
       paymentId: paymentResponse.id.toString(),
       status: paymentResponse.status,
@@ -93,9 +101,17 @@ export async function handlePaymentNotification(paymentId: string) {
 
     console.log("Transação atualizada:", updatedTransaction);
 
-    if (paymentResponse.status === 'approved') {
+    // Incrementa o saldo do usuário se o pagamento foi aprovado e ainda não foi processado
+    if (paymentResponse.status === 'approved' && !updatedTransaction.isProcessed) {
       console.log("Pagamento aprovado. Incrementando saldo do usuário:", updatedTransaction.user_id);
       await userRepository.incrementUserBalance(updatedTransaction.user_id, paymentResponse.transaction_amount);
+      
+      // Marcar a transação como processada para evitar futuros incrementos
+      await transactionRepository.updateTransactionStatus({
+        paymentId: paymentResponse.id.toString(),
+        status: updatedTransaction.status, // Inclui o status atual
+        isProcessed: true, // Atualiza o campo para indicar que já foi processado
+      });
     }
 
     delete updatedTransaction.paymentId;

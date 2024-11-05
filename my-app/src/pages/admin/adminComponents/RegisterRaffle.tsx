@@ -52,7 +52,7 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
           </div>
           <div className={style.DivInputRegisterRifa}>
             <label>Quantidade de Numeros:</label>
-            <input type='number' value={numberOfTickets} name='quantity' onChange={(e) => setNumberOfTickets(parseInt(e.target.value))} required />
+            <input type='number' value={numberOfTickets} max={1000} name='quantity' onChange={(e) => setNumberOfTickets(parseInt(e.target.value))} required />
           </div>
           <div className={style.DivInputRegisterRifa}>
 

@@ -4,7 +4,7 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import PopUpUpdateSkins from './PopUpUpdateSkins';
-import { RegisterRifa } from 'utils/interfaces'; // Certifique-se de importar a interface correta
+import { RegisterRifa } from 'utils/interfaces';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 export default function CardSkins({
@@ -47,7 +47,7 @@ export default function CardSkins({
             <div className={style.ContentCard} >
               <Image width={2000} height={2000} src={`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${picture}`} alt="Imagem do card" className={style.ImageCard} />
                 <div className={style.DivDataCard}>
-                    <p>{type} | {name}</p>
+                    <p className={style.nameSkin}>{type} | {name}</p>
                     <p>R$: {value?.toFixed(2).replace('.', ',')}</p>
                 </div>
                 <div className={style.DivSettings}>
@@ -66,7 +66,7 @@ export default function CardSkins({
                             </motion.div>
                         )}
                     </AnimatePresence>
-                    <IoSettingsSharp size={20}  onClick={()=> {setIsDropdownOpen(prevState => !prevState)}} />     
+                    <IoSettingsSharp size={20}  onClick={()=> {setIsDropdownOpen(prevState => !prevState)}} className={style.setting}/>     
                 </div>
                 {popUpSkins && <PopUpUpdateSkins name={name} type={type} picture={picture} id={id} value={value} setPopUpSkins={setPopUpSkins} reloadSkins={reloadSkins}/>}
             </div>

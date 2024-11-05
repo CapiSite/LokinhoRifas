@@ -13,7 +13,6 @@ const NumberSorter = () => {
   const [ zeroAmount, setZeroAmount ] = useState(4)
 
   useEffect(() => {
-    if(!participants) return
     if(participants.length == 0) return
 
     setZeroAmount(prev => {
@@ -26,7 +25,7 @@ const NumberSorter = () => {
     if(zeroesAmount % 2 !== 0) return zeroesAmount + 1
     else return zeroesAmount
     })
-  }, [raffle ? raffle.id : raffle])
+  }, [participants.length])
 
   const handleNumber = (number: number): ReactNode[] => {
     const tempString = number.toString().padStart(zeroAmount, '0')

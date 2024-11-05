@@ -115,16 +115,15 @@ export async function updateUser(
     updateData.password = hashedPassword;
   }
 
-  // Deleta a foto antiga se uma nova foto for fornecida
   if (updateData.picture && user.picture && user.picture !== 'default') {
     const oldPicturePath = path.join(__dirname, '../../uploads', user.picture);
-    fs.unlink(oldPicturePath, (err) => {
-      if (err) {
-        console.error(`Erro ao deletar a foto antiga: ${err}`);
-      } else {
-        console.log(`Foto antiga deletada: ${oldPicturePath}`);
-      }
-    });
+    const newPicturePath = path.join(__dirname, '../../uploads', updateData.picture);
+
+    // Verifica se a nova foto existe e renomeia-a com o nome da antiga
+    if (fs.existsSync(newPicturePath)) {
+      fs.renameSync(newPicturePath, oldPicturePath);
+      updateData.picture = user.picture; // Mantém o nome antigo no banco
+    }
   }
 
   const { oldPassword, newPassword, ...dataToUpdate } = updateData;

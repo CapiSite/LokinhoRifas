@@ -43,12 +43,9 @@ const updateSkin = async (id: number, params: UpdateSkinParams): Promise<Skin> =
 };
 
 const deleteSkin = async (id: number): Promise<Skin> => {
-    await prisma.raffleSkin.deleteMany({
-        where: { skin_id: id },
-    });
-
+    // Deleta apenas a skin do inventário
     const deletedSkin = await prisma.skin.delete({
-        where: { id }
+        where: { id },
     });
 
     return deletedSkin;

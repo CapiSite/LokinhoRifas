@@ -41,14 +41,13 @@ async function getActiveRaffleParticipants() {
 async function getParticipantsByRaffleId(id: number, page: number, pageSize: number = 20) {
   const participants = await prisma.participant.findMany({
       where: {
-          raffle_id: id
+          raffle_id: id,
+          is_paid: true
       },
       include: {
           user: true,
           raffle: true
-      },
-      skip: (page - 1) * pageSize, // Pular registros baseados na página atual
-      take: pageSize              // Quantidade de registros a serem retornados
+      }
   });
 
   return participants.map(participant => ({

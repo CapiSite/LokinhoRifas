@@ -459,6 +459,7 @@ export interface LastPayment {
   qrCodeBase64: string | null;
   exchanged: number;
   method: string;
+  name?: string;
 }
 
 export interface LastPaymentBack {
@@ -470,6 +471,7 @@ export interface LastPaymentBack {
   qrCode: string | null;
   qrCodeBase64: string | null;
   raffle_id: number | null;
+  raffle: { name: string };
   status: string;
   status_detail: string | null;
   transactionAmount: number;

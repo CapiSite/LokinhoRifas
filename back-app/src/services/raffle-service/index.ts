@@ -193,6 +193,16 @@ export interface RaffleArrayItem {
   id: number; // ID da rifa
   selections?: number[]; // Números selecionados pelo usuário (opcional)
 }
+interface RaffleTransactionData {
+  userId: number;
+  raffleId: number;
+  paymentId: string;
+  status: string;
+  paymentMethod: string;
+  transactionAmount: number;
+  type: 'debit';
+  dateApproved: Date;
+}
 
 export async function payReservedRaffleNumbers(
   userId: number,
@@ -215,14 +225,30 @@ export async function payReservedRaffleNumbers(
 
     const costPerNumber = raffleData.value / raffleData.users_quantity;
 
-    // Verificar se há saldo suficiente para todos os números selecionados
     if (remainingBalance < costPerNumber * selections.length) {
       results.push({ id, success: false, paidQuantity, message: 'Insufficient balance' });
       continue;
     }
 
-    // Preparar promessas Prisma para serem usadas na transação
-    const transactionPromises = selections.map((selectedNumber) => {
+    // Verifique se os números selecionados já foram reservados e pagos por outro usuário ou outra transação
+    const existingPaidSelections = await prisma.participant.findMany({
+      where: {
+        raffle_id: id,
+        number: { in: selections },
+        is_paid: true,
+      },
+      select: { number: true },
+    });
+
+    const alreadyPaidNumbers = new Set(existingPaidSelections.map((p) => p.number));
+    const numbersToPay = selections.filter((number) => !alreadyPaidNumbers.has(number));
+
+    if (numbersToPay.length === 0) {
+      results.push({ id, success: false, paidQuantity, message: 'All selected numbers are already paid.' });
+      continue;
+    }
+
+    const transactionPromises = numbersToPay.map((selectedNumber) => {
       return prisma.participant.updateMany({
         where: {
           raffle_id: id,
@@ -244,19 +270,31 @@ export async function payReservedRaffleNumbers(
         where: { id: userId },
         data: {
           saldo: {
-            decrement: costPerNumber * selections.length,
+            decrement: costPerNumber * numbersToPay.length,
           },
         },
       }),
     );
 
     try {
-      // Executar todas as promessas dentro de uma única transação Prisma
       await prisma.$transaction(transactionPromises);
 
-      // Atualizar o saldo restante e a quantidade de números pagos
-      remainingBalance -= costPerNumber * selections.length;
-      paidQuantity = selections.length;
+      remainingBalance -= costPerNumber * numbersToPay.length;
+      paidQuantity = numbersToPay.length;
+
+      // Cria a transação após o pagamento
+      const transactionData = {
+        user: { connect: { id: userId } }, // Conecta o usuário pelo ID
+        raffle: { connect: { id } },       // Conecta a rifa pelo ID
+        paymentId: `Raffle-${id}-${new Date().getTime()}`, // Gera um ID único para a transação
+        status: 'completed',
+        paymentMethod: 'balance', // Pode ser ajustado para refletir o método de pagamento real
+        transactionAmount: costPerNumber * numbersToPay.length,
+        type: 'debit', // Marca a transação como débito
+        dateApproved: new Date(),
+      };
+
+      await transactionRepository.createTransaction(transactionData);
 
       results.push({
         id,
@@ -265,13 +303,17 @@ export async function payReservedRaffleNumbers(
         message: `${paidQuantity} numbers paid successfully`,
       });
     } catch (error) {
-      results.push({ id, success: false, paidQuantity, message: `Transaction failed: ${error.message}` });
+      results.push({
+        id,
+        success: false,
+        paidQuantity,
+        message: `Transaction failed: ${error.message}`,
+      });
     }
   }
 
   return results;
 }
-
 export default {
   clearExpiredReservations,
   addParticipantToRaffle,

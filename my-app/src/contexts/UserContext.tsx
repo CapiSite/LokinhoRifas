@@ -49,12 +49,13 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const tempArray: LastPayment[] = []
 
     data.map(transaction => {
-      const { id, dateLastUpdated, status, transactionAmount, type, paymentMethod, qrCodeBase64 } = transaction
+      const { id, dateLastUpdated, status, transactionAmount, type, paymentMethod, qrCodeBase64, raffle } = transaction
 
       const tempObj: LastPayment = {
         id,
         date: dateLastUpdated,
         status: status,
+        name: raffle.name || '#',
         type,
         qrCodeBase64,
         exchanged: transactionAmount > 0 ? transactionAmount : transactionAmount * -1,

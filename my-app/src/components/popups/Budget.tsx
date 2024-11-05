@@ -59,6 +59,7 @@ const Budget = () => {
                 <th>Data da Movimentação</th>
                 <th>Status</th>
                 <th>Método</th>
+                <th>Nome da Rifa</th>
                 <th className="price">Débito/Crédito</th>
               </tr>
             </thead>
@@ -69,6 +70,7 @@ const Budget = () => {
                     <th>{formatarDataHora(payment.date)}</th>
                     <th className="status">{payment.status.toUpperCase()}{payment.status == 'pending' && <button className="finishPayment" onClick={() => handleClick(payment.qrCodeBase64)}>Finalizar pagamento</button>}</th>
                     <th>{payment.method.toUpperCase()}</th>
+                    <th>{payment.name || '#'}</th>
                     <th className={`price ${payment.type == 'credit' ? 'earn' : 'loss'}`}>
                       {payment.type == 'credit' ? '+ ' : '- '}R${" "}
                       {payment.exchanged

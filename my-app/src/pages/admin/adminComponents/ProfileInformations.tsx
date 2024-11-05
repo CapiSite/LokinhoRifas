@@ -20,6 +20,8 @@ export default function ProfileInformations({ reloadSkins }: ProfileInformations
     });
 
     const [typeSkins, setTypeSkins] = useState([
+        { name: "Luva" },
+        { name: "SAT" },
         { name: "Adagas Sombrias" },
         { name: "AK-47" },
         { name: "AUG" },

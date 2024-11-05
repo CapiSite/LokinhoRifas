@@ -51,8 +51,8 @@ model RaffleSkin {
   id        Int      @id @default(autoincrement())
   raffle_id Int
   raffle    Raffle   @relation(fields: [raffle_id], references: [id])
-  skin_id   Int
-  skin      Skin     @relation(fields: [skin_id], references: [id])
+  skin_id   Int?
+  skin      Skin?     @relation(fields: [skin_id], references: [id])
   
   winner    Participant?    @relation(fields: [winner_id], references: [id])
   winner_id Int?
@@ -108,7 +108,7 @@ model Transaction {
   id                Int       @id @default(autoincrement())
   user              User      @relation(fields: [user_id], references: [id])
   user_id           Int
-  paymentId         String?   @unique // Agora pode ser opcional para transações internas
+  paymentId         String    @unique
   status            String
   status_detail     String?
   paymentMethod     String
@@ -116,15 +116,16 @@ model Transaction {
   dateCreated       DateTime  @default(now())
   dateApproved      DateTime?
   dateLastUpdated   DateTime  @updatedAt
-  type              String    // 'credit' para adicionar saldo, 'debit' para gastar saldo
-  raffle_id         Int?      // Relação opcional com a rifa, se a transação for relacionada a uma rifa
-  raffle            Raffle?   @relation(fields: [raffle_id], references: [id], name: "RaffleTransactions") // Nome da relação para corresponder ao modelo Raffle
-
-  qrCode            String?   // Armazena o QR code para pagamentos Pix
-  qrCodeBase64      String?   // Armazena o QR code em formato base64 para exibir como imagem
+  type              String
+  raffle_id         Int?
+  raffle            Raffle?   @relation(fields: [raffle_id], references: [id], name: "RaffleTransactions")
+  qrCode            String?
+  qrCodeBase64      String?
+  isProcessed       Boolean   @default(false) // Novo campo para controle de duplicidade
 
   @@map("transaction")
 }
+
 
 
 model Text {
