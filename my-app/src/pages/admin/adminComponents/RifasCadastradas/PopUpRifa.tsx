@@ -7,7 +7,7 @@ export default function PopUpRifa({
     setPopUpRifaRifa, 
     id, 
     users_quantity, 
-    participants, 
+    participants = [], 
     value, 
     createdAt, 
     updatedAt, 
@@ -27,8 +27,7 @@ export default function PopUpRifa({
             console.log(err)
         })
     }
-console.log("usersss", users_quantity)
-console.log("participantes", participants)
+
     function DeleteRifa() {
         axios.delete(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/raffle/remove-raffle/${id}`, 
         {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
@@ -53,8 +52,8 @@ console.log("participantes", participants)
                             <h2 className={style.NomeRifa}>{name}</h2>
                         </div>
                         <div className={style.BodyPopUpRifa}>
-                            <p className={style.TitleDescriptionPopUpRifa}>Quantidade de Participantes: <span>{participants?.length}</span></p>
-                            <p className={style.TitleDescriptionPopUpRifa}>Limite de Participantes: <span>{participants?.length}/{users_quantity}</span></p>
+                            <p className={style.TitleDescriptionPopUpRifa}>Quantidade de Participantes: <span>{participants?.length || 0}</span></p>
+                            <p className={style.TitleDescriptionPopUpRifa}>Limite de Participantes: <span>{participants?.length || 0}/{users_quantity}</span></p>
                             <p className={style.TitleDescriptionPopUpRifa}>Estado: <span className={style.EstateRaffle}>{is_active}</span></p>
                             <p className={style.TitleDescriptionPopUpRifa}>Valor Total: <span>R$: {value}</span> </p>
                             <p className={style.TitleDescriptionPopUpRifa}>Valor por Rifa: <span>R$: {(value / users_quantity)?.toFixed(2)}</span></p>
@@ -71,7 +70,7 @@ console.log("participantes", participants)
                             <button 
                                 className={style.ButtonPopUpRifa} 
                                 onClick={() => DeleteRifa()} 
-                                disabled={participants.length !== 0}>
+                                disabled={(participants.length || 0) !== 0}>
                                 Deletar Rifa
                             </button>
                             <button className={style.ButtonPopUpRifa} onClick={() => {
