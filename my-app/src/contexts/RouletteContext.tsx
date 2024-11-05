@@ -291,44 +291,46 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const toggleSelection = (id: number) => {
-    getPurchasableRaffles().then(() => {
-      const newRaffles = purchasableRaffles.map((raffle) => {
-        if (raffle.id == id) return { ...raffle, isSelected: !raffle.isSelected };
+    setPurchasableRaffles(prev => {
+      const newRaffles = prev.map((raffle) => {
+        if (raffle.id == id) return { ...raffle, isSelected: !raffle.isSelected, selected: [] };
         return raffle;
       });
-  
-      setPurchasableRaffles(newRaffles);
-    })
+
+      return newRaffles
+    });
   };
 
   const clearOutSelections = () => {
-    const newRaffles = purchasableRaffles.map((raffle) => {
-      return { ...raffle, isSelected: false, selected: [] };
-    });
+    setPurchasableRaffles(prev => {
+      const newRaffles = prev.map((raffle) => {
+        return { ...raffle, isSelected: false, selected: [], quantity: 0 };
+      });
 
-    setPurchasableRaffles(newRaffles);
+      return newRaffles
+    });
   };
 
   const handleChangeQuantity = (id: number, newQuantity: number) => {
-    getPurchasableRaffles().then(() => {
-      const newRaffles = purchasableRaffles.map((raffle) => {
+    setPurchasableRaffles(prev => {
+      const newRaffles = prev.map((raffle) => {
         if (raffle.id == id) return { ...raffle, quantity: newQuantity };
         return raffle;
       });
-  
-      setPurchasableRaffles(newRaffles);
-    })
+
+      return newRaffles
+    });
   };
 
   const handleChangeNumbers = (id: number, newNumberArray: number[]) => {
-    getPurchasableRaffles().then(() => {
-      const newRaffles = purchasableRaffles.map((raffle) => {
+    setPurchasableRaffles(prev => {
+      const newRaffles = prev.map((raffle) => {
         if (raffle.id == id) return { ...raffle, selected: newNumberArray, quantity: newNumberArray.length };
         return raffle;
       });
-  
-      setPurchasableRaffles(newRaffles);
-    })
+
+      return newRaffles
+    });
   };
 
   const checkImagesInParticipants = async () => {
@@ -411,14 +413,22 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       });
       
       // Ensure this state updater function matches the expected type
-      setParticipants(rebuiltParticipants); // Use the resolved array here
+      setParticipants(sortParticipantsByNumber(rebuiltParticipants)); // Use the resolved array here
       
-      setNewWinners(rebuiltParticipants);
+      setNewWinners(sortParticipantsByNumber(rebuiltParticipants));
     } else {
-      setParticipants(raffle.participants);
-      setNewWinners(raffle.participants);
+      setParticipants(sortParticipantsByNumber(raffle.participants));
+      setNewWinners(sortParticipantsByNumber(raffle.participants));
     }
   };
+
+  const sortParticipantsByNumber = (participants: RaffleParticipant[]) => {
+    const sortByNumber = (a: RaffleParticipant, b: RaffleParticipant) => {
+      return a.number - b.number;
+    };
+
+    return participants.sort(sortByNumber)
+  }
   // ? Functions
 
   // * Setting new winner

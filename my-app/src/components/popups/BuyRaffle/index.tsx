@@ -21,7 +21,6 @@ const PopupBuy = () => {
     toggleSelection,
     clearOutSelections,
     handleChangeQuantity,
-    getPurchasableRaffles,
   } = useRouletteContext() as RouletteContext;
 
   const {
@@ -58,9 +57,8 @@ const PopupBuy = () => {
   }, [step, purchasableRaffles]);
 
   useEffect(() => {
-    console.log(purchasableRaffles)
-    
-    if(step != 0) return
+    if(step != 1) return
+    console.log('here')
     clearOutSelections();
   }, [step]);
 
