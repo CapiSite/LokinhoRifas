@@ -62,7 +62,7 @@ model RaffleSkin {
   skinValue Float
   skinType  String
   skinPicture String
-
+  position  Int?
   @@map("raffleSkin")
 }
 
