@@ -94,6 +94,7 @@ const getAllRafflesWithDetails = async (page: number) => {
       participants: {
         select: {
           number: true,
+          is_paid:true,
           user: {
             select: {
               id: true,

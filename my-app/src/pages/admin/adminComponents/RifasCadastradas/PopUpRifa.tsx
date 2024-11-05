@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import style from "./RifasCadastradas.module.css";
 import axios from "axios";
 import PopUpUpdateRifa from "./PopUpUpdateRifa";
+import { Participant } from "utils/interfaces";
 
 export default function PopUpRifa({
     setPopUpRifaRifa, 
@@ -40,6 +41,8 @@ export default function PopUpRifa({
         })
     }
 
+    const paidParticipants = participants.filter((participant: Participant) => participant.is_paid)
+
     return (
         <>
             {!popUpUpdateRaffle && (
@@ -52,7 +55,7 @@ export default function PopUpRifa({
                             <h2 className={style.NomeRifa}>{name}</h2>
                         </div>
                         <div className={style.BodyPopUpRifa}>
-                            <p className={style.TitleDescriptionPopUpRifa}>Quantidade de Participantes: <span>{participants?.length || 0}</span></p>
+                            <p className={style.TitleDescriptionPopUpRifa}>Quantidade de Participantes: <span>{paidParticipants?.length || 0}</span></p>
                             <p className={style.TitleDescriptionPopUpRifa}>Limite de Participantes: <span>{participants?.length || 0}/{users_quantity}</span></p>
                             <p className={style.TitleDescriptionPopUpRifa}>Estado: <span className={style.EstateRaffle}>{is_active}</span></p>
                             <p className={style.TitleDescriptionPopUpRifa}>Valor Total: <span>R$: {value}</span> </p>
