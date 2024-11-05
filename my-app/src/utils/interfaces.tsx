@@ -446,6 +446,7 @@ export type RouletteContext = {
   manageCloseResult: Function;
   selectRaffle: (id: number) => void;
   getWinner: (winnerParam: HTMLElement) => void;
+  getPurchasableRaffles: () => void;
 };
 
 export type ImageCache = { url: string; success: boolean }[];

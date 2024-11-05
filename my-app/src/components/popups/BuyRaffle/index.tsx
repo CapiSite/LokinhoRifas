@@ -21,6 +21,7 @@ const PopupBuy = () => {
     toggleSelection,
     clearOutSelections,
     handleChangeQuantity,
+    getPurchasableRaffles,
   } = useRouletteContext() as RouletteContext;
 
   const {
@@ -49,14 +50,20 @@ const PopupBuy = () => {
   };
 
   useEffect(() => {
-    setSelectedItems(purchasableRaffles.filter((raffle) => raffle.isSelected));
+    const debouncer = setTimeout(() => {
+      setSelectedItems(purchasableRaffles.filter((raffle) => raffle.isSelected));
+    }, 400);
 
-    console.log(purchasableRaffles.filter((raffle) => raffle.isSelected));
+    return () => clearTimeout(debouncer)
   }, [step, purchasableRaffles]);
 
   useEffect(() => {
     clearOutSelections();
-  }, []);
+  }, [step == 4]);
+
+  // useEffect(() => {
+  //   getPurchasableRaffles();
+  // }, [step]);
 
   // useEffect(() => {
   //   if (selectedItems.length == 0) return;
@@ -211,8 +218,8 @@ const PopupBuy = () => {
               onClick={handleStepValidation}
               disabled={
                 purchasableRaffles.filter(
-                  (raffle) => raffle.isSelected && raffle.quantity > 0
-                ).length == 0 || disableBtn
+                  (raffle) => raffle.isSelected
+                ).length == 0 || disableBtn || (step == 2 && (purchasableRaffles.filter(raffle => raffle.quantity > 0 && raffle.isSelected).length != purchasableRaffles.filter(raffle => raffle.isSelected).length))
               }
               className={`${step == 4 && "center"}`}
               data-progress={animationProgress}

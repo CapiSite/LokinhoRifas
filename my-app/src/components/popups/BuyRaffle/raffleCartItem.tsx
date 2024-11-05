@@ -41,7 +41,7 @@ const RaffleCartItem = ({
   useEffect(() => {
     handleChangeQuantity(
       id,
-      Number(defaultValue) == 0 ? 1 : Math.ceil(Number(defaultValue))
+      Number(defaultValue) == 0 ? 0 : Math.ceil(Number(defaultValue))
     );
     setUpdateQuantity((prev) => !prev);
   }, [defaultValue]);
@@ -106,13 +106,13 @@ const RaffleCartItem = ({
               />
             </label>
           ) : (
-            <button onClick={() => handleRafflePick()}>
-              Selecionar Números
+            <button className={`${quantity == 0 ? "" : "changeBtn"}`} onClick={() => handleRafflePick()}>
+              {quantity == 0 ? "Reservar números" : "Alterar reservas"}
             </button>
           )}
 
           <h3>
-            {users_quantity < 100 ? `${quantity} ` : ""}x R$ {newValue}
+            {users_quantity < 1000 ? `${quantity} ` : ""}x R$ {newValue}
           </h3>
         </div>
         <p className="currentQuantity">

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import {
   createContext,
   ReactNode,
@@ -46,7 +46,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   // ? Init variables
 
   // ? Necessary variables
-  const [timing, setTiming] = useState<number>(30000); // default: 30000
+  const [timing, setTiming] = useState<number>(5000); // default: 30000
   const [delay, setDelay] = useState<number>(700); // default: 700
   const [participants, setParticipants] = useState<RaffleParticipant[]>([]);
   const [winners, setWinners] = useState<RaffleParticipant[]>([]);
@@ -291,12 +291,14 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const toggleSelection = (id: number) => {
-    const newRaffles = purchasableRaffles.map((raffle) => {
-      if (raffle.id == id) return { ...raffle, isSelected: !raffle.isSelected };
-      return raffle;
-    });
-
-    setPurchasableRaffles(newRaffles);
+    getPurchasableRaffles().then(() => {
+      const newRaffles = purchasableRaffles.map((raffle) => {
+        if (raffle.id == id) return { ...raffle, isSelected: !raffle.isSelected };
+        return raffle;
+      });
+  
+      setPurchasableRaffles(newRaffles);
+    })
   };
 
   const clearOutSelections = () => {
@@ -308,21 +310,25 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleChangeQuantity = (id: number, newQuantity: number) => {
-    const newRaffles = purchasableRaffles.map((raffle) => {
-      if (raffle.id == id) return { ...raffle, quantity: newQuantity };
-      return raffle;
-    });
-
-    setPurchasableRaffles(newRaffles);
+    getPurchasableRaffles().then(() => {
+      const newRaffles = purchasableRaffles.map((raffle) => {
+        if (raffle.id == id) return { ...raffle, quantity: newQuantity };
+        return raffle;
+      });
+  
+      setPurchasableRaffles(newRaffles);
+    })
   };
 
   const handleChangeNumbers = (id: number, newNumberArray: number[]) => {
-    const newRaffles = purchasableRaffles.map((raffle) => {
-      if (raffle.id == id) return { ...raffle, selected: newNumberArray, quantity: newNumberArray.length };
-      return raffle;
-    });
-
-    setPurchasableRaffles(newRaffles);
+    getPurchasableRaffles().then(() => {
+      const newRaffles = purchasableRaffles.map((raffle) => {
+        if (raffle.id == id) return { ...raffle, selected: newNumberArray, quantity: newNumberArray.length };
+        return raffle;
+      });
+  
+      setPurchasableRaffles(newRaffles);
+    })
   };
 
   const checkImagesInParticipants = async () => {
@@ -648,63 +654,74 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
 
     return newRaffleData;
   };
-  const filterPurchasableRaffles = () => {
-    if (availableRaffles.length == 0) return;
+  const getPurchasableRaffles = async () => {
+    if (availableRaffles.length === 0) return;
+
+    let raffles: AxiosResponse<Raffle[]> | void;
+
+    try {
+        raffles = await axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/raffle").then(res => res.data)
+    } catch (err) {
+        console.error("Raffles error", err);
+        return;
+    }
+
+    if (!Array.isArray(raffles) || !raffles.every(item => typeof item === 'object' && item !== null)) return;
 
     const tempArray: raffleItem[] = [];
 
-    const options = availableRaffles.filter(
-      (raffle) =>
-        raffle.free == false &&
-        raffle.participants.length != raffle.users_quantity &&
-        raffle.participants.length < raffle.users_quantity
+    const options = raffles.filter(
+        (raffle) =>
+            !raffle.free &&
+            raffle.participants.length !== raffle.users_quantity &&
+            raffle.participants.length < raffle.users_quantity
     );
 
-    options.map((raffle) => {
-      const { id, raffleSkins, name, value, users_quantity, participants } =
-        raffle;
+    options.forEach((raffle) => {
+        const { id, raffleSkins, name, value, users_quantity, participants } = raffle;
 
-      const skins: string[] = raffleSkins.map((skin) => skin.skinName);
+        const skins: string[] = raffleSkins.map((skin: RaffleSkin) => skin.skinName);
 
-      const bundleValue: number = raffleSkins.reduce(
-        (sum, skin) => sum + skin.skinValue,
-        0
-      );
-      let choosenSkinBanner;
-      if (raffleSkins.length > 0) {
-        choosenSkinBanner = raffleSkins.reduce((max, skin) => {
-          return skin.skinValue >= max.skinValue ? skin : max;
-        }).skinPicture;
-      }
+        const bundleValue: number = raffleSkins.reduce(
+            (sum: number, skin: RaffleSkin) => sum + skin.skinValue,
+            0
+        );
 
-      const bannerSkin: string = `${
-        process.env.NEXT_PUBLIC_REACT_NEXT_APP
-      }/uploads/${choosenSkinBanner || "default"}`;
+        let choosenSkinBanner;
+        if (raffleSkins.length > 0) {
+            choosenSkinBanner = raffleSkins.reduce((max: RaffleSkin, skin: RaffleSkin) => {
+                return skin.skinValue >= max.skinValue ? skin : max;
+            }).skinPicture;
+        }
 
-      const tempObject: raffleItem = {
-        id,
-        skins,
-        name,
-        value: value / users_quantity,
-        users_quantity,
-        quantity: 1,
-        maxQuantity: users_quantity - participants.length,
-        participants,
-        isSelected: false,
-        bannerSkin,
-        bundleValue,
-      };
+        const bannerSkin: string = `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${choosenSkinBanner || "default"}`;
 
-      tempArray.unshift(tempObject);
+        const tempObject: raffleItem = {
+            id,
+            skins,
+            name,
+            value: value / users_quantity,
+            users_quantity,
+            quantity: 0,
+            maxQuantity: users_quantity - participants.length,
+            participants,
+            isSelected: false,
+            bannerSkin,
+            bundleValue,
+        };
+
+        tempArray.unshift(tempObject);
     });
 
     setPurchasableRaffles(handleBigNames(tempArray));
   };
+
   // * Available for purchase raffles
 
   // * INIT
   const getRaffleList = () => {
     // * adicionar escolha de rifas com padrão caso não haja parâmetro
+    // TODO Alterar todas variáveis da compra de rifa para /raffle/getRafflesForRoulette
     axios
       .get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/raffle", {})
       .then((res) => {
@@ -735,7 +752,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       checkImagesInParticipants();
 
       setNewRewards(raffle.raffleSkins);
-      filterPurchasableRaffles();
+      getPurchasableRaffles();
 
       setTimeout(() => {
         setRouletteLoadingState(true);
@@ -849,6 +866,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     manageCloseResult,
     selectRaffle,
     getWinner,
+    getPurchasableRaffles,
   };
 
   return (

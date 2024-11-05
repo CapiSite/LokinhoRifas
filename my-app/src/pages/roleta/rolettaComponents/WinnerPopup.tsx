@@ -8,6 +8,7 @@ import shine from "../../../images/Roleta/WinnerPopup/shine.png";
 import { RouletteContext } from "utils/interfaces";
 import { useEffect, useState } from "react";
 import { useRouletteContext } from "contexts/RouletteContext";
+import cn from 'classnames'
 
 const RoletaWinner = () => {
   const {
@@ -62,12 +63,13 @@ const RoletaWinner = () => {
 
   return (
     <div
-      className={style.WinnerPopup}
-      style={{ display: `${winnerPopupVisible ? "flex" : "none"}` }}
+      className={cn(style.WinnerPopup, winnerPopupVisible ? style.animationOn : '')}
+      style={{ zIndex: `${winnerPopupVisible ? "11" : "-10"}` }}
     >
       <div className={style.WinnerPopupWrapper}>
         <div className={style.SkinImageBox}>
           {rewards[0] && <Image
+            className={winnerPopupVisible ? style.animationOn : ''}
             width={775}
             height={637}
             src={imgSrc || defaultGunPic}
@@ -77,16 +79,16 @@ const RoletaWinner = () => {
               setImgSrc(defaultGunPic);
             }}
           />}
-          <Image height={775} width={637} src={shine} alt="Brilho de fundo" />
+          <Image className={winnerPopupVisible ? style.animationOn : ''} height={775} width={637} src={shine} alt="Brilho de fundo" />
         </div>
         <h2>Parabéns!</h2>
         <div className={style.UserSkinImageBox}>
             <Image height={50} width={50} src={typeof userImgSrc === 'string' // Verifica se userImgSrc é uma string
-      ? userImgSrc.startsWith('http') // Se for string, verifica se começa com http
-        ? userImgSrc // Mantém a URL como está
-        : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${userImgSrc}` // Adiciona o caminho do backend
-      : defaultUserPic // Exibe a imagem padrão se não houver userImgSrc ou se for StaticImageData
-      } alt="Foto de usuário"/>
+              ? userImgSrc.startsWith('http') // Se for string, verifica se começa com http
+                ? userImgSrc // Mantém a URL como está
+                : `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${userImgSrc}` // Adiciona o caminho do backend
+              : defaultUserPic // Exibe a imagem padrão se não houver userImgSrc ou se for StaticImageData
+              } alt="Foto de usuário"/>
         </div>
         {winners && <h3 className={style.userNickname}>@{winnerProperties?.user.name + '#' + winnerProperties?.number}</h3>}
         {rewards[0] && <p>Ganhador da {rewards[0].itemName}</p>}

@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useRouletteContext } from "contexts/RouletteContext";
 import { useUserStateContext } from "contexts/UserContext";
 import { useEffect, useState } from "react";
-import { RouletteContext, UserContextType } from "utils/interfaces";
+import { Raffle, RaffleParticipant, RouletteContext, UserContextType } from "utils/interfaces";
 
 const NumberPicker = () => {
   const { raffleSelected, setShowNumberPicker, userInfo } =
@@ -23,17 +23,26 @@ const NumberPicker = () => {
   >([]);
 
   useEffect(() => {
-    const debouncer = setTimeout(() => {
-      // TODO fazer requisição pro back com rifa
+    const debouncer = setTimeout(async () => {
+      let raffles: AxiosResponse<Raffle[]> | void;
+
+      try {
+          raffles = await axios.get(process.env.NEXT_PUBLIC_REACT_NEXT_APP + "/raffle").then(res => res.data)
+      } catch (err) {
+          console.error("Raffles error", err);
+          return;
+      }
+
+      if (!Array.isArray(raffles) || !raffles.every(item => typeof item === 'object' && item !== null)) return;
 
       const tempArray = [];
       const tempArrayFiller = [];
 
-      console.log(raffleSelected);
+      const raffle = raffles.filter(raffle => raffle.id == raffleSelected.id)[0]
 
-      for (let i = 1; i <= raffleSelected.users_quantity; i++) {
-        const isSelected = raffleSelected.participants.filter(
-          (item) => item.number == i
+      for (let i = 1; i <= raffle.users_quantity; i++) {
+        const isSelected = raffle.participants.filter(
+          (item: RaffleParticipant) => item.number == i
         )[0];
 
         tempArray.push({
@@ -51,11 +60,19 @@ const NumberPicker = () => {
         });
       }
 
-      for (let i = raffleSelected.users_quantity + 1; i <= 110; i++) {
+      // TODO Arredondar Número de botões da rifa sempre pra 3 décimais àcima
+
+      function roundUp(num: number) {
+        const roundedUp = Math.ceil(num / 10) * 10;
+        const finalValue = roundedUp + 30;
+        
+        return finalValue;
+      }
+    
+      for (let i = raffle.users_quantity + 1; i <= roundUp(raffle.users_quantity); i++) {
         tempArrayFiller.push({ number: i, available: true, selected: false });
       }
 
-      // TODO Arredondar Número de botões da rifa sempre pra 3 décimais àcima
 
       setPossibleNumbers(tempArray);
       setFillerNumbers(tempArrayFiller);
@@ -82,8 +99,6 @@ const NumberPicker = () => {
       ).length == 0
     )
       return;
-
-    console.log(possibleNumbers.filter((item) => item.selected));
 
     const body = {
       raffle: [
@@ -115,23 +130,22 @@ const NumberPicker = () => {
         console.log(err);
       });
 
-    // ! token pelo header
-    // ! selections =  possibleNumbers.filter(item => item.selected).map(item => item.number)
-    // ! quantity =  possibleNumbers.filter(item => item.selected).length
-    // ! id da rifa = raffleSelected.id
-
     handleChangeNumbers(
       raffleSelected.id,
       possibleNumbers.filter((item) => item.selected).map((item) => item.number)
     );
 
-    // Rotas de:
-    // Reservar
-    // // Cancelar
-    // Comprar
-
     setShowNumberPicker(false);
   };
+
+  const handleCancel = () => {
+    handleChangeNumbers(
+      raffleSelected.id,
+      []
+    );
+
+    setShowNumberPicker(false)
+  }
 
   return (
     <div className="NumberPicker">
@@ -149,8 +163,8 @@ const NumberPicker = () => {
             anteriormente <br />
             <button className="selected" disabled>
               X
-            </button>{" "}
-            Já comprado
+            </button> Já comprado <br />
+            <p>Caso não finalize o pagamento em até 5 minutos, as reservas serão perdidas</p>
           </div>
           {possibleNumbers.length !== 0 ? (
             <div className="NumberGroup">
@@ -202,7 +216,7 @@ const NumberPicker = () => {
           )}
         </div>
         <div className="BottomSection">
-          <p onClick={() => setShowNumberPicker(false)}>Cancelar</p>
+          <p onClick={() => handleCancel()}>Cancelar</p>
           <button
             onClick={handleConfirm}
             disabled={
@@ -215,7 +229,7 @@ const NumberPicker = () => {
         </div>
       </div>
       <div
-        onClick={() => setShowNumberPicker(false)}
+        onClick={() => handleCancel()}
         className="background"
       ></div>
     </div>

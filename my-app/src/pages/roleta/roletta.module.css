@@ -781,6 +781,8 @@
   outline: 2px solid white;
   background-color: black;
 
+  padding-inline: 30px;
+
   border-radius: 4px;
 }
 
@@ -866,6 +868,8 @@
 
 .WinnerPopup {
   display: flex;
+  
+  flex-direction: column;
 
   justify-content: center;
   align-items: center;
@@ -883,9 +887,6 @@
   backdrop-filter: blur(5px);
 
   opacity: 0;
-
-  animation: 800ms ease-out 5s
-  1 forwards fadeIn;
 }
 
 .WinnerPopupWrapper {
@@ -953,8 +954,6 @@
   translate: 0 -1100px;
   rotate: -45deg;
 
-  animation: 800ms ease-out 5.8s 1 forwards spinIntoView;
-
   z-index: 2;
 }
 
@@ -966,9 +965,20 @@
 
   opacity: 0;
   
-  animation: 800ms ease-out 6.4s 1 forwards fadeInWoBlur, 8s linear 6.4s infinite forwards slowPersistentRotation;
-
   z-index: 1;
+}
+
+.WinnerPopup .SkinImageBox img:last-of-type.animationOn {
+  animation: 800ms ease-out 6.4s 1 forwards fadeInWoBlur, 8s linear 6.4s infinite forwards slowPersistentRotation;
+}
+
+.WinnerPopup .SkinImageBox img:first-child.animationOn {
+  animation: 800ms ease-out 5.8s 1 forwards spinIntoView;
+}
+
+.WinnerPopup.animationOn {
+  animation: 800ms ease-out 5s
+  1 forwards fadeIn;
 }
 
 @keyframes spinIntoView {

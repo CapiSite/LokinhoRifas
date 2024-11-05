@@ -2067,6 +2067,14 @@ footer nav div {
   font-weight: 500;
 }
 
+.PopupBuy .raffleBuyQuantity .raffleMetaData .raffleQuantity button.changeBtn {
+  background: linear-gradient(90deg, #1ae22299, #13a11899);
+  background-color: black;
+  color: white;
+
+  border: 2px solid #13a11899;
+}
+
 .NumberPicker {
   display: flex;
 
@@ -2243,6 +2251,16 @@ footer nav div {
   font-size: 20px;
 
   border-radius: 50%;
+}
+
+.NumberPickerWrapper .NumberGroupLegend p {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  font-size: 14px;
+
+  padding-top: 5px;
 }
 
 .NumberPickerWrapper .NumberGroupLegend button.notReserved {
