@@ -9,7 +9,7 @@ interface CreateRaffleParams {
   name: string;
   users_quantity: number;
   free: boolean;
-  skins: { id: number }[];
+  skins: { id: number; position: number }[];
   userId: number; // Adicionado userId
 }
 
@@ -24,6 +24,7 @@ export async function createRaffle(params: CreateRaffleParams): Promise<Raffle> 
       skinValue: skinData.value,
       skinType: skinData.type,
       skinPicture: skinData.picture,
+      position: skin.position
     };
   });
 

@@ -23,6 +23,7 @@ export const raffleSchema = Joi.object<RaffleParams>({
           'number.base': 'O ID da skin deve ser um número inteiro',
           'any.required': 'O ID da skin é obrigatório',
         }),
+        position: Joi.number().integer().optional()
       }),
     )
     .min(1)
