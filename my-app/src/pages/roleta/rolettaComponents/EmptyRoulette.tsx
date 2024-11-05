@@ -8,7 +8,7 @@ const EmptyRoulette = () => {
 
   return (
     <div className={style.emptyRoulette}><h1>{availableRaffles.length == 0 ? 'Sem Rifas no momento' : `Rifa sem participantes ainda!`}</h1>
-    <h2>Números em estoque: {(raffle?.users_quantity || 0)}</h2></div>
+    <h2>Números restantes: {(raffle?.users_quantity || 0)}</h2></div>
   );
 }
  

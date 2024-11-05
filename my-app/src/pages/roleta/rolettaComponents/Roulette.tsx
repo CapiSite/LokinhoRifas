@@ -70,7 +70,7 @@ const Roulette = () => {
   return (
     <div className={style.Roulette}>
       <div className={style.RouletteBox} id='RouletteBox'>
-        {(participants.length > 0 && participants.length !== (raffle?.users_quantity || 0)) && <h1 className={cn(style.Stock, afk ? style.running : '')}>Estoque restante: {(raffle?.users_quantity || 0) - participants.length}</h1>}
+        {(participants.length > 0 && participants.length !== (raffle?.users_quantity || 0)) && <h1 className={cn(style.Stock, afk ? style.running : '')}>Números restante: {(raffle?.users_quantity || 0) - participants.length}</h1>}
 
         {participants.length > 0 && <StandBy props={{afk}} />}
 

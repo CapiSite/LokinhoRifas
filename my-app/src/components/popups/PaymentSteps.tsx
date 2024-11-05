@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Dispatch, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import shield from "../../assets/checkmark.shield.svg";
 import copynpaste from "../../assets/copynpaste.svg"
 import leftarrow from "../../assets/arrowleft.svg"

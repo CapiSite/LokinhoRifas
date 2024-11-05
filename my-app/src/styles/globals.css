@@ -953,8 +953,34 @@ header .Profile .ProfileContent {
 }
 
 .brick .step-3 input:hover {
-  border: 2px solid green;
+  border-top: 2px solid green;
+  border-left: 2px solid green;
+  border-bottom: 2px solid green;
+  
   color: green;
+
+  outline: 2px solid green;
+
+  background-color: rgba(0, 128, 0, 0.438);
+}
+
+.brick .step-3 input:focus ~ img {
+  border-top: 2px solid green;
+  border-right: 2px solid green;
+  border-bottom: 2px solid green;
+  color: green;
+}
+
+.brick .step-3 input:focus {
+  border-top: 2px solid green;
+  border-left: 2px solid green;
+  border-bottom: 2px solid green;
+
+  outline: 2px solid green;
+  
+  color: green;
+
+  background-color: rgba(0, 128, 0, 0.338);
 }
 
 .brick .step-3 p {
