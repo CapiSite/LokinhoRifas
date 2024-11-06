@@ -74,6 +74,7 @@ export async function buyRaffleController(req: AuthenticatedRequest, res: Respon
     const results = await raffleService.payReservedRaffleNumbers(userId, raffleArray);
     return res.status(httpStatus.OK).send(results);
   } catch (error) {
+    console.log(error.message)
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ message: error.message });
   }
 }
