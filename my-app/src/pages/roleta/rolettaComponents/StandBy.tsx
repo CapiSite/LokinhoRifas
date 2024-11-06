@@ -36,7 +36,7 @@ const StandBy = ({props}: {props: {afk: boolean}}) => {
 
   useEffect(() => {
     getUniqueParticipants()
-  }, [winners?.length, raffle?.id])
+  }, [raffle])
 
   useEffect(() => {
     const debouncer = setTimeout(() => {
