@@ -249,59 +249,63 @@ export async function payReservedRaffleNumbers(
       continue;
     }
 
-    const transactionPromises = numbersToPay.map((selectedNumber) => {
-      return prisma.participant.updateMany({
-        where: {
-          raffle_id: id,
-          user_id: userId,
-          number: selectedNumber,
-          is_reserved: true,
-          is_paid: false,
-        },
-        data: {
-          is_reserved: false,
-          is_paid: true,
-          reserved_until: null,
-        },
-      });
-    });
-
-    transactionPromises.push(
-      prisma.user.updateMany({
-        where: { id: userId },
-        data: {
-          saldo: {
-            decrement: costPerNumber * numbersToPay.length,
-          },
-        },
-      }),
-    );
-
     try {
-      await prisma.$transaction(transactionPromises);
+      // Iniciar uma transação atômica para garantir consistência
+      // @ts-ignore
+      await prisma.$transaction(async (transaction) => {
+        const updateResults = await transaction.participant.updateMany({
+          where: {
+            raffle_id: id,
+            user_id: userId,
+            number: { in: numbersToPay },
+            is_reserved: true,
+            is_paid: false,
+          },
+          data: {
+            is_reserved: false,
+            is_paid: true,
+            reserved_until: null,
+          },
+        });
 
-      remainingBalance -= costPerNumber * numbersToPay.length;
-      paidQuantity = numbersToPay.length;
+        // Verifique se algum número foi realmente alterado
+        if (updateResults.count === 0) {
+          throw new Error('No numbers were updated; check if the numbers were already reserved.');
+        }
 
-      // Cria a transação após o pagamento
-      const transactionData = {
-        user: { connect: { id: userId } }, // Conecta o usuário pelo ID
-        raffle: { connect: { id } },       // Conecta a rifa pelo ID
-        paymentId: `Raffle-${id}-${new Date().getTime()}`, // Gera um ID único para a transação
-        status: 'completed',
-        paymentMethod: 'balance', // Pode ser ajustado para refletir o método de pagamento real
-        transactionAmount: costPerNumber * numbersToPay.length,
-        type: 'debit', // Marca a transação como débito
-        dateApproved: new Date(),
-      };
+        // Descontar saldo do usuário somente após confirmar que os números foram comprados com sucesso
+        await transaction.user.update({
+          where: { id: userId },
+          data: {
+            saldo: {
+              decrement: costPerNumber * numbersToPay.length,
+            },
+          },
+        });
 
-      await transactionRepository.createTransaction(transactionData);
+        // Criar a transação após confirmar a atualização dos números e o desconto do saldo
+        const transactionData = {
+          user: { connect: { id: userId } },
+          raffle: { connect: { id } },
+          paymentId: `Raffle-${id}-${new Date().getTime()}`,
+          status: 'completed',
+          paymentMethod: 'balance',
+          transactionAmount: costPerNumber * numbersToPay.length,
+          type: 'debit',
+          dateApproved: new Date(),
+        };
 
-      results.push({
-        id,
-        success: true,
-        paidQuantity,
-        message: `${paidQuantity} numbers paid successfully`,
+        await transactionRepository.createTransaction(transactionData, transaction);
+
+        remainingBalance -= costPerNumber * numbersToPay.length;
+        paidQuantity = numbersToPay.length;
+
+        results.push({
+          id,
+          success: true,
+          paidQuantity,
+          message: `${paidQuantity} numbers paid successfully`,
+        });
       });
     } catch (error) {
       results.push({
@@ -315,6 +319,7 @@ export async function payReservedRaffleNumbers(
 
   return results;
 }
+
 export default {
   clearExpiredReservations,
   addParticipantToRaffle,
