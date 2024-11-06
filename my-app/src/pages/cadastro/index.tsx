@@ -452,6 +452,7 @@ const SignUp = () => {
                           />
                           <input
                             type="file"
+                            accept=".png,.jpg,.gif"
                             onChange={handleImageChange}
                             name="picture"
                             id="picture"

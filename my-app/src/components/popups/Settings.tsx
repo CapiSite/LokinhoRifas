@@ -200,7 +200,7 @@ const Settings = ({ props }: { props: UserSettingsType }) => {
               <Image width={200} height={200} src={image ? URL.createObjectURL(image) : profile.picture} alt="Imagem de perfil"/>
               <button type="button" onClick={() => inputRef.current?.click()}>
                 <Image width={18} height={18} src={editPencil} alt={'Editar foto de perfil'} />
-                <input type="file" onChange={(e) => handleChange(e)} name="picture" id="profilePic" ref={inputRef} />
+                <input type="file" accept=".png,.jpg,.gif" onChange={(e) => handleChange(e)} name="picture" id="profilePic" ref={inputRef} />
               </button>
             </div>
             <div className="accountContent">
