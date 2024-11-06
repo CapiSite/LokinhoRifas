@@ -77,7 +77,7 @@ async function reserveRaffleNumbers(
   console.log('User found:', user);
 
   const reservationTime = new Date();
-  reservationTime.setMinutes(reservationTime.getMinutes() + 10); // Reservar por 10 minutos
+  reservationTime.setMinutes(reservationTime.getMinutes() + 10); // Novo horário de reserva
 
   for (const raffle of raffleArray) {
     const { id, quantity, selections } = raffle;
@@ -92,9 +92,8 @@ async function reserveRaffleNumbers(
     }
     console.log('Raffle data found:', raffleData);
 
-    // Ajustar a lógica para calcular apenas números disponíveis para reserva
-    const availableNumbersCount = raffleData.participants.filter(
-      (participant) => !participant.is_paid && !participant.is_reserved
+    const availableNumbersCount = raffleData.users_quantity - raffleData.participants.filter(
+      (participant) => participant.is_paid || (participant.is_reserved && participant.user_id !== userId)
     ).length;
     console.log(`Available numbers for raffle ID ${id}: ${availableNumbersCount}`);
 
@@ -111,41 +110,18 @@ async function reserveRaffleNumbers(
     const existingNumbers = existingReservations.map((res) => res.number);
     console.log('Existing reserved numbers:', existingNumbers);
 
-    if (!selections || selections.length === 0) {
-      console.log('No specific selections provided, canceling existing reservations');
-      if (existingReservations.length > 0) {
-        const numbersToCancel = existingReservations.map((res) => res.number);
-        console.log('Numbers to cancel:', numbersToCancel);
-
-        await raffleRepository.cancelReservations(userId, id, numbersToCancel);
-      }
-
-      try {
-        console.log(`Reserving ${quantity} numbers in sequence for raffle ID ${id}`);
-        await raffleRepository.reserveNumbersInSequence(userId, id, quantity, reservationTime);
-        reservedQuantity = quantity;
-        console.log(`Reserved ${reservedQuantity} numbers in sequence for raffle ID ${id}`);
-
-        results.push({
-          id,
-          success: true,
-          reservedQuantity,
-          message: `${reservedQuantity} raffle numbers reserved in sequence`,
-        });
-      } catch (error) {
-        console.log('Error reserving numbers in sequence:', error.message);
-        results.push({
-          id,
-          success: false,
-          reservedQuantity,
-          message: `Failed to reserve raffle numbers in sequence: ${error.message}`,
-        });
-        continue;
-      }
-    } else {
-      console.log('Selections provided, filtering numbers to reserve');
+    if (selections) {
+      console.log('Selections provided, processing specific numbers to reserve');
       const numbersToReserve = selections.filter((number) => !existingNumbers.includes(number));
       console.log('Numbers to reserve:', numbersToReserve);
+
+      // Atualiza a reserva de números já reservados pelo usuário
+      for (const number of existingNumbers) {
+        if (selections.includes(number)) {
+          console.log(`Extending reservation for number ${number}`);
+          await raffleRepository.updateReservationTime(userId, id, number, reservationTime);
+        }
+      }
 
       const numbersToCancel = existingReservations
         .filter((res) => !selections.includes(res.number))
@@ -181,12 +157,45 @@ async function reserveRaffleNumbers(
         });
         continue;
       }
+    } else {
+      console.log('No specific selections provided, canceling existing reservations');
+      if (existingReservations.length > 0) {
+        const numbersToCancel = existingReservations.map((res) => res.number);
+        console.log('Numbers to cancel:', numbersToCancel);
+
+        await raffleRepository.cancelReservations(userId, id, numbersToCancel);
+      }
+
+      try {
+        console.log(`Reserving ${quantity} numbers in sequence for raffle ID ${id}`);
+        await raffleRepository.reserveNumbersInSequence(userId, id, quantity, reservationTime);
+        reservedQuantity = quantity;
+        console.log(`Reserved ${reservedQuantity} numbers in sequence for raffle ID ${id}`);
+
+        results.push({
+          id,
+          success: true,
+          reservedQuantity,
+          message: `${reservedQuantity} raffle numbers reserved in sequence`,
+        });
+      } catch (error) {
+        console.log('Error reserving numbers in sequence:', error.message);
+        results.push({
+          id,
+          success: false,
+          reservedQuantity,
+          message: `Failed to reserve raffle numbers in sequence: ${error.message}`,
+        });
+        continue;
+      }
     }
   }
 
   console.log('Final reservation results:', results);
   return results;
 }
+
+
 
 
 

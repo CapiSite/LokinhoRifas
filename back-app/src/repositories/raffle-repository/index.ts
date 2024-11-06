@@ -586,6 +586,19 @@ export async function cancelUnpaidReservations(
     },
   });
 }
+async function updateReservationTime(userId: number, raffleId: number, number: number, newTime: Date) {
+  return prisma.participant.updateMany({
+    where: {
+      user_id: userId,
+      raffle_id: raffleId,
+      number: number,
+      is_reserved: true,
+    },
+    data: {
+      reserved_until: newTime,
+    },
+  });
+}
 
 export default {
   findParticipantByRaffleAndUser,
@@ -593,6 +606,7 @@ export default {
   removeParticipantFromRaffle,
   cancelUnpaidReservations,
   createRaffle,
+  updateReservationTime,
   createParticipantInSequence,
   purchaseRaffleNumbers,
   createParticipantWithSpecificNumbers,
