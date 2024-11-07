@@ -122,7 +122,7 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
       .get(
         `${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/users/rank?page=1&itemsPerPage=50&startDate=${startOfMonth}&endDate=${endOfMonth}`
       )
-      .then((res) => sanitizeLatestWinners(res.data))
+      .then((res) => {sanitizeLatestWinners(res.data);console.log(res.data)})
       .catch((err) => console.log(err));
   }, []);
   

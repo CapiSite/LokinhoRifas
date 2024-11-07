@@ -15,45 +15,46 @@ export default function PopUpRifa({
     is_active, 
     name
 }: any) {
-    const [popUpUpdateRaffle, setPopUpUpdateRaffle] = useState(false)
+    const [popUpUpdateRaffle, setPopUpUpdateRaffle] = useState(false);
+    const [raffleSwitch, setRaffleSwitch] = useState(is_active);
 
     function ActiveRaflle() {
         axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/raffle/active?id=${id}`, {}, 
         {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
         .then((res) => {
-            alert("Rifa Ativada!")
-            setPopUpRifaRifa(false)
+            alert("Rifa Ativada!");
+            setRaffleSwitch(!is_active); // Atualiza o estado para "inativa"
         })
         .catch((err) => {
-            console.log(err)
-        })
+            console.log(err);
+        });
     }
 
     function disableRaflle() {
         axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/raffle/disable?id=${id}`, {}, 
         {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
         .then((res) => {
-            alert("Rifa desativada!")
-            setPopUpRifaRifa(false)
+            alert("Rifa Desativada!");
+            setRaffleSwitch(!is_active); // Atualiza o estado para "inativa"
         })
         .catch((err) => {
-            console.log(err)
-        })
+            console.log(err);
+        });
     }
 
     function DeleteRifa() {
         axios.delete(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/raffle/remove-raffle/${id}`, 
         {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
         .then((res) => {
-            alert("Rifa Deletada!")
-            setPopUpRifaRifa(false)
+            alert("Rifa Deletada!");
+            setPopUpRifaRifa(false);
         })
         .catch((err) => {
-            alert("Rifa não foi deletada!")
-        })
+            alert("Rifa não foi deletada!");
+        });
     }
 
-    const paidParticipants = participants.filter((participant: Participant) => participant.is_paid)
+    const paidParticipants = participants.filter((participant: Participant) => participant.is_paid);
 
     return (
         <>
@@ -69,7 +70,7 @@ export default function PopUpRifa({
                         <div className={style.BodyPopUpRifa}>
                             <p className={style.TitleDescriptionPopUpRifa}>Quantidade de Participantes: <span>{users_quantity || 0}</span></p>
                             <p className={style.TitleDescriptionPopUpRifa}>Limite de Participantes: <span>{paidParticipants?.length || 0}/{users_quantity}</span></p>
-                            <p className={style.TitleDescriptionPopUpRifa}>Estado: <span className={style.EstateRaffle}>{is_active}</span></p>
+                            <p className={style.TitleDescriptionPopUpRifa}>Estado: <span className={style.EstateRaffle}>{raffleSwitch ? "Ativa" : "Inativa"}</span></p>
                             <p className={style.TitleDescriptionPopUpRifa}>Valor Total: <span>R$: {value}</span> </p>
                             <p className={style.TitleDescriptionPopUpRifa}>Valor por Rifa: <span>R$: {(value / users_quantity)?.toFixed(2)}</span></p>
                             <p className={style.TitleDescriptionPopUpRifa}>Criado em: <span>{new Date(createdAt).toLocaleDateString()}</span></p>
@@ -78,9 +79,9 @@ export default function PopUpRifa({
                         <div className={style.FooterPopUpRifa}>
                             <button 
                                 className={style.ButtonPopUpRifa} 
-                                onClick={() => ActiveRaflle()} 
-                                disabled={is_active !== "Em espera"}>
-                                Ativar Rifa
+                                onClick={raffleSwitch ? disableRaflle : ActiveRaflle} 
+                                >
+                                {raffleSwitch ? "Desativar Rifa" : "Ativar Rifa"}
                             </button>
                             <button 
                                 className={style.ButtonPopUpRifa} 

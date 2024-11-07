@@ -311,7 +311,7 @@ export async function update(id: number, data: Prisma.UserUpdateInput): Promise<
 }
 
 export async function incrementUserBalance(id: number, saldo: number): Promise<User> {
-  console.log(`Adicionando saldo de ${saldo} ao usuário com ID: ${id}`);
+  console.log("Adicionando saldo de ${saldo} ao usuário com ID: ${id}");
   return prisma.user.update({
     where: { id },
     data: {
@@ -432,11 +432,8 @@ async function getTopWinnersWithSkinsAndParticipants(
   endDate?: Date,
 ) {
   const offset = (page - 1) * itemsPerPage;
-
-  // Criando o mapa com a tipagem correta para armazenar os vencedores
   const winnersMap: { [key: number]: Winner } = {};
 
-  // Definindo a cláusula where para o período com base no campo raffleSkin.updatedAt (data de atualização do sorteio da skin)
   const dateFilter: any = {};
   if (startDate && endDate) {
     dateFilter.updatedAt = {
@@ -453,99 +450,81 @@ async function getTopWinnersWithSkinsAndParticipants(
     };
   }
 
-  // Agrupar vencedores por winner_id na tabela RaffleSkin e contar quantas vezes o participante venceu
-  const topWinners = await prisma.raffleSkin.groupBy({
-    by: ['winner_id'],
-    _count: {
-      winner_id: true,
-    },
+  // Consulta para encontrar vencedores, garantindo que a rifa não seja gratuita
+  const sortedWinners = await prisma.raffleSkin.findMany({
     where: {
       winner_id: {
-        not: null, // Filtra para pegar apenas aqueles que têm um vencedor
+        not: null,
       },
-      ...dateFilter, // Aplica o filtro de datas baseado em raffleSkin.updatedAt
+      raffle: {
+        free: false, // Garante que a rifa não seja gratuita
+      },
+      ...dateFilter,
+    },
+    include: {
+      raffle: true, // Inclui os dados da rifa para validar a propriedade `free`
+      winner: {
+        include: {
+          user: true,
+        },
+      },
+    },
+    orderBy: {
+      updatedAt: 'desc',
     },
   });
 
-  // Organizar vencedores com base no número de vitórias
-  const sortedWinners = topWinners.sort((a, b) => b._count.winner_id - a._count.winner_id);
+  // Mapeia os vencedores e suas vitórias
+  for (const skin of sortedWinners) {
+    const userId = skin.winner?.user.id;
+    if (!userId) continue;
 
-  // Buscar detalhes dos vencedores e suas skins ganhas
-  for (const winner of sortedWinners) {
-    // Obter o participante a partir do winner_id
-    const participant = await prisma.participant.findUnique({
-      where: {
-        id: winner.winner_id!, // Usar o winner_id para buscar o participant e seus dados
-      },
-      include: {
-        user: true, // Incluir os dados do usuário vencedor
-      },
+    if (!winnersMap[userId]) {
+      winnersMap[userId] = {
+        user: {
+          id: skin.winner.user.id,
+          name: skin.winner.user.name,
+          email: skin.winner.user.email,
+          picture: skin.winner.user.picture,
+        },
+        totalWins: 0,
+        skinsWon: [],
+        participations: 0,
+      };
+    }
+
+    winnersMap[userId].totalWins += 1; // Conta cada skin como uma vitória
+    winnersMap[userId].skinsWon.push({
+      skinName: skin.skinName,
+      skinValue: skin.skinValue,
+      skinType: skin.skinType,
+      skinPicture: skin.skinPicture,
     });
+  }
 
-    if (!participant || !participant.user) continue;
-
-    const userId = participant.user.id;
-
-    // Buscar todas as skins ganhas por este usuário com o filtro de datas
-    const skinsWon = await prisma.raffleSkin.findMany({
-      where: {
-        winner_id: winner.winner_id,
-        ...dateFilter, // Aplica o filtro de datas baseado no campo raffleSkin.updatedAt
-      },
-    });
-
-    // Contar o número de participações deste usuário no período fornecido
+  // Conta as participações apenas em rifas pagas
+  for (const userId in winnersMap) {
     const participations = await prisma.participant.count({
       where: {
-        user_id: userId,
+        user_id: Number(userId),
+        is_paid: true, // Considera apenas participações pagas
         raffle: {
+          free: false, // Garante que a rifa não seja gratuita
           raffleSkins: {
-            some: dateFilter, // Filtro de datas para contar participações com base no campo raffleSkin.updatedAt
+            some: dateFilter,
           },
         },
       },
     });
-
-    // Se o usuário já está no winnersMap, adicionar as vitórias e skins ganhas
-    if (winnersMap[userId]) {
-      winnersMap[userId].totalWins += winner._count.winner_id;
-      winnersMap[userId].skinsWon.push(
-        ...skinsWon.map((skin) => ({
-          skinName: skin.skinName,
-          skinValue: skin.skinValue,
-          skinType: skin.skinType,
-          skinPicture: skin.skinPicture,
-        })),
-      );
-    } else {
-      // Caso contrário, adicionar um novo vencedor ao mapa
-      winnersMap[userId] = {
-        user: {
-          id: participant.user.id,
-          name: participant.user.name,
-          email: participant.user.email,
-          picture: participant.user.picture,
-        },
-        totalWins: winner._count.winner_id,
-        skinsWon: skinsWon.map((skin) => ({
-          skinName: skin.skinName,
-          skinValue: skin.skinValue,
-          skinType: skin.skinType,
-          skinPicture: skin.skinPicture,
-        })),
-        participations, // Número de participações do usuário no período
-      };
-    }
+    winnersMap[userId].participations = participations;
   }
 
-  // Transformar winnersMap em uma lista e ordenar por número de vitórias
   const winnersList = Object.values(winnersMap).sort((a, b) => b.totalWins - a.totalWins);
-
-  // Paginação dos resultados
   const paginatedWinners = winnersList.slice(offset, offset + itemsPerPage);
 
   return paginatedWinners;
 }
+
 
 
 const userRepository = {
