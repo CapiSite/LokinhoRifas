@@ -54,7 +54,7 @@ export default function RifasCadastradas() {
         <div className={style.ContainerRifasCadastradas}>
             {/* Exibe as rifas */}
             {rifascadastradas.map((rifa: any) => (
-                <CardRifas key={rifa.id} rifa={rifa} />
+                <CardRifas key={rifa.id} setRifasCadastradas={setRifasCadastradas} rifa={rifa} />
             ))}
 
             {/* Botões de paginação */}

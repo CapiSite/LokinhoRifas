@@ -4,7 +4,7 @@ import PopUpRifa from "./PopUpRifa";
 import Image from 'next/image';
 import imagem from "../../../../images/Logo.png";
 
-export default function CardRifas({ rifa }: any) {
+export default function CardRifas({ setRifasCadastradas , rifa }: any) {
     const [popUpRifa, setPopUpRifaRifa] = useState(false);
 
     return (
@@ -12,6 +12,8 @@ export default function CardRifas({ rifa }: any) {
             {popUpRifa && (
                 <PopUpRifa
                     setPopUpRifaRifa={setPopUpRifaRifa}
+                    setRifasCadastradas={setRifasCadastradas}
+                    rifa={rifa}
                     id={rifa?.id}
                     users_quantity={rifa?.users_quantity}
                     value={rifa?.value}
