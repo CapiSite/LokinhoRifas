@@ -114,8 +114,6 @@ const PopupBuy = () => {
           selections: raffle.selected || [],
         }));
 
-        //
-
         setAnimationProgress(30);
 
         axios

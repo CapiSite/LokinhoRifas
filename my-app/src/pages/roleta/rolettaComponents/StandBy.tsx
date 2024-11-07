@@ -11,7 +11,7 @@ const StandBy = ({props}: {props: {afk: boolean}}) => {
 
   const { afk } = props
 
-  const { winners, raffle } = useRouletteContext() as RouletteContext
+  const { winners, raffle, participants } = useRouletteContext() as RouletteContext
   const [users, setUsers] = useState<RaffleParticipant[]>([])
 
   const standByRef = useRef<Animation | null>(null);
@@ -36,7 +36,7 @@ const StandBy = ({props}: {props: {afk: boolean}}) => {
 
   useEffect(() => {
     getUniqueParticipants()
-  }, [raffle])
+  }, [raffle, participants, winners])
 
   useEffect(() => {
     const debouncer = setTimeout(() => {

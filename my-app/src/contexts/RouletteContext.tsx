@@ -423,11 +423,13 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const sortParticipantsByNumber = (participants: RaffleParticipant[]) => {
+    const filterParticipants = participants.filter(item => item.is_paid)
+
     const sortByNumber = (a: RaffleParticipant, b: RaffleParticipant) => {
       return a.number - b.number;
     };
 
-    return participants.sort(sortByNumber)
+    return filterParticipants.sort(sortByNumber)
   }
   // ? Functions
 
@@ -502,7 +504,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
     if (!rewards) return;
 
     const updatedParticipants = winners.filter(
-      (item) => item.number != winnerProperties.number
+      (item) => item.number != winnerProperties.number && item.is_paid
     );
 
     setNewWinners(updatedParticipants);
@@ -522,7 +524,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       .filter((item) => item.winner_id)
       .map((item) => "#" + item.winner_id);
     const possibleWinners = newParticipantsArray.filter(
-      (item) => !oldWinnersId.join().includes("#" + item.id)
+      (item) => !oldWinnersId.join().includes("#" + item.id) && item.is_paid == true
     );
 
     const random = Math.floor(Math.random() * (possibleWinners.length - 1));
@@ -532,6 +534,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       number: possibleWinners[random].number,
       isWinner: true,
       user: possibleWinners[random].user,
+      is_paid: possibleWinners[random].is_paid
     };
 
     setWinners(possibleWinners);
@@ -565,6 +568,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       number: possibleWinners[random].number,
       isWinner: true,
       user: possibleWinners[random].user,
+      is_paid: possibleWinners[random].is_paid,
     };
 
     setWinners(possibleWinners);

@@ -930,6 +930,9 @@
   width: auto;
   height: 100%;
 
+  max-height: 90px;
+  max-width: 90px;
+
   object-fit: cover;
 }
 

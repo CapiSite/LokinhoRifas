@@ -392,7 +392,7 @@ export type RaffleSkin = {
 export type RaffleParticipant = {
   number: number;
   id: number;
-  is_paid?: boolean;
+  is_paid: boolean;
   is_reserved?: boolean;
   isWinner?: boolean;
   distanceFromCenter?: number;
