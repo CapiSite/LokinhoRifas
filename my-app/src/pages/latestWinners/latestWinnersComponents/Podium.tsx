@@ -16,7 +16,6 @@ const Podium = ({
   if (!props) return <h1>Erro nos props do Podium.tsx</h1>;
   const { openTab, setOpenTab } = props;
   const { playerRank = [] } = useLastEarnedState() as LastEarnedContextType;
-
   const handleClick = (newActiveTab: string) => {
     setOpenTab(newActiveTab);
   };
@@ -28,20 +27,20 @@ const Podium = ({
         {playerRank.length > 1 && (
           <div className={style.silverMedal}>
             {playerRank[1].profilePicture && (
-              <Image
-                width={90}
-                height={90}
-                src={
-                  playerRank[1].profilePicture.includes(
-                    "https://static-cdn.jtvnw.net"
-                  )
-                    ? playerRank[1].profilePicture
-                    : playerRank[1].profilePicture.includes("default")
-                    ? defaultProfilePic
-                    : playerRank[1].profilePicture
-                }
-                alt="Imagem de perfil"
-              />
+             <Image
+             width={90}
+             height={90}
+             src={
+               playerRank[1].profilePicture.includes("https://static-cdn.jtvnw.net")
+                 ? playerRank[1].profilePicture.substring(
+                     playerRank[1].profilePicture.indexOf("https://static-cdn.jtvnw.net")
+                   )
+                 : playerRank[1].profilePicture.includes("default")
+                 ? defaultProfilePic
+                 : playerRank[1].profilePicture
+             }
+             alt="Imagem de perfil"
+           />
             )}
             <div className={style.podiumBlock}>
               <h3>{playerRank[1].name}</h3>
@@ -53,19 +52,19 @@ const Podium = ({
           <div className={style.goldMedal}>
             {playerRank[0].profilePicture && (
               <Image
-                width={90}
-                height={90}
-                src={
-                  playerRank[0].profilePicture.includes(
-                    "https://static-cdn.jtvnw.net"
-                  )
-                    ? playerRank[0].profilePicture
-                    : playerRank[0].profilePicture.includes("default")
-                    ? defaultProfilePic
-                    : playerRank[0].profilePicture
-                }
-                alt="Imagem de perfil"
-              />
+              width={90}
+              height={90}
+              src={
+                playerRank[0].profilePicture.includes("https://static-cdn.jtvnw.net")
+                  ? playerRank[0].profilePicture.substring(
+                      playerRank[0].profilePicture.indexOf("https://static-cdn.jtvnw.net")
+                    )
+                  : playerRank[0].profilePicture.includes("default")
+                  ? defaultProfilePic
+                  : playerRank[0].profilePicture
+              }
+              alt="Imagem de perfil"
+            />
             )}
             <div className={style.podiumBlock}>
               <h3>{playerRank[0].name}</h3>
@@ -76,20 +75,20 @@ const Podium = ({
         {playerRank.length > 2 && (
           <div className={style.bronzeMedal}>
             {playerRank[2].profilePicture && (
-              <Image
-                width={90}
-                height={90}
-                src={
-                  playerRank[2].profilePicture.includes(
-                    "https://static-cdn.jtvnw.net"
-                  )
-                    ? playerRank[2].profilePicture
-                    : playerRank[2].profilePicture.includes("default")
-                    ? defaultProfilePic
-                    : playerRank[2].profilePicture
-                }
-                alt="Imagem de perfil"
-              />
+             <Image
+             width={90}
+             height={90}
+             src={
+               playerRank[2].profilePicture.includes("https://static-cdn.jtvnw.net")
+                 ? playerRank[2].profilePicture.substring(
+                     playerRank[2].profilePicture.indexOf("https://static-cdn.jtvnw.net")
+                   )
+                 : playerRank[2].profilePicture.includes("default")
+                 ? defaultProfilePic
+                 : playerRank[2].profilePicture
+             }
+             alt="Imagem de perfil"
+           />
             )}
             <div className={style.podiumBlock}>
               <h3>{playerRank[2].name}</h3>

@@ -80,6 +80,7 @@ export const LastEarnedContextProvider = ({ children }: { children: ReactNode; }
       });
 
     });
+    tempArray.sort((a, b) => new Date(b.unformattedTime).getTime() - new Date(a.unformattedTime).getTime());
 
     setLastEarnedList(tempArray);
   };

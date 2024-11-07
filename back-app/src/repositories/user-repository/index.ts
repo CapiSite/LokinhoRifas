@@ -295,7 +295,7 @@ export async function getLastWinners(page: number, itemsPerPage: number) {
 
       return acc;
     }, []);
-
+    console.log(raffles)
     return raffles;
   } catch (error) {
     console.error('Error fetching last winners: ', error);
@@ -436,19 +436,19 @@ async function getTopWinnersWithSkinsAndParticipants(
   // Criando o mapa com a tipagem correta para armazenar os vencedores
   const winnersMap: { [key: number]: Winner } = {};
 
-  // Definindo a cláusula where para o período com base no campo createdAt (data do sorteio da skin)
+  // Definindo a cláusula where para o período com base no campo raffleSkin.updatedAt (data de atualização do sorteio da skin)
   const dateFilter: any = {};
   if (startDate && endDate) {
-    dateFilter.createdAt = {
+    dateFilter.updatedAt = {
       gte: startDate,
       lte: endDate,
     };
   } else if (startDate) {
-    dateFilter.createdAt = {
+    dateFilter.updatedAt = {
       gte: startDate,
     };
   } else if (endDate) {
-    dateFilter.createdAt = {
+    dateFilter.updatedAt = {
       lte: endDate,
     };
   }
@@ -463,7 +463,7 @@ async function getTopWinnersWithSkinsAndParticipants(
       winner_id: {
         not: null, // Filtra para pegar apenas aqueles que têm um vencedor
       },
-      ...dateFilter, // Aplica o filtro de datas baseado em createdAt
+      ...dateFilter, // Aplica o filtro de datas baseado em raffleSkin.updatedAt
     },
   });
 
@@ -490,7 +490,7 @@ async function getTopWinnersWithSkinsAndParticipants(
     const skinsWon = await prisma.raffleSkin.findMany({
       where: {
         winner_id: winner.winner_id,
-        ...dateFilter, // Aplica o filtro de datas baseado no campo createdAt
+        ...dateFilter, // Aplica o filtro de datas baseado no campo raffleSkin.updatedAt
       },
     });
 
@@ -500,7 +500,7 @@ async function getTopWinnersWithSkinsAndParticipants(
         user_id: userId,
         raffle: {
           raffleSkins: {
-            some: dateFilter, // Filtro de datas para contar participações com base na skin sorteada
+            some: dateFilter, // Filtro de datas para contar participações com base no campo raffleSkin.updatedAt
           },
         },
       },
@@ -546,6 +546,7 @@ async function getTopWinnersWithSkinsAndParticipants(
 
   return paginatedWinners;
 }
+
 
 const userRepository = {
   findByName,

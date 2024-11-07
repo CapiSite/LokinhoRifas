@@ -57,6 +57,11 @@ async function activeRaffles(id: number) {
   const raffles = await raffleRepository.postActiveRaffles(id);
   return raffles;
 }
+async function disableRaffles(id: number) {
+  const raffles = await raffleRepository.postDisableRaffles(id);
+  return raffles;
+}
+
 
 async function deleteRaffle(id: number) {
   return await raffleRepository.deleteRaffle(id);
@@ -203,19 +208,27 @@ async function addParticipantToRaffle(raffleId: number, userId: number) {
   const raffleData = await raffleRepository.findById(raffleId, null, { includeParticipants: true });
   if (!raffleData) throw new Error(`Raffle with ID ${raffleId} not found`);
 
-  const nextNumber = raffleData.participants.length + 1;
+  const availableNumber = await raffleRepository.findFirstAvailableNumberInRaffle(raffleId, raffleData.users_quantity);
+  if (availableNumber === undefined) {
+    throw new Error('Nenhum número disponível para adicionar o participante');
+  }
 
-  const participant = await raffleRepository.addParticipantToRaffle(raffleId, userId, nextNumber);
+  // Adiciona o participante usando o número disponível
+  const participant = await raffleRepository.addParticipantToRaffle(raffleId, userId, availableNumber);
   return participant;
 }
 
-async function removeParticipantFromRaffle(raffleId: number, number: number) {
-  const participant = await raffleRepository.findParticipantByRaffleAndUser(raffleId, number);
-  if (!participant) {
-    throw new Error('Participante não encontrado na rifa');
+async function removeParticipantFromRaffle(raffleId: number, userId: number) {
+  const highestPaidParticipant = await raffleRepository.findHighestPaidParticipantByRaffleAndUser(raffleId, userId);
+  if (!highestPaidParticipant) {
+    throw new Error('Nenhum participante com is_paid=true encontrado para esse usuário na rifa');
   }
-  await raffleRepository.removeParticipantFromRaffle(participant.id);
+
+  // Remove o participante com o maior número
+  await raffleRepository.removeParticipantFromRaffle(highestPaidParticipant.id);
 }
+
+
 
 async function clearExpiredReservations() {
   const now = new Date();
@@ -442,4 +455,5 @@ export default {
   payReservedRaffleNumbers,
   deleteRaffle,
   getRafflesForRoulette,
+  disableRaffles
 };

@@ -28,6 +28,18 @@ export const activeRaffle = async (req: AuthenticatedRequest, res: Response) => 
   }
 };
 
+export const disableRaffle = async (req: AuthenticatedRequest, res: Response) => {
+  const { id } = req.query;
+
+  try {
+    const raffle = await raffleService.disableRaffles(Number(id));
+
+    res.status(httpStatus.CREATED).json(raffle);
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({ message: error.message, error });
+  }
+};
+
 export async function getRaffles(req: Request, res: Response) {
   try {
     const raffles = await raffleService.getRaffles();

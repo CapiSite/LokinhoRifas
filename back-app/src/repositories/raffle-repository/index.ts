@@ -130,6 +130,23 @@ const postActiveRaffles = async (id: number) => {
     data: { is_active: 'Ativa' },
   });
 };
+const postDisableRaffles = async (id: number) => {
+  // Primeiro, buscamos a rifa para verificar seu estado atual
+  const raffle = await prisma.raffle.findUnique({
+    where: { id },
+  });
+
+  // Verificamos se a rifa está no estado "Em espera"
+  if (!raffle || raffle.is_active !== 'Ativa') {
+    throw new Error("A rifa não pode ser ativada porque não está no estado 'Ativa'.");
+  }
+
+  // Se estiver "Em espera", podemos prosseguir e ativá-la
+  return await prisma.raffle.update({
+    where: { id },
+    data: { is_active: 'Em espera' },
+  });
+};
 
 const deleteRaffle = async (id: number) => {
   const raffle = await prisma.raffle.findUnique({
@@ -316,6 +333,44 @@ async function removeParticipantFromRaffle(participantId: number) {
     },
   });
 }
+
+// Adicionar no raffleRepository
+
+async function findHighestPaidParticipantByRaffleAndUser(raffleId: number, userId: number) {
+  return prisma.participant.findFirst({
+    where: {
+      raffle_id: raffleId,
+      user_id: userId,
+      is_paid: true,
+    },
+    orderBy: {
+      number: 'desc', // Ordena por número em ordem decrescente
+    },
+  });
+}
+
+async function findFirstAvailableNumberInRaffle(raffleId: number, totalNumbers: number) {
+  const participants = await prisma.participant.findMany({
+    where: {
+      raffle_id: raffleId,
+    },
+    select: {
+      number: true,
+      is_paid: true,
+      is_reserved: true,
+    },
+  });
+
+  // Gera uma lista de todos os números de 1 até `totalNumbers`
+  const allNumbers = Array.from({ length: totalNumbers }, (_, i) => i + 1);
+  const usedNumbers = participants
+    .filter(participant => participant.is_paid || participant.is_reserved)
+    .map(participant => participant.number);
+
+  // Encontra o primeiro número disponível
+  return allNumbers.find(number => !usedNumbers.includes(number));
+}
+
 
 async function purchaseRaffleNumbers(
   userId: number,
@@ -625,4 +680,7 @@ export default {
   findUserReservations,
   payForReservedNumbers,
   getActiveRafflesWithDetailsForRoulette,
+  findHighestPaidParticipantByRaffleAndUser,
+  findFirstAvailableNumberInRaffle,
+  postDisableRaffles
 };

@@ -11,6 +11,7 @@ import {
   removeParticipantFromRaffle,
   reserveRaffleNumberController,
   getRafflesForRoulette,
+  disableRaffle,
 } from '../controllers/raffle-controller';
 import { raffleSchema, buyRaffleSchema, addParticipantSchema, removeParticipantSchema } from '../schemas';
 
@@ -18,6 +19,7 @@ const raffleRouter = Router();
 
 raffleRouter.post('/', authenticateToken, authenticateAdmin, validateBody(raffleSchema), createRaffle);
 raffleRouter.post('/active', authenticateToken, authenticateAdmin, activeRaffle);
+raffleRouter.post('/disable', authenticateToken, authenticateAdmin, disableRaffle);
 raffleRouter.get('/', getRaffles);
 raffleRouter.get('/getRafflesForRoulette', getRafflesForRoulette);
 raffleRouter.get('/allRaffle', authenticateToken, authenticateAdmin, getAllRaffles);

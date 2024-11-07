@@ -29,6 +29,18 @@ export default function PopUpRifa({
         })
     }
 
+    function disableRaflle() {
+        axios.post(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/raffle/disable?id=${id}`, {}, 
+        {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+        .then((res) => {
+            alert("Rifa desativada!")
+            setPopUpRifaRifa(false)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     function DeleteRifa() {
         axios.delete(process.env.NEXT_PUBLIC_REACT_NEXT_APP + `/raffle/remove-raffle/${id}`, 
         {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
