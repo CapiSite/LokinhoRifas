@@ -29,13 +29,13 @@ Este projeto é um site de rifas desenvolvido para o cliente Lokinho. O site foi
   GitHub: [https://github.com/hardkill551](https://github.com/hardkill551)
   
 - **Lucas Araújo de Oliveira** (Front-end)  
-  Email: lucasao744@gmail.com
-  LinkedIn: https://www.linkedin.com/in/lucas-araujo-de-oliveira?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
-  GitHub: https://github.com/lucas0302
+  - Email: lucasao744@gmail.com
+   - LinkedIn: https://www.linkedin.com/in/lucas-araujo-de-oliveira?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
+   - GitHub: https://github.com/lucas0302
 
 - **Leandro Ferreira** (Front-end, Design e Integrações)  
-  Email: leandro.fcode@gmail.com
-  LinkedIn: https://www.linkedin.com/in/leandro-ferreira-ab751b248/
-  GitHub: https://github.com/NotJotunnn
+   - Email: leandro.fcode@gmail.com
+   - LinkedIn: https://www.linkedin.com/in/leandro-ferreira-ab751b248/
+   - GitHub: https://github.com/NotJotunnn
 
 
