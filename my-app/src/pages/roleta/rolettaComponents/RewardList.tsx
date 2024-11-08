@@ -28,7 +28,7 @@ const RewardList = () => {
       {availableRaffles.length > 0 && 
       <div className={style.raffleSelectWrapper}>
         <select disabled={!isButtonActive} name='raffleSelector' value={raffle.id || availableRaffles[0].id} className={cn(style.raffleSelector)} onChange={(e) => selectRaffle(Number(e.target.value))}>
-          {availableRaffles.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name.toUpperCase()} {Math.round((raffle.participants.length / raffle.users_quantity) * 100)}%</option>)}
+          {availableRaffles.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name.toUpperCase()}</option>)}
         </select>
 
         <div className={style.loaderContent}>
