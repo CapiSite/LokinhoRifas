@@ -20,19 +20,19 @@ const RewardList = () => {
     }
   }
 
-  const loading = Math.round((raffle.participants.length / raffle.users_quantity) * 10)
+  const loading = Math.round((raffle?.participants.length / raffle?.users_quantity) * 10)
   const loader = Array.from({ length: 10 }, (_, i) => i)
 
   return (
     <>
-      {availableRaffles.length > 0 && 
+      {availableRaffles?.length > 0 && 
       <div className={style.raffleSelectWrapper}>
         <select disabled={!isButtonActive} name='raffleSelector' value={raffle.id || availableRaffles[0].id} className={cn(style.raffleSelector)} onChange={(e) => selectRaffle(Number(e.target.value))}>
           {availableRaffles.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name.toUpperCase()}</option>)}
         </select>
 
         <div className={style.loaderContent}>
-          <h2>{Math.round((raffle.participants.length / raffle.users_quantity) * 100)}%</h2>
+          <h2>{Math.round((raffle?.participants.length / raffle?.users_quantity) * 100)}%</h2>
           <div className={style.loader}>
             <div className={style.loaderWrapper}>
               {loader.map((tick, index) => <div key={index} className={cn(style.loaderTick, loading > index && style.activeTick)}></div>)}

@@ -4,14 +4,13 @@ import RewardList from './RewardList';
 
 import HEROBACK from '../../../images/Roleta/Hero/HEROBACKGROUND.png';
 import LINES from '../../../images/Roleta/Hero/Lines.png';
-import { Raffle, RouletteContext, UserContextType } from 'utils/interfaces';
+import { RouletteContext, UserContextType } from 'utils/interfaces';
 import { useRouletteContext } from 'contexts/RouletteContext';
 import { useUserStateContext } from 'contexts/UserContext';
 import NumberSorter from './NumberSorter';
 import Confetti from 'react-confetti'
 import { useEffect, useState } from 'react';
 import Roulette from './Roulette';
-import cn from 'classnames'
 
 
 const Hero = () => {
@@ -52,10 +51,6 @@ const Hero = () => {
 
   const winnerIsCorrected = winners.filter(winner => winner.number === winnerProperties?.number).length !== 0;
 
-  // useEffect(() => {
-  //   console.log(!isButtonActive, !winnerIsCorrected, (!winnerProperties?.distanceFromCenter), ' (', !winnerProperties?.distanceFromCenter, participants.length < 100, ') ', participants.length === 0, rewards.length === 0, winnerProperties?.distanceFromCenter)
-  // }, [manageMockWinner])
-
   return (
     <section className={style.Roleta}>
       <div className={style.RoletaWrapper}>
@@ -63,14 +58,14 @@ const Hero = () => {
         <div className={style.HeroFrontImage}>
         </div>
         <RewardList />
-        {participants.length >= 100 ? 
+        {participants?.length >= 100 ? 
           <NumberSorter /> :
           <Roulette />
         }
 
         <div className={style.ButtonGroup}>
-          <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
-          <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
+          <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants?.length < 100) || participants?.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
+          <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants?.length < 100) || !userInfo.isAdmin || rewards.length === 0 || participants?.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
         </div>
       </div>
 

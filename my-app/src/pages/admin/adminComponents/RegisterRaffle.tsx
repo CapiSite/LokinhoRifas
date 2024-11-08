@@ -88,7 +88,7 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
       <div className={style.RegisterSkins}>
         <h1 className={style.TitleRegisterRifa}>Skins selecionadas</h1>
         <div className={style.ContainerCardSkinsCart}>
-          {skinsCard.map((skin) => (
+          {skinsCard?.map((skin) => (
             <CardSkinsCart
               key={uuidv4()}
               id={skin.id}
