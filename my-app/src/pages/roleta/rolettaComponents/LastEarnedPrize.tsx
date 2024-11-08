@@ -89,8 +89,8 @@ const LastEarnedPrizes = ({
         </div>
         <div className={style.ImageWrapperBox}>
           <Image
-            width={165}
-            height={135}
+            width={660}
+            height={560}
             src={imgSrc}
             alt={`Imagem de ${ItemName}`}
             onError={(e) => {
