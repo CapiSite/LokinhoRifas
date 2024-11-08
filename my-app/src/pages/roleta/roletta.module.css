@@ -134,11 +134,90 @@
   /* outline: 2px solid rgba(0, 128, 0, 0.2); */
 }
 
-.ButtonGroup, .RewardsList, .Roulette, .NumberSorter {
+.raffleSelectWrapper {
   position: relative;
-  top: -250px !important; 
+  top: -250px; 
 }
 
+.raffleSelectWrapper select {
+  min-width: 200px;
+  max-width: 500px;
+
+  padding-block: 6px;
+
+  background-color: #222;
+  outline: 2px solid white;
+
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+
+  border-radius: 10px;
+}
+
+.loaderContent {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  margin-top: 10px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.loaderContent h2 {
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+.loader {
+  width: 204px;
+  height: 24px;
+
+  background-color: transparent;
+
+  padding: 2px;
+
+  outline: 2px solid white;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+
+.loaderWrapper {
+  display: flex;
+
+  gap: 4px;
+  height: 100%;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+
+.loaderTick {
+  min-width: 20px;
+  height: 20px;
+
+  position: relative;
+  left: -5px;
+
+  transform: skewX(-22.5deg);
+}
+
+.loaderTick.activeTick {
+  background-color: white;
+}
+
+.ButtonGroup, .RewardsList, .Roulette, .NumberSorter {
+  position: relative;
+  top: -250px; 
+}
 
 
 .Roleta .HeroFrontImage {

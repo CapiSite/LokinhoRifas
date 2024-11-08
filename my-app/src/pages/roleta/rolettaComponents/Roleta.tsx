@@ -22,11 +22,8 @@ const Hero = () => {
     participants = [],
     rewards = [],
     winners = [],
-    availableRaffles = [],
-    selectRaffle,
     isConfettiActive,
     winnerProperties, 
-    raffle
   } = useRouletteContext() as RouletteContext
 
   const {
@@ -34,7 +31,6 @@ const Hero = () => {
   } = useUserStateContext() as UserContextType
 
   const [ windowParams, setWindowParams ] = useState({width: 3840, height: 3840})
-  const [ raffleList, setRaffleList ] = useState<Raffle[]>([])
 
   const handleResize = (e: Event) => {
     const target = e.target as Window
@@ -53,21 +49,6 @@ const Hero = () => {
       window.removeEventListener('resize', e => handleResize(e))
     }
   }, [])
-
-  useEffect(() => {
-    if (!raffle) return; // Adicionando verificação para garantir que `raffle` não seja indefinido.
-    setRaffleList([]);
-  
-    const debounce = setTimeout(() => {
-      const tempRaffleList = availableRaffles.filter(raffleItem => raffleItem.id !== (raffle?.id || 0));
-   
-      tempRaffleList.unshift(raffle);
-  
-      setRaffleList(tempRaffleList);
-    }, 200);
-  
-    return () => clearTimeout(debounce);
-  }, [raffle?.id, availableRaffles]); // Usando o operador opcional `?.`
 
   const winnerIsCorrected = winners.filter(winner => winner.number === winnerProperties?.number).length !== 0;
 
@@ -89,10 +70,6 @@ const Hero = () => {
 
         <div className={style.ButtonGroup}>
           <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || participants.length === 0 || rewards.length === 0} onClick={() => manageMockWinner()} >Giro Teste</button>
-          {availableRaffles.length > 0 && 
-          <select disabled={!isButtonActive} name='raffleSelector' className={cn(style.raffleSelector, style.mobile, (windowParams.width < 550 || participants.length >= 100) ? style.Visible : '')} onChange={(e) => selectRaffle(Number(e.target.value))}>
-            {raffleList.map((raffle) => <option key={raffle.id} value={raffle.id}>{raffle.name} {Math.round((raffle.participants.length / raffle.users_quantity) * 100)}%</option>)}
-          </select>}
           <button disabled={!isButtonActive || !winnerIsCorrected || (!winnerProperties?.distanceFromCenter && participants.length < 100) || !userInfo.isAdmin || rewards.length === 0 || participants.length === 0} onClick={() => manageWinner()} >Girar Roleta</button>
         </div>
       </div>
