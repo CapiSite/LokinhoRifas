@@ -502,11 +502,17 @@ Card das Skins do cadastro                                                      
 }
 
 .DivDeliteCard{
+  display: flex;
+
   height: 48px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+.DivDeliteCard button {
+  margin-left: auto;
 }
 
 .RemoveButton{

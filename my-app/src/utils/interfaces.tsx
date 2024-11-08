@@ -352,10 +352,12 @@ export interface PopUpUpdateRifaProps {
 }
 
 export type RegisterRifa = {
-  id: number;
+  id: string;
+  itemId: number;
   name: string;
   value: number;
   picture: string;
+  position: number;
 };
 
 export interface InterRegisterRifa {

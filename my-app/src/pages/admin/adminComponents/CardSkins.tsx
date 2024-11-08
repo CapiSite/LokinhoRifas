@@ -7,6 +7,8 @@ import PopUpUpdateSkins from './PopUpUpdateSkins';
 import { RegisterRifa } from 'utils/interfaces';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
+import { v4 as uuidv4 } from 'uuid';
+
 export default function CardSkins({
     name,
     type,
@@ -33,13 +35,14 @@ export default function CardSkins({
 
     // Função para adicionar a skin na rifa
     const handleAddToRaffle = () => {
-        const newSkin: RegisterRifa = {
-            id,
+        setSkinsCard(prevSkins => [...prevSkins, {
+            id: uuidv4(),
+            itemId: id,
             picture: picture.toString(),
             name,
-            value
-        };
-        setSkinsCard(prevSkins => [...prevSkins, newSkin]);
+            value,
+            position: prevSkins.length
+        }]);
     };
 
     return (

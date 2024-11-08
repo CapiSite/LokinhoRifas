@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import style from '../admin.module.css';
 import CardSkinsCart from './CardSkinsCart';
-import { RegisterRaffleProps } from 'utils/interfaces';
+import { RegisterRaffleProps, RegisterRifa } from 'utils/interfaces';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -22,7 +22,7 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
       const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/raffle`, {
         name: raffleName,
         users_quantity: numberOfTickets,
-        skins: skinsCard.map(skin => ({ id: skin.id })),
+        skins: skinsCard.map(skin => ({ id: skin.itemId, position: skin.position })),
         free: raffleType // Adiciona o tipo de rifa no envio
       }, {
         headers: {
@@ -37,9 +37,21 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
     }
   };
 
-  const handleRemoveSkin = (id: number) => {
-    setSkinsCard(prevSkins => prevSkins.filter(skin => skin.id !== id));
+  const handleRemoveSkin = (id: string) => {
+    setSkinsCard(prevSkins => prevSkins.filter(skin => skin.id !== id).map((item, index) => ({...item, position: index})));
   };
+
+  const handleChangeOrder = (currentPosition: number, event: ChangeEvent<HTMLSelectElement>) => {
+    const selectedItem = skinsCard.filter(item => item.position == currentPosition)[0]
+
+    const skinsArray = skinsCard.filter(item => item.position != currentPosition)
+
+    skinsArray.splice(Number(event.target.value), 0, {...selectedItem, position: Number(event.target.value)})
+
+    const finalSkinsArray = skinsArray.map((item, index) => ({...item, position: index}))
+
+    setSkinsCard(finalSkinsArray)
+  }
 
   return (
     <form className={style.CadastrarRifa} onSubmit={handleSubmit}>
@@ -76,14 +88,17 @@ const RegisterRaffle: React.FC<RegisterRaffleProps> = ({ skinsCard, setSkinsCard
       <div className={style.RegisterSkins}>
         <h1 className={style.TitleRegisterRifa}>Skins selecionadas</h1>
         <div className={style.ContainerCardSkinsCart}>
-          {skinsCard?.map((skin) => (
+          {skinsCard.map((skin) => (
             <CardSkinsCart
               key={uuidv4()}
               id={skin.id}
               name={skin.name}
               value={skin.value}
+              position={skin.position}
+              size={skinsCard.length}
               picture={`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/uploads/${skin.picture}`}
               onRemove={handleRemoveSkin}
+              onChangeOrder={handleChangeOrder}
             />
           ))}
         </div>
