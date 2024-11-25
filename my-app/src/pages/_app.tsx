@@ -47,6 +47,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Lokinho Skins</title>
+        {/* This line below should load the website's logo when sharing the whatsapp link */}
+        <meta property="og:image" content="favicon.ico" />
       </Head>
       <UserProvider>
         <TextProvider>
