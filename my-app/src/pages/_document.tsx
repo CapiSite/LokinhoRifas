@@ -36,10 +36,6 @@ export default function Document() {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
 
-        <meta
-          property="og:image"
-          content="favicon.ico"
-        />
       </Head>
       <body>
         <Main />
