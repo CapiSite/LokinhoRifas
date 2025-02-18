@@ -527,7 +527,7 @@ export const RouletteProvider = ({ children }: { children: ReactNode }) => {
       (item) => !oldWinnersId.join().includes("#" + item.id) && item.is_paid == true
     );
 
-    const random = Math.floor(Math.random() * (possibleWinners.length - 1));
+    const random = Math.floor(Math.random() * (possibleWinners.length));
 
     possibleWinners[random] = {
       id: possibleWinners[random].id,
