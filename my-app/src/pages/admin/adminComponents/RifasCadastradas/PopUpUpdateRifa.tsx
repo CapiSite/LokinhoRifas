@@ -104,6 +104,20 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
             alert('Falha ao adicionar usuário à rifa.');
         }
     };
+    const handleDeleteUser = async (userId: number): Promise<void> => {
+        try {
+            
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_REACT_NEXT_APP}/users/${userId}/admin`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            });
+            if (response.status === 200) {
+                alert('Usuário deletado do aplicativo com sucesso!');
+            }
+        } catch (error) {
+            console.error('Erro ao deletar usuário à rifa:', error);
+            alert('Falha ao deletar usuário à rifa.');
+        }
+    };
 
     const handleDeleteUserRaffle = async (number: string): Promise<void> => {
         try {
@@ -232,6 +246,7 @@ export default function PopUpUpdateRifa({ setPopUpUpdateRaffle, raffleId }: PopU
                             onnumberChange={() => { }}
                             onDeleteUserRaffle={() => handleDeleteUserRaffle(person.number)}
                             onAddUser={() => handleAddUser(person.id)}
+                            onDeleteUser={() => handleDeleteUser(person.id)}
                             context={addUser ? "ParticipantsRafle" : "addParticipantsRaflle"}
                             id={person.id}
                         />

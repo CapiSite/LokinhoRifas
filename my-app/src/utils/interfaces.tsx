@@ -321,7 +321,7 @@ export interface UsersProps {
   onDeleteUserRaffle: (id: number) => void;
   onAddUser: (id: number) => void;
   onnumberChange: (id: number) => void;
-
+  onDeleteUser: (id: number) => void;
   count: number;
 }
 

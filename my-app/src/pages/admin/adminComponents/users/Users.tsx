@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from './users.module.css';
 import { UsersProps } from "utils/interfaces";
 
-export default function Users({ id, image, name, tradeLink, email, charge, count, context, onDeleteUserRaffle, onAddUser }: UsersProps) {
+export default function Users({ id, image, name, tradeLink, email, charge, count, context, onDeleteUserRaffle, onAddUser, onDeleteUser }: UsersProps) {
     return (
         <div className={styles.ContainerUser}>
             <Image width={55} height={55} src={image} className={styles.ImageUser} alt='Foto de perfil' />
@@ -20,7 +20,10 @@ export default function Users({ id, image, name, tradeLink, email, charge, count
                 )}
 
                 {context === "addParticipantsRaflle" && (
+                    <>
                     <div className={styles.AddUser} onClick={() => onAddUser(id)}>Adicionar</div>
+                    <div className={styles.DeleteUser} onClick={() => onDeleteUser(id)}>Deletar Usuário</div>
+                    </>
                 )}
             </div>
         </div>

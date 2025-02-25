@@ -219,6 +219,12 @@
   top: -250px; 
 }
 
+/* Somente para telas maiores que 1200px */
+@media (min-width: 1201px) {
+  .RewardsList {
+    left: -55px;
+  }
+}
 
 .Roleta .HeroFrontImage {
   width: 1268px;
