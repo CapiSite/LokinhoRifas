@@ -1,25 +1,35 @@
-// my-app/next.config.js
-const repoName = 'LokinhoRifas'                               // nome exato do seu repo
+// next.config.js
 const isDev = process.env.NODE_ENV === 'development'
 
 /** @type {import('next').NextConfig} */
-module.exports = {
-  output: 'export',
-  trailingSlash: true,
-
-  // só em produção (GitHub Pages roda em production)
-  basePath: isDev ? '' : `/${repoName}`,
-  assetPrefix: isDev ? '' : `/${repoName}/`,
-
-  images: {
-    domains: [ 'static-cdn.jtvnw.net', 'lokinhoskins.com.br' ]
-  },
+const nextConfig = {
   reactStrictMode: true,
 
-  // expõe no bundle a URL do seu backend
+  images: {
+    // em dev o localhost ainda funciona, em prod só os domínios reais
+    domains: isDev
+      ? ['localhost', 'static-cdn.jtvnw.net', 'lokinhoskins.com.br']
+      : ['static-cdn.jtvnw.net', 'lokinhoskins.com.br'],
+  },
+
+  // só injetamos a variável no bundle, que você define no Vercel/Local .env
   env: {
-    NEXT_PUBLIC_API_URL: isDev
-      ? 'http://localhost:5000'       // dev local
-      : 'https://lokinhorifas.onrender.com'
-  }
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  },
+
+  // somente em dev fazemos o rewrite /api → proxy local
+  ...(isDev && {
+    async rewrites() {
+      return [
+        {
+          source: '/api/:path*',
+          destination:
+            (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001') +
+            '/:path*',
+        },
+      ]
+    },
+  }),
 }
+
+module.exports = nextConfig
